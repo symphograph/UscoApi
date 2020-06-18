@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="graflastor.beget.tech" id="bcbaa12a-74d4-4505-88c3-f7cc9b6922bc" port="22" customName="usco" nameFormat="CUSTOM" username="graflastor_uscostorm" />
+    </configs>
+  </component>
+</project>

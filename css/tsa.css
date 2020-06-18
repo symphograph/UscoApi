@@ -1,0 +1,17 @@
+@charset "utf-8";
+/* CSS Document */
+.rcol{
+	display: block;
+	float: right;
+	padding: 15px;
+}
+.paragraph{
+	width: 60%;
+	max-width: 800px;
+	min-width: 400px;
+	color: #2f2e2e;
+	font-size: 20px;
+	font-family: PT Serif,serif;
+	padding-right: 500px;
+	text-align: justify;
+}

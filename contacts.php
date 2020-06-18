@@ -1,0 +1,77 @@
+<?php
+session_start();
+include_once 'includs/ip.php';
+include_once 'functions/functions.php';
+include_once 'includs/check.php';
+?>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<?php
+$p_title = 'Основные сведения';
+$ver = random_str(8);
+?>
+<title><?php echo $p_title;?></title>
+<link href="css/menu.css?ver=<?php echo $ver;?>" rel="stylesheet">
+<link href="css/index.css?ver=<?php echo $ver;?>" rel="stylesheet">
+<link href="css/menum.css?ver=<?php echo $ver;?>" rel="stylesheet">
+<link href="css/right_nav.css?ver=<?php echo $ver?>" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://vk.com/js/api/openapi.js?154" type="text/javascript"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+<body>
+<?php
+include 'includs/links.php';
+include 'includs/header.php';
+?>
+
+
+<div class="content">
+
+<div class="text">
+<div class="p_title"><?php echo $p_title;?></div><br>
+<p>Полное название:</p>
+МУНИЦИПАЛЬНОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ<br>"ЮЖНО-САХАЛИНСКИЙ КАМЕРНЫЙ ОРКЕСТР"<br><br>
+<p>Сокращенное название:</p>
+МБУ "ЮСКО"<br><br>
+Дата постановки на учет:<br>
+05.01.2001<br><br>
+<br>
+Учредитель: <br>
+<a href="https://culture.yuzhno-sakh.ru/">Департамент культуры и туризма г.Южно-Сахалинск</a>
+<br><br>
+<b>Директор</b> - Кириллова Майя Владимировна
+<div class="tel"><a href="tel:+74242300518"/>+7-4242-300-518</a></div><br>
+<div class="tel"><a href="tel:+79632892316"/>+7-963-289-23-16</a></div>
+<br><br>
+Старший администратор:
+<div class="tel"><a href="tel:+74242300518"/>+7-4242-300-518</a></div>
+<br><br>
+Специалист по кадрам:
+<div class="tel"><a href="tel:+74242300518"/>+7-4242-300-518</a></div><br>
+<a href="mailto:mbu-gko@yandex.ru">mbu-gko@yandex.ru</a>
+<br><br>
+<p>г. Южно-Сахалинск</p>
+<p>ул.Ленина, д. 156</p>
+
+<a href="ofdocs/inn.pdf">ИНН: 6501109377</a><br>
+<a href="ofdocs/ogrn.pdf">ОГРН: 1026500550086</a>
+<p>КПП: 650101001</p>
+<p>ОКПО: 55655001</p><br>
+
+<br>
+<div class="map">
+<iframe src="https://yandex.ru/map-widget/v1/-/ZU0EaABiTkMFXEJuZWJ4d3phYQA=/?ll=142.727859%2C46.966131&z=19" width="100%" height="400" frameborder="1" allowfullscreen="true"></iframe>
+</div>
+<br><br>
+
+</div>
+</div>
+<?php
+include 'includs/footer.php';
+?>
+</body>
+</html>

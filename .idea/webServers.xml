@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ac7623aa-b66d-478d-8846-fb38b0c0fa0b" name="usco" url="https://sakh-orch.ru">
+        <fileTransfer rootFolder="/home/g/graflastor/sakh-orch.ru/public_html" accessType="SFTP" host="graflastor.beget.tech" port="22" sshConfigId="bcbaa12a-74d4-4505-88c3-f7cc9b6922bc" sshConfig="usco">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

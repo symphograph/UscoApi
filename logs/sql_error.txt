@@ -1,0 +1,388 @@
+
+
+2020-05-30 18:27:18	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Acosta, Paul d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '65' WHERE composer = 'Acosta, Paul d''
+2020-05-30 18:27:23	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Adhémar, Abel d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '106' WHERE composer = 'Adhémar, Abel d''
+2020-05-30 18:27:27	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Agincour, François d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '138' WHERE composer = 'Agincour, François d''
+2020-05-30 18:27:27	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Agiout, Alexandre d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '139' WHERE composer = 'Agiout, Alexandre d''
+2020-05-30 18:27:30	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Aguilar, A. d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '160' WHERE composer = 'Aguilar, A. d''
+2020-05-30 18:27:33	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Aix, Pascal d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '188' WHERE composer = 'Aix, Pascal d''
+2020-05-30 18:27:39	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Albert, Charles d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '234' WHERE composer = 'Albert, Charles d''
+2020-05-30 18:27:39	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Albert, Eugen d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '236' WHERE composer = 'Albert, Eugen d''
+2020-05-30 18:27:48	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Alessandro, Raffaele d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '302' WHERE composer = 'Alessandro, Raffaele d''
+2020-05-30 18:28:01	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Alton-Shée, Comtesse d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '400' WHERE composer = 'Alton-Shée, Comtesse d''
+2020-05-30 18:28:04	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Ambleville, Charles d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '431' WHERE composer = 'Ambleville, Charles d''
+2020-05-30 18:28:17	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Angelo, Carlo d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '528' WHERE composer = 'Angelo, Carlo d''
+2020-05-30 18:28:18	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Anglebert, Jean-Henri d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '535' WHERE composer = 'Anglebert, Jean-Henri d''
+2020-05-30 18:28:28	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Aranda, Sessa d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '614' WHERE composer = 'Aranda, Sessa d''
+2020-05-30 18:28:29	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Arba, E. d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '621' WHERE composer = 'Arba, E. d''
+2020-05-30 18:28:31	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Ardespin, Melchior d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '635' WHERE composer = 'Ardespin, Melchior d''
+2020-05-30 18:28:33	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Argentille, Charles d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '651' WHERE composer = 'Argentille, Charles d''
+2020-05-30 18:28:33	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Argenton, Antonin d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '652' WHERE composer = 'Argenton, Antonin d''
+2020-05-30 18:28:46	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Assisi, Ruffino d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '755' WHERE composer = 'Assisi, Ruffino d''
+2020-05-30 18:28:47	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Astroc, Consuelo d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '763' WHERE composer = 'Astroc, Consuelo d''
+2020-05-30 18:28:49	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Aubel, Henri d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '782' WHERE composer = 'Aubel, Henri d''
+2020-05-30 18:28:54	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Aumiller, Alessandro d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '815' WHERE composer = 'Aumiller, Alessandro d''
+2020-05-30 18:28:54	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Autezac, Léo d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '823' WHERE composer = 'Autezac, Léo d''
+2020-05-30 18:28:58	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Azevedo e Silva, Fernando d''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '848' WHERE composer = 'Azevedo e Silva, Fernando d''
+2020-05-30 18:29:23	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Argenta, Giovanni'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '1044' WHERE composer = 'Banchi d'Argenta, Giovanni'
+2020-05-30 18:29:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'The Younger', John'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '1056' WHERE composer = 'Banister 'The Younger', John'
+2020-05-30 18:33:19	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Brien'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '2810' WHERE composer = 'Butler, Thomas O'Brien'
+2020-05-30 18:33:28	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Hervelois, Louis de'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '2877' WHERE composer = 'Caix d'Hervelois, Louis de'
+2020-05-30 18:34:14	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Cavalieri, Emilio de''' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '3232' WHERE composer = 'Cavalieri, Emilio de''
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Alai, Mauro'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4213' WHERE composer = 'D'Alai, Mauro'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Alembert, Jean le Rond'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4214' WHERE composer = 'D'Alembert, Jean le Rond'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Alesio, Francesco'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4215' WHERE composer = 'D'Alesio, Francesco'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Alessandro, Gennaro'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4216' WHERE composer = 'D'Alessandro, Gennaro'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Alquen, Frank'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4217' WHERE composer = 'D'Alquen, Frank'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Alquen, Franz Maria'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4218' WHERE composer = 'D'Alquen, Franz Maria'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Alquen, Johann'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4219' WHERE composer = 'D'Alquen, Johann'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Ambrosio, Alfredo'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4220' WHERE composer = 'D'Ambrosio, Alfredo'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Ambrosio, Francesco'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4221' WHERE composer = 'D'Ambrosio, Francesco'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Ambrosio, Luigi'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4222' WHERE composer = 'D'Ambrosio, Luigi'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Andrea, Giovanni'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4223' WHERE composer = 'D'Andrea, Giovanni'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Angeli-Cattini, Alberta'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4224' WHERE composer = 'D'Angeli-Cattini, Alberta'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Anglebert, Jean-Henri'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4225' WHERE composer = 'D'Anglebert, Jean-Henri'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Aoust, Jules'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4226' WHERE composer = 'D'Aoust, Jules'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Arce, G. B.'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4227' WHERE composer = 'D'Arce, G. B.'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Arezzo, Guido'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4228' WHERE composer = 'D'Arezzo, Guido'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Argentil'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4229' WHERE composer = 'D'Argentil'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Arienzo, Nicola'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4230' WHERE composer = 'D'Arienzo, Nicola'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Hulst, Adolf'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4231' WHERE composer = 'D'Hulst, Adolf'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'India, Sigismondo'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4232' WHERE composer = 'D'India, Sigismondo'
+2020-05-30 18:36:25	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Urfey, Thomas'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4233' WHERE composer = 'D'Urfey, Thomas'
+2020-05-30 18:36:29	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Abaco, Evaristo Felice'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4263' WHERE composer = 'Dall'Abaco, Evaristo Felice'
+2020-05-30 18:36:29	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Abaco, Joseph'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4264' WHERE composer = 'Dall'Abaco, Joseph'
+2020-05-30 18:36:29	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Albero, Claudio'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4265' WHERE composer = 'Dall'Albero, Claudio'
+2020-05-30 18:36:29	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Aquila, Marco'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4266' WHERE composer = 'Dall'Aquila, Marco'
+2020-05-30 18:36:29	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Oglio, Domenico'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4267' WHERE composer = 'Dall'Oglio, Domenico'
+2020-05-30 18:36:59	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Rossi, Dario'' at line 1	/imslp2.php (line 13)
+UPDATE works SET composer_id = '4497' WHERE composer = 'De' Rossi, Dario'
+2020-05-30 18:41:27	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Acqua, Eva'' at line 1	/imslp2.php (line 14)
+UPDATE works SET composer_id = '4589' WHERE composer = 'Dell'Acqua, Eva'
+2020-05-30 18:41:27	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Aquila, Serafino'' at line 1	/imslp2.php (line 14)
+UPDATE works SET composer_id = '4590' WHERE composer = 'Dell'Aquila, Serafino'
+2020-05-30 18:42:39	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Abbé'' at line 1	/imslp2.php (line 14)
+UPDATE works SET composer_id = '5137' WHERE composer = 'Duval, L'Abbé'
+2020-05-30 18:42:52	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Egville, James Harvey d''' at line 1	/imslp2.php (line 14)
+UPDATE works SET composer_id = '5235' WHERE composer = 'Egville, James Harvey d''
+2020-05-30 18:43:13	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Erlanger, Frédéric d''' at line 1	/imslp2.php (line 14)
+UPDATE works SET composer_id = '5393' WHERE composer = 'Erlanger, Frédéric d''
+2020-05-30 18:43:20	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Estrez, Saint-Georges d''' at line 1	/imslp2.php (line 14)
+UPDATE works SET composer_id = '5451' WHERE composer = 'Estrez, Saint-Georges d''
+2020-05-30 18:43:24	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Evry, Edward d''' at line 1	/imslp2.php (line 14)
+UPDATE works SET composer_id = '5482' WHERE composer = 'Evry, Edward d''
+2020-05-30 18:46:37	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Anna'' at line 1	/imslp2.php (line 14)
+UPDATE works SET composer_id = '6929' WHERE composer = 'Gomes, Sant'Anna'
+2020-05-30 18:46:47	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Hovorst, Léopoldine'' at line 1	/imslp2.php (line 14)
+UPDATE works SET composer_id = '7004' WHERE composer = 'Goubau d'Hovorst, Léopoldine'
+2020-05-30 18:46:49	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Arsy, Yvonne de'' at line 1	/imslp2.php (line 14)
+UPDATE works SET composer_id = '7024' WHERE composer = 'Gouy d'Arsy, Yvonne de'
+2020-05-30 18:47:42	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Hack, Alfred d''' at line 1	/imslp2.php (line 14)
+UPDATE works SET composer_id = '7421' WHERE composer = 'Hack, Alfred d''
+2020-05-30 18:47:43	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Haenens, Arthur D''' at line 1	/imslp2.php (line 14)
+UPDATE works SET composer_id = '7429' WHERE composer = 'Haenens, Arthur D''
+2020-05-30 18:48:00	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Hardelot, Guy d''' at line 1	/imslp2.php (line 14)
+UPDATE works SET composer_id = '7564' WHERE composer = 'Hardelot, Guy d''
+2020-05-30 18:48:40	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Herbil, Ángel d''' at line 1	/imslp2.php (line 14)
+UPDATE works SET composer_id = '7863' WHERE composer = 'Herbil, Ángel d''
+2020-05-30 18:49:59	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Indy, Vincent d''' at line 1	/imslp2.php (line 14)
+UPDATE works SET composer_id = '8440' WHERE composer = 'Indy, Vincent d''
+2020-05-30 18:49:59	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Indy, Wilfred d''' at line 1	/imslp2.php (line 14)
+UPDATE works SET composer_id = '8441' WHERE composer = 'Indy, Wilfred d''
+2020-05-30 18:50:06	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Ivry, Paul Xavier Désiré, marquis d''' at line 1	/imslp2.php (line 14)
+UPDATE works SET composer_id = '8494' WHERE composer = 'Ivry, Paul Xavier Désiré, marquis d''
+2020-05-30 18:54:05	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 't'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '9501' 
+	WHERE composer_id is NULL 
+	AND composer = 'Kruijs, Marinus Hendrik van 't'
+2020-05-30 18:54:20	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Affilard, Michel'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '9617' 
+	WHERE composer_id is NULL 
+	AND composer = 'L'Affilard, Michel'
+2020-05-30 18:54:20	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Eonale, Renard'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '9618' 
+	WHERE composer_id is NULL 
+	AND composer = 'L'Eonale, Renard'
+2020-05-30 18:54:20	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Estocart, Paschal de'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '9619' 
+	WHERE composer_id is NULL 
+	AND composer = 'L'Estocart, Paschal de'
+2020-05-30 18:54:29	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Estalenx, Paul'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '9688' 
+	WHERE composer_id is NULL 
+	AND composer = 'Lacôme d'Estalenx, Paul'
+2020-05-30 18:55:21	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Étaples, Jacques'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '10075' 
+	WHERE composer_id is NULL 
+	AND composer = 'Lefèvre d'Étaples, Jacques'
+2020-05-30 18:55:40	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Urclé, Félix'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '10220' 
+	WHERE composer_id is NULL 
+	AND composer = 'Levacher d'Urclé, Félix'
+2020-05-30 18:55:53	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Liguori, Alphonsus Maria de''' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '10316' 
+	WHERE composer_id is NULL 
+	AND composer = 'Liguori, Alphonsus Maria de''
+2020-05-30 18:58:48	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Aragona, Giacomo Francesco'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '11632' 
+	WHERE composer_id is NULL 
+	AND composer = 'Milano Franco d'Aragona, Giacomo Francesco'
+2020-05-30 19:00:47	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Brien, Steven'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12514' 
+	WHERE composer_id is NULL 
+	AND composer = 'O'Brien, Steven'
+2020-05-30 19:00:47	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Connell, Rev. W. H.'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12515' 
+	WHERE composer_id is NULL 
+	AND composer = 'O'Connell, Rev. W. H.'
+2020-05-30 19:00:47	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Connor, William P.'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12516' 
+	WHERE composer_id is NULL 
+	AND composer = 'O'Connor, William P.'
+2020-05-30 19:00:47	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Connor-Morris, Geoffrey'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12517' 
+	WHERE composer_id is NULL 
+	AND composer = 'O'Connor-Morris, Geoffrey'
+2020-05-30 19:00:47	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Donnell, Bertram Walton'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12518' 
+	WHERE composer_id is NULL 
+	AND composer = 'O'Donnell, Bertram Walton'
+2020-05-30 19:00:47	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Dwyer, Robert'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12519' 
+	WHERE composer_id is NULL 
+	AND composer = 'O'Dwyer, Robert'
+2020-05-30 19:00:47	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Flannagan, Patrick'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12520' 
+	WHERE composer_id is NULL 
+	AND composer = 'O'Flannagan, Patrick'
+2020-05-30 19:00:47	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Hara, Geoffrey'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12521' 
+	WHERE composer_id is NULL 
+	AND composer = 'O'Hara, Geoffrey'
+2020-05-30 19:00:47	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Hara, Kane'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12522' 
+	WHERE composer_id is NULL 
+	AND composer = 'O'Hara, Kane'
+2020-05-30 19:00:47	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Hare, William Christopher'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12523' 
+	WHERE composer_id is NULL 
+	AND composer = 'O'Hare, William Christopher'
+2020-05-30 19:00:47	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Kelly, Joseph'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12524' 
+	WHERE composer_id is NULL 
+	AND composer = 'O'Kelly, Joseph'
+2020-05-30 19:00:47	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Neill, Francis'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12525' 
+	WHERE composer_id is NULL 
+	AND composer = 'O'Neill, Francis'
+2020-05-30 19:00:47	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Neill, Norman'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12526' 
+	WHERE composer_id is NULL 
+	AND composer = 'O'Neill, Norman'
+2020-05-30 19:00:47	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Shea, John Augustine'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12527' 
+	WHERE composer_id is NULL 
+	AND composer = 'O'Shea, John Augustine'
+2020-05-30 19:00:57	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Ollone, Max d''' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12604' 
+	WHERE composer_id is NULL 
+	AND composer = 'Ollone, Max d''
+2020-05-30 19:00:58	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Andrea'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12616' 
+	WHERE composer_id is NULL 
+	AND composer = 'Oltolina, Carl' Andrea'
+2020-05-30 19:01:01	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Orefice, Giuseppe dell''' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12639' 
+	WHERE composer_id is NULL 
+	AND composer = 'Orefice, Giuseppe dell''
+2020-05-30 19:01:05	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Orvict, Charles d''' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12667' 
+	WHERE composer_id is NULL 
+	AND composer = 'Orvict, Charles d''
+2020-05-30 19:01:12	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Ozanne, Abel Jean Joseph Duteil d''' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '12723' 
+	WHERE composer_id is NULL 
+	AND composer = 'Ozanne, Abel Jean Joseph Duteil d''
+2020-05-30 19:02:19	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ainé), André Danican'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '13226' 
+	WHERE composer_id is NULL 
+	AND composer = 'Philidor (L'ainé), André Danican'
+2020-05-30 19:02:19	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ainé, André Danican'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '13227' 
+	WHERE composer_id is NULL 
+	AND composer = 'Philidor l'ainé, André Danican'
+2020-05-30 19:02:58	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Antonio de'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '13527' 
+	WHERE composer_id is NULL 
+	AND composer = 'Pordenon, Marc'Antonio de'
+2020-05-30 19:10:11	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Arailza, Joseph'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '14568' 
+	WHERE composer_id is NULL 
+	AND composer = 'Rotondi d'Arailza, Joseph'
+2020-05-30 19:10:41	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Arod, Prosper'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '14797' 
+	WHERE composer_id is NULL 
+	AND composer = 'Sain d'Arod, Prosper'
+2020-05-30 19:10:43	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Abbé, Joseph Barnabé'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '14811' 
+	WHERE composer_id is NULL 
+	AND composer = 'Saint-Sévin dit L'Abbé, Joseph Barnabé'
+2020-05-30 19:10:54	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Agliè, Filippo Giuseppe'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '14893' 
+	WHERE composer_id is NULL 
+	AND composer = 'San Martino d'Agliè, Filippo Giuseppe'
+2020-05-30 19:10:59	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Agata, Tomaso da'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '14931' 
+	WHERE composer_id is NULL 
+	AND composer = 'Sant'Agata, Tomaso da'
+2020-05-30 19:12:00	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Oude'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '15395' 
+	WHERE composer_id is NULL 
+	AND composer = 'Schuere, D'Oude'
+2020-05-30 19:14:41	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ur, William'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '16613' 
+	WHERE composer_id is NULL 
+	AND composer = 'Tans'ur, William'
+2020-05-30 19:15:50	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Udine, Jean d''' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '17135' 
+	WHERE composer_id is NULL 
+	AND composer = 'Udine, Jean d''
+2020-05-30 19:19:22	You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Antonio'' at line 4	/imslp2.php (line 18)
+
+	UPDATE works 
+	SET composer_id = '18549' 
+	WHERE composer_id is NULL 
+	AND composer = 'Ziani, Marc'Antonio'

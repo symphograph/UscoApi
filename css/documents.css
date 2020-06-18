@@ -1,0 +1,56 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	outline: 0;
+}
+summary{
+    font-size: 28px;
+    font-weight: bold;
+	cursor: pointer;
+}
+details{
+	text-indent: 20px;
+}
+.flink{
+	vertical-align: middle;
+	text-decoration: none;
+	font-size: 23px;
+	margin-left: 15px;
+	color: #2f2e2e;
+	transition: 300ms;
+	
+}
+.flink:hover{
+	text-shadow: 1px 1px 10px #797474;
+	letter-spacing: 1px;
+	transition: 100ms;
+}
+.filesarea{
+	max-width: 800px;
+	margin: auto;
+	padding: 30px;
+}
+
+.inspections{
+	display: grid;
+	grid-template-columns: 50px auto auto auto;
+	overflow-x: scroll;
+}
+
+.p_title{
+	width: auto;
+}
+@media (max-width: 600px) {
+	
+	summary{
+		font-size: 18px;
+
+	}
+	
+	.flink{
+	font-size: 15px;
+	
+	
+}
+	
+}

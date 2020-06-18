@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+.group{
+	border: 1px solid rgba(242,237,232,1.00);
+	border-radius: 3px;
+	width: 300px;
+	padding: 20px;
+	margin: 10px;
+	display: inline-block;
+	float: left;
+	min-height: 210px;
+	color: #441c08;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-image: -webkit-linear-gradient(270deg,rgba(248,244,238,1.00) 0%,rgba(237,225,209,1.00) 100%);
+	background-image: -moz-linear-gradient(270deg,rgba(248,244,238,1.00) 0%,rgba(237,225,209,1.00) 100%);
+	background-image: -o-linear-gradient(270deg,rgba(248,244,238,1.00) 0%,rgba(237,225,209,1.00) 100%);
+	background-image: linear-gradient(180deg,rgba(248,244,238,1.00) 0%,rgba(237,225,209,1.00) 100%);
+	text-shadow: 1px 1px 1px rgba(255,255,255,1.00);
+}
+.groupname{
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
+	font-size: 20px;
+}
+.staffname {
+	
+}
+
+.staffjobname {
+	font-size: 12px;
+	color: gray;
+}

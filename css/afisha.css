@@ -1,0 +1,108 @@
+@charset "utf-8";
+/* CSS Document */
+
+.eventbox{
+	width: 260px;
+	height: 700px;
+	margin: 5px;
+	border: 1px solid #a98700;
+	position: relative;
+	display: inline-block;
+	float: left;
+	font-size: 20px;
+	/*background-color: antiquewhite;
+	background-image: -webkit-linear-gradient(270deg,rgba(244,241,236,1.00) 0%,rgba(236,225,220,1.00) 100%);
+	background-image: -moz-linear-gradient(270deg,rgba(244,241,236,1.00) 0%,rgba(236,225,220,1.00) 100%);
+	background-image: -o-linear-gradient(270deg,rgba(244,241,236,1.00) 0%,rgba(236,225,220,1.00) 100%);
+	background-image: linear-gradient(180deg,rgba(244,241,236,1.00) 0%,rgba(236,225,220,1.00) 100%);*/
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.eventbox:hover{
+	-webkit-box-shadow: 1px 1px 3px rgba(41,22,8,1.00);
+	box-shadow: 1px 1px 3px rgba(41,22,8,1.00);
+	text-shadow: 1px 0px 1px rgba(243,215,195,1.00);
+}
+
+.eventboxin{
+	/*height: 300px;*/
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 20px;
+	text-align: justify;
+}
+@media screen and (max-device-width: 799px) {
+	.eventboxin{
+		text-align: center;
+		font-size: 16px;
+	}
+}
+.affot{
+	width: 260px;
+	height: 195px;
+	overflow: hidden;
+	/*border-radius: 5px;*/
+}
+.bybtn{
+	border-radius: 1px;
+	
+	border: 1px solid #2f2e2e;
+	background-color: #dccea8;
+	padding: 5px;
+	width: 170px;
+	margin: auto;
+}
+.bybtn:hover{
+	letter-spacing: 1px;
+	cursor: pointer;
+}
+.bybtntxt{
+	color: #5E1808;
+	text-shadow: 1px 1px 1px rgba(255,255,255,1.00);
+}
+.pressme{
+	height: 95%;
+	/*padding: 5px;*/
+	/*display: flex;
+	flex-direction: column;
+	justify-content: flex-end;*/
+	text-align: center;
+}
+.sdescr{
+	font-size: 12px;
+	font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;	
+	/*text-align: justify;*/
+}
+.downbox{
+	width: 220px;
+	position: absolute;
+	bottom: 25px;
+	/*margin-left: 20px;*/
+	
+}
+.aftext{
+	padding: 20px;
+}
+.evname{
+	font-size: 22px;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;	
+}
+.evdate{
+	font-size: 16px;
+	width: 150px;
+	padding: 5px;
+	background-color: #dccea8;
+	margin: auto;
+	margin-bottom: 5px;
+}
+.age{
+	width: 35px;
+	text-align: center;
+	color: #a13808;
+	background-color: #dccea8;
+	position: absolute;
+	right: 0;
+	top: 133px;
+	padding: 3px;
+}
