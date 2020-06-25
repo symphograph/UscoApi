@@ -291,6 +291,16 @@ function myUrlEncode($string) {
     return str_replace($entities, $replacements, urlencode($string));
 }
 
+function EvdateFormated($datetime)
+{
+    $evdate = strtotime($datetime);
+	$evdateru = ru_date('%e&nbsp;%bg&nbsp',$evdate);
+	$evtime = date('H:i',$evdate);
+    if(date('Y',$evdate) == date('Y',time()))
+	    return $evdateru.' в '.$evtime;
+	else
+	    return date('d.m.Y в H:i',$evdate);
+}
 
 function ConcertItem($q)
 {
@@ -306,9 +316,7 @@ function ConcertItem($q)
 		$age = '';
 	
 	
-	$evdate = strtotime($datetime);
-	$evdateru = ru_date('%e&nbsp;%bg&nbsp',$evdate);
-	$evtime = date('H:i',$evdate);
+
 	$bg = 'style="background-image: url(img/afisha/'.$img.')"' ?? '';
 	$bg = '';
 
@@ -332,7 +340,6 @@ function ConcertItem($q)
 	
 	if($_SERVER['SCRIPT_NAME'] == '/complited.php')//TO_DO!!!
 	{
-		//$byebtn = '';
 		if($youtube_id)
 		{
 			$byebtn = '<div><br>
@@ -340,10 +347,6 @@ function ConcertItem($q)
 			<p><a href="https://www.youtube.com/watch?v='.$youtube_id.'" class="tdno"><div class="bybtn"><span class="bybtntxt">Смотреть видео</span></div></a></p>
 			</div>';
 		}
-		//VideoItem('lmpnSdUmSEE');
-		/*
-		
-		*/
 	}
 	
 	?><div class="eventbox tdno" <?php echo $bg;?>>
@@ -354,7 +357,11 @@ function ConcertItem($q)
 	</div>
 	<br>
 		
-	<div class="evdate"><?php echo $evdateru.' в '.$evtime;?></div>
+	<div class="evdate">
+	<?php
+	echo EvdateFormated($datetime);
+	?>
+	</div>
 	<a href="<?php echo $map;?>" target="_blank"><?php echo $hall_name;?></a>
 	
 		<div class="aftext">
@@ -405,5 +412,37 @@ function VideoItems($qwe = false)
 		VideoItem($youtube_id);	
 	}
 	?></div><?php
+}
+
+function FacebookScript()
+{
+    ?>
+    <div id="fb-root"></div>
+    <script async defer
+    crossorigin="anonymous"
+    src="https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v7.0"
+    nonce="RyPHx5MY">
+    </script>
+    <?php
+}
+
+function FacebookCol()
+{
+    ?>
+    <div class="fb-page"
+     data-href="https://www.facebook.com/SakhalinSymphony/"
+     data-tabs="timeline"
+     data-width=""
+     data-height=""
+     data-small-header="false"
+     data-adapt-container-width="true"
+     data-hide-cover="false"
+     data-show-facepile="false">
+        <blockquote cite="https://www.facebook.com/SakhalinSymphony/" class="fb-xfbml-parse-ignore">
+            <a href="https://www.facebook.com/SakhalinSymphony/">Sakhalin Symphony Orchestra</a>
+        </blockquote>
+    </div>
+
+    <?php
 }
 ?>

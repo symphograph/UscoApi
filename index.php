@@ -32,16 +32,8 @@ $ver = random_str(8);
 
 <body>
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v3.1';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-</script>
 <?php
+FacebookScript();
 include 'includs/links.php';
 include 'includs/header.php';
 $host = 'https://'.$_SERVER['HTTP_HOST'].'/';
@@ -92,17 +84,11 @@ if(!$query or mysqli_num_rows($query) == 0)
 </div>
 
 <div class="vkcom">
-<?php NewsCol();?>
-<div class="fb-page" 
-data-href="https://www.facebook.com/SakhalinSymphony/" 
-data-tabs="timeline" 
-data-small-header="false" 
-data-adapt-container-width="true" 
-data-hide-cover="false" 
-data-show-facepile="true">
-<blockquote cite="https://www.facebook.com/SakhalinSymphony/" class="fb-xfbml-parse-ignore">
-<a href="https://www.facebook.com/SakhalinSymphony/">Sakhalin Symphony Orchestra</a></blockquote>
-</div>
+<?php
+    NewsCol();
+    FacebookCol();
+?>
+
 <br><hr><br>
 <script type="text/javascript" src="https://vk.com/js/api/openapi.js?154"></script>
 
