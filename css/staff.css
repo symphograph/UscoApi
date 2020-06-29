@@ -17,6 +17,13 @@
 	background-image: linear-gradient(180deg,rgba(248,244,238,1.00) 0%,rgba(237,225,209,1.00) 100%);
 	text-shadow: 1px 1px 1px rgba(255,255,255,1.00);
 }
+
+@media screen and (min-device-width: 800px) {
+	.group{
+		min-height: 440px;
+	}
+
+}
 .groupname{
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
 	font-size: 20px;
