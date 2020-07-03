@@ -199,11 +199,19 @@
 }
 	.eventboxl{
 	}
-	.logorow, .footer{
+
+}
+
+.logorow, .footer{
 	display: flex;
 	justify-content: space-around;
 }
+
+.logorow{
+	flex-wrap: wrap;
+	margin: auto;
 }
+
 .partners{
 	background-color: #e7ddcb;
 	color: #544300;
@@ -227,7 +235,7 @@
 .exxon{
 	width: 140px;
 	height: 140px;
-	margin: auto;
+	margin: auto auto;
 	background-image: url(../img/sakhalin-logo-footer.svg);
 	background-size: 280px 140px;
 	
@@ -240,21 +248,21 @@
 	width: 147px;
 	height: 40px;
 	background-size: 147px;
-	margin: auto;
+	margin: auto auto;
 }
 .astv{
 	background-image: url(../img/astv.png);
 	width: 147px;
 	height: 53px;
 	background-size: 147px;
-	margin: auto;
+	margin: auto auto;
 }
 .rmh{
 	background-image: url(../img/rmh.png);
 	width: 147px;
 	height: 83px;
 	background-size: 147px;
-	margin: auto;
+	margin: auto auto;
 }
 .gubved{
 	background-image: url(../img/gv.png);
@@ -294,8 +302,8 @@
 }
 .eventsarea{
 	padding: 20px;
-	width: 67%;
-	min-width: 400px;
+	width: 100%;
+	max-width: 1200px;
 	overflow-y: hidden;
 	display: inline-block;
 	float: left;
