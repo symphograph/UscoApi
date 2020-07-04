@@ -10,6 +10,7 @@
 	background-image: url(../img/hed.png);
 	background-size: cover;	
 }
+
 .footcol > p > a{
 	text-decoration: none;
 	color: #babab8;
@@ -69,6 +70,13 @@
 	/*margin: auto;*/
 	clear: both;	/*padding-left: 40px;*/
 }
+@media screen and (max-device-width: 400px) {
+
+	#uscologo{
+		display: none;
+	}
+}
+
 
 .topin{
 	width: 80%;
@@ -76,18 +84,41 @@
 	margin: auto;
 	padding-top: 40px;
 	padding-bottom: 20px;
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
 	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+#orgname{
+	/*flex: 0 1 auto;*/
+}
+
+.sitename>div{
+	display: flex;
+	/*flex-direction: column;*/
+	justify-content: flex-start;
+	/*align-content: stretch;*/
+
+	/*min-height: 100%;*/
+}
+
+.topin>div{
+	display: flex;
+
+}
+
 .sitename{
-	width: 220px;
+	width: 320px;
 	font-size: 18px;
 	color: #e7ddcb;
 	text-transform: uppercase;
-	margin: auto;
+	/*margin: auto;*/
 	/*position: relative;*/
 	/*top: 30px;*/
-	display: inline-block;
-	float: left;
+
+	display: flex;
+	justify-content: flex-end;
 	
 }
 .ubis{
@@ -103,27 +134,35 @@
 	width: 245px;
 	font-size: 16px;
 	color: #e7ddcb;
-	/*margin-left: 20px;*/
-	/*margin: auto;*/
-	/*position: relative;*/
-	/*top: 30px;*/
-	display: inline-block;
-	float: left;
+	display: flex;
+	flex-direction: column;
+
+
 }
 
 .conductor > span > a, .account > span > a{
-	/*text-decoration: none;*/
-	color: #e7ddcb;
+
+	color: white;
 	transition: 0.2s;
+}
+.conductor a{
+
+	text-decoration: none;
 }
 .conductor > span> a:hover, .account > span > a:hover{
 	color: #EFE9DE;
 	/*letter-spacing: 1px;*/
 }
+@font-face {
+	font-family: 'Rubik Mono One', sans-serif; /* Гарнитура шрифта */
+	src: url(fonts/RubikMonoOne-Regular.ttf); /* Путь к файлу со шрифтом */
+}
+
 .tsa{
-	font-size: 20px;
-	letter-spacing: 2px;
-	color: rgba(241,185,131,1.00);
+	font-family: 'Rubik Mono One', sans-serif;
+	font-size: 25px;
+	letter-spacing: 1px;
+	color: white;
 	transition: all 200ms;
 }
 .tsa:hover{
@@ -140,7 +179,7 @@
 }
 .content{
 	/*width: 1200px;*/
-	min-width: 450px;
+	/*min-width: 450px;*/
 	min-height: 800px;
 	/*height: 100%;*/
 	margin: auto;
@@ -205,10 +244,11 @@
 .logorow, .footer{
 	display: flex;
 	justify-content: space-around;
+	flex-wrap: wrap;
 }
 
 .logorow{
-	flex-wrap: wrap;
+
 	margin: auto;
 }
 
@@ -457,6 +497,4 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover, div[class="tcol"
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
 	grid-gap: 2vw;
-	/*display: flex;*/
-	/*flex-wrap: wrap;*/
 }

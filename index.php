@@ -15,6 +15,7 @@ require_once 'includs/check.php';
 <script src="https://culturaltracking.ru/static/js/spxl.js" data-pixel-id="1032"></script>
 <meta name="yandex-verification" content="b82701a7766ca759" />
 <meta name="yandex-verification" content="50b98ccfb33aa708" />
+<meta name="keywords" content="Тигран Ахназарян, Южно-Сахалинский камерный оркестр, оркестр">
 <?php
 $p_title = 'Южно-Сахалинский камерный оркестр';
 $ver = random_str(8);
@@ -22,7 +23,7 @@ $ver = random_str(8);
 <title><?php echo $p_title;?></title>
 <link href="css/menu.css?ver=<?php echo md5_file('css/menu.css');?>" rel="stylesheet">
 <link href="css/index.css?ver=<?php echo md5_file('css/index.css');?>" rel="stylesheet">
-<link href="css/afisha.css?ver=<?php echo md5_file('css/afisha.css');?>" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
 <link href="css/menum.css?ver=<?php echo md5_file('css/menum.css');?>" rel="stylesheet">
 <link href="css/right_nav.css?ver=<?php echo md5_file('right_nav.css')?>" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

@@ -7,17 +7,18 @@ include_once 'includs/config2.php';
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<?php
-$p_title = 'Состав оркестра';
-$ver = random_str(8);
-?>
-<title><?php echo $p_title;?></title>
-<link href="css/index.css?ver=<?php echo md5_file('css/index.css');?>" rel="stylesheet">
-<link href="css/menu.css?ver=<?php echo md5_file('css/menu.css');?>" rel="stylesheet">
-<link href="css/staff.css?ver=<?php echo md5_file('css/staff.css');?>" rel="stylesheet">
-<link href="css/right_nav.css?ver=<?php echo md5_file('right_nav.css');?>" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <?php
+    $p_title = 'Состав оркестра';
+    $ver = random_str(8);
+    ?>
+    <title><?php echo $p_title;?></title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
+    <link href="css/index.css?ver=<?php echo md5_file('css/index.css');?>" rel="stylesheet">
+    <link href="css/menu.css?ver=<?php echo md5_file('css/menu.css');?>" rel="stylesheet">
+    <link href="css/staff.css?ver=<?php echo md5_file('css/staff.css');?>" rel="stylesheet">
+    <link href="css/right_nav.css?ver=<?php echo md5_file('right_nav.css');?>" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>

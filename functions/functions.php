@@ -310,10 +310,7 @@ function ConcertItem($q)
 	global $myip;
 	if((!$myip) and $ev_id < 4) return false;
 	
-	if($age > 0)
-		$age = '<div class="age">'.$age.'+</div>';
-	else
-		$age = '';
+
 	
 	
 
@@ -344,16 +341,29 @@ function ConcertItem($q)
 		{
 			$byebtn = '<div><br>
 			<p><span>'.$prrow.'</span></p><br>
-			<p><a href="https://www.youtube.com/watch?v='.$youtube_id.'" class="tdno"><div class="bybtn"><span class="bybtntxt">Смотреть видео</span></div></a></p>
+			<p>
+                <a href="https://www.youtube.com/watch?v='.$youtube_id.'" class="tdno">
+                    <div class="bybtn">
+                        <span class="bybtntxt">Смотреть видео</span>
+                    </div>
+                </a>
+			</p>
 			</div>';
 		}
 	}
 	
 	?><div class="eventbox tdno" <?php echo $bg;?>>
-	<?php echo $age;?>
+
 	<div class="pressme">
 	<div class="affot">
-		<img src="<?php echo 'img/afisha/'.$topimg;?>?ver=<?php echo md5_file('img/afisha/'.$topimg)?>" width=260px/>
+	    <div style="background-image: url(<?php echo 'img/afisha/'.$topimg;?>?ver=<?php echo md5_file('img/afisha/'.$topimg)?>)">
+            <?php
+            if($age)
+            {
+                ?><div class="age"><?php echo $age?>+</div><?php
+            }
+            ?>
+        </div>
 	</div>
 	<br>
 		

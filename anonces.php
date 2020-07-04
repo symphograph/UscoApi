@@ -52,6 +52,8 @@ $host = 'https://'.$_SERVER['HTTP_HOST'].'/';
        })(document, "script", document.location.protocol);
 </script>
 <?php
+$prrows = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Билеты в продаже'];
+
 $query = qwe("
 SELECT
 anonces.concert_id as ev_id,
@@ -74,18 +76,22 @@ INNER JOIN halls ON anonces.hall_id = halls.hall_id
 WHERE /*anonces.concert_id > 3 AND*/ datetime >= NOW()
 ORDER BY anonces.datetime
 ");
-$prrows = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Билеты в продаже'];
-foreach($query as $q)
-{
-ConcertItem($q);
-}
+
 if(!$query or $query->num_rows == 0)
 {
-	?>
-	<p>Аносов нет.</p>
-	<p><a href="complited.php"/><span class="bybtntxt">Прошедшие концерты</span></a></p>
-	<?php
+    ?>
+    <p>Аносов нет.</p>
+    <p><a href="complited.php"/><span class="bybtntxt">Прошедшие концерты</span></a></p>
+    <?php
 }
+?><div class="gridarea"><?
+foreach($query as $q)
+{
+    ConcertItem($q);
+}
+?></div><?php
+
+
 ?>
 </div>
 
