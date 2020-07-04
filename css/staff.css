@@ -3,9 +3,9 @@
 .group{
 	border: 1px solid rgba(242,237,232,1.00);
 	border-radius: 3px;
-	width: 300px;
+	min-width: 260px;
 	padding: 20px;
-	margin: 10px;
+	/*margin: 10px;*/
 	display: inline-block;
 	float: left;
 	min-height: 210px;

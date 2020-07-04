@@ -13,10 +13,10 @@ $p_title = 'Основные сведения';
 $ver = random_str(8);
 ?>
 <title><?php echo $p_title;?></title>
-<link href="css/menu.css?ver=<?php echo $ver;?>" rel="stylesheet">
-<link href="css/index.css?ver=<?php echo $ver;?>" rel="stylesheet">
-<link href="css/menum.css?ver=<?php echo $ver;?>" rel="stylesheet">
-<link href="css/right_nav.css?ver=<?php echo $ver?>" rel="stylesheet">
+<link href="css/menu.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menu.css');?>" rel="stylesheet">
+<link href="css/index.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/index.css');?>" rel="stylesheet">
+<link href="css/menum.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menum.css');?>" rel="stylesheet">
+<link href="css/right_nav.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/right_nav.css');?>" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://vk.com/js/api/openapi.js?154" type="text/javascript"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>

@@ -16,6 +16,7 @@ include_once 'includs/config2.php';
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
     <link href="css/index.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/index.css');?>" rel="stylesheet">
     <link href="css/menu.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menu.css');?>" rel="stylesheet">
+    <link href="css/afisha.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/afisha.css');?>" rel="stylesheet">
     <link href="css/staff.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/staff.css');?>" rel="stylesheet">
     <link href="css/right_nav.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/right_nav.css');?>" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,11 +30,13 @@ include 'includs/header.php';
 	
 ?>
 <div class="topspase"></div>
-<div class="content">
-<div class="p_title">
-<?php echo $p_title;?>
-</div>
-<div class="groups">
+    <div class="content">
+
+        <div class="eventsarea">
+            <div class="p_title">
+                <?php echo $p_title;?>
+            </div>
+            <div class="gridarea">
 <?php
 $query = mysqli_query($link2,"
 SELECT
@@ -85,7 +88,8 @@ foreach($query as $q)
 }
 //echo $i;
 ?>
-</div>
+        </div>
+    </div>
 </div>
 <?php
 include 'includs/footer.php';

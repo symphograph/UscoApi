@@ -34,7 +34,7 @@ $ver = random_str(8);
 
 
 <?php
-FacebookScript();
+//FacebookScript();
 include 'includs/links.php';
 include 'includs/header.php';
 $host = 'https://'.$_SERVER['HTTP_HOST'].'/';
@@ -95,22 +95,7 @@ foreach($query as $q)
 ?>
 </div>
 
-<div class="vkcom">
 
-<?php
-    NewsCol();
-    FacebookCol();
-?>
-
-<br><hr><br>
-<script type="text/javascript" src="https://vk.com/js/api/openapi.js?154"></script>
-
-<!-- VK Widget -->
-<div id="vk_groups"></div>
-<script type="text/javascript">
-VK.Widgets.Group("vk_groups", {mode: 4, wide: 1, no_cover: 0, height: "800", width: "auto", color1: 'e7ddcb',color3: 'A98700'}, 166038484);
-</script>
-</div>
 </div>
 <?php
 include 'includs/footer.php';
