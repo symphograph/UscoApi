@@ -14,10 +14,10 @@ include_once 'includs/config2.php';
     ?>
     <title><?php echo $p_title;?></title>
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
-    <link href="css/index.css?ver=<?php echo md5_file('css/index.css');?>" rel="stylesheet">
-    <link href="css/menu.css?ver=<?php echo md5_file('css/menu.css');?>" rel="stylesheet">
-    <link href="css/staff.css?ver=<?php echo md5_file('css/staff.css');?>" rel="stylesheet">
-    <link href="css/right_nav.css?ver=<?php echo md5_file('right_nav.css');?>" rel="stylesheet">
+    <link href="css/index.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/index.css');?>" rel="stylesheet">
+    <link href="css/menu.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menu.css');?>" rel="stylesheet">
+    <link href="css/staff.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/staff.css');?>" rel="stylesheet">
+    <link href="css/right_nav.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/right_nav.css');?>" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 

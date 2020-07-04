@@ -47,7 +47,7 @@
     /* определяем цвет фона переключателя
      * чаще вчего в соответствии с цветом фона панели
     */
-    background: inherit;
+    /*background: inherit;*/
     /* цвет текста */
     color: #dadada;
     /* вид курсора */
@@ -118,7 +118,8 @@
 	-webkit-box-shadow: -4px 0px 20px 0px rgba(0,0,0, 0.5);
 	box-shadow: -4px 0px 20px 0px rgba(0,0,0, 0.5);
 	overflow-y: auto;
-	background-color: rgba(47,46,46,0.90);
+	/*background-color: rgba(184, 184, 44, 0.9);*/
+    background-image: linear-gradient(180deg,rgba(248,244,238,1.00) 0%, rgb(160, 118, 65) 100%);
 }
 
 
@@ -216,7 +217,7 @@ body {
 }
 
 .nav h2 a {
-    color: #dadada;
+    color: #342d71;
     text-decoration: none;
     text-transform: uppercase;
 }
@@ -320,7 +321,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     font-size: 1.2em;
-    color: #dadada;
+    color: #342d71;
     width: 100%;
     text-decoration: none;
     /* плавный переход */
