@@ -42,7 +42,10 @@ ORDER BY `date` DESC
 foreach($query as $q)
 {
 	$img = $q['img'];
-	$img = '<img src="'.$img.'" width="350px"/>';
+    if(empty($img))
+        $img = 'img/news/default_news_img.png';
+
+	$img = '<img src="'.$img.'" width="300px"/>';
 	$ntitle = $q['new_tit'];
 	$new_id = $q['new_id'];
 	
@@ -56,16 +59,11 @@ foreach($query as $q)
 	<div class="tnbox">
 	<a href="new.php?new_id=<?php echo $new_id;?>">
 	<div class="nboxtitle"><b><?php echo $ntitle;?></b></div>
-	<?php
-	if(!is_null($q['img']))
-	{
-	?>
+
 	<div class="nfot">
-		<img src="<?php echo $q['img'];?>" width=300px/>
+		<?php echo $img;?>
 	</div>
-	<?php
-	}
-	?>
+
 	
 	
 	<br>

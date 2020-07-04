@@ -4,14 +4,20 @@
 	display: block;
 	float: right;
 	padding: 15px;
+	margin: auto;
+}
+.rcol>img{
+	margin: auto;
+	width: 100%;
+	height: auto;
 }
 .paragraph{
-	width: 60%;
-	max-width: 800px;
-	min-width: 400px;
+	/*width: 90%;*/
+	/*max-width: 800px;*/
+	/*min-width: 400px;*/
+	margin: auto;
 	color: #2f2e2e;
 	font-size: 20px;
 	font-family: PT Serif,serif;
-	padding-right: 500px;
 	text-align: justify;
 }

@@ -23,7 +23,6 @@ $ver = random_str(8);
 <title><?php echo $p_title;?></title>
 <link href="css/menu.css?ver=<?php echo md5_file('css/menu.css');?>" rel="stylesheet">
 <link href="css/index.css?ver=<?php echo md5_file('css/index.css');?>" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
 <link href="css/menum.css?ver=<?php echo md5_file('css/menum.css');?>" rel="stylesheet">
 <link href="css/right_nav.css?ver=<?php echo md5_file('right_nav.css')?>" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +33,7 @@ $ver = random_str(8);
 <body>
 
 <?php
-FacebookScript();
+//FacebookScript();
 include 'includs/links.php';
 include 'includs/header.php';
 $host = 'https://'.$_SERVER['HTTP_HOST'].'/';
@@ -83,22 +82,31 @@ if(!$query or mysqli_num_rows($query) == 0)
 	VideoItems();
 ?>
 </div>
-
-<div class="vkcom">
-<?php
-    NewsCol();
-    FacebookCol();
-?>
-
-<br><hr><br>
-<script type="text/javascript" src="https://vk.com/js/api/openapi.js?154"></script>
-
-<!-- VK Widget -->
-<div id="vk_groups"></div>
-<script type="text/javascript">
-VK.Widgets.Group("vk_groups", {mode: 4, wide: 1, no_cover: 0, height: "800", width: "auto", color1: 'e7ddcb',color3: 'A98700'}, 166038484);
-</script>
+<div class="eventsarea">
+    <?php  NewsCol();?>
 </div>
+    <?php
+    /*
+    <div class="vkcom">
+    <?php
+
+        FacebookCol();
+    ?>
+
+    <br><hr><br>
+
+    <script type="text/javascript" src="https://vk.com/js/api/openapi.js?154"></script>
+
+    <!-- VK Widget -->
+    <div id="vk_groups"></div>
+    <script type="text/javascript">
+    VK.Widgets.Group("vk_groups", {mode: 4, wide: 1, no_cover: 0, height: "800", width: "auto", color1: 'e7ddcb',color3: 'A98700'}, 166038484);
+    </script>
+
+
+</div>
+    */
+    ?>
 </div>
 <?php
 include 'includs/footer.php';

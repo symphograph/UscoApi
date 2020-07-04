@@ -58,11 +58,13 @@
 }
 .affot{
 	/*width: 260px;*/
-	height: 195px;
+	/*height: 195px;*/
+	max-height: 200px;
 	overflow: hidden;
+	position: relative;
 	/*border-radius: 5px;*/
 }
-
+/*
 .affot>div{
 	width: 100%;
 	height: 100%;
@@ -70,7 +72,7 @@
 	background-repeat: no-repeat;
 	position: relative;
 }
-
+*/
 .bybtn{
 	border-radius: 1px;
 	
@@ -91,9 +93,9 @@
 .pressme{
 	height: 95%;
 	/*padding: 5px;*/
-	/*display: flex;
+	display: flex;
 	flex-direction: column;
-	justify-content: flex-end;*/
+	justify-content: space-between;
 	text-align: center;
 }
 .sdescr{
@@ -103,9 +105,9 @@
 }
 .downbox{
 	width: 220px;
-	position: absolute;
+	/*position: absolute;*/
 	bottom: 25px;
-	/*margin-left: 20px;*/
+	margin: 0 auto;
 	
 }
 .aftext{
@@ -130,6 +132,7 @@
 	background-color: #dccea8;
 	position: absolute;
 	right: 0;
-	bottom: 0;
+	bottom: 5px;
 	padding: 3px;
+	z-index: 99;
 }

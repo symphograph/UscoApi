@@ -1,11 +1,8 @@
+<?php
+$host = 'https://'.$_SERVER['HTTP_HOST'].'/';
+?>
 <div class="header">
     <div class="hederc">
-        <div class="logo">
-        <?php
-        $host = 'https://'.$_SERVER['HTTP_HOST'].'/';
-            ?>
-
-        </div>
         <nav class="bignav">
 
           <ul class="topmenu">

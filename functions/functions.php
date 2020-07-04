@@ -214,24 +214,43 @@ function NewsCol()
 	$query = qwe("
 	SELECT * from `news`
 	ORDER BY `date` DESC
+    limit 5
 	");
 	foreach($query as $q)
 	{
 		$img = $q['img'];
-		$img = '<img src="'.$img.'" width="350px"/>';
+		if(empty($img))
+		    $img = 'img/news/default_news_img.png';
+
+        $img = $img.'?ver='.md5_file($img);
+		$img = '<img src="'.$img.'" width="260px"/>';
 		$ntitle = $q['new_tit'];
 		$new_id = $q['new_id'];
 		//if((!$myip) and $new_id == 17) continue;
 		$ntext = $q['text'];
 		?>
+		<br><hr><br>
 		<div class="narea">
-		<hr>
-		<div class="ntitle"><b><?php echo $ntitle;?></b></div>
-		<div class="tcol">
-		<?php echo $ntext;?>
-		<br>
-		<a href="new.php?new_id=<?php echo $new_id;?>"/>Читать -->></a>
-		</div>
+		    <div class="nimg_block">
+                <div>
+                    <a href="new.php?new_id=<?php echo $new_id;?>"/>
+                    <?php echo $img?>
+                    </a>
+                </div>
+            </div>
+
+            <div class="tcol">
+                <div class="ntitle">
+                <a href="new.php?new_id=<?php echo $new_id;?>">
+                 <b><?php echo $ntitle;?></b>
+                </a>
+                </div><br>
+                <a href="new.php?new_id=<?php echo $new_id;?>">
+                <?php echo $ntext;?>
+                </a>
+                <br>
+
+            </div>
 		</div><?php
 	}
 	?>
@@ -355,24 +374,25 @@ function ConcertItem($q)
 	?><div class="eventbox tdno" <?php echo $bg;?>>
 
 	<div class="pressme">
-	<div class="affot">
-	    <div style="background-image: url(<?php echo 'img/afisha/'.$topimg;?>?ver=<?php echo md5_file('img/afisha/'.$topimg)?>)">
-            <?php
-            if($age)
-            {
-                ?><div class="age"><?php echo $age?>+</div><?php
-            }
-            ?>
+	<div>
+        <div class="affot">
+        <img src="<?php echo 'img/afisha/'.$topimg;?>?ver=<?php echo md5_file('img/afisha/'.$topimg)?>" width="100%" height="auto">
+
+                <?php
+                if($age)
+                {
+                    ?><div class="age"><?php echo $age?>+</div><?php
+                }
+                ?>
+
         </div>
+        <br>
+        <div class="evdate">
+        <?php echo EvdateFormated($datetime)?>
+        </div>
+        <a href="<?php echo $map;?>" target="_blank"><?php echo $hall_name;?></a>
 	</div>
-	<br>
-		
-	<div class="evdate">
-	<?php
-	echo EvdateFormated($datetime);
-	?>
-	</div>
-	<a href="<?php echo $map;?>" target="_blank"><?php echo $hall_name;?></a>
+
 	
 		<div class="aftext">
 			<a href="event.php?evid=<?php echo $ev_id;?>" class="tdno">
@@ -383,10 +403,11 @@ function ConcertItem($q)
 					Художественный руководитель  и главный дирижер - <b>Тигран Ахназарян</b>.
 				</div>
 			</a>
-			<div class="downbox">
-				<div class="tdno"><?php echo $byebtn;?></div>	
-			</div>
+
 		</div>
+		<div class="downbox">
+            <div class="tdno"><?php echo $byebtn;?></div>
+        </div>
 	
 	</div>
 	</div>
