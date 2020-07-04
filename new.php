@@ -48,9 +48,9 @@ $host = 'https://'.$_SERVER['HTTP_HOST'].'/';
 
 <div class="content">
 <div class="newsarea">
-
+    <div class="ntitle"><?php echo $ntitle;?></div><hr>
 	<div class="narea">
-	<div class="ntitle"><?php echo $ntitle;?></div><hr>
+
 	<?php
 	include 'news/new_'.$new_id.'.php';
 	?></div>

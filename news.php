@@ -16,7 +16,7 @@ $ver = random_str(8);
 <title><?php echo $p_title;?></title>
 <link href="css/menu.css?ver=<?php echo md5_file('css/menu.css');?>" rel="stylesheet">
 <link href="css/index.css?ver=<?php echo md5_file('css/index.css');?>" rel="stylesheet">
-<link href="css/news.css?ver=<?php echo md5_file('css/news.css');?>" rel="stylesheet">
+
 <link href="css/menum.css?ver=<?php echo md5_file('css/menum.css');?>" rel="stylesheet">
 <link href="css/right_nav.css?ver=<?php echo md5_file('css/right_nav.css');?>" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,59 +28,25 @@ $ver = random_str(8);
 <?php
 include 'includs/links.php';
 include 'includs/header.php';
-//$host = 'https://'.$_SERVER['HTTP_HOST'].'/';
+
 ?>
 
 
 <div class="content">
-<div class="newsarea2">
-<?php
-$query = qwe("
-SELECT * from `news`
-ORDER BY `date` DESC
-");
-foreach($query as $q)
-{
-	$img = $q['img'];
-    if(empty($img))
-        $img = 'img/news/default_news_img.png';
+    <div class="eventsarea">
+        <?php
+        $query = qwe("
+        SELECT * from `news`
+        ORDER BY `date` DESC
+        ");
 
-	$img = '<img src="'.$img.'" width="300px"/>';
-	$ntitle = $q['new_tit'];
-	$new_id = $q['new_id'];
-	
-	//if(!$myip and $new_id == 17) continue;
-	$ntext = $q['text'];
-	$ndate = strtotime($q['date']);
-	$ndate = ru_date('',$ndate);
-	?>
-	<div class="newbox">
-	<div class="newboxin">
-	<div class="tnbox">
-	<a href="new.php?new_id=<?php echo $new_id;?>">
-	<div class="nboxtitle"><b><?php echo $ntitle;?></b></div>
-
-	<div class="nfot">
-		<?php echo $img;?>
-	</div>
-
-	
-	
-	<br>
-	<?php echo $ntext;?>
-	<br>
-	</a>
-	</div>
-	
-	<div class="ndate"><?php echo $ndate;?></div>
-	</div>
-	</div><?php
-}
-?>
+        ?>
+        <div class="eventsarea">
+            <?php  NewsCol($query);?>
+        </div>
+    </div>
 </div>
-</div>
-<?php
-include 'includs/footer.php';
-?>
+
+<?php include 'includs/footer.php'; ?>
 </body>
 </html>

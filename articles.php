@@ -34,7 +34,7 @@ include 'includs/header.php';
 
 
 <script type="text/javascript" src="https://vk.com/js/api/openapi.js?159"></script>
-<div class="articles">
+<div class="eventsarea">
 <div class="artbox">
 <div class="article">
 <div id="my_article-tigran-ahnazaryan"></div>

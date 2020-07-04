@@ -519,9 +519,15 @@ a:hover{
 	color: black;
 
 }
+
 .ntitle a:hover{
 	/*text-shadow: 1px 0px 2px #0000007d;*/
 	text-decoration: underline;
+}
+
+.ndate{
+	font-size: 12px;
+	color: gray;
 }
 .vitem {
 		height: 300px;

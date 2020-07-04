@@ -21,7 +21,6 @@ $ver = random_str(8);
 <title><?php echo $p_title;?></title>
 <link href="css/menu.css?ver=<?php echo md5_file('css/menu.css');?>" rel="stylesheet">
 <link href="css/index.css?ver=<?php echo md5_file('css/index.css');?>" rel="stylesheet">
-<link href="css/afisha.css?ver=<?php echo md5_file('css/afisha.css');?>" rel="stylesheet">
 <link href="css/menum.css?ver=<?php echo md5_file('css/menum.css');?>" rel="stylesheet">
 <link href="css/right_nav.css?ver=<?php echo md5_file('right_nav.css')?>" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,7 +45,6 @@ include 'includs/header.php';
 $host = 'https://'.$_SERVER['HTTP_HOST'].'/';
 ?>
 
-<!--<div class="ubis"><b>XX ЮБИЛЕЙНЫЙ СЕЗОН</b></div>-->
 <div class="content">
 
 <div class="eventsarea">
@@ -58,36 +56,9 @@ $host = 'https://'.$_SERVER['HTTP_HOST'].'/';
        })(document, "script", document.location.protocol);
 </script>
 <?php
-//$vid_id = '_YTqUE3M_Gw';
-
 VideoItems();
-
-//VideoItem('2Pagmmq3Yho');
-//VideoItem('-5QEGOYwbEo');
 ?>
 
-</div>
-
-<div class="vkcom">
-<?php NewsCol();?>
-<div class="fb-page" 
-data-href="https://www.facebook.com/SakhalinSymphony/" 
-data-tabs="timeline" 
-data-small-header="false" 
-data-adapt-container-width="true" 
-data-hide-cover="false" 
-data-show-facepile="true">
-<blockquote cite="https://www.facebook.com/SakhalinSymphony/" class="fb-xfbml-parse-ignore">
-<a href="https://www.facebook.com/SakhalinSymphony/">Sakhalin Symphony Orchestra</a></blockquote>
-</div>
-<br><hr><br>
-<script type="text/javascript" src="https://vk.com/js/api/openapi.js?154"></script>
-
-<!-- VK Widget -->
-<div id="vk_groups"></div>
-<script type="text/javascript">
-VK.Widgets.Group("vk_groups", {mode: 4, wide: 1, no_cover: 0, height: "800", width: "auto", color1: 'e7ddcb',color3: 'A98700'}, 166038484);
-</script>
 </div>
 </div>
 <?php

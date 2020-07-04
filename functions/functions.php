@@ -196,6 +196,7 @@ function ru_date($format, $date = false) {
 	$format = preg_replace("~\%bg~", $months[date('n', $date)], $format);
 	return strftime($format, $date);
 }
+
 function OnlyText($string)
 {
 	$string = trim($string);
@@ -204,19 +205,20 @@ function OnlyText($string)
 	return($string);
 }
 
-function NewsCol()
+function NewsCol($qwe = false)
 {
 	global $myip;
 ?>
 	<div class="newscol">
 	<div class="ntitle"><b>НОВОСТИ ОРКЕСТРА</b></div><br>
 	<?php
-	$query = qwe("
+	if(!$qwe)
+	$qwe = qwe("
 	SELECT * from `news`
 	ORDER BY `date` DESC
     limit 5
 	");
-	foreach($query as $q)
+	foreach($qwe as $q)
 	{
 		$img = $q['img'];
 		if(empty($img))
@@ -239,17 +241,24 @@ function NewsCol()
                 </div>
             </div>
 
+
             <div class="tcol">
                 <div class="ntitle">
-                <a href="new.php?new_id=<?php echo $new_id;?>">
-                 <b><?php echo $ntitle;?></b>
-                </a>
-                </div><br>
+                    <a href="new.php?new_id=<?php echo $new_id;?>">
+                     <b><?php echo $ntitle;?></b>
+                    </a>
+                </div>
+                <br>
                 <a href="new.php?new_id=<?php echo $new_id;?>">
                 <?php echo $ntext;?>
                 </a>
+                <br><br>
+                <?php
+                    $ndate = strtotime($q['date']);
+                    $ndate = ru_date('',$ndate);
+                ?>
+                <span class="ndate"><?php echo $ndate;?></span>
                 <br>
-
             </div>
 		</div><?php
 	}
@@ -440,7 +449,7 @@ function VideoItems($qwe = false)
 	foreach($qwe as $q)
 	{
 		extract($q);
-		VideoItem($youtube_id);	
+		VideoItem($youtube_id);
 	}
 	?></div><?php
 }
