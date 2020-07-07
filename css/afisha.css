@@ -19,11 +19,12 @@
 	max-width: 290px;
 	height: 700px;
 	margin: 5px;
-	border: 1px solid #a98700;
+	/*border: 1px solid #a98700;*/
 	position: relative;
 	display: inline-block;
 	float: left;
 	font-size: 20px;
+	box-shadow: 1px 1px 3px rgb(149, 104, 75);
 	/*background-color: antiquewhite;
 	background-image: -webkit-linear-gradient(270deg,rgba(244,241,236,1.00) 0%,rgba(236,225,220,1.00) 100%);
 	background-image: -moz-linear-gradient(270deg,rgba(244,241,236,1.00) 0%,rgba(236,225,220,1.00) 100%);
@@ -31,11 +32,14 @@
 	background-image: linear-gradient(180deg,rgba(244,241,236,1.00) 0%,rgba(236,225,220,1.00) 100%);*/
 	background-size: contain;
 	background-repeat: no-repeat;
+	border: none;
 }
 .eventbox:hover{
-	-webkit-box-shadow: 1px 1px 3px rgba(41,22,8,1.00);
-	box-shadow: 1px 1px 3px rgba(41,22,8,1.00);
+	-webkit-box-shadow: 1px 1px 5px rgba(41,22,8,1.00);
+	box-shadow: 1px 1px 5px rgba(41,22,8,1.00);
 	text-shadow: 1px 0px 1px rgba(243,215,195,1.00);
+	border: none;
+	/*margin: 5px 4px;*/
 }
 
 .eventboxin{
@@ -83,7 +87,7 @@
 	margin: auto;
 }
 .bybtn:hover{
-	letter-spacing: 1px;
+	/*letter-spacing: 1px;*/
 	cursor: pointer;
 }
 .bybtntxt{
@@ -129,7 +133,7 @@
 	width: 35px;
 	text-align: center;
 	color: #a13808;
-	background-color: #dccea8;
+	background-color: #dccea8db;
 	position: absolute;
 	right: 0;
 	bottom: 5px;
