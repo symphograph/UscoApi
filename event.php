@@ -133,21 +133,7 @@ document.write(VK.Share.button(false,{type: "round", text: "Поделиться
   <!-- Your share button code -->
  
 </div>
-<script type="text/javascript" src="https://vk.com/js/api/openapi.js?154"></script>
-<div class="vkcom">
 
-<?php
-    NewsCol();
-    FacebookCol();
-?>
-
-<br><hr><br>
-<!-- VK Widget -->
-<div id="vk_groups"></div>
-<script type="text/javascript">
-VK.Widgets.Group("vk_groups", {mode: 4, wide: 1, no_cover: 0, height: "800", width: "auto", color1: 'e7ddcb',color3: 'A98700'}, 166038484);
-</script>
-</div>
 </div>
 <?php
 include 'includs/footer.php';

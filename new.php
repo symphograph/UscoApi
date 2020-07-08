@@ -20,7 +20,7 @@ WHERE `new_id` = '$new_id'
 foreach($query as $q)
 {
 	$img = $q['img'];
-	$img = '<img src="'.$img.'" width="350px"/>';
+	$img = '<img src="'.$img.'" width="320px"/>';
 	$ntitle = $q['new_tit'];	
 }	
 
