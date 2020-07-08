@@ -43,35 +43,9 @@ foreach($query as $q)
 	$width = $size[0];
 	$height = $size[1];
 	$bg = 'style="background-image: url('.$host.'img/afisha/'.$q['img'].')"' ?? '';
-	if($q['pay'] == 1)
-	{
-		$querypr = qwe("
-		SELECT * FROM `rodina_price`
-		WHERE `ev_id` = '$evid'
-		");
-	
-		$prices = [];
-		foreach($querypr as $qp)
-		{
-			$prices[] = $qp['price'];
-		}
-		$maxpr = max($prices);
-		$minpr = min($prices);
-		$prrow = 'Цена: '.$minpr.' - '.$maxpr.' р.' ?? '';
-		$byebtn = '
-		<div><p><span>'.$prrow.'</span></p><br>
-		<p>
-		<a href="rodina.php?ev_id='.$ev_id.'" class="tdno">
-		<span><div class="bybtn">Купить билет</div></span>
-		</a></p>
-		</div>';
-	}else
-	{
-		
-		//$prrow = $ptypes[$q['pay']];
-		$prrow = '';
-		$byebtn = $prrow;
-	}
+
+    $prrow = '';
+    $byebtn = $prrow;
 }
 ?>
 <html>
@@ -109,31 +83,36 @@ include 'includs/header.php';
  <div class="eventbox" <?php echo $bg;?>>
  
 	</div>
-<div class="eventboxl"><div class="eventboxin"><div class="eventcol"><?php echo $aftitle;?></div>
-	<?php
+<div class="eventboxl">
+    <div class="eventboxin">
+        <div class="eventcol"><?php echo $aftitle;?></div>
+	    <?php
 		echo '<p><b>'.$prog_name.'</b></p>';
 		?><p><?php echo $description?></p>
 		<?php echo $byebtn;?>
-		<br>
-<div class="fbb">
-<div class="fb-share-button" 
-    data-href="<?php echo $host.'event.php?evid='.$ev_id?>" 
-    data-layout="button_count">
-  </div></div>
-  <br>
-  <div class="fbb">
-  <!-- Put this script tag to the <head> of your page -->
-<script type="text/javascript" src="https://vk.com/js/api/share.js?95" charset="windows-1251"></script>
 
-<!-- Put this script tag to the place, where the Share button will be -->
-<script type="text/javascript">
-document.write(VK.Share.button(false,{type: "round", text: "Поделиться"}));
-</script>
-	</div></div></div>
+        <br>
+        <div class="fbb">
+            <!-- Put this script tag to the <head> of your page -->
+            <script type="text/javascript" src="https://vk.com/js/api/share.js?95" charset="windows-1251"></script>
+
+            <!-- Put this script tag to the place, where the Share button will be -->
+            <script type="text/javascript">
+            document.write(VK.Share.button(false,{type: "round", text: "Поделиться"}));
+            </script>
+	    </div>
+        <br>
+        <div class="fbb">
+            <div class="fb-share-button"
+                 data-href="<?php echo $host.'event.php?evid='.$ev_id?>"
+                 data-layout="button_count">
+            </div>
+        </div>
+    </div>
+</div>
   <!-- Your share button code -->
  
 </div>
-
 </div>
 <?php
 include 'includs/footer.php';

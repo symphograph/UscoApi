@@ -451,11 +451,12 @@ input[type="submit"]:active , button[type="submit"]:active, input[type="file"]:a
 
 .text{
 	max-width: 900px;
-	min-width: 300px;
+	/*min-width: 300px;*/
 	margin: auto;
 	color: black;
-	font-size: 20px;
+	font-size: 16px;
 	padding: 20px;
+	text-align: justify;
 	/*padding-right: 100px;*/
 }
 div[class="text"] > a, div[class="text"] > div > a{
