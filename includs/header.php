@@ -48,7 +48,7 @@ $host = 'https://'.$_SERVER['HTTP_HOST'].'/';
             <div>
             </div>
                 <div class="sitename">
-                    <div><a id="uscologo" href="<?php echo '/index.php';?>"><img src="<?php echo $host;?>img/logo.png?ver=1"  width="80px" height="80px" alt="Логотип"/></a>
+                    <div><a id="uscologo" href="<?php echo '/index.php';?>"><img src="<?php echo $host;?>img/logo/logo.svg?ver=2"  width="80px" height="80px" alt="Логотип"/></a>
                     <a id="orgname" style="text-decoration: none; color: #e7ddcb" href="<?php echo $host;?>index.php">Южно-Сахалинский камерный оркестр</a></div>
                 </div>
 

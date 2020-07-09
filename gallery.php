@@ -16,6 +16,7 @@ $p_title = 'Галерея';
 $ver = random_str(8);
 ?>
 <title><?php echo $p_title;?></title>
+    <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
 <link href="css/right_nav.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/right_nav.css');?>" rel="stylesheet">
 <link href="css/photo2.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/photo2.css');?>" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

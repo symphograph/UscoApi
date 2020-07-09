@@ -13,12 +13,12 @@ $p_title = 'История';
 $ver = random_str(8);
 ?>
 <title><?php echo $p_title;?></title>
+    <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
 <link href="css/menu.css?ver=<?php echo $ver;?>" rel="stylesheet">
 <link href="css/index.css?ver=<?php echo $ver;?>" rel="stylesheet">
 <link href="css/menum.css?ver=<?php echo $ver;?>" rel="stylesheet">
 <link href="css/right_nav.css?ver=<?php echo $ver?>" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://vk.com/js/api/openapi.js?154" type="text/javascript"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 </head>
 

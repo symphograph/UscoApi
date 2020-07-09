@@ -20,13 +20,13 @@ $p_title = 'Южно-Сахалинский камерный оркестр';
 $ver = random_str(8);
 ?>
 <title><?php echo $p_title;?></title>
+    <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
 <link href="css/menu.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menu.css');?>" rel="stylesheet">
 <link href="css/index.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/index.css');?>" rel="stylesheet">
 <link href="css/afisha.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/afisha.css');?>" rel="stylesheet">
 <link href="css/menum.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menum.css');?>" rel="stylesheet">
 <link href="css/right_nav.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'css/right_nav.css')?>" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://vk.com/js/api/openapi.js?154" type="text/javascript"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 </head>
 
@@ -44,13 +44,6 @@ $host = 'https://'.$_SERVER['HTTP_HOST'].'/';
 <div class="content">
 
 <div class="eventsarea">
-<script type="text/javascript">
-       (function(d, t, p) {
-           var j = d.createElement(t); j.async = true; j.type = "text/javascript";
-           j.src = ("https:" == p ? "https:" : "http:") + "//stat.sputnik.ru/cnt.js";
-           var s = d.getElementsByTagName(t)[0]; s.parentNode.insertBefore(j, s);
-       })(document, "script", document.location.protocol);
-</script>
 <?php
 $prrows = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Билеты в продаже'];
 

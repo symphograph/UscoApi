@@ -13,6 +13,7 @@ $p_title = 'Статьи';
 $ver = random_str(8);
 ?>
 <title><?php echo $p_title;?></title>
+    <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
 <link href="css/menu.css?ver=<?php echo md5_file('css/menu.css');?>" rel="stylesheet">
 <link href="css/index.css?ver=<?php echo md5_file('css/index.css');?>" rel="stylesheet">
 <link href="css/articles.css?ver=<?php echo md5_file('css/articles.css');?>" rel="stylesheet">

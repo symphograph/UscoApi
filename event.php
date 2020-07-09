@@ -52,6 +52,7 @@ foreach($query as $q)
 <head>
  <meta charset="utf-8">
   <title><?php echo $prog_name?></title>
+    <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
    <link href="css/menu.css?ver=<?php echo $ver;?>" rel="stylesheet">
 <link href="css/index.css?ver=<?php echo $ver;?>" rel="stylesheet">
 <link href="css/afisha.css?ver=<?php echo $ver;?>" rel="stylesheet">
