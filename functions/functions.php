@@ -222,7 +222,7 @@ function NewsCol($qwe = false)
 	{
 		$img = $q['img'];
 		if(empty($img))
-		    $img = 'img/news/default_news_img.png';
+		    $img = 'img/news/default_news_img.svg';
 
         $img = $img.'?ver='.md5_file($img);
 		$img = '<img src="'.$img.'" width="260px"/>';

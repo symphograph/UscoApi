@@ -1,7 +1,42 @@
 @charset "utf-8";
 /* CSS Document */
 
-.eventbox{
-	height: 370px;
+.eventboxl{
+	display: flex;
+	justify-content: space-around;
+	margin: 0 auto;
+	max-width: 1200px;
+}
 
+.eventbox {
+	width: 100%;
+	background-repeat: no-repeat;
+	/*backdrop-filter: blur(15px);*/
+}
+.eventboxin{
+	text-align: justify;
+}
+
+@media screen and (min-device-width: 500px) {
+
+	.eventboxin{
+		max-width: 50%;
+	}
+	.eventbox {
+
+		max-width: 40%;
+	}
+}
+
+@media screen and (max-device-width: 449px) {
+	.eventboxin{
+
+		width: 100%;
+	}
+	.eventboxl{
+		flex-direction: column;
+	}
+	.eventbox {
+		width: 100%;
+	}
 }

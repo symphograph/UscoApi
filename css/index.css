@@ -270,9 +270,12 @@ hr{
 
 .fbb, .vkb{
 
-	width: 100px;
-	display: inline-block;
-	float: left;
+
+}
+
+.share-buttons{
+	display: flex;
+	justify-content: space-around;
 }
 
 .clear{
@@ -594,7 +597,7 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 
 /* Adapting block */
 
-@media screen and (max-device-width: 400px) {
+@media screen and (max-device-width: 399px) {
 
 	#uscologo{
 		display: none;
@@ -614,22 +617,6 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 
 	.map{
 		width: 300px;
-	}
-	.eventboxl{
-		width: 260px;
-		margin: 10px;
-		border: 1px solid #a98700;
-		border-radius: 3px;
-		display: inline-block;
-		float: left;
-		font-size: 16px;
-		background-color: antiquewhite;
-		background-image: -webkit-linear-gradient(270deg,rgba(244,241,236,1.00) 0%,rgba(236,225,220,1.00) 100%);
-		background-image: -moz-linear-gradient(270deg,rgba(244,241,236,1.00) 0%,rgba(236,225,220,1.00) 100%);
-		background-image: -o-linear-gradient(270deg,rgba(244,241,236,1.00) 0%,rgba(236,225,220,1.00) 100%);
-		background-image: linear-gradient(180deg,rgba(244,241,236,1.00) 0%,rgba(236,225,220,1.00) 100%);
-		background-size: contain;
-		background-repeat: no-repeat;
 	}
 
 	.vitem {
