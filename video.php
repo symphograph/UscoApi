@@ -23,7 +23,7 @@ $ver = random_str(8);
 <link href="css/menu.css?ver=<?php echo md5_file('css/menu.css');?>" rel="stylesheet">
 <link href="css/index.css?ver=<?php echo md5_file('css/index.css');?>" rel="stylesheet">
 <link href="css/menum.css?ver=<?php echo md5_file('css/menum.css');?>" rel="stylesheet">
-<link href="css/right_nav.css?ver=<?php echo md5_file('right_nav.css')?>" rel="stylesheet">
+<link href="css/right_nav.css?ver=<?php echo md5_file('css/right_nav.css')?>" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 </head>
