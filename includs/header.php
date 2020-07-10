@@ -10,6 +10,7 @@ $host = 'https://'.$_SERVER['HTTP_HOST'].'/';
             <ul class="submenu">
             <li>
                 <li><a href="<?php echo $host;?>tsa.php">Тигран Ахназарян</a></li>
+                <li><a href="<?php echo $host;?>main.php">Основные сведения</a></li>
                 <li><a href="<?php echo $host;?>staff.php">Состав оркестра</a></li>
                 <li><a href="<?php echo $host;?>history.php">История</a></li>
                 <li><a href="<?php echo $host;?>zag.php">Александр Зражаев</a></li>

@@ -392,11 +392,12 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 
 .tel{
 	/*width: 50px;*/
-	height: 50px;
+	height: 25px;
 	background-image: url(../img/tel.png);
 	background-repeat: no-repeat;
 	background-position: 0% 0%;
-	padding-left: 55px;
+	background-size: contain;
+	padding-left: 35px;
 	display:table-cell;
 	vertical-align:bottom;
 	
@@ -476,7 +477,7 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 
 /* Footer */
 
-.logorow, .footer{
+.logorow{
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
@@ -571,7 +572,8 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 }
 
 .footer{
-
+	display: flex;
+	flex-wrap: wrap;
 	background-color: #2f2e2e;
 	color: #babab8;
 	font-size: 14px;
@@ -588,8 +590,7 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	display: inline-block;
 	float: left;
 	padding: 30px;
-	border-right: 2px thin #fff;
-	width: 300px;
+	/*width: 300px;*/
 }
 
 
@@ -629,6 +630,10 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 }
 
 @media screen and (min-device-width: 800px) {
+
+	.footer{
+		justify-content: space-around;
+	}
 
 	.tcol {
 		width: 60%;

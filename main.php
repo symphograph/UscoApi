@@ -9,7 +9,7 @@ include_once 'includs/check.php';
 <head>
 <meta charset="utf-8">
 <?php
-$p_title = 'Контакты';
+$p_title = 'Основные сведения';
 $ver = random_str(8);
 ?>
 <title><?php echo $p_title;?></title>
@@ -32,25 +32,22 @@ include 'includs/header.php';
 <div class="content">
     <div class="text">
         <div class="p_title"><?php echo $p_title;?></div><br>
-        <b>Директор</b> - Кириллова Майя Владимировна
-        <div class="tel"><a href="tel:+74242300518"/>+7-4242-300-518</a></div><br>
-        <div class="tel"><a href="tel:+79632892316"/>+7-963-289-23-16</a></div>
-        <br><br>
-        Старший администратор:
-        <div class="tel"><a href="tel:+74242300518"/>+7-4242-300-518</a></div>
-        <br><br>
-        Специалист по кадрам:
-        <div class="tel"><a href="tel:+74242300518"/>+7-4242-300-518</a></div><br>
-        <a href="mailto:mbu-gko@yandex.ru">mbu-gko@yandex.ru</a>
-        <br><br>
-        <p>г. Южно-Сахалинск</p>
-        <p>ул.Ленина, д. 156</p>
-
+        <p>Полное название:</p>
+        МУНИЦИПАЛЬНОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ<br>"ЮЖНО-САХАЛИНСКИЙ КАМЕРНЫЙ ОРКЕСТР"<br><br>
+        <p>Сокращенное название:</p>
+        МБУ "ЮСКО"<br><br>
+        Дата постановки на учет:<br>
+        05.01.2001<br><br>
         <br>
-        <div class="map">
-        <iframe src="https://yandex.ru/map-widget/v1/-/ZU0EaABiTkMFXEJuZWJ4d3phYQA=/?ll=142.727859%2C46.966131&z=19" width="100%" height="400" frameborder="1" allowfullscreen="true"></iframe>
-        </div>
+        Учредитель: <br>
+        <a href="https://culture.yuzhno-sakh.ru/">Департамент культуры и туризма г.Южно-Сахалинск</a>
         <br><br>
+
+        <a href="ofdocs/inn.pdf">ИНН: 6501109377</a><br>
+        <a href="ofdocs/ogrn.pdf">ОГРН: 1026500550086</a>
+        <p>КПП: 650101001</p>
+        <p>ОКПО: 55655001</p><br>
+        <br>
     </div>
 </div>
 <?php
