@@ -2,20 +2,6 @@
 <project version="4">
   <component name="PublishConfigData" autoUpload="Always" serverName="usco" uploadOnCheckin="ac7623aa-b66d-478d-8846-fb38b0c0fa0b" compareModeInSync="TIMESTAMP">
     <serverData>
-      <paths name="dllib.ru">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="test.dllib.ru">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
       <paths name="usco">
         <serverdata>
           <mappings>
@@ -25,7 +11,6 @@
             <excludedPath path="/.cache" />
             <excludedPath path="/vendor" />
             <excludedPath path="/js_" />
-            <excludedPath path="/js" />
             <excludedPath path="/img/albums" />
           </excludedPaths>
         </serverdata>

@@ -43,15 +43,6 @@ $pajes =
             ]
         ],
 
-        ['details',
-            ['Пресса',
-                [
-                    'news.php'=>'Новости',
-                    'articles.php'=>'Статьи'
-                ]
-            ]
-        ],
-
         'contacts.php'=>'Контакты',
         'documents.php'=>'Документы'
     ];

@@ -6,35 +6,39 @@ $host = 'https://'.$_SERVER['HTTP_HOST'].'/';
         <nav class="bignav">
 
           <ul class="topmenu">
-            <li><a href="<?php echo $host;?>index.php">Оркестр</a>
-            <ul class="submenu">
             <li>
-                <li><a href="<?php echo $host;?>tsa.php">Тигран Ахназарян</a></li>
-                <li><a href="<?php echo $host;?>main.php">Основные сведения</a></li>
-                <li><a href="<?php echo $host;?>staff.php">Состав оркестра</a></li>
-                <li><a href="<?php echo $host;?>history.php">История</a></li>
-                <li><a href="<?php echo $host;?>zag.php">Александр Зражаев</a></li>
-            </ul>
+                <a href="<?php echo $host;?>index.php">Оркестр</a>
+                <ul class="submenu">
+
+                    <li><a href="<?php echo $host;?>tsa.php">Тигран Ахназарян</a></li>
+                    <li><a href="<?php echo $host;?>main.php">Основные сведения</a></li>
+                    <li><a href="<?php echo $host;?>staff.php">Состав оркестра</a></li>
+                    <li><a href="<?php echo $host;?>history.php">История</a></li>
+                    <li><a href="<?php echo $host;?>zag.php">Александр Зражаев</a></li>
+                </ul>
             </li>
-            <li><a href="<?php echo $host;?>anonces.php">Афиша</a>
-             <ul class="submenu">
-                <li><a href="<?php echo $host;?>anonces.php">Предстоящие</a></li>
-                <li><a href="<?php echo $host;?>complited.php">Прошедшие</a></li>
-            </ul>
+            <li>
+                <a href="<?php echo $host;?>anonces.php">Афиша</a>
+                <ul class="submenu">
+                    <li><a href="<?php echo $host;?>anonces.php">Предстоящие</a></li>
+                    <li><a href="<?php echo $host;?>complited.php">Прошедшие</a></li>
+                </ul>
             </li>
 
-            <li><a href="">Медиа</a>
-            <ul class="submenu">
-                <li><a href="<?php echo $host;?>gallery.php">Фото</a></li>
-                <li><a href="<?php echo $host;?>video.php">Видео</a></li>
-            </ul>
+            <li>
+                <a href="">Медиа</a>
+                <ul class="submenu">
+                    <li><a href="<?php echo $host;?>gallery.php">Фото</a></li>
+                    <li><a href="<?php echo $host;?>video.php">Видео</a></li>
+                </ul>
             </li>
 
-            <li><a href="<?php echo $host;?>">Пресса</a>
-            <ul class="submenu">
-                <li><a href="<?php echo $host;?>news.php">Новости</a></li>
-                <li><a href="<?php echo $host;?>articles.php">Статьи</a></li>
-            </ul>
+            <li>
+                <a href="<?php echo $host;?>">Пресса</a>
+                <ul class="submenu">
+                    <li><a href="<?php echo $host;?>news.php">Новости</a></li>
+                    <li><a href="<?php echo $host;?>articles.php">Статьи</a></li>
+                </ul>
             </li>
             <li><a href="<?php echo $host;?>contacts.php">Контакты</a></li>
             <li><a href="<?php echo $host;?>documents.php">Документы</a></li>

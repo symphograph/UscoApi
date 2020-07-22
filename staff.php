@@ -36,7 +36,7 @@ include 'includs/header.php';
         <div class="eventsarea">
             <div class="p_title">
                 <?php echo $p_title;?>
-            </div>
+            </div><br>
             <div class="gridarea">
 <?php
 $query = mysqli_query($link2,"
@@ -51,7 +51,8 @@ groups.group_name,
 reglist_ls.job_id,
 jobs.job_sname,
 reglist_ls.ortid,
-reglist_ls.main
+reglist_ls.main,
+(SELECT job_id FROM pers_job WHERE pers_id = personal.id and job_id in (34,27)) as is_concertmaster
 FROM
 places
 INNER JOIN groups ON places.group_id = groups.group_id
@@ -67,25 +68,33 @@ places.place_id ASC
 $group_id = 0;
 $next = 0;
 $i = 0;
+$cmasters = [27 =>'концертмейстер оркестра', 34 => 'концертмейстер'];
 foreach($query as $q)
 {
 	if($q['group_id'] != $next)
 	{
 	if($i>0) echo '</div>';
-	echo '<div class="group">';
+	?><div class="group" id="gr_<?php echo $q['group_id']?>"><?php
 	echo '<span class="groupname">'.$q['group_name'].'</span><hr><br>';
 	}
 	?>
-	<span class="staffname"><?php echo $q['name'].' '.$q['last_name'];?></span>
-	
-	<?php
-	//if($q['job_id']>0 and $q['job_id'] != 2)
-	?><br><span class="staffjobname"><?php echo $q['job_sname']?></span><?php
-	if($q['main']>2)
-		echo ' (приглашенный артист)';
-	$next = $q['group_id'];
-	$i++;
-	echo '<br><br>';
+    <div id="p_<?php echo $q['pers_id']?>">
+        <span class="staffname"><?php echo $q['name'].' '.$q['last_name'];?></span>
+
+        <?php
+        if($q['is_concertmaster'])
+        {
+            ?><br><span class="staffjobname"><?php echo $cmasters[$q['is_concertmaster']]?></span><?php
+        }
+
+        ?><br><span class="staffjobname"><?php echo $q['job_sname']?></span><?php
+        if($q['main']>2)
+            echo ' (приглашенный артист)';
+        $next = $q['group_id'];
+        $i++;
+        ?>
+        <br><br>
+    </div><?php
 }
 //echo $i;
 ?>
