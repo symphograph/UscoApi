@@ -374,6 +374,8 @@ input[type="submit"]:active , button[type="submit"]:active, input[type="file"]:a
 	font-size: 18px;
 	padding: 20px;
 	text-align: justify;
+	font: caption;
+	letter-spacing: 0.05em;
 }
 
 div[class="text"] > a, div[class="text"] > div > a{
