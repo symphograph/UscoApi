@@ -10,7 +10,7 @@
 }
 
 a{
-	text-decoration: none;
+	/*text-decoration: none;*/
 	color: #6b4c07;
 }
 
@@ -374,7 +374,6 @@ input[type="submit"]:active , button[type="submit"]:active, input[type="file"]:a
 	font-size: 18px;
 	padding: 20px;
 	text-align: justify;
-	/*padding-right: 100px;*/
 }
 
 div[class="text"] > a, div[class="text"] > div > a{
@@ -385,7 +384,7 @@ div[class="text"] > a, div[class="text"] > div > a{
 
 div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 
-	letter-spacing: 1px;
+	/*letter-spacing: 1px;*/
 	text-shadow: 1px 1px 10px #fbd97a;
 	transition: 100ms;
 }
@@ -437,7 +436,13 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	text-align: justify;
 }
 
+.tcol a{
+	text-decoration: none;
+}
 
+.tcol a:hover{
+	text-decoration: underline;
+}
 
 .ntitle a{
 	text-decoration: none;
