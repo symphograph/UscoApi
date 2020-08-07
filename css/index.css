@@ -100,7 +100,7 @@ hr{
 	width: 100%;
 	/*margin: auto;*/
 	clear: both;	/*padding-left: 40px;*/
-	box-shadow: 0px 5px 7px #2f2e2e99;
+	box-shadow: 0 5px 7px #2f2e2e99;
 }
 
 .topin{
@@ -306,9 +306,9 @@ input[type="submit"], input[type="file"], button[type="submit"] {
    -webkit-border-radius: 7px;
    -moz-border-radius: 7px;
    border-radius: 7px;
-   -webkit-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
-   -moz-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
-   box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
+   -webkit-box-shadow: rgba(255,255,255,0.4) 0 0 0, inset rgba(255,255,255,0.4) 0 0 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 0 0, inset rgba(255,255,255,0.4) 0 0 0;
+   box-shadow: rgba(255,255,255,0.4) 0 0 0, inset rgba(255,255,255,0.4) 0 0 0;
    text-shadow: #d2d499 0 1px 0;
    color: #474117;
    font-size: 20px;
@@ -395,7 +395,7 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	height: 25px;
 	background-image: url(../img/tel.png);
 	background-repeat: no-repeat;
-	background-position: 0% 0%;
+	background-position: 0 0;
 	background-size: contain;
 	padding-left: 35px;
 	display:table-cell;
@@ -497,7 +497,7 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	color: #544300;
 	font-size: 25px;
 	text-transform: uppercase;
-	padding: 40px 0px 40px;
+	padding: 40px 0 40px;
 	overflow: auto;
 	width: 100%;
 	margin: auto;
