@@ -24,6 +24,7 @@ require_once 'includs/check.php';
     <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
     <link href="css/menu.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menu.css');?>" rel="stylesheet">
     <link href="css/index.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/index.css');?>" rel="stylesheet">
+    <link href="css/afisha.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/afisha.css');?>" rel="stylesheet">
     <link href="css/menum.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menum.css');?>" rel="stylesheet">
     <link href="css/right_nav.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/right_nav.css')?>" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,9 +72,10 @@ foreach($query as $q)
 {
 ConcertItem($q);
 }
-if(!$query or mysqli_num_rows($query) == 0)
-	VideoItems();
 ?>
+</div>
+<div class="eventsarea">
+    <?php  VideoItems();?>
 </div>
 <div class="eventsarea">
     <?php  NewsCol();?>

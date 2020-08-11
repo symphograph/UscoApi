@@ -34,7 +34,7 @@
 .eventbox:hover{
 	-webkit-box-shadow: 1px 1px 5px rgba(41,22,8,1.00);
 	box-shadow: 1px 1px 5px rgba(41,22,8,1.00);
-	text-shadow: 1px 0px 1px rgba(243,215,195,1.00);
+	/*text-shadow: 1px 0px 1px rgba(243,215,195,1.00);*/
 	border: none;
 	/*margin: 5px 4px;*/
 }
