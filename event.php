@@ -30,14 +30,10 @@ WHERE `concert_id` = '$evid'
 foreach($query as $q)
 {
 	extract($q);
-	//$description = $q['description'];
-	//$prog_name = $q['prog_name'];
-	//$aftitle = $q['aftitle'];
-	//$img = $q['img'];
-	//$datetime = $q['datetime'];
+
 	$date = date('d.m.Y',strtotime($datetime));
 	$time = date('H:i',strtotime($datetime));
-	$description = '<p>'.$date.' '.$time.'</p>'.$description;
+	$description = '<br><p><b>'.$date.' '.$time.'</b></p><br>'.$description;
 	$imglink = $host.'img/afisha/'.$img;
 	$size = getimagesize($imglink);
 	$width = $size[0];
@@ -90,8 +86,14 @@ include 'includs/header.php';
                     <p><b><?php echo $prog_name ?></b></p>
                     <p><?php echo $description?></p>
                     <?php echo $byebtn;?>
+
+                    <br><br>
+                    Справки по тел:<br>
+                    <div class="tel"><a href="tel:+74242300518">+7-4242-300-518</a></div>
+                    <br>
+                    <div class="tel"><a href="tel:+79624163689">+7-962-416-36-89</a></div>
+                    <br>
                 </div>
-                <br>
                 <div class="share-buttons">
                     <div class="fbb">
                         <!-- Put this script tag to the <head> of your page -->
