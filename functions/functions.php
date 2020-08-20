@@ -102,39 +102,7 @@ function SelectOpts($query, $col_val, $col_name, $sel_val, $defoult)
 	}
 }
 
-//Проверяем попытки ввода sms кода
-function TryCount( $mobile, $code)
-{	
-	$query = qwe("SELECT * FROM `sms` WHERE `mobile` = '$mobile' AND (`time` BETWEEN  NOW() - INTERVAL 15 MINUTE AND NOW())");
-	if(mysqli_num_rows($query) == 1)
-	{	
-		foreach($query as $t)
-		{
-			$try = $t['try'];
-			$needcode = $t['kod'];
-		}
-		if($try < 1)
-		{
-			//Попытки исчерпаны. Удаляем код из бд.
-			qwe("DELETE FROM `sms` WHERE `mobile` = '$mobile'");
-			return 'over';
-		}
-		if($try > 0 and $code != $needcode)
-		{
-			//Попытка была, но неудачная.
-			qwe("UPDATE `sms` SET `try` = `try` -1 WHERE `mobile` = '$mobile'");
-			return 'bad_try';
-		}
-		if($try > 0 and $code == $needcode)
-		{
-			qwe("DELETE FROM `sms` WHERE `mobile` = '$mobile'");
-			return 'success';
-		}
-	}
-	else
-		//Попыток еще небыло
-		return 'empty';
-}
+
 
 function printr($var) {
   echo '<pre>';
@@ -142,46 +110,8 @@ function printr($var) {
   echo '</pre>';
 }
 
-function CsrfInForm($form)
-{
-$csrf_token = random_str(32);
-$_SESSION['csrf_'.$form] = $csrf_token;
-?>
-<input type="hidden" name="csrf_<?php echo $form;?>" value="<?php echo $csrf_token;?>"/>
-<?php
-}
-
-function CsrfValid($form)
-{
-	if($_SESSION['csrf_'.$form] === $_POST['csrf_'.$form])
-	{ 
-		$_SESSION = array();
-		return true;
-	}
-	else
-	{
-		$session_id = $_COOKIE['session_id'];
-		$ip = $_SERVER['REMOTE_ADDR'];
-		qwe("INSERT INTO `error_log` 
-		(`error_t_id`, `session_id`, `description`, `ip`, `time`)
-		VALUES 
-		('1', '$session_id', '$form', '$ip', NOW())");
-		$_SESSION = array();
-		return false;
-	}
-		
-}
-
 function is_Date($str){
     return is_numeric(strtotime($str));
-}
-
-function Comment($string)
-{
-	$string = strip_tags($string,'<br>');
-	$string = preg_replace('/[^0-9a-zA-Zа-яА-ЯёЁ \,\.\(\)\]\[\_\:«»\-(?<br>)]/ui', '',$string);
-	$string = trim($string);
-	return($string);
 }
 
 function ru_date($format, $date = false) {
@@ -444,7 +374,7 @@ function VideoItem($youtube_id) //Подразумевается youtube. Ины
 function VideoItems($qwe = false)
 {
 	if(!$qwe)
-		$qwe = qwe( "SELECT * FROM video ORDER BY v_date");
+		$qwe = qwe( "SELECT * FROM video ORDER BY v_date DESC");
 	?><div class="vidarea"><?php
 	foreach($qwe as $q)
 	{
