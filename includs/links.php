@@ -44,7 +44,8 @@ $pajes =
         ],
 
         'contacts.php'=>'Контакты',
-        'documents.php'=>'Документы'
+        'documents.php'=>'Документы',
+        'vacancies.php' => 'Вакансии'
     ];
 //printr($pajes);
 function top_links()

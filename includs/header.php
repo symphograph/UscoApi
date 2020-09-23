@@ -40,8 +40,10 @@ $host = 'https://'.$_SERVER['HTTP_HOST'].'/';
                     <li><a href="<?php echo $host;?>articles.php">Статьи</a></li>
                 </ul>
             </li>
+
             <li><a href="<?php echo $host;?>contacts.php">Контакты</a></li>
             <li><a href="<?php echo $host;?>documents.php">Документы</a></li>
+            <li><a href="<?php echo $host;?>vacancies.php">Вакансии</a></li>
 
           </ul>
         </nav>

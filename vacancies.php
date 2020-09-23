@@ -43,67 +43,7 @@ $host = 'https://'.$_SERVER['HTTP_HOST'].'/';
 <div class="content">
 
 <div class="eventsarea">
-<?php
-$query = qwe("
-SELECT
-anonces.concert_id as ev_id,
-anonces.hall_id,
-anonces.prog_name,
-anonces.sdescr,
-anonces.description,
-anonces.img,
-anonces.topimg,
-anonces.aftitle,
-anonces.datetime,
-anonces.pay,
-anonces.age,
-anonces.ticket_link,
-halls.hall_name,
-halls.map
-FROM
-anonces
-INNER JOIN halls ON anonces.hall_id = halls.hall_id
-WHERE /*anonces.concert_id > 3 AND*/ datetime >= NOW()
-ORDER BY anonces.datetime
-");
-$prrows = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Билеты в продаже'];
-foreach($query as $q)
-{
-ConcertItem($q);
-}
-?>
-</div>
-<div class="eventsarea">
-    <?php
-    $qwe = qwe( "SELECT * FROM video ORDER BY v_date DESC LIMIT 6");
-    VideoItems($qwe);
-    ?>
-</div>
-<div class="eventsarea">
-    <?php  NewsCol();?>
-</div>
-    <?php
-    /*
-    <div class="vkcom">
-    <?php
-
-        FacebookCol();
-    ?>
-
-    <br><hr><br>
-
-    <script type="text/javascript" src="https://vk.com/js/api/openapi.js?154"></script>
-
-    <!-- VK Widget -->
-    <div id="vk_groups"></div>
-    <script type="text/javascript">
-    VK.Widgets.Group("vk_groups", {mode: 4, wide: 1, no_cover: 0, height: "800", width: "auto", color1: 'e7ddcb',color3: 'A98700'}, 166038484);
-    </script>
-
-
-</div>
-    */
-    ?>
+Data is empty.
 </div>
 <?php
 include 'includs/footer.php';
