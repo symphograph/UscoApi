@@ -1,5 +1,6 @@
 <?php
 include 'includs/ip.php';
+
 include 'functions/functions.php';
 include_once 'includs/check.php';
 include_once 'includs/config2.php';
@@ -27,8 +28,17 @@ include_once 'includs/config2.php';
 <?php
 include 'includs/links.php';
 include 'includs/header.php';
-//include 'includs/config.php';
-	
+
+/*
+if(!$myip)
+{
+    ?><div class="content">
+    <div class="eventsarea">Технические работы</div><?php
+    include 'includs/footer.php';
+    ?></div><?php
+    die();
+}
+*/
 ?>
 <div class="topspase"></div>
     <div class="content">
@@ -39,64 +49,109 @@ include 'includs/header.php';
             </div><br>
             <div class="gridarea">
 <?php
-$query = mysqli_query($link2,"
-SELECT
-places.place_id,
-places.group_id,
-places.pers_id,
-personal.last_name,
-personal.`name`,
-personal.patron,
-groups.group_name,
-reglist_ls.job_id,
-jobs.job_sname,
-reglist_ls.ortid,
-reglist_ls.main,
-(SELECT job_id FROM pers_job WHERE pers_id = personal.id and job_id in (34,27)) as is_concertmaster
-FROM
-places
-INNER JOIN groups ON places.group_id = groups.group_id
-INNER JOIN personal ON places.pers_id = personal.id
-INNER JOIN reglist_ls ON places.pers_id = reglist_ls.pers_id AND NOW() BETWEEN reglist_ls.accept AND reglist_ls.dismiss
-AND reglist_ls.job_id in (7,8,9)
-LEFT JOIN jobs ON reglist_ls.job_id = jobs.id
 
-ORDER BY
-groups.priority ASC,
-places.place_id ASC
-	");
-$group_id = 0;
-$next = 0;
-$i = 0;
-$cmasters = [27 =>'концертмейстер оркестра', 34 => 'концертмейстер'];
-foreach($query as $q)
+$qwe = qwe2("
+SELECT * FROM groups 
+WHERE deep = 3 
+ORDER BY priority
+");
+foreach ($qwe as $q)
 {
-	if($q['group_id'] != $next)
-	{
-	if($i>0) echo '</div>';
-	?><div class="group" id="gr_<?php echo $q['group_id']?>"><?php
-	echo '<span class="groupname">'.$q['group_name'].'</span><hr><br>';
-	}
-	?>
-    <div id="p_<?php echo $q['pers_id']?>">
-        <span class="staffname"><?php echo $q['name'].' '.$q['last_name'];?></span>
+    /**
+     * @var int $group_id
+     * @var string $group_name
+     */
+    extract($q);
+    ?>
+        <div class="group" id="gr_<?php echo $group_id; ?>">
+        <span class="groupname"><?php echo $group_name; ?></span>
+        <hr><br>
+            <?php
+            PlayersInGroup($group_id)
+            ?>
 
-        <?php
-        if($q['is_concertmaster'])
-        {
-            ?><br><span class="staffjobname"><?php echo $cmasters[$q['is_concertmaster']]?></span><?php
-        }
+        </div>
+    <?php
 
-        ?><br><span class="staffjobname"><?php echo $q['job_sname']?></span><?php
-        if($q['main']>2)
-            echo ' (приглашенный артист)';
-        $next = $q['group_id'];
-        $i++;
-        ?>
-        <br><br>
-    </div><?php
 }
-//echo $i;
+
+function PlayersInGroup(int $group_id)
+{
+    global $link2;
+    $qwe = qwe2("
+    SELECT
+	places.place_id, 
+	personal.id as pers_id, 
+	personal.`name`, 
+	personal.patron, 
+	personal.last_name, 
+	places.chair, 
+	pers_job.job_id, 
+	jobs.job_name, 
+	jobs.job_sname,
+	COUNT(jobs.id) as job_cnt
+FROM
+	places
+	INNER JOIN
+	personal
+	ON 
+		personal.place_id = places.place_id AND
+		places.group_id = '$group_id' AND
+		personal.main < 3
+	LEFT JOIN
+	pers_job
+	ON 
+		personal.id = pers_job.pers_id
+	LEFT JOIN
+	jobs
+	ON 
+		pers_job.job_id = jobs.id AND jobs.site_visible = 1
+		GROUP BY personal.id
+ORDER BY
+	places.place_id ASC
+    ");
+    foreach ($qwe as $q)
+    {
+        /**
+         * @var int $pers_id
+         * @var int $job_cnt
+         */
+        extract($q);
+        ?>
+        <div id="p_<?php echo $q['pers_id']?>">
+            <span class="staffname"><?php echo $q['name'].' '.$q['last_name'];?></span>
+
+            <?php
+            if($job_cnt)
+                PlayerTitles($pers_id);
+
+            ?>
+            <br><br>
+        </div><?php
+    }
+
+}
+
+function PlayerTitles(int $pers_id)
+{
+    global $link2;
+    $qwe = qwe2("
+    SELECT * FROM pers_job 
+    INNER JOIN jobs ON pers_job.job_id = jobs.id 
+    AND pers_job.pers_id = '$pers_id'
+    AND jobs.site_visible = 1
+    ");
+    foreach ($qwe as $q)
+    {
+        /**
+         * @var string $job_name
+         */
+        extract($q);
+        ?><br><span class="staffjobname"><?php echo $job_name?></span><?php
+    }
+
+}
+
 ?>
         </div>
     </div>

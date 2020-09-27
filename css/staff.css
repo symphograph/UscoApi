@@ -38,3 +38,41 @@
 	font-size: 12px;
 	color: gray;
 }
+
+.pers_cell{
+
+	display: flex;
+	justify-content: flex-start;
+	height: 52px;
+}
+
+.ava{
+	width: 50px;
+	height: 50px;
+	/*border: 1px solid black;*/
+	border-radius: 35px;
+	background-size: 50px;
+}
+
+.ava:hover{
+
+	box-shadow: 0px 0px 4px #272573
+
+}
+
+.ava_round{
+	width: 100%;
+	height: 100%;
+}
+
+.fio_col{
+	margin-left: 1em;
+}
+
+.fio_in{
+
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}

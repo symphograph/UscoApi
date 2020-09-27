@@ -12,6 +12,7 @@
             <excludedPath path="/vendor" />
             <excludedPath path="/js_" />
             <excludedPath path="/img/albums" />
+            <excludedPath path="/cgi-bin" />
           </excludedPaths>
         </serverdata>
       </paths>

@@ -654,3 +654,31 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	}
 
 }
+
+.button{
+	padding: 0.5em;
+	border: 1px solid black;
+	width: max-content;
+	border-radius: 5px;
+}
+
+.crop_area{
+	width: 130px;
+	height: 130px;
+}
+
+.fioselect{
+	padding: 1em;
+}
+
+#upload{
+
+}
+
+.btn_area{
+	height: 80px;
+	width: 290px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}

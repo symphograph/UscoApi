@@ -51,5 +51,5 @@ function writelog($typelog, $log_text)
 	fwrite($log, "$log_text\r\n");
 	fclose($log);
 }
-dbconnect();
+//
 ?>

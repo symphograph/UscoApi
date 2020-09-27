@@ -10,5 +10,14 @@
         <property name="serverTimezone" value="Europe/Moscow" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="graflastor_gko" uuid="5e19be67-6ad8-4cb6-835e-fd8224d9b240">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://87.236.19.55:3306/graflastor_gko</jdbc-url>
+      <driver-properties>
+        <property name="serverTimezone" value="Europe/Moscow" />
+      </driver-properties>
+    </data-source>
   </component>
 </project>

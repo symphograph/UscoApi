@@ -1,6 +1,6 @@
 <?php
 //Вывод селекта с сотрудниками
-function pers_select($action,$pers_id)
+function pers_select($action,int $pers_id)
 {
 	$selected = '';
 	?>
@@ -30,34 +30,33 @@ function pers_select($action,$pers_id)
 		<?php
 }
 
-function pers_select2($pers_id)
+function pers_select2(int $pers_id = 0)
 {
 	$selected = '';
-	?>
-	
-		<select class="fio fioselect" name="pers" autocomplete="off">
-	<?php
-	if(!isset($pers_id) or $pers_id == 0)
+
+	?><select class="fio fioselect" name="pers_id" id="pers_select" autocomplete="off"><?php
+
+	if(!$pers_id)
 		{
-		?>
-		<option class="fio" value="0" selected >Выберите сотрудника</option>
-		<?php
+		?><option class="fio" value="0" selected >Выберите сотрудника</option><?php
 		}
 	
-	$query = qwe( "SELECT * FROM `personal` ORDER by `last_name`");
+	$query = qwe( "
+    SELECT * FROM `personal` 
+    WHERE place_id 
+    ORDER by `last_name`
+    ");
 			
 	foreach ($query as $k)
 	{
 		if(isset($pers_id) and $pers_id == $k['id'])
 			$selected = 'selected';
-		?>
-		<option value="<?php echo $k['id'];?>" <?php echo $selected;?> ><?php echo $k['last_name'].' '.$k['name'].' '.$k['patron'];?></option>
-		<?php
+
+		?><option value="<?php echo $k['id'];?>" <?php echo $selected;?> ><?php echo $k['last_name'].' '.$k['name'].' '.$k['patron'];?></option><?php
+
 		$selected = '';
 	}
-		?>
-		
-		<?php
+    ?></select><?php
 }
 
 //Для числительных. (год, года, лет)
@@ -130,7 +129,7 @@ function ru_date($format, $date = false) {
 function OnlyText($string)
 {
 	$string = trim($string);
-	$string = preg_replace('/[^0-9a-zA-Zа-яА-ЯёЁ]/ui', '',$string);
+	$string = preg_replace('/[^0-9a-zA-Zа-яА-ЯёЁ_]/ui', '',$string);
 	$string = trim($string);
 	return($string);
 }
