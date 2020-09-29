@@ -266,14 +266,10 @@ function ConcertItem($q)
 	$prrows = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Билеты в продаже'];
 	global $myip;
 	if((!$myip) and $ev_id < 4) return false;
-	
 
-	
-	
 
-	$bg = 'style="background-image: url(img/afisha/'.$img.')"' ?? '';
+	//$bg = 'style="background-image: url(img/afisha/'.$img.')"' ?? '';
 	$bg = '';
-
 
 	$prrow = $prrows[$pay];
 	$byebtn = '
@@ -291,7 +287,7 @@ function ConcertItem($q)
 		<p><a href="'.$ticket_link.'" class="tdno"><div class="bybtn"><span class="bybtntxt">Купить онлайн</span></div></a></p>
 		</div>';
 	}
-	
+
 	if($_SERVER['SCRIPT_NAME'] == '/complited.php')//TO_DO!!!
 	{
 		if($youtube_id)
@@ -328,7 +324,7 @@ function ConcertItem($q)
         <div class="evdate">
         <?php echo EvdateFormated($datetime)?>
         </div>
-        <a href="<?php echo $map;?>" target="_blank"><?php echo $hall_name;?></a>
+        <a href="<?php echo $map;?>" class="hall_href" target="_blank"><?php echo $hall_name;?></a>
 	</div>
 
 	
