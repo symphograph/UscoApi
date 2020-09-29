@@ -203,42 +203,48 @@ function Metka($ip)
 	//если не помечен, метим
 	$unix_time = time();
 	$datetime = date('Y-m-d H:i:s',$unix_time);
+
 	if(empty($_COOKIE['identy']))
 	{
-	$identy = random_str(12);
-	$cooktime = $unix_time+60*60*24*365*5;
-	setcookie('identy',$identy,$cooktime,'/','',true,true);
-	$query = qwe("
-	INSERT INTO `identy`
-	(`identy`, `ip`, `time`, `last_ip`, `last_time`)
-	VALUES
-	('$identy','$ip','$datetime','$ip','$datetime')
-	");	
-	}else
-	{
-		$identy = OnlyText($_COOKIE['identy']);
-		if(iconv_strlen($identy) != 12)
-		{
-			return false;
-		}
-		$query = qwe("
-			SELECT * FROM `identy`
-			WHERE `identy` = '$identy'
-			");
-		if(mysqli_num_rows($query) == 1)
-		{
-			$query = qwe("
-			UPDATE `identy` SET
-			`last_ip` = '$ip',
-			`last_time` = '$datetime'
-			WHERE `identy` = '$identy'
-			");
-		}else
-		{
-			setcookie ("identy", "", time() - 3600);
-			return false;
-		}
+        $identy = random_str(12);
+        $cooktime = $unix_time+60*60*24*365*5;
+        setcookie('identy',$identy,$cooktime,'/','',true,true);
+        $qwe = qwe("
+        INSERT INTO `identy`
+        (`identy`, `ip`, `time`, `last_ip`, `last_time`)
+        VALUES
+        ('$identy','$ip','$datetime','$ip','$datetime')
+        ");
+
+        if(!$qwe)
+            return false;
+        else
+            return $identy;
 	}
+
+    $identy = OnlyText($_COOKIE['identy']);
+    if(iconv_strlen($identy) != 12)
+    {
+        return false;
+    }
+    $query = qwe("
+        SELECT * FROM `identy`
+        WHERE `identy` = '$identy'
+        ");
+    if($query->num_rows == 1)
+    {
+        qwe("
+        UPDATE `identy` SET
+        `last_ip` = '$ip',
+        `last_time` = '$datetime'
+        WHERE `identy` = '$identy'
+        ");
+    }else
+    {
+        setcookie ("identy", "", time() - 3600);
+        return false;
+    }
+
 	return $identy;
 }
 
@@ -261,6 +267,11 @@ function EvdateFormated($datetime)
 
 function ConcertItem($q)
 {
+    /**
+     * @var $pay
+     * @var $ev_id
+     * @var $ticket_link
+     */
 	extract($q);
 	$complited = $recorded = false;
 	$prrows = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Билеты в продаже'];
@@ -357,8 +368,8 @@ function VideoItem($youtube_id) //Подразумевается youtube. Ины
 	<iframe 
 			width="100%"
 			height="100%"
-			src="https://www.youtube.com/embed/<?php echo $youtube_id?>" 
-			frameborder="0" 
+			src="https://www.youtube.com/embed/<?php echo $youtube_id?>"
+			frameborder="0"
 			allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
 			allowfullscreen>
 	</iframe>
