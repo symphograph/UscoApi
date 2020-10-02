@@ -149,6 +149,11 @@ function NewsCol($qwe = false)
 	");
 	foreach($qwe as $q)
 	{
+        $new_id = $q['new_id'];
+
+	    if (!$myip and $new_id < 9)
+	        continue;
+
 		$img = $q['img'];
 		if(empty($img))
 		    $img = 'img/news/default_news_img.svg';
@@ -156,7 +161,7 @@ function NewsCol($qwe = false)
         $img = $img.'?ver='.md5_file($img);
 		$img = '<img src="'.$img.'" width="260px"/>';
 		$ntitle = $q['new_tit'];
-		$new_id = $q['new_id'];
+
 		//if((!$myip) and $new_id == 17) continue;
 		$ntext = $q['text'];
 		?>
