@@ -287,7 +287,7 @@ function ConcertItem($q)
 	//$bg = 'style="background-image: url(img/afisha/'.$img.')"' ?? '';
 	$bg = '';
 
-	$prrow = $prrows[$pay];
+	$prrow = $prrows[$pay] ?? '';
 	$byebtn = '
 	<div><br>
 	<p><span>'.$prrow.'</span></p><br>
