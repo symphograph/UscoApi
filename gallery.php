@@ -10,7 +10,7 @@ include_once 'includs/check.php';
 <html>
 <head>
 <meta charset="utf-8">
-<script src="https://culturaltracking.ru/static/js/spxl.js" data-pixel-id="1032"></script>
+
 <?php
 $p_title = 'Галерея';
 $ver = random_str(8);

@@ -12,7 +12,7 @@ include_once 'includs/check.php';
 	name="sputnik-verification" 
 	content="jjcPO4sqQYWv7K37"
 />
-<script src="https://culturaltracking.ru/static/js/spxl.js" data-pixel-id="1032"></script>
+
 <meta name="yandex-verification" content="b82701a7766ca759" />
 <meta name="yandex-verification" content="50b98ccfb33aa708" />
 <?php

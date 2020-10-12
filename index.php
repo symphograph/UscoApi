@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 require_once 'includs/ip.php';
 require_once 'functions/functions.php';
 require_once 'includs/check.php';
@@ -12,7 +12,8 @@ require_once 'includs/check.php';
         name="sputnik-verification"
         content="jjcPO4sqQYWv7K37"
     />
-    <script src="https://culturaltracking.ru/static/js/spxl.js" data-pixel-id="1032"></script>
+
+    <meta name="proculture-verification" content="9974889fb39244589ef78eb3c3879433" />
     <meta name="yandex-verification" content="b82701a7766ca759" />
     <meta name="yandex-verification" content="50b98ccfb33aa708" />
     <meta name="keywords" content="Тигран Ахназарян, Южно-Сахалинский камерный оркестр, оркестр">
@@ -105,6 +106,7 @@ ConcertItem($q);
     */
     ?>
 </div>
+
 <?php
 include 'includs/footer.php';
 ?>

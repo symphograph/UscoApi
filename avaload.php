@@ -11,7 +11,7 @@ $pers_id = $_GET['pers_id'] ?? 0;
 <html>
 <head>
     <meta charset="utf-8">
-    <script src="https://culturaltracking.ru/static/js/spxl.js" data-pixel-id="1032"></script>
+
     <meta name="yandex-verification" content="b82701a7766ca759" />
     <meta name="yandex-verification" content="50b98ccfb33aa708" />
     <meta name="keywords" content="Тигран Ахназарян, Южно-Сахалинский камерный оркестр, оркестр">
