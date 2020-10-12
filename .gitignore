@@ -489,8 +489,9 @@ API
 Training
 Blog
 About
-/includs/ip.php
+ip.php
 .htaccess
 /js/Croppie-2.6.5/
 .idea
 /public_html/cgi-bin/
+/public_html/js/Croppie-2.6.5/
