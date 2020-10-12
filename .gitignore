@@ -493,3 +493,4 @@ About
 .htaccess
 /js/Croppie-2.6.5/
 .idea
+/public_html/cgi-bin/
