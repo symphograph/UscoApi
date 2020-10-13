@@ -46,7 +46,6 @@ function ReplFoldersFromYaDisk($albumsdir,$shared_folder_link)
 		{
 			delFolderRecurs($albumsdir.$folder);
 		}
-
 	}
 }
 
