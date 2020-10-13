@@ -15,8 +15,9 @@ if(!$myip) exit;
 
 <body>
 <?php
+printr($_ENV);
 
-include $_SERVER['DOCUMENT_ROOT'].'/../admin/ttt.php';
+//include $_SERVER['DOCUMENT_ROOT'].'/../admin/ttt.php';
 ?>
 </body>
 </html>

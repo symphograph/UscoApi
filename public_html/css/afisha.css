@@ -74,24 +74,7 @@
 	position: relative;
 }
 */
-.bybtn{
-	border-radius: 1px;
-	
-	border: 1px solid #cce2e2;
-	background-color: #44448a;
-	padding: 5px;
-	width: 170px;
-	margin: auto;
-}
-.bybtn:hover{
-	/*letter-spacing: 1px;*/
-	cursor: pointer;
-}
-.bybtntxt{
-	color: #f3da99;
-	text-align: center;
-	/*text-shadow: 1px 1px 1px rgba(255,255,255,1.00);*/
-}
+
 .pressme{
 	height: 95%;
 	/*padding: 5px;*/

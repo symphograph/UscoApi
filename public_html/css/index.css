@@ -611,6 +611,10 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 		display: none;
 	}
 
+	.cooktext{
+		font-size: 14px;
+	}
+
 }
 
 @media screen and (max-device-width: 799px) {
@@ -682,3 +686,65 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	flex-direction: column;
 	justify-content: center;
 }
+
+.cookdiv{
+	font-size: 18px;
+	position: fixed;
+	bottom: 1em;
+	text-align: center;
+	z-index: 100;
+	width: 98%;
+	right: 1%;
+
+
+	margin: auto 0;
+	min-height: 5em;
+	/*line-height: 3em;*/
+	border: none;
+	border-radius: 0.2em;
+	box-shadow: 0 0 5px 0 #352b0f;
+	background-color: #e7ddcbeb;
+
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	padding: 1em;
+	box-sizing: border-box;
+}
+
+.cookdiv .bybtn{
+	height: 2em;
+	line-height: 2em;
+}
+.bybtn{
+	border-radius: 1px;
+
+	border: 1px solid #cce2e2;
+	background-color: #44448a;
+	padding: 5px;
+	width: 170px;
+	margin: auto;
+}
+.bybtn:hover{
+	/*letter-spacing: 1px;*/
+	cursor: pointer;
+}
+.bybtntxt{
+	color: #f3da99;
+	text-align: center;
+	/*text-shadow: 1px 1px 1px rgba(255,255,255,1.00);*/
+}
+.bybtn a{
+	text-decoration: none;
+}
+.bybtntxt:hover{
+	color: #fdff7b;
+}
+
+.cooktext{
+	color: #2d2115;
+	text-shadow: 0 0 1px #ffffff;
+	min-width: 70%;
+	margin: 0 auto;
+}
+

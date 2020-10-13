@@ -1,7 +1,6 @@
-<?php 
-require_once 'includs/ip.php';
-require_once 'includs/config.php';
-require_once 'functions/functions.php';
+<?php
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once $root.'/includs/check.php';
 if(!$myip) die();
 
 /*

@@ -243,7 +243,7 @@ function Metka($ip)
         SELECT * FROM `identy`
         WHERE `identy` = '$identy'
         ");
-    if($query->num_rows == 1)
+    if($query and $query->num_rows == 1)
     {
         qwe("
         UPDATE `identy` SET
@@ -432,5 +432,23 @@ function FacebookCol()
     </div>
 
     <?php
+}
+
+function CookWarning()
+{
+    if(!empty($_COOKIE['cookok']))
+        return false;
+    ?>
+    <script type="text/javascript" src="js/jquery-latest.js?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/js/jquery-latest.js')?>"></script>
+    <script type="text/javascript" src="js/cook.js?ver=<?php echo md5_file($root.'/js/cook.js')?>"></script>
+    <div class="cookdiv">
+        <div class="cooktext">Сайт использует файлы Cookies. Они помогают ему стать лучше.</div>
+        <div>
+            <div class="bybtn" id="cookconfirm">
+                <span class="bybtntxt">Хорошо</span>
+            </div>
+        </div>
+    </div>
+<?php
 }
 ?>

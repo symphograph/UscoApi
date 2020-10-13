@@ -1,8 +1,9 @@
 <?php
-require_once 'includs/ip.php';
-include_once 'functions/functions.php';
+die();
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once $root.'/includs/check.php';
 ?>
-<!DOCTYPE HTML PUBLIC  "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE HTML>
 <html lang="ru">
 	<head>
 		<title>Загрузка изображения с изменением размеров</title>

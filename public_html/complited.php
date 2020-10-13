@@ -12,11 +12,14 @@ $ver = random_str(8);
     <title><?php echo $p_title;?></title>
     <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
     <?php CssMeta(['menu.css','index.css','afisha.css','menum.css', 'right_nav.css'])?>
-    <link href="css/right_nav.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/right_nav.css')?>" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 </head>
 
 <body>
+
+
 <?php
 require_once $root.'/includs/links.php';
 require_once $root.'/includs/header.php';
@@ -28,8 +31,8 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 
 <div class="eventsarea">
 <div class="p_title"><?php echo $p_title;?></div>
-<?php
 
+<?php
 $query = qwe("
 SELECT
 anonces.concert_id as ev_id,
@@ -61,13 +64,14 @@ foreach($query as $q)
     ConcertItem($q);
 
 }
-?></div><?php
-?>
+
+?></div>
+
 </div>
 </div>
 <?php
 require_once $root.'/includs/footer.php';
 ?>
- 
+
 </body>
 </html>

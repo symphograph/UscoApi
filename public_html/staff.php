@@ -1,9 +1,7 @@
 <?php
-require_once 'includs/ip.php';
-
-require_once 'functions/functions.php';
-require_once 'includs/check.php';
-require_once 'includs/config2.php';
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once $root.'/includs/check.php';
+require_once $root.'/includs/config2.php';
 ?>
 <!doctype html>
 <html lang="ru">
@@ -15,12 +13,8 @@ require_once 'includs/config2.php';
     ?>
     <title><?php echo $p_title;?></title>
     <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
-    <link href="css/index.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/index.css');?>" rel="stylesheet">
-    <link href="css/menu.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menu.css');?>" rel="stylesheet">
-    <link href="css/afisha.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/afisha.css');?>" rel="stylesheet">
-    <link href="css/staff.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/staff.css');?>" rel="stylesheet">
-    <link href="css/right_nav.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/right_nav.css');?>" rel="stylesheet">
+<!--    <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">-->
+    <?php CssMeta(['menu.css','index.css','afisha.css','staff.css', 'right_nav.css'])?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 

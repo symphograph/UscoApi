@@ -91,5 +91,6 @@ function LiList(array $pajes)
 
     }
 }
+CookWarning();
 top_links();
 	?>
