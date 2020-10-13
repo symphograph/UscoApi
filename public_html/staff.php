@@ -6,7 +6,7 @@ require_once 'includs/check.php';
 require_once 'includs/config2.php';
 ?>
 <!doctype html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <?php
@@ -26,15 +26,15 @@ require_once 'includs/config2.php';
 
 <body>
 <?php
-include 'includs/links.php';
-include 'includs/header.php';
+require_once $root.'/includs/links.php';
+require_once $root.'/includs/header.php';
 
 /*
 if(!$myip)
 {
     ?><div class="content">
     <div class="eventsarea">Технические работы</div><?php
-    include 'includs/footer.php';
+    require_once $root.'/includs/footer.php';
     ?></div><?php
     die();
 }
@@ -179,7 +179,7 @@ function PlayerTitles(int $pers_id)
     </div>
 </div>
 <?php
-include 'includs/footer.php';
+require_once $root.'/includs/footer.php';
 ?>
 </body>
 </html>

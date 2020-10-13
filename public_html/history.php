@@ -1,11 +1,9 @@
 <?php
-session_start();
-include_once 'includs/ip.php';
-include_once 'functions/functions.php';
-include_once 'includs/check.php';
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once $root.'/includs/check.php';
 ?>
 <!doctype html>
-<html>
+<html lang="ru">
 <head>
 <meta charset="utf-8">
 <?php
@@ -14,18 +12,15 @@ $ver = random_str(8);
 ?>
 <title><?php echo $p_title;?></title>
     <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
-<link href="css/menu.css?ver=<?php echo $ver;?>" rel="stylesheet">
-<link href="css/index.css?ver=<?php echo $ver;?>" rel="stylesheet">
-<link href="css/menum.css?ver=<?php echo $ver;?>" rel="stylesheet">
-<link href="css/right_nav.css?ver=<?php echo $ver?>" rel="stylesheet">
+    <?php CssMeta(['menu.css','index.css','menum.css', 'right_nav.css'])?>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 </head>
 
 <body>
 <?php
-include 'includs/links.php';
-include 'includs/header.php';
+require_once $root.'/includs/links.php';
+require_once $root.'/includs/header.php';
 ?>
 
 
@@ -56,7 +51,7 @@ include 'includs/header.php';
 </div>
 </div>
 <?php
-include 'includs/footer.php';
+require_once $root.'/includs/footer.php';
 ?>
 </body>
 </html>

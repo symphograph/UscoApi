@@ -1,7 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/includs/ip.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/functions/functions.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/includs/check.php';
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once $root.'/includs/check.php';
 if(!$myip) die();
 if(empty($_POST['photo']))
     die('empty');

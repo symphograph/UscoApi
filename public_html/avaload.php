@@ -1,19 +1,17 @@
 <?php
-//session_start();
-require_once $_SERVER['DOCUMENT_ROOT'].'/includs/ip.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/functions/functions.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/includs/check.php';
+//
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once $root.'/includs/check.php';
 if(!$myip) die();
 
 $pers_id = $_GET['pers_id'] ?? 0;
 ?>
 <!doctype html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8">
 
-    <meta name="yandex-verification" content="b82701a7766ca759" />
-    <meta name="yandex-verification" content="50b98ccfb33aa708" />
+
     <meta name="keywords" content="Тигран Ахназарян, Южно-Сахалинский камерный оркестр, оркестр">
     <?php
     $p_title = 'Южно-Сахалинский камерный оркестр';
@@ -37,9 +35,9 @@ $pers_id = $_GET['pers_id'] ?? 0;
 
 <?php
 //FacebookScript();
-include 'includs/links.php';
-include 'includs/header.php';
-$host = 'https://'.$_SERVER['HTTP_HOST'].'/';
+require_once $root.'/includs/links.php';
+require_once $root.'/includs/header.php';
+$host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 ?>
 
 <div class="content">
@@ -76,7 +74,7 @@ $host = 'https://'.$_SERVER['HTTP_HOST'].'/';
     </div>
 </div>
 <?php
-include 'includs/footer.php';
+require_once $root.'/includs/footer.php';
 ?>
  
 </body>

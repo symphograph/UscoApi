@@ -1,19 +1,14 @@
 <?php
-session_start();
-include_once 'includs/ip.php';
-include_once 'functions/functions.php';
-include_once 'includs/check.php';
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once $root.'/includs/check.php';
+
 ?>
 <!doctype html>
-<html>
+<html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta 
-	name="sputnik-verification" 
-	content="jjcPO4sqQYWv7K37"
-/>
-<meta name="yandex-verification" content="b82701a7766ca759" />
-<meta name="yandex-verification" content="50b98ccfb33aa708" />
+
+
 <?php
 $p_title = 'Южно-Сахалинский камерный оркестр';
 $ver = random_str(8);
@@ -40,9 +35,9 @@ $ver = random_str(8);
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <?php
-include 'includs/links.php';
-include 'includs/header.php';
-$host = 'https://'.$_SERVER['HTTP_HOST'].'/';
+require_once $root.'/includs/links.php';
+require_once $root.'/includs/header.php';
+$host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 ?>
 
 <!--<div class="ubis"><b>XX ЮБИЛЕЙНЫЙ СЕЗОН</b></div>-->
@@ -201,7 +196,7 @@ VK.Widgets.Group("vk_groups", {mode: 4, wide: 1, no_cover: 0, height: "800", wid
 </div>
 </div>
 <?php
-include 'includs/footer.php';
+require_once $root.'/includs/footer.php';
 ?>
  
 </body>

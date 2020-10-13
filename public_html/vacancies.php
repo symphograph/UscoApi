@@ -1,11 +1,9 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once $root.'/includs/ip.php';
-require_once $root.'/functions/functions.php';
 require_once $root.'/includs/check.php';
 ?>
 <!doctype html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Тигран Ахназарян, Южно-Сахалинский камерный оркестр, оркестр">
@@ -27,9 +25,9 @@ require_once $root.'/includs/check.php';
 
 <?php
 //FacebookScript();
-include 'includs/links.php';
-include 'includs/header.php';
-$host = 'https://'.$_SERVER['HTTP_HOST'].'/';
+require_once $root.'/includs/links.php';
+require_once $root.'/includs/header.php';
+$host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 ?>
 
 <div class="content">
@@ -73,7 +71,7 @@ $host = 'https://'.$_SERVER['HTTP_HOST'].'/';
     </div>
 </div>
 <?php
-include 'includs/footer.php';
+require_once $root.'/includs/footer.php';
 ?>
  
 </body>

@@ -1,13 +1,13 @@
 <?php
-session_start();
-include_once 'includs/ip.php';
+
+require_once 'includs/ip.php';
 if(!$myip and !$officeip) exit();
 include_once 'functions/functions.php';
 include_once 'functions/setseat.php';
 include_once 'includs/check.php';
 ?>
 <!doctype html>
-<html>
+<html lang="ru">
 <head>
 <meta charset="utf-8">
 <?php
@@ -27,9 +27,9 @@ $ver = random_str(8);
 
 <body>
 <?php
-include 'includs/links.php';
-include 'includs/header.php';
-$host = 'https://'.$_SERVER['HTTP_HOST'].'/';
+require_once $root.'/includs/links.php';
+require_once $root.'/includs/header.php';
+$host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 $ev_id = 8;
 ?>
 
@@ -176,7 +176,7 @@ foreach($seatnums as $sid => $tnum)
 </div>
 </div>
 <?php
-include 'includs/footer.php';
+require_once $root.'/includs/footer.php';
 ?>
 </body>
 </html>

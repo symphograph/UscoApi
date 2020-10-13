@@ -1,6 +1,6 @@
 <?php
-include_once 'includs/ip.php';
-include_once 'functions/functions.php';
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once $root.'/includs/check.php';
 ?>
 <!doctype html>
 <html lang="ru">
@@ -11,21 +11,15 @@ $p_title = 'Документы';
 $ver = random_str(8);
 ?>
 <title><?php echo $p_title;?></title>
-    <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
-<link href="css/menu.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menu.css');?>" rel="stylesheet">
-<link href="css/index.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/index.css');?>" rel="stylesheet">
-<link href="css/menum.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menum.css');?>" rel="stylesheet">
-<link href="css/documents.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/documents.css');?>" rel="stylesheet">
-<link href="css/right_nav.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/right_nav.css')?>" rel="stylesheet">
+<link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
+<?php CssMeta(['menu.css','index.css','menum.css', 'documents.css', 'right_nav.css'])?>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://vk.com/js/api/openapi.js?154" type="text/javascript"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 </head>
 
 <body>
 <?php
-include 'includs/links.php';
-include 'includs/header.php';
+require_once $root.'/includs/links.php';
+require_once $root.'/includs/header.php';
 ?>
 
 
@@ -107,7 +101,7 @@ include 'includs/header.php';
 </div>
 
 <?php
-include 'includs/footer.php';
+require_once $root.'/includs/footer.php';
 ?>
 </body>
 </html>

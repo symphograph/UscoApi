@@ -1,10 +1,8 @@
-<?php 
-include_once 'includs/ip.php';
-include_once 'includs/config.php';
-include_once 'functions/functions.php';
-include_once 'includs/check.php';
+<?php
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once $root.'/includs/check.php';
 $ver = random_str(8);
-$host = 'https://'.$_SERVER['HTTP_HOST'].'/';
+$host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 $evid = intval($_GET['evid']);
 $ptypes = ['','','Вход свободный','Онлайн продажа завершена','Вход по пригласительным'];
 $query = qwe("
@@ -44,35 +42,29 @@ foreach($query as $q)
     $byebtn = $prrow;
 }
 ?>
-<html>
+<html lang="ru">
 <head>
- <meta charset="utf-8">
-  <title><?php echo $prog_name?></title>
+    <meta charset="utf-8">
+    <title><?php echo $prog_name?></title>
     <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
-<link href="css/menu.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menu.css');?>" rel="stylesheet">
-<link href="css/index.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/index.css');?>" rel="stylesheet">
+    <?php CssMeta(['menu.css','index.css','event.css','menum.css', 'right_nav.css'])?>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="css/event.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/event.css');?>" rel="stylesheet">
-<link href="css/menum.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menum.css');?>" rel="stylesheet">
-<link href="css/right_nav.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/right_nav.css');?>" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://vk.com/js/api/openapi.js?154" type="text/javascript"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
     <!-- You can use Open Graph tags to customize link previews.
     Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
-  <meta property="og:url"           content="<?php echo $host.'event.php?evid='.$ev_id?>" />
-  <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="<?php echo $prog_name?>" />
-  <meta property="og:description"   content="<?php echo $date.' '.$time?>" />
-  <meta property="og:image"         content="<?php echo $imglink?>" />
-  <meta property="og:image:width"         content="<?php echo $width?>" />
-  <meta property="og:image:height"         content="<?php echo $height?>" />
+    <meta property="og:url"           content="<?php echo $host.'event.php?evid='.$ev_id?>" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="<?php echo $prog_name?>" />
+    <meta property="og:description"   content="<?php echo $date.' '.$time?>" />
+    <meta property="og:image"         content="<?php echo $imglink?>" />
+    <meta property="og:image:width"         content="<?php echo $width?>" />
+    <meta property="og:image:height"         content="<?php echo $height?>" />
 </head>
 <body>
 <?php
 FacebookScript();
-include 'includs/links.php';
-include 'includs/header.php';	
+require_once $root.'/includs/links.php';
+require_once $root.'/includs/header.php';
 ?>
 <div class="content">
     <div class="eventsarea">
@@ -116,7 +108,7 @@ include 'includs/header.php';
     </div>
 </div>
 <?php
-include 'includs/footer.php';
+require_once $root.'/includs/footer.php';
 ?>
 </body>
 </html>

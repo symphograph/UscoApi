@@ -1,41 +1,26 @@
 <?php
-//session_start();
-include_once 'includs/ip.php';
-include_once 'functions/functions.php';
-include_once 'includs/check.php';
-?>
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta 
-	name="sputnik-verification" 
-	content="jjcPO4sqQYWv7K37"
-/>
-<meta name="yandex-verification" content="b82701a7766ca759" />
-<meta name="yandex-verification" content="50b98ccfb33aa708" />
-<?php
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once $root.'/includs/check.php';
+
 $p_title = 'Прошедшие концерты';
 $ver = random_str(8);
-	
 ?>
-<title><?php echo $p_title;?></title>
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title><?php echo $p_title;?></title>
     <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
-<link href="css/menu.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menu.css');?>" rel="stylesheet">
-<link href="css/index.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/index.css');?>" rel="stylesheet">
-<link href="css/afisha.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/afisha.css');?>" rel="stylesheet">
-<link href="css/menum.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menum.css');?>" rel="stylesheet">
-<link href="css/right_nav.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/right_nav.css')?>" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+    <?php CssMeta(['menu.css','index.css','afisha.css','menum.css', 'right_nav.css'])?>
+    <link href="css/right_nav.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/right_nav.css')?>" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
 <?php
-FacebookScript();
-include 'includs/links.php';
-include 'includs/header.php';
-$host = 'https://'.$_SERVER['HTTP_HOST'].'/';
+require_once $root.'/includs/links.php';
+require_once $root.'/includs/header.php';
+$host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 ?>
 
 <!--<div class="ubis"><b>XX ЮБИЛЕЙНЫЙ СЕЗОН</b></div>-->
@@ -81,7 +66,7 @@ foreach($query as $q)
 </div>
 </div>
 <?php
-include 'includs/footer.php';
+require_once $root.'/includs/footer.php';
 ?>
  
 </body>

@@ -1,8 +1,6 @@
 <?php
-session_start();
-include_once 'includs/ip.php';
-include_once 'functions/functions.php';
-include_once 'includs/check.php';
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once $root.'/includs/check.php';
 if($admin)
 {
 	if(!empty($_POST['filename']))
@@ -36,7 +34,7 @@ if($admin)
 }
 ?>
 <!doctype html>
-<html>
+<html lang="ru">
 <head>
 <meta charset="utf-8">
 <?php
@@ -55,8 +53,8 @@ $ver = random_str(8);
 
 <body>
 <?php
-include 'includs/links.php';
-include 'includs/header.php';
+require_once $root.'/includs/links.php';
+require_once $root.'/includs/header.php';
 ?>
 
 
@@ -105,7 +103,7 @@ if($admin)
 </div>
 
 <?php
-include 'includs/footer.php';
+require_once $root.'/includs/footer.php';
 ?>
 </body>
 </html>

@@ -1,11 +1,9 @@
 <?php
-session_start();
-include_once 'includs/ip.php';
-include_once 'functions/functions.php';
-include_once 'includs/check.php';
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once $root.'/includs/check.php';
 ?>
 <!doctype html>
-<html>
+<html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="yandex-verification" content="50b98ccfb33aa708" />
@@ -25,8 +23,8 @@ $ver = random_str(8);
 
 <body>
 <?php
-include 'includs/links.php';
-include 'includs/header.php';
+require_once $root.'/includs/links.php';
+require_once $root.'/includs/header.php';
 
 ?>
 
@@ -46,6 +44,6 @@ include 'includs/header.php';
     </div>
 </div>
 
-<?php include 'includs/footer.php'; ?>
+<?php require_once $root.'/includs/footer.php'; ?>
 </body>
 </html>

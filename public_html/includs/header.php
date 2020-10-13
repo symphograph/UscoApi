@@ -1,5 +1,5 @@
 <?php
-$host = 'https://'.$_SERVER['HTTP_HOST'].'/';
+$host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 ?>
 <div class="header">
     <div class="hederc">

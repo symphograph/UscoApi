@@ -1,9 +1,9 @@
 <?php
-include_once 'includs/ip.php';
+require_once 'includs/ip.php';
 include_once 'functions/functions.php';
 ?>
 <!DOCTYPE HTML PUBLIC  "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<html lang="ru">
 	<head>
 		<title>Загрузка изображения с изменением размеров</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">

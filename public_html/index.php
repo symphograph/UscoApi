@@ -1,11 +1,9 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once $root.'/includs/ip.php';
-require_once $root.'/functions/functions.php';
 require_once $root.'/includs/check.php';
 ?>
 <!doctype html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="proculture-verification" content="9974889fb39244589ef78eb3c3879433" />
@@ -18,16 +16,15 @@ require_once $root.'/includs/check.php';
     <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
     <?php CssMeta(['menu.css','index.css','afisha.css','menum.css', 'right_nav.css'])?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>-->
 </head>
 
 <body>
 
 <?php
-//FacebookScript();
-include $root.'/includs/links.php';
-include $root.'/includs/header.php';
-$host = 'https://'.$_SERVER['HTTP_HOST'].'/';
+
+require_once $root.'/includs/links.php';
+require_once $root.'/includs/header.php';
+$host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 ?>
 
 <div class="content">
@@ -97,7 +94,7 @@ foreach($query as $q)
 </div>
 
 <?php
-include $root.'includs/footer.php';
+include $root.'/includs/footer.php';
 ?>
  
 </body>
