@@ -1,21 +1,14 @@
 <?php
-//session_start();
-require_once 'includs/ip.php';
-require_once 'functions/functions.php';
-require_once 'includs/check.php';
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once $root.'/includs/ip.php';
+require_once $root.'/functions/functions.php';
+require_once $root.'/includs/check.php';
 ?>
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <meta
-        name="sputnik-verification"
-        content="jjcPO4sqQYWv7K37"
-    />
-
     <meta name="proculture-verification" content="9974889fb39244589ef78eb3c3879433" />
-    <meta name="yandex-verification" content="b82701a7766ca759" />
-    <meta name="yandex-verification" content="50b98ccfb33aa708" />
     <meta name="keywords" content="Тигран Ахназарян, Южно-Сахалинский камерный оркестр, оркестр">
     <?php
     $p_title = 'Южно-Сахалинский камерный оркестр';
@@ -23,13 +16,9 @@ require_once 'includs/check.php';
     ?>
     <title><?php echo $p_title;?></title>
     <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
-    <link href="css/menu.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menu.css');?>" rel="stylesheet">
-    <link href="css/index.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/index.css');?>" rel="stylesheet">
-    <link href="css/afisha.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/afisha.css');?>" rel="stylesheet">
-    <link href="css/menum.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menum.css');?>" rel="stylesheet">
-    <link href="css/right_nav.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/right_nav.css')?>" rel="stylesheet">
+    <?php CssMeta(['menu.css','index.css','afisha.css','menum.css', 'right_nav.css'])?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+<!--    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>-->
 </head>
 
 <body>

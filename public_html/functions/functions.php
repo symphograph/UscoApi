@@ -101,7 +101,14 @@ function SelectOpts($query, $col_val, $col_name, $sel_val, $defoult)
 	}
 }
 
-
+function CssMeta(array $css_arr)
+{
+    $root = $_SERVER['DOCUMENT_ROOT'];
+    foreach ($css_arr as $css)
+    {
+        ?><link href="css/<?php echo $css?>?ver=<?php echo md5_file($root.'/css/'.$css)?>" rel="stylesheet"><?php
+    }
+}
 
 function printr($var) {
   echo '<pre>';

@@ -1,8 +1,9 @@
 <?php
-include_once 'includs/ip.php';
-include_once 'functions/functions.php';
-include_once 'includs/config.php';
-include_once 'includs/config2.php';
+$root = $_SERVER['DOCUMENT_ROOT'];
+include_once $_SERVER['DOCUMENT_ROOT'].'/includs/ip.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/functions/functions.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/includs/config.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/includs/config2.php';
 if(!$myip) exit;
 ?>
 <!doctype html>
@@ -14,12 +15,8 @@ if(!$myip) exit;
 
 <body>
 <?php
-$qwe = qwe("SHOW DATABASES");
-foreach ($qwe as $q)
-{
-    var_dump($q);
-}
-var_dump($qwe);
+
+include $_SERVER['DOCUMENT_ROOT'].'/../admin/ttt.php';
 ?>
 </body>
 </html>

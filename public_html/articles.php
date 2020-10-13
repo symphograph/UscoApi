@@ -1,8 +1,8 @@
 <?php
-session_start();
-include_once 'includs/ip.php';
-include_once 'functions/functions.php';
-include_once 'includs/check.php';
+$root = $_SERVER['DOCUMENT_ROOT'];
+include_once $root.'/includs/ip.php';
+include_once $root.'/functions/functions.php';
+include_once $root.'/includs/check.php';
 ?>
 <!doctype html>
 <html>
