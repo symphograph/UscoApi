@@ -21,7 +21,6 @@ require_once $root.'/includs/check.php';
     <link href="css/menum.css?ver=<?php echo md5_file($root.'/css/menum.css');?>" rel="stylesheet">
     <link href="css/right_nav.css?ver=<?php echo md5_file($root.'/css/right_nav.css')?>" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 </head>
 
 <body>

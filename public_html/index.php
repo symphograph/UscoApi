@@ -25,8 +25,8 @@ require_once $root.'/includs/check.php';
 
 <?php
 //FacebookScript();
-include 'includs/links.php';
-include 'includs/header.php';
+include $root.'/includs/links.php';
+include $root.'/includs/header.php';
 $host = 'https://'.$_SERVER['HTTP_HOST'].'/';
 ?>
 
@@ -56,10 +56,10 @@ INNER JOIN halls ON anonces.hall_id = halls.hall_id
 WHERE /*anonces.concert_id > 3 AND*/ datetime >= NOW()
 ORDER BY anonces.datetime
 ");
-$prrows = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Билеты в продаже'];
+//$prrows = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Билеты в продаже'];
 foreach($query as $q)
 {
-ConcertItem($q);
+    ConcertItem($q);
 }
 ?>
 </div>
@@ -97,7 +97,7 @@ ConcertItem($q);
 </div>
 
 <?php
-include 'includs/footer.php';
+include $root.'includs/footer.php';
 ?>
  
 </body>

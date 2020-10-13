@@ -21,7 +21,6 @@ $ver = random_str(8);
 <link href="css/right_nav.css?ver=<?php echo md5_file('css/right_nav.css');?>" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://vk.com/js/api/openapi.js?159" type="text/javascript"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 </head>
 
 <body>
