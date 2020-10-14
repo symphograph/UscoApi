@@ -32,6 +32,7 @@ if(!$myip)
     ?></div><?php
     die();
 }
+
 */
 ?>
 <div class="topspase"></div>
