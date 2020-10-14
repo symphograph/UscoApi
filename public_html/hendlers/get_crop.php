@@ -23,7 +23,7 @@ $img = str_replace(['data:image/png;base64',' '],['','+'],$_POST['photo']);
 
 $fileData = base64_decode($img);
 
-if(file_put_contents($_SERVER['DOCUMENT_ROOT'].'/'.$path_min, $fileData))
+if(file_put_contents($root.'/'.$path_min, $fileData))
     echo $file_min;
 
 ?>

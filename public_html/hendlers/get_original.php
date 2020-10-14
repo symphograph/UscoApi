@@ -13,7 +13,7 @@ $path_max = $dir.$file_name;
 $arr = [];
 // var_dump($uplfile);
 
-if(move_uploaded_file($_FILES['file']['tmp_name'],$_SERVER['DOCUMENT_ROOT'].'/'.$path_max))
+if(move_uploaded_file($_FILES['file']['tmp_name'],$root.'/'.$path_max))
 {
     $arr['status'] = 'success';
     $arr['path_max'] = $path_max;
