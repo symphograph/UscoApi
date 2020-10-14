@@ -1,6 +1,6 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once $root.'/includs/check.php';
+require_once $root.'/../includs/check.php';
 
 
 $p_title = 'Южно-Сахалинский камерный оркестр';
@@ -19,8 +19,8 @@ $ver = random_str(8);
 
 <body>
 <?php
-require_once $root.'/includs/links.php';
-require_once $root.'/includs/header.php';
+require_once $root.'/../includs/links.php';
+require_once $root.'/../includs/header.php';
 $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 ?>
 
@@ -32,7 +32,7 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
     </div>
 </div>
 <?php
-require_once $root.'/includs/footer.php';
+require_once $root.'/../includs/footer.php';
 ?>
  
 </body>

@@ -1,7 +1,7 @@
 <?php
 die();
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once $root.'/includs/check.php';
+require_once $root.'/../includs/check.php';
 ?>
 <!DOCTYPE HTML>
 <html lang="ru">

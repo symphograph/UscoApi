@@ -1,7 +1,7 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once $root.'/includs/check.php';
-require_once $root.'/includs/config2.php';
+require_once $root.'/../includs/check.php';
+require_once $root.'/../includs/config2.php';
 ?>
 <!doctype html>
 <html lang="ru">
@@ -20,15 +20,15 @@ require_once $root.'/includs/config2.php';
 
 <body>
 <?php
-require_once $root.'/includs/links.php';
-require_once $root.'/includs/header.php';
+require_once $root.'/../includs/links.php';
+require_once $root.'/../includs/header.php';
 
 /*
 if(!$myip)
 {
     ?><div class="content">
     <div class="eventsarea">Технические работы</div><?php
-    require_once $root.'/includs/footer.php';
+    require_once $root.'/../includs/footer.php';
     ?></div><?php
     die();
 }
@@ -174,7 +174,7 @@ function PlayerTitles(int $pers_id)
     </div>
 </div>
 <?php
-require_once $root.'/includs/footer.php';
+require_once $root.'/../includs/footer.php';
 ?>
 </body>
 </html>
