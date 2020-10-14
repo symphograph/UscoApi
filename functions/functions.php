@@ -1,4 +1,5 @@
 <?php
+
 //Вывод селекта с сотрудниками
 function pers_select($action,int $pers_id)
 {
