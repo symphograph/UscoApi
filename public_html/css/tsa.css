@@ -21,3 +21,11 @@
 	/*font-family: PT Serif,serif;*/
 	text-align: justify;
 }
+
+@media screen and (max-device-width: 399px) {
+
+	.paragraph{
+		font-size: 14px;
+	}
+
+}
