@@ -46,8 +46,8 @@ if(!$myip)
 <?php
 
 $qwe = qwe2("
-SELECT * FROM groups 
-WHERE deep = 3 
+SELECT * FROM `groups` 
+WHERE deep = 3 AND priority
 ORDER BY priority
 ");
 foreach ($qwe as $q)
@@ -64,7 +64,6 @@ foreach ($qwe as $q)
             <?php
             PlayersInGroup($group_id)
             ?>
-
         </div>
     <?php
 
@@ -104,7 +103,7 @@ FROM
 		pers_job.job_id = jobs.id AND jobs.site_visible = 1
 		GROUP BY personal.id
 ORDER BY
-	places.place_id ASC
+	places.place_id
     ");
     foreach ($qwe as $q)
     {

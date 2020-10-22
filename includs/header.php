@@ -52,11 +52,10 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 
         <div class="topin">
 
-            <div>
-            </div>
+
                 <div class="sitename">
                     <div><a id="uscologo" href="<?php echo '/index.php';?>"><img src="<?php echo $host;?>img/logo/logo.svg?ver=2"  width="80px" height="80px" alt="Логотип"/></a>
-                    <a id="orgname" style="text-decoration: none; color: #e7ddcb" href="<?php echo $host;?>index.php">Южно-Сахалинский камерный оркестр</a></div>
+                    <a id="orgname" href="<?php echo $host;?>index.php">Южно-Сахалинский камерный оркестр</a></div>
                 </div>
 
             <div class="conductor">
