@@ -71,7 +71,6 @@ foreach ($qwe as $q)
 
 function PlayersInGroup(int $group_id)
 {
-    global $link2;
     $qwe = qwe2("
     SELECT
 	places.place_id, 
@@ -83,7 +82,7 @@ function PlayersInGroup(int $group_id)
 	pers_job.job_id, 
 	jobs.job_name, 
 	jobs.job_sname,
-	COUNT(jobs.id) as job_cnt
+	COUNT(jobs.id) as job_cnt     
 FROM
 	places
 	INNER JOIN
@@ -96,14 +95,16 @@ FROM
 	LEFT JOIN
 	pers_job
 	ON 
-		personal.id = pers_job.pers_id
+		personal.id = pers_job.pers_id 
+        AND pers_job.job_id IN 
+            (SELECT id FROM jobs WHERE site_visible)
 	LEFT JOIN
 	jobs
 	ON 
-		pers_job.job_id = jobs.id AND jobs.site_visible = 1
+		pers_job.job_id = jobs.id AND jobs.site_visible
 		GROUP BY personal.id
 ORDER BY
-	places.place_id
+	site_visible desc, last_name, `name`
     ");
     foreach ($qwe as $q)
     {
@@ -150,12 +151,12 @@ ORDER BY
 
 function PlayerTitles(int $pers_id)
 {
-    global $link2;
     $qwe = qwe2("
     SELECT * FROM pers_job 
     INNER JOIN jobs ON pers_job.job_id = jobs.id 
     AND pers_job.pers_id = '$pers_id'
-    AND jobs.site_visible = 1
+    AND jobs.site_visible
+    ORDER BY site_visible
     ");
     foreach ($qwe as $q)
     {
