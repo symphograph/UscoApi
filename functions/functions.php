@@ -41,7 +41,7 @@ function pers_select2(int $pers_id = 0)
 		?><option class="fio" value="0" selected >Выберите сотрудника</option><?php
 		}
 	
-	$query = qwe( "
+	$query = qwe2( "
     SELECT * FROM `personal` 
     WHERE place_id 
     ORDER by `last_name`

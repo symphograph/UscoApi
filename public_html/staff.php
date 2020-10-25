@@ -2,18 +2,17 @@
 $root = $_SERVER['DOCUMENT_ROOT'];
 require_once $root.'/../includs/check.php';
 require_once $root.'/../includs/config2.php';
+
+$p_title = 'Состав оркестра';
+$ver = random_str(8);
+
 ?>
 <!doctype html>
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <?php
-    $p_title = 'Состав оркестра';
-    $ver = random_str(8);
-    ?>
     <title><?php echo $p_title;?></title>
     <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
-<!--    <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">-->
     <?php CssMeta(['menu.css','index.css','afisha.css','staff.css', 'right_nav.css'])?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
