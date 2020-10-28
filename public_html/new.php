@@ -9,8 +9,12 @@ require_once $root.'/../includs/check.php';
 <?php
 $new_id = $_GET['new_id'] ?? 0;
 $new_id = intval($new_id);
-if(!$new_id > 0)
-exit("<meta http-equiv='refresh' content='0; url=index.php'>");
+if(!$new_id)
+{
+    header("Location: ../index.php");
+    die();
+}
+
 $query = qwe("
 SELECT * from `news`
 WHERE `new_id` = '$new_id'

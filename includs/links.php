@@ -3,27 +3,26 @@ if(!isset($ip)) exit();
 $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 $pajes =
     [
-        'tsa.php'=>'Тигран Ахназарян',
         ['details',
-            ['Оркестр',
+            ['Тигран Ахназарян',
                 [
-                'tsa.php'=>'Тигран Ахназарян',
-                'staff.php'=>'Состав оркестра',
-                'main.php'=>'Основные сведения',
-                'history.php'=>'История',
-                'zag.php'=> 'Александр Зражаев'
+                    'tsa.php'=>'Биография'
                 ]
             ]
         ],
 
         ['details',
-            ['Афиша',
+            ['ЮСКО',
                 [
-                    'anonces.php'=>'Предстоящие',
-                    'complited.php'=>'Прошедшие'
+                'staff.php'=>'Состав оркестра',
+                'history.php'=>'Историческая справка',
+                'main.php'=>'Юридические сведения',
                 ]
             ]
         ],
+        'vacancies.php' => 'Вакансии',
+        'zag.php'=> 'Александр Зражаев',
+        'complited.php'=>'Афиши',
 
         ['details',
             ['Медиа',
@@ -45,7 +44,7 @@ $pajes =
 
         'contacts.php'=>'Контакты',
         'documents.php'=>'Документы',
-        'vacancies.php' => 'Вакансии'
+
     ];
 //printr($pajes);
 function top_links()

@@ -35,8 +35,9 @@ require_once $root.'/../includs/header.php';
         <br><br>
         Специалист по кадрам:
         <div class="tel"><a href="tel:+74242300518"/>+7-4242-300-518</a></div><br>
-        Email:<br>
-        <a href="mailto:yusgo.mbuyusko@sakhalin.gov.ru">yusgo.mbuyusko@sakhalin.gov.ru</a>
+        Emails:<br>
+        <a href="mailto:mbu-gko@yandex.ru">mbu-gko@yandex.ru</a>
+        <a href="mailto:yusgo.mbuyusko@sakhalin.gov.ru">yusgo.mbuyusko@sakhalin.gov.ru</a><br>
         <br><br>
         <p>г. Южно-Сахалинск</p>
         <p>ул.Ленина, д. 156</p>

@@ -33,9 +33,9 @@
 <div class="footer">
     <div class="footcol">
         <p><a href="tel:+74242300518">+7-4242-300-518</a></p>
+        <p><a href="mailto:mbu-gko@yandex.ru">mbu-gko@yandex.ru</a></p>
         <p><a href="mailto:yusgo.mbuyusko@sakhalin.gov.ru">yusgo.mbuyusko@sakhalin.gov.ru</a></p>
         <p><a href="https://maps.sakh.com/ys/objects/2602/" target="_blank">г. Южно-Сахалинск, ул.Ленина д. 156</a></p>
-        <p>Единый общероссийский детский телефон доверия: <a href="tel:+78002000122">8-800-2000-122</a></p>
     </div>
     <div class="footcol">
         <p>МУНИЦИПАЛЬНОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ<br>"ЮЖНО-САХАЛИНСКИЙ КАМЕРНЫЙ ОРКЕСТР"</p>
@@ -45,7 +45,9 @@
         <p><b>Администрация г.Южно-Сахалинска</b></p>
         <p>Департамент культуры г.Южно-Сахалинска</p>
         <p><a href="main.php">Основные сведения</a></p>
-        <p><a href="documents.php">Документы</a></p>
+        <p><a href="documents.php">Документы</a></p><br><br>
+        <p>Единый общероссийский детский телефон доверия:<br>
+        <a href="tel:+78002000122">8-800-2000-122</a></p>
     </div>
 </div>
 <!---->

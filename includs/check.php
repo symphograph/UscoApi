@@ -7,6 +7,7 @@ $usersess = '';
 $spect_id = '';
 $admin = false;
 $tester = false;
+
 if(!empty($_COOKIE['usersess']))
 {
 	$usersess = $_COOKIE['usersess'];
@@ -56,5 +57,5 @@ if(!empty($_COOKIE['usersess']))
 }
 	
 $identy = Metka($ip);
-
+$is_TSA = ($identy === 'SWRjUykdleqQ');
 ?>

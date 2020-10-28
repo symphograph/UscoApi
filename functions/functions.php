@@ -215,11 +215,12 @@ function Metka($ip)
 	//если не помечен, метим
 	$unix_time = time();
 	$datetime = date('Y-m-d H:i:s',$unix_time);
+    $cooktime = $unix_time+60*60*24*365*5;
 
 	if(empty($_COOKIE['identy']))
 	{
         $identy = random_str(12);
-        $cooktime = $unix_time+60*60*24*365*5;
+
         setcookie('identy',$identy,$cooktime,'/','',true,true);
         $qwe = qwe("
         INSERT INTO `identy`
@@ -251,9 +252,10 @@ function Metka($ip)
         `last_time` = '$datetime'
         WHERE `identy` = '$identy'
         ");
+        setcookie('identy',$identy,$cooktime,'/','',true,true);
     }else
     {
-        setcookie ("identy", "", time() - 3600);
+        setcookie ("identy", "", time() - 3600*24*360*10);
         return false;
     }
 
