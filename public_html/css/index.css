@@ -123,6 +123,7 @@ hr{
 	font-size: 25px;
 	font-family: 'Rubik Mono One', sans-serif;
 	text-shadow: 0 0 9px #000000;
+	margin-left: 0.5em;
 }
 
 .sitename>div{
@@ -729,6 +730,14 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 }
 
 @media screen and (max-device-width: 799px) {
+
+	.conductor{
+		margin-top: 2em;
+	}
+
+	.conductor a{
+		margin-top: 0.5em;
+	}
 
 	.text{
 		font-size: 16px;
