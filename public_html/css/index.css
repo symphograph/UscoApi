@@ -196,7 +196,8 @@ hr{
 }
 
 .tsa:hover{
-	letter-spacing:2px;
+	/*letter-spacing:2px;*/
+	text-shadow: 0 0 2px #deba7d;
 }
 
 
