@@ -68,8 +68,10 @@ foreach ($qwe as $q)
 
 }
 
-function PlayersInGroup(int $group_id)
+function PlayersInGroup(int $group_id, $date = false)
 {
+    if(!$date)
+        $date = date('Y-m-d');
     $qwe = qwe2("
     SELECT
 	places.place_id, 
@@ -87,10 +89,10 @@ FROM
 	INNER JOIN
 	personal
 	ON 
-		personal.place_id = places.place_id AND
-		places.group_id = '$group_id' AND
-		personal.main < 3 AND
-		personal.main
+		personal.place_id = places.place_id 
+        AND places.group_id = '$group_id' 
+        /*AND personal.main < 3 
+        AND personal.main*/
 	LEFT JOIN
 	pers_job
 	ON 
@@ -101,7 +103,12 @@ FROM
 	jobs
 	ON 
 		pers_job.job_id = jobs.id AND jobs.site_visible
-		GROUP BY personal.id
+    INNER JOIN reglist_ls rl 
+        ON personal.id = rl.pers_id
+        AND rl.ortid in (1,2)
+        AND rl.main < 3
+        AND '$date' BETWEEN rl.accept and rl.dismiss
+    GROUP BY personal.id
 ORDER BY
 	site_visible desc, last_name, `name`
     ");
