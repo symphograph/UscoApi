@@ -47,6 +47,11 @@ require_once $root.'/../includs/header.php';
         <iframe src="https://yandex.ru/map-widget/v1/-/ZU0EaABiTkMFXEJuZWJ4d3phYQA=/?ll=142.727859%2C46.966131&z=19" width="100%" height="400" frameborder="1" allowfullscreen="true"></iframe>
         </div>
         <br><br>
+        <b>График работы</b>
+        <ul>
+            <li><div>Понедельник - Пятница</div><b>9:00 - 17:15</b></li><br>
+            <li><div>Суббота - Воскресенье</div>Выходные дни</li>
+        </ul>
     </div>
 </div>
 <?php
