@@ -43,7 +43,7 @@ require_once $root.'/../includs/header.php';
         </ul>
         <br><br>
         Emails:<br>
-        <a href="mailto:mbu-gko@yandex.ru">mbu-gko@yandex.ru</a>
+        <a href="mailto:mbu-gko@yandex.ru">mbu-gko@yandex.ru</a><br>
         <a href="mailto:yusgo.mbuyusko@sakhalin.gov.ru">yusgo.mbuyusko@sakhalin.gov.ru</a><br>
         <br><br>
         <p>г. Южно-Сахалинск</p>
