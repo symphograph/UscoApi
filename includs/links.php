@@ -3,25 +3,20 @@ if(!isset($ip)) exit();
 $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 $pajes =
     [
-        ['details',
-            ['Тигран Ахназарян',
-                [
-                    'tsa.php'=>'Биография'
-                ]
-            ]
-        ],
+
 
         ['details',
             ['ЮСКО',
                 [
+                'tsa.php'=>'Тигран Ахназарян',
                 'staff.php'=>'Состав оркестра',
+                'zag.php'=> 'Александр Зражаев',
                 'history.php'=>'Историческая справка',
                 'main.php'=>'Юридические сведения',
                 ]
             ]
         ],
         'vacancies.php' => 'Вакансии',
-        'zag.php'=> 'Александр Зражаев',
         'complited.php'=>'Афиши',
 
         ['details',

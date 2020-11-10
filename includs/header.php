@@ -6,23 +6,17 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
     <nav class="bignav">
         <ul class="topmenu">
             <li>
-            <a href="<?php echo $host;?>index.php">Тигран Ахназарян</a>
-                <ul class="submenu">
-                    <li><a href="<?php echo $host;?>tsa.php">Биография</a></li>
-                </ul>
-            </li>
-
-            <li>
                 <a href="<?php echo $host;?>index.php">ЮСКО</a>
                 <ul class="submenu">
+                    <li><a href="<?php echo $host;?>tsa.php">Тигран Ахназарян</a></li>
                     <li><a href="<?php echo $host;?>staff.php">Состав оркестра</a></li>
+                    <li><a href="<?php echo $host;?>zag.php">Александр Зражаев</a></li>
                     <li><a href="<?php echo $host;?>history.php">Историческая справка</a></li>
                     <li><a href="<?php echo $host;?>main.php">Юридические сведения</a></li>
                 </ul>
             </li>
 
             <li><a href="<?php echo $host;?>vacancies.php">Вакансии</a></li>
-            <li><a href="<?php echo $host;?>zag.php">Александр Зражаев</a></li>
             <li><a href="<?php echo $host;?>complited.php">Афиши</a></li>
 
             <li>

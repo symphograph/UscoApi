@@ -27,16 +27,23 @@ require_once $root.'/../includs/header.php';
 <div class="filesarea">
 <div class="p_title"><?php echo $p_title;?></div>
 <br>
-	<details open="open"><summary>Устав учреждения</summary><br>
+    <br>
 		<p><a href="documents/ustav_2018_09_17_with_egrul.pdf" class="flink">Устав учреждения от 17.09.2018</a></p>
 		<p><a href="documents/ustav_edit_25.01.2019_with_egrul.pdf" class="flink">Изменение в Устав от 08.02.2019 и 22.08.2019</a></p>
-	</details><br><hr><br>
-    <details open="open"><summary>Отчет об исполнении ФХД</summary><br>
+	<br><hr><br>
+
+        <p><a href="documents/Plan_FHD_2020.pdf" class="flink">План ФХД 2020</a></p>
         <p><a href="documents/Performance_reportFHD.pdf" class="flink">Отчет об исполнении ФХД</a></p>
         <p><a href="documents/Performance_reportFHD1.pdf" class="flink">Отчет об исполнении ФХД1</a></p>
         <p><a href="documents/Performance_reportFHD2.pdf" class="flink">Отчет об исполнении ФХД2</a></p>
-    </details><br><hr><br>
-<?php /*?>	
+    <br><hr><br>
+        <p><a href="documents/MUP_Task_2020.pdf" class="flink">Муниципальное задание 2020</a></p>
+        <p><a href="documents/report_MTask_2020.pdf" class="flink">Отчеты по выполнению Муниципального задания 2020</a></p>
+
+   <br><hr><br>
+
+<?php
+/*?>
 	<details open="open"><summary>Листы записи в ЕГРЮЛ</summary><br>
 		<p><a href="documents/egrul_25.09.2018.pdf" class="flink">Лист записи в ЕГРЮЛ от 25.09.2018</a></p>
 		<p><a href="documents/egrul_08.02.2019.pdf" class="flink">Лист записи в ЕГРЮЛ от 08.02.2019</a></p>
