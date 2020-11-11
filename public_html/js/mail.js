@@ -8,6 +8,9 @@ $('body').on('click','#msend',function () {
     ({
 
         url: "hendlers/feedbackmail.php", // путь к ajax файлу
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
+        },
         type: "POST",      // тип запроса
 
         data:
