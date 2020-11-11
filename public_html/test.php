@@ -15,7 +15,7 @@ if(!$myip) exit;
 
 <body>
 <?php
-printr($_ENV);
+printr($_SERVER);
 
 //include $_SERVER['DOCUMENT_ROOT'].'/../admin/ttt.php';
 ?>

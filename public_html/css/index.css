@@ -282,13 +282,34 @@ hr{
 	clear: both;
 }
 
-input[type="email"]{
+.fidback_area{
+	width: 100%;
+}
 
-	width: 500px;
-	height: 40px;
+input[type="email"], input[type="text"]{
+	height: 2em;
+}
+input[type="email"], input[type="text"],textarea{
+
+	font-size: 16px;
+	width: 100%;
+	margin: 0.2em;
+	padding: 0 1em;
 	border: 2px solid rgba(215,181,137,1.00);
 	border-radius: 5px;
-	font-size: 25px;
+	background-color: #e7ddcb;
+	color: #333366;
+	box-sizing: border-box;
+}
+textarea{
+	min-height: 10em;
+	padding: 1em;
+}
+input[type="email"]:focus, input[type="text"]:focus, textarea:focus{
+	outline-color: rgb(51 51 102);
+	background-color: #fffeed;
+	outline: none;
+
 }
 
 input[type="submit"], input[type="file"], button[type="submit"] {

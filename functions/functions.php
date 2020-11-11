@@ -453,4 +453,26 @@ function CookWarning()
     </div>
 <?php
 }
+
+function SetToken($identy)
+{
+    $qwe = qwe("
+    SELECT * FROM identy 
+    WHERE identy = '$identy'
+    AND last_time >= (NOW() - INTERVAL 10 MINUTE) 
+    ");
+    if($qwe and $qwe->num_rows)
+    {
+        $q = mysqli_fetch_object($qwe);
+        return $q->token;
+    }
+
+    $token = random_str(12);
+    qwe("
+    UPDATE identy 
+    SET token = '$token'
+    WHERE identy = '$identy'
+    ");
+    return $token;
+}
 ?>
