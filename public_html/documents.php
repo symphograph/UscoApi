@@ -24,95 +24,95 @@ require_once $root.'/../includs/header.php';
 
 
 <div class="content">
-<div class="filesarea">
-<div class="p_title"><?php echo $p_title;?></div>
-<br>
-    <details open="open"><summary>Устав учреждения</summary><br>
+    <div class="filesarea">
+        <div class="p_title"><?php echo $p_title;?></div>
         <br>
-		<p><a href="documents/ustav_2018_09_17_with_egrul.pdf" class="flink">Устав учреждения от 17.09.2018</a></p>
-		<p><a href="documents/ustav_edit_25.01.2019_with_egrul.pdf" class="flink">Изменение в Устав от 08.02.2019 и 22.08.2019</a></p>
-    </details>
-	<br><hr><br>
-    <details open="open"><summary>ФХД</summary><br>
-        <p><a href="documents/Plan_FHD_2018.pdf" class="flink">План ФХД 2018</a></p>
-        <p><a href="documents/Plan_FHD_2019.pdf" class="flink">План ФХД 2019</a></p>
-        <p><a href="documents/Plan_FHD_2020.pdf" class="flink">План ФХД 2020</a></p>
-        <p><a href="documents/Performance_reportFHD.pdf" class="flink">Отчет об исполнении ФХД</a></p>
-        <p><a href="documents/Performance_reportFHD1.pdf" class="flink">Отчет об исполнении ФХД1</a></p>
-        <p><a href="documents/Performance_reportFHD2.pdf" class="flink">Отчет об исполнении ФХД2</a></p>
-    </details>
-    <br><hr><br>
-    <details open="open"><summary>Муниципальное задание</summary><br>
+        <details open="open"><summary>Устав учреждения</summary><br>
+            <br>
+            <p><a href="documents/ustav_2018_09_17_with_egrul.pdf" class="flink">Устав учреждения от 17.09.2018</a></p>
+            <p><a href="documents/ustav_edit_25.01.2019_with_egrul.pdf" class="flink">Изменение в Устав от 08.02.2019 и 22.08.2019</a></p>
+        </details>
+        <br><hr><br>
+        <details open="open"><summary>ФХД</summary><br>
+            <p><a href="documents/Plan_FHD_2018.pdf" class="flink">План ФХД 2018</a></p>
+            <p><a href="documents/Plan_FHD_2019.pdf" class="flink">План ФХД 2019</a></p>
+            <p><a href="documents/Plan_FHD_2020.pdf" class="flink">План ФХД 2020</a></p>
+            <p><a href="documents/Performance_reportFHD.pdf" class="flink">Отчет об исполнении ФХД</a></p>
+            <p><a href="documents/Performance_reportFHD1.pdf" class="flink">Отчет об исполнении ФХД1</a></p>
+            <p><a href="documents/Performance_reportFHD2.pdf" class="flink">Отчет об исполнении ФХД2</a></p>
+        </details>
+        <br><hr><br>
+        <details open="open"><summary>Муниципальное задание</summary><br>
 
-        <p><a href="documents/MUP_Task_2020.pdf" class="flink">Муниципальное задание 2020</a></p>
-        <p><a href="documents/report_MTask_2018.doc" class="flink">Отчеты по выполнению Муниципального задания 2018</a></p>
-        <p><a href="documents/report_MTask_2019.pdf" class="flink">Отчеты по выполнению Муниципального задания 2019</a></p>
-        <p><a href="documents/report_MTask_2020.pdf" class="flink">Отчеты по выполнению Муниципального задания 2020</a></p>
-    </details>
-    <br><hr><br>
+            <p><a href="documents/MUP_Task_2020.pdf" class="flink">Муниципальное задание 2020</a></p>
+            <p><a href="documents/report_MTask_2018.doc" class="flink">Отчеты по выполнению Муниципального задания 2018</a></p>
+            <p><a href="documents/report_MTask_2019.pdf" class="flink">Отчеты по выполнению Муниципального задания 2019</a></p>
+            <p><a href="documents/report_MTask_2020.pdf" class="flink">Отчеты по выполнению Муниципального задания 2020</a></p>
+        </details>
+        <br><hr><br>
+        <details open="open"><summary>Платные услуги</summary><br>
+            <ol>
+                <li>Организация и проведение концерта для детей детских садов, школьников, студентов.<br>
+                    <span>Стоимость: Договорная</span><br></li>
 
-<?php
-/*?>
-	<details open="open"><summary>Листы записи в ЕГРЮЛ</summary><br>
-		<p><a href="documents/egrul_25.09.2018.pdf" class="flink">Лист записи в ЕГРЮЛ от 25.09.2018</a></p>
-		<p><a href="documents/egrul_08.02.2019.pdf" class="flink">Лист записи в ЕГРЮЛ от 08.02.2019</a></p>
-		<p><a href="documents/egrul_22.08.2019.pdf" class="flink">Лист записи в ЕГРЮЛ от 22.08.2019</a></p>
-	</details><br><hr><br>
-	<?php */?>	
-<?php /*?>		<p><a href="ofdocs/inn.pdf" class="flink">Лицензия</a></p>
-		<p><a href="ofdocs/inn.pdf" class="flink">Санитарно-эпидемиологическое заключение</a></p>
-		<br><hr><br>
-	<details><summary>Результаты проверок</summary>
-		<div class="inspections">
-			
-				<div class="col1">№</div>
-				<div class="col2">Дата и наименование проверки</div>
-				<div class="col3">Акты проверок, предписания</div>
-				<div class="col4">Исполнение предписаний</div>
-				
-			<div>1</div>
-			<div>vcxzvcvcxz</div>
-			<div>bvxvbx</div>
-			<div>nbvcbnvcbnv xczcvxzvcvxzvcvxzvcvxcz</div>
-			
-			<div>2</div>
-			<div>vcxzvcvcxz</div>
-			<div>bvxvbx</div>
-			<div>nbvcbnvcbnvxczcvxzv cvxzvcvxzvcvxcz</div>
-			
-			<div>3</div>
-			<div>vcxzvcvcxz</div>
-			<div>bvxvbx</div>
-			<div>nbvcbnv cbnvxczcvxzvcvxzv cvxzvcvxcz</div>
-			
-			<div>4</div>
-			<div>vcxzvcvcxz</div>
-			<div>bvxvbx</div>
-			<div>nbvcbnvcb nvxczcvxzvcv xzvcvxzvcvxcz</div>
-			
-		</div>
-		<hr>
-	</details><br><hr><br>
-	<details><summary>Локальные акты</summary>
-		<p><a href="ofdocs/inn.pdf" class="flink">gfsgf gfsdfg inn.pdf</a></p>
-		<p><a href="ofdocs/inn.pdf" class="flink">gfsfgfsgfg  gfdsfginn.pdf</a></p>
-		<p><a href="ofdocs/inn.pdf" class="flink">gfsdgfgf  gfdsfginn.pdf</a></p>
-		<p><a href="ofdocs/inn.pdf" class="flink">gfsdfgfdsgfg  inn.pdf</a></p>
-		<p><a href="ofdocs/inn.pdf" class="flink">nbnvbnbvcnbn   inn.pdf</a></p>
-		<p><a href="ofdocs/inn.pdf" class="flink">gsddfg gfdsfgss inn.pdf</a></p>
-		<p><a href="ofdocs/inn.pdf" class="flink">gfsgf gfsdfg inn.pdf</a></p>
-		<p><a href="ofdocs/inn.pdf" class="flink">gfsfgfsgfg  gfdsfginn.pdf</a></p>
-		<p><a href="ofdocs/inn.pdf" class="flink">gfsdgfgf  gfdsfginn.pdf</a></p>
-		<p><a href="ofdocs/inn.pdf" class="flink">gfsdfgfdsgfg  inn.pdf</a></p>
-		<p><a href="ofdocs/inn.pdf" class="flink">nbnvbnbvcnbn   inn.pdf</a></p>
-		<p><a href="ofdocs/inn.pdf" class="flink">gsddfg gfdsfgss inn.pdf</a></p>
-		<hr>
-	</details><br><hr><br>
-	<p><a href="ofdocs/inn.pdf" class="flink">Отчет о результатах самообследования</a></p>
-	<p><a href="ofdocs/inn.pdf" class="flink">План финансово-хозяйственной деятельности</a></p>
-<?php */?>
+                <li>Концерт с приглашением солиста из Сахалинского края<br>
+                    <span>Стоимость: Договорная</span><br></li>
+                <li>Концерт с приглашением солиста из другого федерального округа<br>
+                    <span>Стоимость: Договорная</span><br></li>
+                <li>Концерт без участия приглашенного солиста<br>
+                    <span>Стоимость: Договорная</span><br></li>
+                <li>Организация и (или) проведение выездного концерта<br>
+                    <span>Стоимость: Договорная</span><br></li>
+            </ol>
+            <div class="tel"><a href="tel:+74242300518"/>+7-4242-300-518</a></div><br>
+        </details>
+        <br><hr><br>
 
-</div>
+
+        <details open="open"><summary>Материально-техническая база</summary><br>
+        <div class="table">
+            <div class="row">
+                <div class="col"><b>Наименование</b></div>	<div class="col"><b>Показатели по учреждению</b></div>
+            </div>
+            <div class="row">
+                <div class="col">Учреждение занимает отдельное здание, арендует (у кого), совместно с другими организациями (какими)</div>
+                <div class="col">Арендует часть здания у ООО «Креветка»</div>
+            </div>
+            <div class="row">
+                <div class="col">Система отопления здания</div>
+                <div class="col">Централизованное теплоснабжение</div>
+            </div>
+            <div class="row">
+                <div class="col">Наличие водопровода в здании (да \ нет)</div>
+                <div class="col">Да</div>
+            </div>
+            <div class="row">
+                <div class="col">Наличие канализации в здании (да \ нет)</div>
+                <div class="col">Да</div>
+            </div>
+            <div class="row">
+                <div class="col">Наличие средств противопожарной защиты</div>
+                <div class="col">Имеется</div>
+            </div>
+            <div class="row">
+                <div class="col">Наличие средств пожарного оповещения</div>
+                <div class="col">Здания оборудованы автоматической пожарной сигнализацией, системой оповещения и управления людей</div>
+            </div>
+            <div class="row">
+                <div class="col">Техническое состояние здания (удовлетворительное, требует кап. ремонта, аварийное, требует текущего ремонта, подлежит сносу)</div>
+                <div class="col">Удовлетворительное</div>
+            </div>
+            <div class="row">
+                <div class="col">Дополнительные оборудования здания</div>
+                <div class="col">Пандус для инвалидов</div>
+            </div>
+            <div class="row">
+                <div class="col">Сооружения на прилегающей территории здания</div>
+                <div class="col">Парковочная зона</div>
+            </div>
+        </div>
+        </details>
+    </div>
 
 </div>
 

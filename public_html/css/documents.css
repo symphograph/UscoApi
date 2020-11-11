@@ -51,17 +51,44 @@ details{
 .p_title{
 	width: auto;
 }
+
+.table{
+	color: black;
+}
+.col{
+	width: 50%;
+	padding: 0.5em;
+	border: 1px solid black;
+}
+.row{
+	display: flex;
+	justify-content: center;
+}
+
+ol li{
+	margin: 1em;
+	font-size: 18px;
+	color: black;
+}
+
+ol span{
+	font-size: 14px;
+	color: dimgray;
+}
 @media (max-width: 600px) {
 	
 	summary{
 		font-size: 18px;
 
 	}
-	
-	.flink{
+
+	.flink, li{
 	font-size: 15px;
-	
-	
-}
+
+	}
+
+	.table div{
+		font-size: 14px;
+	}
 	
 }
