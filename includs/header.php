@@ -2,45 +2,45 @@
 $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 ?>
 <div class="header">
-<div class="hederc">
-    <nav class="bignav">
-        <ul class="topmenu">
-            <li>
-                <a href="<?php echo $host;?>index.php">ЮСКО</a>
-                <ul class="submenu">
-                    <li><a href="<?php echo $host;?>tsa.php">Тигран Ахназарян</a></li>
-                    <li><a href="<?php echo $host;?>staff.php">Состав оркестра</a></li>
-                    <li><a href="<?php echo $host;?>zag.php">Александр Зражаев</a></li>
-                    <li><a href="<?php echo $host;?>history.php">Историческая справка</a></li>
-                    <li><a href="<?php echo $host;?>main.php">Юридические сведения</a></li>
-                </ul>
-            </li>
+    <div class="hederc">
+        <nav class="bignav">
+            <ul class="topmenu">
+                <li>
+                    <a href="<?php echo $host;?>index.php">ЮСКО</a>
+                    <ul class="submenu">
+                        <li><a href="<?php echo $host;?>tsa.php">Тигран Ахназарян</a></li>
+                        <li><a href="<?php echo $host;?>staff.php">Состав оркестра</a></li>
+                        <li><a href="<?php echo $host;?>zag.php">Александр Зражаев</a></li>
+                        <li><a href="<?php echo $host;?>history.php">Историческая справка</a></li>
+                        <li><a href="<?php echo $host;?>main.php">Юридические сведения</a></li>
+                    </ul>
+                </li>
 
-            <li><a href="<?php echo $host;?>vacancies.php">Вакансии</a></li>
-            <li><a href="<?php echo $host;?>complited.php">Афиши</a></li>
+                <li><a href="<?php echo $host;?>vacancies.php">Вакансии</a></li>
+                <li><a href="<?php echo $host;?>complited.php">Афиши</a></li>
 
-            <li>
-                <a href="">Медиа</a>
-                <ul class="submenu">
-                <li><a href="<?php echo $host;?>gallery.php">Фото</a></li>
-                <li><a href="<?php echo $host;?>video.php">Видео</a></li>
-                </ul>
-            </li>
+                <li>
+                    <a href="">Медиа</a>
+                    <ul class="submenu">
+                    <li><a href="<?php echo $host;?>gallery.php">Фото</a></li>
+                    <li><a href="<?php echo $host;?>video.php">Видео</a></li>
+                    </ul>
+                </li>
 
-            <li>
-                <a href="<?php echo $host;?>">Пресса</a>
-                <ul class="submenu">
-                <li><a href="<?php echo $host;?>news.php">Новости</a></li>
-                <li><a href="<?php echo $host;?>articles.php">Статьи</a></li>
-                </ul>
-            </li>
+                <li>
+                    <a href="<?php echo $host;?>">Пресса</a>
+                    <ul class="submenu">
+                    <li><a href="<?php echo $host;?>news.php">Новости</a></li>
+                    <li><a href="<?php echo $host;?>articles.php">Статьи</a></li>
+                    </ul>
+                </li>
 
-            <li><a href="<?php echo $host;?>contacts.php">Контакты</a></li>
-            <li><a href="<?php echo $host;?>documents.php">Документы</a></li>
+                <li><a href="<?php echo $host;?>contacts.php">Контакты</a></li>
+                <li><a href="<?php echo $host;?>documents.php">Документы</a></li>
 
-        </ul>
-    </nav>
-</div>
+            </ul>
+        </nav>
+    </div>
     <div class="topline">
 
         <div class="topin">

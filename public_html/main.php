@@ -41,10 +41,8 @@ require_once $root.'/../includs/header.php';
         <a href="https://culture.yuzhno-sakh.ru/">Департамент культуры и туризма г.Южно-Сахалинск</a>
         <br><br>
 
-        <a href="ofdocs/inn.pdf">ИНН: 6501109377</a><br>
-        <a href="ofdocs/ogrn.pdf">ОГРН: 1026500550086</a>
-        <p>КПП: 650101001</p>
-        <p>ОКПО: 55655001</p><br>
+        <a href="documents.php">Документы</a><br>
+
         <br>
     </div>
 </div>

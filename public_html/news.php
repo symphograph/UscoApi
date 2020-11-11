@@ -34,6 +34,7 @@ require_once $root.'/../includs/header.php';
         <?php
         $query = qwe("
         SELECT * from `news`
+        WHERE `show`
         ORDER BY `date` DESC
         ");
 

@@ -714,6 +714,16 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	margin: 0 auto;
 }
 
+#opros{
+	font: caption;
+	font-size: 16px;
+	color: #333366;
+	box-shadow: 0 0 3px #333366;
+	padding: 1em 2em;
+	border-radius: 0.5em;
+	background-color: #e7ddcb8f;
+}
+
 #uscologo{
 	width: 80px;
 	height: 80px;

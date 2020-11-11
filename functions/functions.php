@@ -151,6 +151,7 @@ function NewsCol($qwe = false)
 	if(!$qwe)
 	$qwe = qwe("
 	SELECT * from `news`
+	WHERE `show`
 	ORDER BY `date` DESC
     limit 5
 	");
@@ -456,16 +457,9 @@ function CookWarning()
 
 function SetToken($identy)
 {
-    $qwe = qwe("
-    SELECT * FROM identy 
-    WHERE identy = '$identy'
-    AND last_time >= (NOW() - INTERVAL 10 MINUTE) 
-    ");
-    if($qwe and $qwe->num_rows)
-    {
-        $q = mysqli_fetch_object($qwe);
-        return $q->token;
-    }
+    $token = AskToken($identy);
+    if($token)
+        return $token;
 
     $token = random_str(12);
     qwe("
@@ -475,4 +469,30 @@ function SetToken($identy)
     ");
     return $token;
 }
+function AskToken($identy)
+{
+    $qwe = qwe("
+    SELECT * FROM identy 
+    WHERE identy = '$identy'
+    AND last_time >= (NOW() - INTERVAL 10 MINUTE)
+    AND LENGTH(`token`) = 12
+    ");
+    if(!$qwe or !$qwe->num_rows)
+        return false;
+
+    $q = mysqli_fetch_object($qwe);
+    return $q->token;
+}
+function TokenValid($identy)
+{
+    $ptoken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? 0;
+    $ptoken = OnlyText($ptoken);
+    $token = AskToken($identy);
+
+    if((!$token) or (!$ptoken) or $ptoken != $token)
+        return false;
+    else
+        return true;
+}
+
 ?>
