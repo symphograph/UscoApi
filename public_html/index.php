@@ -77,7 +77,9 @@ foreach($query as $q)
 </div>
 <div class="eventsarea">
     <?php  NewsCol();?>
+    <a href="news.php">К другим новостям</a>
 </div>
+
     <?php
     /*
     <div class="vkcom">

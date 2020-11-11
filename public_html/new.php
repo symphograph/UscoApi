@@ -11,14 +11,20 @@ $new_id = $_GET['new_id'] ?? 0;
 $new_id = intval($new_id);
 if(!$new_id)
 {
-    header("Location: ../index.php");
+    header("Location: ../news.php");
     die();
 }
 
 $query = qwe("
 SELECT * from `news`
 WHERE `new_id` = '$new_id'
+AND `show`
 ");
+if(!$qwe or !$qwe->num_rows)
+{
+    header("Location: ../news.php");
+    die();
+}
 foreach($query as $q)
 {
 	$img = $q['img'];
