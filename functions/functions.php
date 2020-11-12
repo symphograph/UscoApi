@@ -445,7 +445,7 @@ function CookWarning()
     <script type="text/javascript" src="js/jquery-latest.js?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/js/jquery-latest.js')?>"></script>
     <script type="text/javascript" src="js/cook.js?ver=<?php echo md5_file($root.'/js/cook.js')?>"></script>
     <div class="cookdiv">
-        <div class="cooktext">Сайт использует файлы Cookies. Они помогают ему стать лучше.</div>
+        <div class="cooktext">Сайт использует <a href="pdn.php">файлы Cookies</a>. Они помогают ему стать лучше.</div>
         <div>
             <div class="bybtn" id="cookconfirm">
                 <span class="bybtntxt">Хорошо</span>
