@@ -1,7 +1,8 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
 require_once $root.'/../includs/check.php';
-
+if(!$myip)
+    die();
 $p_title = 'Контакты';
 $ver = random_str(8);
 ?>
@@ -14,6 +15,8 @@ $ver = random_str(8);
     <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
     <?php CssMeta(['menu.css','index.css','menum.css', 'right_nav.css'])?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="token" content="<?php echo SetToken($identy)?>">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 </head>
 
 <body>
@@ -60,10 +63,19 @@ require_once $root.'/../includs/header.php';
         </div>
         <br><br>
 
+        <div class="fidback_area">
+            <input id="name" type="text" required placeholder="Ваше имя (ФИО)">
+            <?php //Запутаем бота, сами не путаемся. ?>
+            <input id="unused" type="email" required placeholder="Ваш email">
+            <input id="email" type="email" required placeholder="Ваш email">
+            <textarea id="msg" placeholder="Напишите что-нибудь"></textarea>
+            <button id="msend" class="bybtn"><span class="bybtntxt">Отправить</span></button>
+        </div>
     </div>
 </div>
 <?php
 require_once $root.'/../includs/footer.php';
 ?>
+<script src="js/mail.js?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/js/mail.js')?>"></script>
 </body>
 </html>
