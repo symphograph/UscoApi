@@ -15,7 +15,7 @@ if(!$new_id)
     die();
 }
 
-$query = qwe("
+$qwe = qwe("
 SELECT * from `news`
 WHERE `new_id` = '$new_id'
 AND `show`
@@ -25,7 +25,7 @@ if(!$qwe or !$qwe->num_rows)
     header("Location: ../news.php");
     die();
 }
-foreach($query as $q)
+foreach($qwe as $q)
 {
 	$img = $q['img'];
 	$img = '<img src="'.$img.'" width="320px"/>';
