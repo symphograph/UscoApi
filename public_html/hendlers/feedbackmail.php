@@ -13,6 +13,10 @@ require_once $root.'/../includs/check.php';
 
 if(!TokenValid($identy))
     die('reload');
+
+if(!empty($_POST['email2']))
+    die();
+
 $email = $_POST['email'] ?? '';
 if(empty($email))
     die('email');
@@ -29,8 +33,13 @@ if(empty($msg))
     die('msg');
 $msg = filter_var($msg, FILTER_SANITIZE_STRING);
 
-$to      = 'roman.chubich@gmail.com';
-$subject = 'Проверка работы почты';
+$arr = [
+    'sakh-orch.ru'=>'mbu-gko@yandex.ru',
+    'test.sakh-orch.ru'=>'roman.chubich@gmail.com'
+    ];
+
+$to      = $arr[$_SERVER['SERVER_NAME']];
+$subject = 'Сообщение от: '.$name;
 $message = '
 <div style="color: black; font-size: 16px">
     Получено сообщение из формы обратной связи на сайте sakh-orch.ru<br><br>
@@ -61,6 +70,6 @@ $headers = array(
     'X-Mailer' => 'PHP/' . phpversion()
 );
 
-mail($to, $subject, $message, $headers);
-echo 'ok';
+if(mail($to, $subject, $message, $headers))
+    echo 'ok';
 

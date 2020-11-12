@@ -47,7 +47,8 @@ require_once $root.'/../includs/header.php';
         </details>
         <br><hr><br>
         <details open="open"><summary>Муниципальное задание</summary><br>
-
+            <p><a href="documents/MUP_Task_2018.pdf" class="flink">Муниципальное задание 2018</a></p>
+            <p><a href="documents/MUP_Task_2019.pdf" class="flink">Муниципальное задание 2019</a></p>
             <p><a href="documents/MUP_Task_2020.pdf" class="flink">Муниципальное задание 2020</a></p>
             <p><a href="documents/report_MTask_2018.doc" class="flink">Отчеты по выполнению Муниципального задания 2018</a></p>
             <p><a href="documents/report_MTask_2019.pdf" class="flink">Отчеты по выполнению Муниципального задания 2019</a></p>

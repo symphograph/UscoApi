@@ -312,6 +312,10 @@ input[type="email"]:focus, input[type="text"]:focus, textarea:focus{
 
 }
 
+#email{
+	display: none;
+}
+
 input[type="submit"], input[type="file"], button[type="submit"] {
 
    border: 1px solid #574b19;

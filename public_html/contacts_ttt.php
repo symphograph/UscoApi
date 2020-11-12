@@ -65,6 +65,8 @@ require_once $root.'/../includs/header.php';
 
         <div class="fidback_area">
             <input id="name" type="text" required placeholder="Ваше имя (ФИО)">
+            <?php //Запутаем бота, сами не путаемся. ?>
+            <input id="unused" type="email" required placeholder="Ваш email">
             <input id="email" type="email" required placeholder="Ваш email">
             <textarea id="msg" placeholder="Напишите что-нибудь"></textarea>
             <button id="msend" class="bybtn"><span class="bybtntxt">Отправить</span></button>
