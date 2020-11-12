@@ -30,23 +30,7 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 <div class="content">
 
 <div class="eventsarea">
-    <div class="tisers">
-        <div class="opros">
-            <a href="https://clck.ru/RautH" target="_blank">
-                Пройти опрос
-            </a>
-            <br>
-             по независимой оценке качества условий оказания услуг учреждениями культуры<br><br>
-        </div>
-        <div class="opros">
-            <a href="https://pos.gosuslugi.ru/lkp/polls/14180/" target="_blank">
-                    Пройти опрос
-            </a>
-            <br>
 
-            о модернизации первичного звена здравоохранения<br><br>
-        </div>
-    </div>
 <?php
 $query = qwe("
 SELECT
@@ -82,11 +66,29 @@ foreach($query as $q)
     $qwe = qwe( "SELECT * FROM video ORDER BY v_date DESC LIMIT 6");
     VideoItems($qwe);
     ?>
+
 </div>
-<div class="eventsarea">
-    <?php  NewsCol();?>
-    <a href="news.php">К другим новостям</a>
-</div>
+    <div class="tisers">
+        <div class="opros">
+            <a href="https://clck.ru/RautH" target="_blank">
+                Пройти опрос
+            </a>
+            <br>
+            по независимой оценке качества условий оказания услуг учреждениями культуры<br><br>
+        </div>
+        <div class="opros">
+            <a href="https://pos.gosuslugi.ru/lkp/polls/14180/" target="_blank">
+                Пройти опрос
+            </a>
+            <br>
+
+            о модернизации первичного звена здравоохранения<br><br>
+        </div>
+    </div>
+    <div class="eventsarea">
+        <?php  NewsCol();?>
+        <a href="news.php">К другим новостям</a>
+    </div>
 
     <?php
     /*

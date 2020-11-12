@@ -28,6 +28,7 @@ require_once $root.'/../includs/header.php';
 <div class="content">
     <div class="text">
         <div class="p_title"><?php echo $p_title;?></div><br>
+        <p>г. Южно-Сахалинск, ул.Ленина, д. 156</p><br>
         Директор<br>
         <b>Кириллова Майя Владимировна</b>
         <div class="tel"><a href="tel:+74242300518"/>+7-4242-300-518</a></div><br>
@@ -53,8 +54,7 @@ require_once $root.'/../includs/header.php';
         <a href="mailto:mbu-gko@yandex.ru">mbu-gko@yandex.ru</a><br>
         <a href="mailto:yusgo.mbuyusko@sakhalin.gov.ru">yusgo.mbuyusko@sakhalin.gov.ru</a><br>
         <br><br>
-        <p>г. Южно-Сахалинск</p>
-        <p>ул.Ленина, д. 156</p>
+
 
         <br>
         <div class="map">
@@ -69,6 +69,8 @@ require_once $root.'/../includs/header.php';
             <input id="email" type="email" required placeholder="Ваш email">
             <textarea id="msg" placeholder="Напишите что-нибудь"></textarea>
             <button id="msend" class="bybtn"><span class="bybtntxt">Отправить</span></button>
+            <br><br>
+            <span>*Нажимая "отправить", Вы соглашаетесь с <a href="pdn.php">правилами</a> обработки персональных данных.</span>
         </div>
     </div>
 </div>
