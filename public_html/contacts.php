@@ -1,8 +1,7 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
 require_once $root.'/../includs/check.php';
-if(!$myip)
-    die();
+
 $p_title = 'Контакты';
 $ver = random_str(8);
 ?>
