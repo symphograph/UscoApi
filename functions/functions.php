@@ -495,4 +495,16 @@ function TokenValid($identy)
         return true;
 }
 
+function GetNextFreeFeedMailId()
+{
+    $qwe = qwe("
+    SELECT max(`msg_id`) as `max`
+    FROM `feed_mails`
+    ");
+    if(!$qwe or $qwe->num_rows != 1)
+        return 1;
+
+    foreach($qwe as $q)
+        return $q['max']+1;
+}
 ?>
