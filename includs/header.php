@@ -12,7 +12,6 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
                         <li><a href="<?php echo $host;?>staff.php">Состав оркестра</a></li>
                         <li><a href="<?php echo $host;?>zag.php">Александр Зражаев</a></li>
                         <li><a href="<?php echo $host;?>history.php">Историческая справка</a></li>
-                        <li><a href="<?php echo $host;?>main.php">Юридические сведения</a></li>
                     </ul>
                 </li>
 
@@ -28,15 +27,24 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
                 </li>
 
                 <li>
-                    <a href="<?php echo $host;?>">Пресса</a>
+                    <a href="<?php echo $host;?>">Новости</a>
                     <ul class="submenu">
-                    <li><a href="<?php echo $host;?>news.php">Новости</a></li>
+                    <li><a href="<?php echo $host;?>news.php">Новости оркестра</a></li>
                     <li><a href="<?php echo $host;?>articles.php">Статьи</a></li>
+                    <li><a href="<?php echo $host;?>outside_news.php">Другие новости</a></li>
                     </ul>
                 </li>
 
                 <li><a href="<?php echo $host;?>contacts.php">Контакты</a></li>
-                <li><a href="<?php echo $host;?>documents.php">Документы</a></li>
+
+                <li>
+                    <a href="<?php echo $host;?>">Документы</a>
+                    <ul class="submenu">
+                        <li><a href="<?php echo $host;?>main.php">Основные сведения</a></li>
+                        <li><a href="<?php echo $host;?>documents.php">Документы</a></li>
+                    </ul>
+                </li>
+
 
             </ul>
         </nav>

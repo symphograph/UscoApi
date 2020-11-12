@@ -11,8 +11,7 @@ $pajes =
                 'tsa.php'=>'Тигран Ахназарян',
                 'staff.php'=>'Состав оркестра',
                 'zag.php'=> 'Александр Зражаев',
-                'history.php'=>'Историческая справка',
-                'main.php'=>'Юридические сведения',
+                'history.php'=>'Историческая справка'
                 ]
             ]
         ],
@@ -29,17 +28,25 @@ $pajes =
         ],
 
         ['details',
-            ['Пресса',
+            ['Новости',
                 [
                     'news.php'=>'Новости',
-                    'articles.php'=>'Статьи'
+                    'articles.php'=>'Статьи',
+                    'outside_news.php'=>'Другие новости'
                 ]
             ]
         ],
 
         'contacts.php'=>'Контакты',
-        'documents.php'=>'Документы',
 
+        ['details',
+            ['Документы',
+                [
+                    'main.php'=>'Основные сведения',
+                    'documents.php'=>'Документы'
+                ]
+            ]
+        ]
     ];
 //printr($pajes);
 function top_links()

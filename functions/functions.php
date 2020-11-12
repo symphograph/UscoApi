@@ -146,12 +146,12 @@ function NewsCol($qwe = false)
 	global $myip;
 ?>
 	<div class="newscol">
-	<div class="ntitle"><b>НОВОСТИ ОРКЕСТРА</b></div><br>
+	<div class="ntitle"><b>НОВОСТИ</b></div><br>
 	<?php
 	if(!$qwe)
 	$qwe = qwe("
 	SELECT * from `news`
-	WHERE `show`
+	WHERE `show` = 1
 	ORDER BY `date` DESC
     limit 5
 	");
