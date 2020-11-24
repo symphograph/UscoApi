@@ -44,7 +44,7 @@ require_once $root.'/../includs/header.php';
         </div>
     </div>
 </div>
-
+///Добавил комментарий в код
 <?php require_once $root.'/../includs/footer.php'; ?>
 </body>
 </html>

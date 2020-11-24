@@ -469,6 +469,7 @@ function SetToken($identy)
     ");
     return $token;
 }
+
 function AskToken($identy)
 {
     $qwe = qwe("
@@ -483,6 +484,7 @@ function AskToken($identy)
     $q = mysqli_fetch_object($qwe);
     return $q->token;
 }
+
 function TokenValid($identy)
 {
     $ptoken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? 0;
