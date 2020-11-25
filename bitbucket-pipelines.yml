@@ -10,8 +10,8 @@ pipelines:
   default:
     - parallel:
         - step:
-            name: Deploy to staging
-            deployment: staging1
+            name: Deploy to Test
+            deployment: Test
             script:
               - composer install
               -  ./vendor/bin/phpunit test
