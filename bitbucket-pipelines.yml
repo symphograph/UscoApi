@@ -10,8 +10,7 @@ pipelines:
   default:
     - parallel:
         - step:
-            name: Deploy to Test
-            deployment: Test
+            name: Test
             script:
               - composer install
               -  ./vendor/bin/phpunit test
@@ -25,7 +24,8 @@ pipelines:
             caches:
               - composer
         - step:
-            name: Manual step
-            trigger: manual
+            name: Deploy to test
+            deployment: test
+            # trigger: manual  # Uncomment to make this a manual deployment.
             script:
-              - echo "This step runs once you click the 'Run' button"
+              - echo "Deploying to test environment"
