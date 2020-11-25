@@ -495,3 +495,4 @@ ip.php
 .idea
 /public_html/cgi-bin/
 /public_html/js/Croppie-2.6.5/
+.ENV
