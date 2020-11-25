@@ -8,7 +8,7 @@ require_once $root.'/../includs/check.php';
 <meta charset="utf-8">
 <meta name="proculture-verification" content="9974889fb39244589ef78eb3c3879433" />
 <?php
-$p_title = 'Южно-Сахалинский камерный оркестр';
+$p_title = 'Афиши';
 $ver = random_str(8);
 ?>
 <title><?php echo $p_title;?></title>
