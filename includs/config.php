@@ -37,7 +37,7 @@ function qwe($sql)
 	
 	$backtrace = debug_backtrace();
 	$file = $backtrace[0]['file'];
-	$file = explode('public_html',$file)[1];
+	$file = explode($_SERVER['SERVER_NAME'],$file)[1];
 	$file = $file.' (line '.$backtrace[0]['line'].')';
 	writelog('sql_error', date("Y-m-d H:i:s")."\t".$error."\t".$file."\r\n".$sql);
 	return false;
@@ -51,5 +51,8 @@ function writelog($typelog, $log_text)
 	fwrite($log, "$log_text\r\n");
 	fclose($log);
 }
-//
+
+spl_autoload_register(function ($class_name) {
+	require_once $_SERVER['DOCUMENT_ROOT'].'/../classes/'.$class_name . '.php';
+});
 ?>

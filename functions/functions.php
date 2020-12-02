@@ -143,69 +143,27 @@ function OnlyText($string)
 
 function NewsCol($qwe = false)
 {
-	global $myip;
+
 ?>
 	<div class="newscol">
-	<div class="ntitle"><b>НОВОСТИ</b></div><br>
-	<?php
-	if(!$qwe)
-	$qwe = qwe("
-	SELECT * from `news`
-	WHERE `show` = 1
-	ORDER BY `date` DESC
-    limit 5
-	");
-	foreach($qwe as $q)
-	{
-        $new_id = $q['new_id'];
-
-	    if (!$myip and $new_id < 9)
-	        continue;
-
-		$img = $q['img'];
-		if(empty($img))
-		    $img = 'img/news/default_news_img.svg';
-
-        $img = $img.'?ver='.md5_file($img);
-		$img = '<img src="'.$img.'" width="260px"/>';
-		$ntitle = $q['new_tit'];
-
-		//if((!$myip) and $new_id == 17) continue;
-		$descr = $q['descr'];
-		?>
-		<br><hr><br>
-		<div class="narea">
-		    <div class="nimg_block">
-                <div>
-                    <a href="new.php?new_id=<?php echo $new_id;?>"/>
-                    <?php echo $img?>
-                    </a>
-                </div>
-            </div>
-
-
-            <div class="tcol">
-                <div class="ntitle">
-                    <a href="new.php?new_id=<?php echo $new_id;?>">
-                     <b><?php echo $ntitle;?></b>
-                    </a>
-                </div>
-                <br>
-                <a href="new.php?new_id=<?php echo $new_id;?>">
-                <?php echo $descr;?>
-                </a>
-                <br><br>
-                <?php
-                    $ndate = strtotime($q['date']);
-                    $ndate = ru_date('',$ndate);
-                ?>
-                <span class="ndate"><?php echo $ndate;?></span>
-                <br>
-            </div>
-		</div><?php
-	}
-	?>
-	<br><hr><br>
+        <div class="ntitle"><b>НОВОСТИ</b></div><br>
+        <?php
+        if(!$qwe)
+        $qwe = qwe("
+        SELECT * from `news`
+        WHERE `show` = 1
+        ORDER BY `date` DESC
+        limit 5
+        ");
+        foreach($qwe as $q)
+        {
+            $q = (object) $q;
+            $Item = new NewsItem();
+            $Item->InitByQwe($q);
+            $Item->PrintItem();
+        }
+        ?>
+        <br><hr><br>
 	</div>
 <?php
 }
