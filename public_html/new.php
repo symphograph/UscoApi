@@ -25,12 +25,11 @@ if(!$qwe or !$qwe->num_rows)
     header("Location: ../news.php");
     die();
 }
-foreach($qwe as $q)
-{
-	$img = $q['img'];
-	$img = '<img src="'.$img.'" width="320px"/>';
-	$ntitle = $q['new_tit'];	
-}	
+$q = mysqli_fetch_object($qwe);
+
+$img = '<img src="'.$q->img.'" width="320px"/>';
+$ntitle = $q->new_tit;
+
 
 $p_title = 'Южно-Сахалинский камерный оркестр';
 $ver = random_str(8);
@@ -56,7 +55,16 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 	<div class="narea">
 
 	<?php
-	include 'news/new_'.$new_id.'.php';
+    $file = $root.'/news/new_'.$new_id.'.php';
+    if(file_exists($file))
+	    include_once $file;
+    elseif(!$q->content)
+    {
+        echo '<div class="text">' . $q->descr . '</div>';
+    }else
+        echo '<div class="text">' . $q->content . '</div>';
+
+
 	?></div>
 
 </div>

@@ -171,7 +171,7 @@ function NewsCol($qwe = false)
 		$ntitle = $q['new_tit'];
 
 		//if((!$myip) and $new_id == 17) continue;
-		$ntext = $q['text'];
+		$descr = $q['descr'];
 		?>
 		<br><hr><br>
 		<div class="narea">
@@ -192,7 +192,7 @@ function NewsCol($qwe = false)
                 </div>
                 <br>
                 <a href="new.php?new_id=<?php echo $new_id;?>">
-                <?php echo $ntext;?>
+                <?php echo $descr;?>
                 </a>
                 <br><br>
                 <?php
