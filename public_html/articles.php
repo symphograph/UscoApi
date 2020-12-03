@@ -1,6 +1,6 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once ROOT.'/includs/check.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
 ?>
 <!doctype html>
 <html lang="ru">
@@ -52,7 +52,7 @@ VK.Widgets.Article('my_article-molitva-orkestru', '@-166038484-molitva-orkestru'
 
 
 <?php
-require_once ROOT.'/includs/footer.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/footer.php';
 ?>
 </body>
 </html>

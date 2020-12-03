@@ -1,6 +1,6 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once ROOT.'/includs/check.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
 $ver = random_str(8);
 $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 $evid = intval($_GET['evid']);
@@ -63,8 +63,8 @@ foreach($query as $q)
 <body>
 <?php
 FacebookScript();
-require_once ROOT.'/includs/links.php';
-require_once ROOT.'/includs/header.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/links.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
 ?>
 <div class="content">
     <div class="eventsarea">
@@ -108,7 +108,7 @@ require_once ROOT.'/includs/header.php';
     </div>
 </div>
 <?php
-require_once ROOT.'/includs/footer.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/footer.php';
 ?>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once ROOT.'/includs/check.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
 
 $p_title = 'Контакты';
 $ver = random_str(8);
@@ -19,8 +19,8 @@ $ver = random_str(8);
 
 <body>
 <?php
-require_once ROOT.'/includs/links.php';
-require_once ROOT.'/includs/header.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/links.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
 
 $org_name = ' МБУ "Южно-Сахалинский камерный оркестр" (далее ЮСКО) ';
 $org_sname = ' ЮСКО ';
@@ -80,7 +80,7 @@ $org_sname = ' ЮСКО ';
     </div>
 </div>
 <?php
-require_once ROOT.'/includs/footer.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/footer.php';
 ?>
 </body>
 </html>

@@ -9,7 +9,7 @@ if(empty($_POST))
 if(!isset($_SERVER['HTTP_X_CSRF_TOKEN']))
     die();
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once ROOT.'/includs/check.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
 
 if(!TokenValid($identy))
     die('reload');

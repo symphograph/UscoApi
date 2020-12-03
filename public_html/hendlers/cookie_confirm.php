@@ -2,7 +2,7 @@
 if(empty($_POST['confirm']))
     die();
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once ROOT.'/includs/check.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
 
 if(isset($_COOKIE['identy']))
 {

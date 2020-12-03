@@ -1,8 +1,8 @@
 <?php
 //
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once ROOT.'/includs/check.php';
-require_once ROOT.'/includs/config2.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config2.php';
 if(!$myip) die();
 
 $pers_id = $_GET['pers_id'] ?? 0;
@@ -36,8 +36,8 @@ $pers_id = $_GET['pers_id'] ?? 0;
 
 <?php
 //FacebookScript();
-require_once ROOT.'/includs/links.php';
-require_once ROOT.'/includs/header.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/links.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
 $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 ?>
 
@@ -75,7 +75,7 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
     </div>
 </div>
 <?php
-require_once ROOT.'/includs/footer.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/footer.php';
 ?>
  
 </body>

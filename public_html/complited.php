@@ -1,6 +1,6 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once ROOT.'/includs/check.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
 
 $p_title = 'Прошедшие концерты';
 $ver = random_str(8);
@@ -21,8 +21,8 @@ $ver = random_str(8);
 
 
 <?php
-require_once ROOT.'/includs/links.php';
-require_once ROOT.'/includs/header.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/links.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
 $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 ?>
 
@@ -70,7 +70,7 @@ foreach($query as $q)
 </div>
 </div>
 <?php
-require_once ROOT.'/includs/footer.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/footer.php';
 ?>
 
 </body>

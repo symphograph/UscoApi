@@ -1,8 +1,8 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once ROOT.'/includs/check.php';
-require_once ROOT.'/functions/filefuncts.php';
-require_once ROOT.'/functions/galleryfuncts.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/functions/filefuncts.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/functions/galleryfuncts.php';
 ?>
 <!doctype html>
 <html lang="ru">
@@ -22,7 +22,7 @@ require_once ROOT.'/functions/galleryfuncts.php';
 </head>
 <body class="body_test">
 	
-<?php require_once ROOT.'/includs/links.php';?>
+<?php require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/links.php';?>
 	
 <div class="content">
 	<div id="gallery"></div>
