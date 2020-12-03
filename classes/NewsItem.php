@@ -46,7 +46,6 @@ class NewsItem
 
     function PrintItem()
     {
-
         ?>
         <br><hr><br>
         <div class="narea">
@@ -78,5 +77,33 @@ class NewsItem
             <br>
         </div>
         </div><?php
+    }
+
+    function PajeItem()
+    {
+        $img = '<img src="'.$this->img.$this->ver.'" width="320px"/>';
+       ?>
+        <div class="newsarea">
+            <div class="ntitle"><?php echo $this->tit;?></div>
+            <hr>
+            <div class="narea">
+
+                <?php
+                $file = $_SERVER['DOCUMENT_ROOT'].'/news/new_'.$this->id.'.php';
+                if(file_exists($file))
+                {
+                    include_once $file;
+
+                }elseif(!$this->content)
+                {
+                    echo '<div class="text">' . $this->descr . '</div>';
+                }else
+                {
+                    echo '<div class="text">' . $this->content . '</div>';
+                }
+                ?>
+            </div>
+        </div>
+        <?php
     }
 }

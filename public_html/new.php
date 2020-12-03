@@ -27,10 +27,6 @@ if(!$qwe or !$qwe->num_rows)
 }
 $q = mysqli_fetch_object($qwe);
 
-$img = '<img src="'.$q->img.'" width="320px"/>';
-$ntitle = $q->new_tit;
-
-
 $p_title = 'Южно-Сахалинский камерный оркестр';
 $ver = random_str(8);
 ?>
@@ -50,26 +46,11 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 
 
 <div class="content">
-    <div class="newsarea">
-        <div class="ntitle"><?php echo $ntitle;?></div><hr>
-        <div class="narea">
-
-        <?php
-        $file = $root.'/news/new_'.$new_id.'.php';
-        if(file_exists($file))
-            include_once $file;
-        elseif(!$q->content)
-        {
-            echo '<div class="text">' . $q->descr . '</div>';
-        }else
-        {
-            echo '<div class="text">' . $q->content . '</div>';
-        }
-
-
-
-        ?></div>
-    </div>
+    <?php
+    $NewsItem = new NewsItem;
+    $NewsItem->InitByQwe($q);
+    $NewsItem->PajeItem();
+    ?>
 </div>
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/footer.php';
