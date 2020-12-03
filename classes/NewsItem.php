@@ -34,6 +34,8 @@ class NewsItem
         $this->img = $q->img ?? '';
         if(empty($this->img))
             $this->img = 'img/news/default_news_img.svg';
+        if(!file_exists($_SERVER['DOCUMENT_ROOT'] . '/' . $this->img))
+            $this->img = $q->img = 'img/news/default_news_img.svg';
         $this->ver = '?ver=' . md5_file($_SERVER['DOCUMENT_ROOT'] . '/' . $this->img);
         $this->date = $q->date;
         $this->show = $q->show;
