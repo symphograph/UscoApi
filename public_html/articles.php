@@ -1,6 +1,6 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once $root.'/../includs/check.php';
+require_once ROOT.'/includs/check.php';
 ?>
 <!doctype html>
 <html lang="ru">
@@ -20,8 +20,8 @@ require_once $root.'/../includs/check.php';
 
 <body>
 <?php
-include $root.'/../includs/links.php';
-include $root.'/../includs/header.php';
+include ROOT.'/includs/links.php';
+include ROOT.'/includs/header.php';
 ?>
 
 
@@ -52,7 +52,7 @@ VK.Widgets.Article('my_article-molitva-orkestru', '@-166038484-molitva-orkestru'
 
 
 <?php
-require_once $root.'/../includs/footer.php';
+require_once ROOT.'/includs/footer.php';
 ?>
 </body>
 </html>

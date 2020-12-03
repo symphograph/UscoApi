@@ -1,6 +1,6 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once $root.'/../includs/check.php';
+require_once ROOT.'/includs/check.php';
 if($admin)
 {
 	if(!empty($_POST['filename']))
@@ -53,8 +53,8 @@ $ver = random_str(8);
 
 <body>
 <?php
-require_once $root.'/../includs/links.php';
-require_once $root.'/../includs/header.php';
+require_once ROOT.'/includs/links.php';
+require_once ROOT.'/includs/header.php';
 ?>
 
 
@@ -103,7 +103,7 @@ if($admin)
 </div>
 
 <?php
-require_once $root.'/../includs/footer.php';
+require_once ROOT.'/includs/footer.php';
 ?>
 </body>
 </html>

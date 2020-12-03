@@ -1,6 +1,6 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once $root.'/../includs/check.php';
+require_once ROOT.'/includs/check.php';
 
 $p_title = 'Вакансии';
 $ver = random_str(8);
@@ -21,8 +21,8 @@ $ver = random_str(8);
 
 <?php
 //FacebookScript();
-require_once $root.'/../includs/links.php';
-require_once $root.'/../includs/header.php';
+require_once ROOT.'/includs/links.php';
+require_once ROOT.'/includs/header.php';
 $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 ?>
 
@@ -76,7 +76,7 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
     </div>
 </div>
 <?php
-require_once $root.'/../includs/footer.php';
+require_once ROOT.'/includs/footer.php';
 ?>
  
 </body>

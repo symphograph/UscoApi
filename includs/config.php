@@ -47,12 +47,12 @@ function qwe($sql)
 // Процедура записи в лог фаил для записи ошибок
 function writelog($typelog, $log_text) 
 {
-	$log = fopen($_SERVER['DOCUMENT_ROOT'].'/../logs/'.$typelog.'.txt','a+');
+	$log = fopen(ROOT.'/logs/'.$typelog.'.txt','a+');
 	fwrite($log, "$log_text\r\n");
 	fclose($log);
 }
 
 spl_autoload_register(function ($class_name) {
-	require_once $_SERVER['DOCUMENT_ROOT'].'/../classes/'.$class_name . '.php';
+	require_once ROOT.'/classes/'.$class_name . '.php';
 });
 ?>

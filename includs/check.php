@@ -1,8 +1,8 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once $root.'/../includs/ip.php';
-require_once $root.'/../functions/functions.php';
-require_once $root.'/../includs/config.php';
+require_once ROOT.'/includs/ip.php';
+require_once ROOT.'/functions/functions.php';
+require_once ROOT.'/includs/config.php';
 
 $usersess = '';
 $spect_id = '';

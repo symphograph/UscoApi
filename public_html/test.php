@@ -1,9 +1,9 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once $root.'/../includs/ip.php';
-require_once $root.'/../functions/functions.php';
-require_once $root.'/../includs/config.php';
-require_once $root.'/../includs/config2.php';
+require_once ROOT.'/includs/ip.php';
+require_once ROOT.'/functions/functions.php';
+require_once ROOT.'/includs/config.php';
+require_once ROOT.'/includs/config2.php';
 if(!$myip) exit;
 ?>
 <!doctype html>
@@ -15,9 +15,7 @@ if(!$myip) exit;
 
 <body>
 <?php
-//printr(getenv());
-
-//include $_SERVER['DOCUMENT_ROOT'].'/../admin/ttt.php';
+echo ROOT;
 ?>
 </body>
 </html>
