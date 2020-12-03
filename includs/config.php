@@ -53,6 +53,6 @@ function writelog($typelog, $log_text)
 }
 
 spl_autoload_register(function ($class_name) {
-	require_once dirname($_SERVER['DOCUMENT_ROOT']).'classes/'.$class_name . '.php';
+	require_once dirname($_SERVER['DOCUMENT_ROOT']).'/classes/'.$class_name . '.php';
 });
 ?>
