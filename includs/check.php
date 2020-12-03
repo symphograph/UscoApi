@@ -1,6 +1,6 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once ROOT.'/includs/ip.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/ip.php';
 require_once ROOT.'/functions/functions.php';
 require_once ROOT.'/includs/config.php';
 
