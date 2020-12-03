@@ -50,24 +50,26 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 
 
 <div class="content">
-<div class="newsarea">
-    <div class="ntitle"><?php echo $ntitle;?></div><hr>
-	<div class="narea">
+    <div class="newsarea">
+        <div class="ntitle"><?php echo $ntitle;?></div><hr>
+        <div class="narea">
 
-	<?php
-    $file = $root.'/news/new_'.$new_id.'.php';
-    if(file_exists($file))
-	    include_once $file;
-    elseif(!$q->content)
-    {
-        echo '<div class="text">' . $q->descr . '</div>';
-    }else
-        echo '<div class="text">' . $q->content . '</div>';
+        <?php
+        $file = $root.'/news/new_'.$new_id.'.php';
+        if(file_exists($file))
+            include_once $file;
+        elseif(!$q->content)
+        {
+            echo '<div class="text">' . $q->descr . '</div>';
+        }else
+        {
+            echo '<div class="text">' . $q->content . '</div>';
+        }
 
 
-	?></div>
 
-</div>
+        ?></div>
+    </div>
 </div>
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/footer.php';
