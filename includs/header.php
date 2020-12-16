@@ -68,13 +68,13 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
                 <span>и главный дирижер</span>
                 <a href="<?php echo $host.'tsa.php'?>"><span class="tsa">Тигран Ахназарян</span></a>
             </div>
-            <div id="finevision_banner"
+            <div id="finevision_banner" title="Версия для слабовидящих"
                  onclick="finevision.activate_navbar()"
                  style="cursor: pointer;
                  z-index: 9999;
-                 background: rgb(255, 255, 255);
-                 border: 2px solid rgb(0, 0, 0);">
-                <img width="55px" height="55px" src="https://finevision.ru/static/banner1.jpg">
+                 ">
+
+                <div class="conductor"><img width="30px" height="30px" src="https://finevision.ru/static/banner1.jpg"><span>Версия для слабовидящих</span></div>
                 <script src="https://finevision.ru/static/js/finevision_banner.js"></script>
             </div>
 
