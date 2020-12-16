@@ -2,6 +2,7 @@
 $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 ?>
 <div class="header">
+
     <div class="hederc">
         <nav class="bignav">
             <ul class="topmenu">
@@ -74,7 +75,7 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
                  z-index: 9999;
                  ">
 
-                <div class="conductor"><img width="30px" height="30px" src="https://finevision.ru/static/banner1.jpg"><span>Версия для слабовидящих</span></div>
+                <div class="conductor"><img width="30px" height="30px" src="img/loupe.svg?ver=3"><span>Версия для слабовидящих</span></div>
                 <script src="https://finevision.ru/static/js/finevision_banner.js"></script>
             </div>
 
