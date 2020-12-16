@@ -72,7 +72,6 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
             <div id="finevision_banner" title="Версия для слабовидящих"
                  onclick="finevision.activate_navbar()"
                  style="cursor: pointer;
-                 z-index: 9999;
                  ">
 
                 <div class="conductor"><img width="30px" height="30px" src="img/loupe.svg?ver=3"><span>Версия для слабовидящих</span></div>
