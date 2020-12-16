@@ -69,5 +69,18 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
             <a href="<?php echo $host.'tsa.php'?>"><span class="tsa">Тигран Ахназарян</span></a>
             </div>
         </div>
+        <div id="finevision_banner"
+             onclick="finevision.activate_navbar()"
+             style="cursor: pointer;
+             z-index: 9999;
+             background: rgb(255, 255, 255);
+             border: 2px solid rgb(0, 0, 0);
+             float: right;
+             position: fixed;
+             top: 0px;
+        ">
+            <img width="128" src="https://finevision.ru/static/banner1.jpg">
+            <script src="https://finevision.ru/static/js/finevision_banner.js"></script>
+        </div>
     </div>
 </div>
