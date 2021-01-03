@@ -9,7 +9,7 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
 <?php
 $p_title = 'История';
 $ver = random_str(8);
-
+//hghgh
 ?>
 <title><?php echo $p_title;?></title>
     <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
