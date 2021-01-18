@@ -294,7 +294,7 @@ function ConcertItem($q)
 	<div class="pressme">
 	<div>
         <div class="affot">
-        <img src="<?php echo 'img/afisha/'.$topimg;?>?ver=<?php echo md5_file('img/afisha/'.$topimg)?>" width="100%" height="auto">
+            <img src="<?php echo 'img/afisha/'.$topimg;?>?ver=<?php echo md5_file('img/afisha/'.$topimg)?>" width="100%" height="auto">
 
                 <?php
                 if($age)
