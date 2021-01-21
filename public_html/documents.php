@@ -44,6 +44,7 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
             <p><a href="documents/Performance_reportFHD.pdf" class="flink">Отчет об исполнении ФХД</a></p>
             <p><a href="documents/Performance_reportFHD1.pdf" class="flink">Отчет об исполнении ФХД1</a></p>
             <p><a href="documents/Performance_reportFHD2.pdf" class="flink">Отчет об исполнении ФХД2</a></p>
+            <p><a href="documents/salary.pdf" class="flink">Заработная плата руководителей</a></p>
         </details>
         <br><hr><br>
         <details open="open"><summary>Муниципальное задание</summary><br>

@@ -54,6 +54,7 @@ INNER JOIN halls ON anonces.hall_id = halls.hall_id
 WHERE /*anonces.concert_id > 3 AND*/ datetime >= NOW()
 ORDER BY anonces.datetime
 ");
+
 //$prrows = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Билеты в продаже'];
 foreach($query as $q)
 {
