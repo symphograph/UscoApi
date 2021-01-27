@@ -4,6 +4,7 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
 ?>
 <!doctype html>
 <html lang="ru">
+
 <head>
     <meta charset="utf-8">
     <meta name="proculture-verification" content="9974889fb39244589ef78eb3c3879433" />
