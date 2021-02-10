@@ -38,7 +38,7 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
         05.01.2001<br><br>
         <br>
         Учредитель: <br>
-        <a href="https://culture.yuzhno-sakh.ru/">Департамент культуры и туризма г.Южно-Сахалинск</a>
+        <a href="https://culture.yuzhno-sakh.ru/" style="text-transform: uppercase">Департамент культуры и туризма администрации города Южно-Сахалинска</a>
         <br><br>
 
         <a href="documents.php">Документы</a><br>
