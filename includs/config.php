@@ -1,5 +1,13 @@
 <?php
-
+if(preg_match('/www./',$_SERVER['SERVER_NAME']))
+{
+	$server_name = str_replace('www.','',$_SERVER['SERVER_NAME']);
+	$ref=$_SERVER["QUERY_STRING"];
+	if ($ref!="") $ref="?".$ref;
+	header("HTTP/1.1 301 Moved Permanently");
+	header("Location: https://".$server_name."/".$ref);
+	exit();
+}
 
 $server_name = $_SERVER['SERVER_NAME'];
 
