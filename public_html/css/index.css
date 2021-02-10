@@ -19,7 +19,10 @@ a:hover{
 	color: black;
 }
 
-/* Header */
+a.disabled{
+	pointer-events: none;
+	cursor: default;
+}
 
 .header{
 	display: flex;
