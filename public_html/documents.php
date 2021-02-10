@@ -30,7 +30,7 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
         <details open="open"><summary>Устав учреждения</summary><br>
             <br>
             <p><a href="documents/ustav_2018_09_17_with_egrul.pdf" class="flink">Устав учреждения от 17.09.2018</a></p>
-            <p><a href="documents/ustav_edit_25.01.2019_with_egrul.pdf" class="flink">Изменение в Устав от 08.02.2019 и 22.08.2019</a></p>
+            <p><a href="documents/ustav_edit_2019-01-16.pdf" class="flink">Изменения в Устав от 16.01.2019</a></p>
             <p><a href="ofdocs/inn.pdf" class="flink">ИНН: 6501109377</a></p>
             <p><a href="ofdocs/ogrn.pdf" class="flink">ОГРН: 1026500550086</a></p>
             <p>КПП: 650101001</p>
