@@ -82,7 +82,7 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
             </div>
             <div class="row">
                 <div class="col">Учреждение занимает отдельное здание, арендует (у кого), совместно с другими организациями (какими)</div>
-                <div class="col">Арендует часть здания у ООО «Креветка»</div>
+                <div class="col">Арендует часть здания у ООО «Либерти»</div>
             </div>
             <div class="row">
                 <div class="col">Система отопления здания</div>
