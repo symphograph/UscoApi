@@ -27,7 +27,7 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
     <div class="filesarea">
         <div class="p_title"><?php echo $p_title;?></div>
         <br>
-        <details open="open"><summary>Устав учреждения</summary><br>
+        <details open="open"><summary>Учредительные документы</summary><br>
             <br>
             <p><a href="documents/ustav_2018_09_17_with_egrul.pdf" class="flink">Устав учреждения от 17.09.2018</a></p>
             <p><a href="documents/ustav_edit_2019-01-16.pdf" class="flink">Изменения в Устав от 16.01.2019</a></p>
