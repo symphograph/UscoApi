@@ -36,6 +36,8 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
         МБУ "ЮСКО"<br><br>
         Дата постановки на учет:<br>
         05.01.2001<br><br>
+
+        <p><span style="text-transform: uppercase">Директор учреждения: Кириллова Майя Владимировна</span></p>
         <br>
         Учредитель: <br>
         <a href="https://culture.yuzhno-sakh.ru/" style="text-transform: uppercase">Департамент культуры и туризма администрации города Южно-Сахалинска</a>
