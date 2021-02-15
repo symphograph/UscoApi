@@ -56,6 +56,22 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
             <p><a href="documents/report_MTask_2020.pdf" class="flink">Отчеты по выполнению Муниципального задания 2020</a></p>
         </details>
         <br><hr><br>
+        <details open="open"><summary>Антикоррупционная деятельность</summary><br>
+            <p><a href="documents/EventPlan.pdf" class="flink">План мероприятий Муниципального бюджетного учреждения «Южно-Сахалинский камерный оркестр» по противодействию коррупции на 2021-2022 годы</a></p>
+            <br>
+            <p><a href="documents/AboutConflictDiscords.pdf" class="flink">Положение «О конфликте интересов в Муниципальном бюджетном учреждении «Южно-Сахалинский камерный оркестр»</a></p>
+            <br>
+            <p><a href="documents/AboutUncorruptPolicy.pdf" class="flink">Положение «Об антикоррупционной политике в Муниципальном бюджетном учреждении «Южно-Сахалинский камерный оркестр»</a></p>
+            <br>
+            <p><a href="documents/BusinessGiftExchangeRules.pdf" class="flink">Правила обмена деловыми подарками и знаками делового гостеприимства в Муниципальном бюджетном учреждении «Южно-Сахалинский камерный оркестр»</a></p>
+            <br>
+            <p><a href="documents/Order38-20.pdf" class="flink">Приказ №38/20 от 14.12.2020</a></p>
+            <br>
+            <p><a href="documents/Order39-20.pdf" class="flink">Приказ №39/20 от 14.12.2020</a></p>
+            <br>
+            <p><a href="documents/ProfessionalCodeOfEthics.pdf" class="flink">Кодекс профессиональной этики и служебного поведения работников Муниципального бюджетного учреждения «Южно-Сахалинский камерный оркестр»</a></p>
+        </details>
+        <br><hr><br>
         <details open="open"><summary>Платные услуги</summary><br>
             <ol>
                 <li>Организация и проведение концерта для детей детских садов, школьников, студентов.<br>
