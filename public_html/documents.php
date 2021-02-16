@@ -27,49 +27,50 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
     <div class="filesarea">
         <div class="p_title"><?php echo $p_title;?></div>
         <br>
-        <details open="open"><summary>Учредительные документы</summary><br>
-            <br>
-            <p><a href="documents/ustav_2018_09_17_with_egrul.pdf" class="flink">Устав учреждения от 17.09.2018</a></p>
-            <p><a href="documents/ustav_edit_2019-01-16.pdf" class="flink">Изменения в Устав от 16.01.2019</a></p>
-            <p><a href="documents/ustav_edit_2020-04-14.pdf" class="flink">Изменения в Устав от 14.04.2020</a></p>
-            <p><a href="ofdocs/inn.pdf" class="flink">ИНН/ОГРН: 6501109377/1026500550086</a></p>
-            <p><a href="" class="flink disabled">КПП: 650101001</a></p>
-            <p><a href="" class="flink disabled">ОКПО: 55655001</a></p><br>
+        <details open="open"><summary>Учредительные документы</summary>
+            <div class="docarea">
+                <p><a href="documents/ustav_2018_09_17_with_egrul.pdf" class="flink">Устав учреждения от 17.09.2018</a></p>
+                <p><a href="documents/ustav_edit_2019-01-16.pdf" class="flink">Изменения в Устав от 16.01.2019</a></p>
+                <p><a href="documents/ustav_edit_2020-04-14.pdf" class="flink">Изменения в Устав от 14.04.2020</a></p>
+                <p><a href="ofdocs/inn.pdf" class="flink">ИНН/ОГРН: 6501109377/1026500550086</a></p>
+                <p><a href="" class="flink disabled">КПП: 650101001</a></p>
+                <p><a href="" class="flink disabled">ОКПО: 55655001</a></p>
+            </div>
         </details>
         <br><hr><br>
-        <details open="open"><summary>ФХД</summary><br>
-            <p><a href="documents/Plan_FHD_2018.pdf" class="flink">План ФХД 2018</a></p>
-            <p><a href="documents/Plan_FHD_2019.pdf" class="flink">План ФХД 2019</a></p>
-            <p><a href="documents/Plan_FHD_2020.pdf" class="flink">План ФХД 2020</a></p>
-            <p><a href="documents/Performance_reportFHD.pdf" class="flink">Отчет об исполнении ФХД</a></p>
-            <p><a href="documents/Performance_reportFHD1.pdf" class="flink">Отчет об исполнении ФХД1</a></p>
-            <p><a href="documents/Performance_reportFHD2.pdf" class="flink">Отчет об исполнении ФХД2</a></p>
-            <p><a href="documents/salary.pdf" class="flink">Заработная плата руководителей</a></p>
+        <details open="open"><summary>ФХД</summary>
+            <div class="docarea">
+                <p><a href="documents/Plan_FHD_2018.pdf" class="flink">План ФХД 2018</a></p>
+                <p><a href="documents/Plan_FHD_2019.pdf" class="flink">План ФХД 2019</a></p>
+                <p><a href="documents/Plan_FHD_2020.pdf" class="flink">План ФХД 2020</a></p>
+                <p><a href="documents/Performance_reportFHD.pdf" class="flink">Отчет об исполнении ФХД</a></p>
+                <p><a href="documents/Performance_reportFHD1.pdf" class="flink">Отчет об исполнении ФХД1</a></p>
+                <p><a href="documents/Performance_reportFHD2.pdf" class="flink">Отчет об исполнении ФХД2</a></p>
+                <p><a href="documents/salary.pdf" class="flink">Заработная плата руководителей</a></p>
+            </div>
         </details>
         <br><hr><br>
-        <details open="open"><summary>Муниципальное задание</summary><br>
-            <p><a href="documents/MUP_Task_2018.pdf" class="flink">Муниципальное задание 2018</a></p>
-            <p><a href="documents/MUP_Task_2019.pdf" class="flink">Муниципальное задание 2019</a></p>
-            <p><a href="documents/MUP_Task_2020.pdf" class="flink">Муниципальное задание 2020</a></p>
-            <p><a href="documents/report_MTask_2018.doc" class="flink">Отчеты по выполнению Муниципального задания 2018</a></p>
-            <p><a href="documents/report_MTask_2019.pdf" class="flink">Отчеты по выполнению Муниципального задания 2019</a></p>
-            <p><a href="documents/report_MTask_2020.pdf" class="flink">Отчеты по выполнению Муниципального задания 2020</a></p>
+        <details open="open"><summary>Муниципальное задание</summary>
+            <div class="docarea">
+                <p><a href="documents/MUP_Task_2018.pdf" class="flink">Муниципальное задание 2018</a></p>
+                <p><a href="documents/MUP_Task_2019.pdf" class="flink">Муниципальное задание 2019</a></p>
+                <p><a href="documents/MUP_Task_2020.pdf" class="flink">Муниципальное задание 2020</a></p>
+                <p><a href="documents/report_MTask_2018.doc" class="flink">Отчеты по выполнению Муниципального задания 2018</a></p>
+                <p><a href="documents/report_MTask_2019.pdf" class="flink">Отчеты по выполнению Муниципального задания 2019</a></p>
+                <p><a href="documents/report_MTask_2020.pdf" class="flink">Отчеты по выполнению Муниципального задания 2020</a></p>
+            </div>
         </details>
         <br><hr><br>
-        <details open="open"><summary>Антикоррупционная деятельность</summary><br>
-            <p><a href="documents/EventPlan.pdf" class="flink">План мероприятий Муниципального бюджетного учреждения «Южно-Сахалинский камерный оркестр» по противодействию коррупции на 2021-2022 годы</a></p>
-            <br>
-            <p><a href="documents/AboutConflictDiscords.pdf" class="flink">Положение «О конфликте интересов в Муниципальном бюджетном учреждении «Южно-Сахалинский камерный оркестр»</a></p>
-            <br>
-            <p><a href="documents/AboutUncorruptPolicy.pdf" class="flink">Положение «Об антикоррупционной политике в Муниципальном бюджетном учреждении «Южно-Сахалинский камерный оркестр»</a></p>
-            <br>
-            <p><a href="documents/BusinessGiftExchangeRules.pdf" class="flink">Правила обмена деловыми подарками и знаками делового гостеприимства в Муниципальном бюджетном учреждении «Южно-Сахалинский камерный оркестр»</a></p>
-            <br>
-            <p><a href="documents/Order38-20.pdf" class="flink">Приказ №38/20 от 14.12.2020</a></p>
-            <br>
-            <p><a href="documents/Order39-20.pdf" class="flink">Приказ №39/20 от 14.12.2020</a></p>
-            <br>
-            <p><a href="documents/ProfessionalCodeOfEthics.pdf" class="flink">Кодекс профессиональной этики и служебного поведения работников Муниципального бюджетного учреждения «Южно-Сахалинский камерный оркестр»</a></p>
+        <details open="open"><summary>Антикоррупционная деятельность</summary>
+            <div class="docarea">
+                <p><a href="documents/EventPlan.pdf" class="flink">План мероприятий Муниципального бюджетного учреждения «Южно-Сахалинский камерный оркестр» по противодействию коррупции на 2021-2022 годы</a></p>
+                <p><a href="documents/AboutConflictDiscords.pdf" class="flink">Положение «О конфликте интересов в Муниципальном бюджетном учреждении «Южно-Сахалинский камерный оркестр»</a></p>
+                <p><a href="documents/AboutUncorruptPolicy.pdf" class="flink">Положение «Об антикоррупционной политике в Муниципальном бюджетном учреждении «Южно-Сахалинский камерный оркестр»</a></p>
+                <p><a href="documents/BusinessGiftExchangeRules.pdf" class="flink">Правила обмена деловыми подарками и знаками делового гостеприимства в Муниципальном бюджетном учреждении «Южно-Сахалинский камерный оркестр»</a></p>
+                <p><a href="documents/ProfessionalCodeOfEthics.pdf" class="flink">Кодекс профессиональной этики и служебного поведения работников Муниципального бюджетного учреждения «Южно-Сахалинский камерный оркестр»</a></p>
+                <p><a href="documents/Order38-20.pdf" class="flink">Приказ №38/20 от 14.12.2020</a></p>
+                <p><a href="documents/Order39-20.pdf" class="flink">Приказ №39/20 от 14.12.2020</a></p>
+            </div>
         </details>
         <br><hr><br>
         <details open="open"><summary>Платные услуги</summary><br>

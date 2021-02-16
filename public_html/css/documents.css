@@ -11,7 +11,7 @@ summary{
 
 }
 details{
-	text-indent: 1em;
+	/*text-indent: 1em;*/
 }
 .p_title{
 	color: #333366;
@@ -25,7 +25,7 @@ details{
 	vertical-align: middle;
 	text-decoration: none;
 	font-size: 20px;
-	margin-left: 1em;
+	/*margin-left: 1em;*/
 	color: #2f2e2e;
 	transition: 300ms;
 	
@@ -40,6 +40,10 @@ details{
 	max-width: 800px;
 	margin: auto;
 	padding: 30px;
+}
+
+.docarea{
+	padding: 1em 2em;
 }
 
 .inspections{
@@ -92,3 +96,5 @@ ol span{
 	}
 	
 }
+
+
