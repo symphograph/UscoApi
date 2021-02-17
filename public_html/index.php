@@ -57,11 +57,14 @@ ORDER BY anonces.datetime
 ");
 
 //$prrows = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Билеты в продаже'];
-foreach($query as $q)
-{
-    ConcertItem($q);
-}
 ?>
+    <div class="evcols">
+        <?php
+            foreach($query as $q) {
+                ConcertItem($q);
+            }
+        ?>
+    </div>
 </div>
 <div class="eventsarea">
     <?php

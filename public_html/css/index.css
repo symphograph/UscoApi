@@ -263,7 +263,11 @@ hr{
 	display: block;
 
 }
-
+.evcols{
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
 .tdno{
 	text-decoration: none;
 	color: #694d2a;
