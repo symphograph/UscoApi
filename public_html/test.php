@@ -15,7 +15,7 @@ if(!$myip) exit;
 
 <body>
 <?php
-echo ROOT;
+
 ?>
 </body>
 </html>
