@@ -91,6 +91,9 @@ function ReplFilesFromYaDisk($items2,$folder)
 function Albums($albumsdir)
 {
 	$myfolders = FolderList($albumsdir);
+
+	arsort($myfolders);
+
 	foreach($myfolders as $k => $name)
 	{	
 		
