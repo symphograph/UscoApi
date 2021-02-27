@@ -31,18 +31,18 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
         <p>г. Южно-Сахалинск, ул.Ленина, д. 156</p><br>
         Директор<br>
         <b>Кириллова Майя Владимировна</b>
-        <div class="tel"><a href="tel:+74242300518"/>+7-4242-300-518</a></div><br>
-        <div class="tel"><a href="tel:+79632892316"/>+7-963-289-23-16</a></div>
+        <div class="tel"><a href="tel:+74242300518">+7-4242-300-518</a></div><br>
+        <div class="tel"><a href="tel:+79632892316">+7-963-289-23-16</a></div>
         <br><br>
         Художественный руководитель и главный дирижер<br>
         <b>Ахназарян Тигран Суренович</b>
-        <div class="tel"><a href="tel:+74242300518"/>+7-4242-300-518</a></div>
+        <div class="tel"><a href="tel:+74242300518">+7-4242-300-518</a></div>
         <br><br>
         Старший администратор
-        <div class="tel"><a href="tel:+74242300518"/>+7-4242-300-518</a></div>
+        <div class="tel"><a href="tel:+74242300518">+7-4242-300-518</a></div>
         <br><br>
         Специалист по кадрам
-        <div class="tel"><a href="tel:+74242300518"/>+7-4242-300-518</a></div><br>
+        <div class="tel"><a href="tel:+74242300518">+7-4242-300-518</a></div><br>
         <br>
         <b>График работы</b>
         <ul>
