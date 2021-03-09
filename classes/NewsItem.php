@@ -11,6 +11,8 @@ class NewsItem
     public string $ver = '892648eb37542d469424b3448268d452';
     public string $date = '01.01.1970';
     public int $show = 0;
+    public int $evid = 0;
+    public string $link = '';
 
     function InitById(int $new_id)
     {
@@ -39,6 +41,15 @@ class NewsItem
         $this->ver = '?ver=' . md5_file($_SERVER['DOCUMENT_ROOT'] . '/' . $this->img);
         $this->date = $q->date;
         $this->show = $q->show;
+        $this->evid = $q->evid;
+
+
+        if($this->evid){
+            $this->link = 'event.php?evid=' . $this->evid;
+        }else{
+            $this->link = 'new.php?new_id=' . $this->id;
+        }
+
 
 
         return true;
@@ -51,7 +62,7 @@ class NewsItem
         <div class="narea">
         <div class="nimg_block">
             <div>
-                <a href="new.php?new_id=<?php echo $this->id;?>">
+                <a href="<?php echo $this->link;?>">
                     <img src="<?php echo $this->img, $this->ver?>" width="260px" alt="<?php echo $this->tit;?>"/>
                 </a>
             </div>
@@ -60,12 +71,12 @@ class NewsItem
 
         <div class="tcol">
             <div class="ntitle">
-                <a href="new.php?new_id=<?php echo $this->id;?>">
+                <a href="<?php echo $this->link;?>">
                     <b><?php echo $this->tit;?></b>
                 </a>
             </div>
             <br>
-            <a href="new.php?new_id=<?php echo $this->id;?>">
+            <a href="<?php echo $this->link;?>">
                 <?php echo $this->descr;?>
             </a>
             <br><br>
