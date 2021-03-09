@@ -81,14 +81,17 @@ ORDER BY anonces.datetime
             <br>
             по независимой оценке качества условий оказания услуг учреждениями культуры<br><br>
         </div>
-        <div class="opros">
-            <a href="https://pos.gosuslugi.ru/lkp/polls/14180/" target="_blank">
-                Пройти опрос
-            </a>
-            <br>
 
-            о модернизации первичного звена здравоохранения<br><br>
-        </div>
+        <a href="http://polerusskoe.ru/" target="_blank"
+           style="color: white; font-size: 20px; text-decoration: none;">
+            <div class="opros rupole" >
+                <p style="font-family: 'Rubik Mono One',serif;">Русское поле</p>
+                <br>
+
+                Фестиваль<br>славянского<br>искусства<br>
+            </div>
+        </a>
+
     </div>
     <div class="eventsarea">
         <?php  NewsCol();?>

@@ -66,6 +66,6 @@ div[class="newboxin"] > div> a:hover, div[class="newboxin"] > a:hover{
 	bottom: 5px;
 }
 
-.text>img{
+.text img{
 	box-shadow: 0 0 0.5em black;
 }

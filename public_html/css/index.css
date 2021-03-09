@@ -737,10 +737,18 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	font-size: 16px;
 	color: black;
 	max-width: 20em;
+	min-width: 20em;
 	box-shadow: 0 0 3px #0000006e;
 	padding: 1em 2em;
 	/*border-radius: 0.5em;*/
 	background-color: #e7ddcb8f;
+}
+
+.rupole{
+	background-image: url("../img/news/rp2.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: white;
 }
 
 #uscologo{
