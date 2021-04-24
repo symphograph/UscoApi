@@ -209,6 +209,12 @@ hr{
 	float: right;
 }
 
+blockquote{
+	padding: 1em;
+	border-left: 3px solid #6b4c07;
+
+}
+
 .content{
 	/*width: 1200px;*/
 	/*min-width: 450px;*/
