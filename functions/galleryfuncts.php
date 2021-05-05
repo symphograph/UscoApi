@@ -25,7 +25,7 @@ function ReplFoldersFromYaDisk($albumsdir,$shared_folder_link)
 		$folders[] = $name;//Папки на YaDisk
 
 		$path = '/'.$name;
-		$qbld = ['public_key'=>$public_key,'path'=>$path,'limit'=>100];
+		$qbld = ['public_key'=>$public_key,'path'=>$path,'limit'=>200];
 		$qbld = http_build_query($qbld);
 		$url = 'https://cloud-api.yandex.net:443/v1/disk/public/resources?'.$qbld;
 		$respons = file_get_contents($url);
