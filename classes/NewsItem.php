@@ -3,7 +3,7 @@
 
 class NewsItem
 {
-    public int $id;
+    public int $id = 0;
     public string $tit = 'Заголовок новости';
     public string $descr = 'Краткое описание';
     public string $content = 'Текст новости';
@@ -63,7 +63,7 @@ class NewsItem
         <div class="nimg_block">
             <div>
                 <a href="<?php echo $this->link;?>">
-                    <img src="<?php echo $this->img, $this->ver?>" width="260px" alt="<?php echo $this->tit;?>"/>
+                    <img src="<?php echo $this->img, $this->ver?>" width="260px" alt="Изображение не найдено"/>
                 </a>
             </div>
         </div>

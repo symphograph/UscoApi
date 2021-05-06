@@ -1,4 +1,11 @@
 <?php
+$new_id = $_GET['new_id'] ?? 0;
+$new_id = intval($new_id);
+if(!$new_id)
+{
+    header("Location: ../news.php");
+    die();
+}
 $root = $_SERVER['DOCUMENT_ROOT'];
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
 ?>
@@ -7,13 +14,7 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
 <head>
 <meta charset="utf-8">
 <?php
-$new_id = $_GET['new_id'] ?? 0;
-$new_id = intval($new_id);
-if(!$new_id)
-{
-    header("Location: ../news.php");
-    die();
-}
+
 
 $qwe = qwe("
 SELECT * from `news`

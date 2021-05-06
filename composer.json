@@ -3,5 +3,7 @@
     "ext-mysqli": "*",
     "ext-json": "*",
     "ext-iconv": "*"
-  }
+  },
+  "name": "name",
+  "description": "description"
 }
