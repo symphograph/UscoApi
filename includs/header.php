@@ -43,6 +43,7 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
                     <ul class="submenu">
                         <li><a href="<?php echo $host;?>main.php">Основные сведения</a></li>
                         <li><a href="<?php echo $host;?>documents.php">Документы</a></li>
+                        <li><a href="<?php echo $host;?>corruptcomp.php">Вместе против коррупции!</a></li>
                     </ul>
                 </li>
 
