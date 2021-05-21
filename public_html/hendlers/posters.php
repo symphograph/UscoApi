@@ -40,7 +40,7 @@ $qwe = qwe("
 
 foreach($qwe as $q)
 {
-    $Anonce = new Anonce();
+    $Anonce = new AnonceCard();
     $Anonce->clone($q);
     $Anonce->printItem();
 }

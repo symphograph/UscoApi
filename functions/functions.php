@@ -238,19 +238,16 @@ function EvdateFormated($datetime)
 	    return date('d.m.Y в H:i',$evdate);
 }
 
-function byeButton($prrow,$btnHref,$btnText)
+function byeButton($btnHref, $btnText)
 {
 
-    return '<div><br>
-			<p><span>'.$prrow.'</span></p><br>
-			<p>
+    return '<p>
                 <a href="'.$btnHref.'" class="tdno">
                     <div class="bybtn">
                         <span class="bybtntxt">'.$btnText.'</span>
                     </div>
                 </a>
-			</p>
-			</div>';
+			</p>';
 }
 
 function VideoItem($youtube_id) //Подразумевается youtube. Иные не преюполагаются.

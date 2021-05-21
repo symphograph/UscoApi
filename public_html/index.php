@@ -60,7 +60,7 @@ ORDER BY anonces.datetime
     <div class="evcols">
         <?php
             foreach($query as $q) {
-                $Anonce = new Anonce();
+                $Anonce = new AnonceCard();
                 $Anonce->clone($q);
                 $Anonce->printItem();
             }
