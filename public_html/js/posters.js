@@ -1,3 +1,6 @@
+window.onload = function() {
+    getPosters((new Date()).getFullYear());
+    };
 $("body").on("change","#yearFilter",function (){
     getPosters($("#yearFilter").val());
 });

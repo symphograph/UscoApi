@@ -54,12 +54,12 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 </div>
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/footer.php';
+
+
+
+jsFile('posters.js');
 ?>
-<script src="js/posters.js?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/js/posters.js')?>"></script>
-<script type='text/javascript'>
-    window.onload = function() {
-        getPosters(<?php echo date('Y') ?>);
-    };
-</script>
+
+
 </body>
 </html>

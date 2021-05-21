@@ -385,7 +385,13 @@ function GetNextFreeFeedMailId()
     if(!$qwe or $qwe->num_rows != 1)
         return 1;
 
-    foreach($qwe as $q)
-        return $q['max']+1;
+    $q = mysqli_fetch_object($qwe);
+
+    return $q->max + 1;
+}
+
+function jsFile($file)
+{
+    ?><script src="<?php echo 'js/'.$file.'?ver='.md5_file($_SERVER['DOCUMENT_ROOT'].'/js/'.$file)?>"></script><?php
 }
 ?>
