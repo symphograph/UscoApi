@@ -13,7 +13,7 @@ $ver = random_str(8);
     <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
     <?php CssMeta(['menu.css','index.css','afisha.css','menum.css', 'right_nav.css'])?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 
 </head>
 
@@ -29,43 +29,24 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 <div class="content">
 
 <div class="eventsarea">
-<div class="p_title"><?php echo $p_title;?></div>
+<div class="p_title">
 
+    <?php echo $p_title;?>
+
+    <select name="year" id="yearFilter">
+        <?php
+            for(!$i = date('Y'); $i >= 2018; $i--){
+                ?><option value="<?php echo $i?>"> <?php echo $i?> </option><?php
+            }
+        ?>
+    </select>
+</div>
 <?php
 
 
 ?>
-<div class="gridarea"><?php
-    $query = qwe("
-        SELECT
-        anonces.concert_id as ev_id,
-        anonces.hall_id,
-        anonces.prog_name,
-        anonces.sdescr,
-        anonces.img,
-        anonces.topimg,
-        anonces.aftitle,
-        anonces.datetime,
-        anonces.pay,
-        anonces.age,
-        anonces.ticket_link,
-        halls.hall_name,
-        halls.map,
-        video.youtube_id
-        FROM
-        anonces
-        INNER JOIN halls ON anonces.hall_id = halls.hall_id
-        LEFT JOIN video ON anonces.concert_id = video.concert_id
-        /*WHERE datetime < NOW()*/
-        ORDER BY anonces.datetime DESC
-        ");
+<div class="gridarea" id="posters"><?php
 
-    foreach($query as $q)
-    {
-        $Anonce = new Anonce();
-        $Anonce->clone($q);
-        $Anonce->printItem();
-    }
     ?>
 </div>
 
@@ -74,6 +55,11 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/footer.php';
 ?>
-
+<script src="js/posters.js?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/js/posters.js')?>"></script>
+<script type='text/javascript'>
+    window.onload = function() {
+        getPosters(<?php echo date('Y') ?>);
+    };
+</script>
 </body>
 </html>
