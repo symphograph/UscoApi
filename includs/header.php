@@ -17,7 +17,7 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
                 </li>
 
                 <li><a href="<?php echo $host;?>vacancies.php">Вакансии</a></li>
-                <li><a href="<?php echo $host;?>complited.php">Афиши</a></li>
+                <li><a href="<?php echo $host;?>posters.php">Афиши</a></li>
 
                 <li>
                     <a href="">Медиа</a>

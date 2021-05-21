@@ -39,7 +39,6 @@ anonces.concert_id as ev_id,
 anonces.hall_id,
 anonces.prog_name,
 anonces.sdescr,
-anonces.description,
 anonces.img,
 anonces.topimg,
 anonces.aftitle,
@@ -56,12 +55,14 @@ WHERE /*anonces.concert_id > 3 AND*/ datetime >= NOW()
 ORDER BY anonces.datetime
 ");
 
-//$prrows = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Билеты в продаже'];
+
 ?>
     <div class="evcols">
         <?php
             foreach($query as $q) {
-                ConcertItem($q);
+                $Anonce = new Anonce();
+                $Anonce->clone($q);
+                $Anonce->printItem();
             }
         ?>
     </div>

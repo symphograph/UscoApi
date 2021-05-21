@@ -32,39 +32,42 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 <div class="p_title"><?php echo $p_title;?></div>
 
 <?php
-$query = qwe("
-SELECT
-anonces.concert_id as ev_id,
-anonces.hall_id,
-anonces.prog_name,
-anonces.sdescr,
-anonces.description,
-anonces.img,
-anonces.topimg,
-anonces.aftitle,
-anonces.datetime,
-anonces.pay,
-anonces.age,
-anonces.ticket_link,
-halls.hall_name,
-halls.map,
-video.youtube_id
-FROM
-anonces
-INNER JOIN halls ON anonces.hall_id = halls.hall_id
-LEFT JOIN video ON anonces.concert_id = video.concert_id
-/*WHERE datetime < NOW()*/
-ORDER BY anonces.datetime DESC
-");
 
-?><div class="gridarea"><?
-foreach($query as $q)
-{
-    ConcertItem($q);
 
-}
+?>
+<div class="gridarea"><?php
+    $query = qwe("
+        SELECT
+        anonces.concert_id as ev_id,
+        anonces.hall_id,
+        anonces.prog_name,
+        anonces.sdescr,
+        anonces.img,
+        anonces.topimg,
+        anonces.aftitle,
+        anonces.datetime,
+        anonces.pay,
+        anonces.age,
+        anonces.ticket_link,
+        halls.hall_name,
+        halls.map,
+        video.youtube_id
+        FROM
+        anonces
+        INNER JOIN halls ON anonces.hall_id = halls.hall_id
+        LEFT JOIN video ON anonces.concert_id = video.concert_id
+        /*WHERE datetime < NOW()*/
+        ORDER BY anonces.datetime DESC
+        ");
 
-?></div>
+    foreach($query as $q)
+    {
+        $Anonce = new Anonce();
+        $Anonce->clone($q);
+        $Anonce->printItem();
+    }
+    ?>
+</div>
 
 </div>
 </div>

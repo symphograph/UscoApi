@@ -238,98 +238,19 @@ function EvdateFormated($datetime)
 	    return date('d.m.Y в H:i',$evdate);
 }
 
-function ConcertItem($q)
+function byeButton($prrow,$btnHref,$btnText)
 {
-    /**
-     * @var $pay
-     * @var $ev_id
-     * @var $ticket_link
-     */
-	extract($q);
-	$complited = $recorded = false;
-	$prrows = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Билеты в продаже'];
-	global $myip;
-	if((!$myip) and $ev_id < 4) return false;
 
-
-	//$bg = 'style="background-image: url(img/afisha/'.$img.')"' ?? '';
-	$bg = '';
-
-	$prrow = $prrows[$pay] ?? '';
-	$byebtn = '
-	<div><br>
-	<p><span>'.$prrow.'</span></p><br>
-	<p><a href="event.php?evid='.$ev_id.'" class="tdno"><div class="bybtn"><span class="bybtntxt">Подробно</span></div></a></p>
-	</div>';
-	
-	
-	if($pay == 5 and $_SERVER['SCRIPT_NAME'] != '/posters.php')
-	{
-
-		$byebtn = '<div><br>
-		<p><span>'.$prrow.'</span></p><br>
-		<p><a href="'.$ticket_link.'" class="tdno"><div class="bybtn"><span class="bybtntxt">Купить онлайн</span></div></a></p>
-		</div>';
-	}
-
-	if($_SERVER['SCRIPT_NAME'] == '/posters.php')//TO_DO!!!
-	{
-		if($youtube_id)
-		{
-			$byebtn = '<div><br>
+    return '<div><br>
 			<p><span>'.$prrow.'</span></p><br>
 			<p>
-                <a href="https://www.youtube.com/watch?v='.$youtube_id.'" class="tdno">
+                <a href="'.$btnHref.'" class="tdno">
                     <div class="bybtn">
-                        <span class="bybtntxt">Смотреть видео</span>
+                        <span class="bybtntxt">'.$btnText.'</span>
                     </div>
                 </a>
 			</p>
 			</div>';
-		}
-	}
-	
-	?><div class="eventbox tdno" <?php echo $bg;?>>
-
-	<div class="pressme">
-	<div>
-        <div class="affot">
-            <img src="<?php echo 'img/afisha/'.$topimg;?>?ver=<?php echo md5_file('img/afisha/'.$topimg)?>" width="100%" height="auto">
-
-                <?php
-                if($age)
-                {
-                    ?><div class="age"><?php echo $age?>+</div><?php
-                }
-                ?>
-
-        </div>
-        <br>
-        <div class="evdate">
-        <?php echo EvdateFormated($datetime)?>
-        </div>
-        <a href="<?php echo $map;?>" class="hall_href" target="_blank"><?php echo $hall_name;?></a>
-	</div>
-
-	
-		<div class="aftext">
-			<a href="event.php?evid=<?php echo $ev_id;?>" class="tdno">
-				<div class="evname"><?php echo $prog_name;?></div>
-				<br>
-				<div class="sdescr"><?php echo $sdescr?>
-					<br><br>
-					Художественный руководитель  и главный дирижер - <b>Тигран Ахназарян</b>.
-				</div>
-			</a>
-
-		</div>
-		<div class="downbox">
-            <div class="tdno"><?php echo $byebtn;?></div>
-        </div>
-	
-	</div>
-	</div>
-<?php
 }
 
 function VideoItem($youtube_id) //Подразумевается youtube. Иные не преюполагаются.
