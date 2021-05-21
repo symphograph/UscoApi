@@ -1,11 +1,13 @@
 window.onload = function() {
-    getPosters((new Date()).getFullYear());
+    getPosters((new Date()).getFullYear(),0);
     };
-$("body").on("change","#yearFilter",function (){
-    getPosters($("#yearFilter").val());
+$("body").on("change","#yearFilter, #sort",function (){
+    let year = $("#yearFilter").val();
+    let sort = $("#sort").val();
+    getPosters(year,sort);
 });
 
-function getPosters(year){
+function getPosters(year, sort){
     $.ajax
     ({
 
@@ -15,6 +17,7 @@ function getPosters(year){
         data:
             {
                 year: year,
+                sort: sort
             },
 
 

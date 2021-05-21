@@ -2,7 +2,12 @@
 if(empty($_POST['year']))
     die();
 $year = $_POST['year'] ?? date('Y');
-$year = intval($_POST['year']);
+$year = intval($year);
+
+$sort = $_POST['sort'] ?? 0;
+$sort = intval($sort);
+
+$sorts = ['DESC', ''];
 
 $root = $_SERVER['DOCUMENT_ROOT'];
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
@@ -29,8 +34,9 @@ $qwe = qwe("
         INNER JOIN halls ON anonces.hall_id = halls.hall_id
         LEFT JOIN video ON anonces.concert_id = video.concert_id
         WHERE year(datetime) = '$year'
-        ORDER BY anonces.datetime DESC
-        ");
+        ORDER BY anonces.datetime ".$sorts[$sort]);
+        if(!$qwe or !$qwe->num_rows)
+            die();
 
 foreach($qwe as $q)
 {

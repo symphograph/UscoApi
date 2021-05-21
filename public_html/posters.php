@@ -27,35 +27,33 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 ?>
 
 <div class="content">
+    <div class="eventsarea">
+        <div class="p_title">
 
-<div class="eventsarea">
-<div class="p_title">
-
-    <?php echo $p_title;?>
-
-    <select name="year" id="yearFilter">
+            <?php echo $p_title;?>
+            <div>
+                <select name="year" id="yearFilter">
+                    <?php
+                        for($i = date('Y'); $i >= 2018; $i--){
+                            ?><option value="<?php echo $i?>"> <?php echo $i?> </option><?php
+                        }
+                    ?>
+                </select>
+                <select name="sort" id="sort">
+                    <option value="0">Сначала новые</option>
+                    <option value="1">Сначала старые</option>
+                </select>
+            </div>
+        </div>
         <?php
-            for(!$i = date('Y'); $i >= 2018; $i--){
-                ?><option value="<?php echo $i?>"> <?php echo $i?> </option><?php
-            }
+
+
         ?>
-    </select>
-</div>
-<?php
-
-
-?>
-<div class="gridarea" id="posters"><?php
-
-    ?>
-</div>
-
-</div>
+        <div class="gridarea" id="posters"></div>
+    </div>
 </div>
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/footer.php';
-
-
 
 jsFile('posters.js');
 ?>
