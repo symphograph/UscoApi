@@ -827,12 +827,17 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 
 	}
 
+
 }
 
 @media screen and (max-device-width: 500px) {
 	#orgname, .tsa{
 		font-size: 16px;
 		line-height: 1.25em;
+	}
+
+	.p_title select{
+		font-size: 12px;
 	}
 }
 
