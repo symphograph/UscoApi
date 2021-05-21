@@ -29,9 +29,10 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 <div class="content">
     <div class="eventsarea">
         <div class="p_title">
-
-            <?php echo $p_title;?>
             <div>
+                <?php echo $p_title;?>
+            </div>
+            <div class="selectors">
                 <select name="year" id="yearFilter">
                     <?php
                         for($i = date('Y'); $i >= 2018; $i--){

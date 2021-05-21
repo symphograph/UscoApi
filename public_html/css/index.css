@@ -69,7 +69,13 @@ hr{
 	padding-bottom: 5px;
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
 
+}
+.selectors{
+	min-width: 50%;
+	display: flex;
+	justify-content: flex-end;
 }
 .p_title select{
 	font-size: 16px;
