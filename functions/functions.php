@@ -263,7 +263,7 @@ function ConcertItem($q)
 	</div>';
 	
 	
-	if($pay == 5 and $_SERVER['SCRIPT_NAME'] != '/complited.php')
+	if($pay == 5 and $_SERVER['SCRIPT_NAME'] != '/posters.php')
 	{
 
 		$byebtn = '<div><br>
@@ -272,7 +272,7 @@ function ConcertItem($q)
 		</div>';
 	}
 
-	if($_SERVER['SCRIPT_NAME'] == '/complited.php')//TO_DO!!!
+	if($_SERVER['SCRIPT_NAME'] == '/posters.php')//TO_DO!!!
 	{
 		if($youtube_id)
 		{

@@ -16,7 +16,7 @@ $pajes =
             ]
         ],
         'vacancies.php' => 'Вакансии',
-        'complited.php'=>'Афиши',
+        'posters.php'=>'Афиши',
 
         ['details',
             ['Медиа',

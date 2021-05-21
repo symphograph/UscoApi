@@ -2,7 +2,7 @@
 $root = $_SERVER['DOCUMENT_ROOT'];
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
 
-$p_title = 'Прошедшие концерты';
+$p_title = 'Афиши';
 $ver = random_str(8);
 ?>
 <!doctype html>
@@ -26,7 +26,6 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
 $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 ?>
 
-<!--<div class="ubis"><b>XX ЮБИЛЕЙНЫЙ СЕЗОН</b></div>-->
 <div class="content">
 
 <div class="eventsarea">
@@ -54,7 +53,7 @@ FROM
 anonces
 INNER JOIN halls ON anonces.hall_id = halls.hall_id
 LEFT JOIN video ON anonces.concert_id = video.concert_id
-WHERE datetime < NOW()
+/*WHERE datetime < NOW()*/
 ORDER BY anonces.datetime DESC
 ");
 

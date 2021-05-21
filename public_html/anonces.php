@@ -62,7 +62,7 @@ if(!$query or $query->num_rows == 0)
 {
     ?>
     <p>Аносов нет.</p>
-    <p><a href="complited.php"/><span class="bybtntxt">Прошедшие концерты</span></a></p>
+    <p><a href="posters.php"/><span class="bybtntxt">Прошедшие концерты</span></a></p>
     <?php
 }
 ?><div class="gridarea"><?
