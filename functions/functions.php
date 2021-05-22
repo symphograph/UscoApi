@@ -238,17 +238,7 @@ function EvdateFormated($datetime)
 	    return date('d.m.Y в H:i',$evdate);
 }
 
-function byeButton($btnHref, $btnText)
-{
 
-    return '<p>
-                <a href="'.$btnHref.'" class="tdno">
-                    <div class="bybtn">
-                        <span class="bybtntxt">'.$btnText.'</span>
-                    </div>
-                </a>
-			</p>';
-}
 
 function VideoItem($youtube_id) //Подразумевается youtube. Иные не преюполагаются.
 {
@@ -390,5 +380,25 @@ function GetNextFreeFeedMailId()
 function jsFile($file)
 {
     ?><script src="<?php echo 'js/'.$file.'?ver='.md5_file($_SERVER['DOCUMENT_ROOT'].'/js/'.$file)?>"></script><?php
+}
+
+function anonceYears() : array
+{
+    $years = [];
+    $qwe = qwe("
+        SELECT year(datetime) as year 
+        FROM anonces 
+        GROUP BY year
+        ORDER BY year DESC 
+        ");
+    if(!$qwe or !$qwe->num_rows) {
+        return $years;
+    }
+
+    foreach ($qwe as $q) {
+        $years[] = $q['year'];
+    }
+
+    return $years;
 }
 ?>

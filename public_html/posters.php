@@ -35,8 +35,12 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
             <div class="selectors">
                 <select name="year" id="yearFilter">
                     <?php
-                        for($i = date('Y'); $i >= 2018; $i--){
-                            ?><option value="<?php echo $i?>"> <?php echo $i?> </option><?php
+                        $years = anonceYears();
+                        foreach ($years as $k => $y){
+                            $sel = '';
+                            if($y == date('Y'))
+                                $sel = ' selected ';
+                            ?><option value="<?php echo $y?>"<?php echo $sel?>> <?php echo $y?> </option><?php
                         }
                     ?>
                 </select>

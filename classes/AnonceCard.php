@@ -4,7 +4,6 @@
 class AnonceCard extends Anonce
 {
     public string|null $prrow = '';
-    public string|null $byebtn = '';
     public string|null $img;
     public string|null $map;
 
@@ -15,14 +14,8 @@ class AnonceCard extends Anonce
         }
 
         $this->prrow = self::PAYS[$this->pay] ?? '';
-        $this->byebtn = byeButton('event.php?evid=' . $this->ev_id, 'Подробно');
-
-        if($this->pay == 5 and !$this->complited) {
-            $this->byebtn = byeButton($this->ticket_link, 'Купить онлайн');
-        }
-
-        if($_SERVER['SCRIPT_NAME'] == '/posters.php' and $this->youtube_id){
-            $this->byebtn = byeButton('https://www.youtube.com/watch?v=' . $this->youtube_id, 'Смотреть видео');
+        if($this->pay == 3 and $this->complited){
+            $this->prrow = 'Продажа завершена';
         }
         return true;
     }
@@ -66,7 +59,7 @@ class AnonceCard extends Anonce
                         <div><br>
                             <p><span><?php echo $this->prrow?></span></p>
                             <br>
-                            <?php echo $this->byebtn;?>
+                            <?php echo self::byeButton();?>
                         </div>
                     </div>
                 </div>
@@ -77,16 +70,35 @@ class AnonceCard extends Anonce
 
     public function evDate()
     {
-        if(!$this->complited){
-            $shadow = 'style="box-shadow:  0 1px 16px 0px #00ff09a8"';
-        }else{
-            $shadow = '';
-        }
         ?>
-        <div class="evdate" <?php echo $shadow?>>
+        <div class="evdate" <?php if(!$this->complited) echo 'style="box-shadow:  0 1px 16px 0px #00ff09a8"'?>>
             <?php echo parent::EvdateFormated()?>
         </div>
         <?php
+    }
+
+    function byeButton()
+    {
+        $btnHref = 'event.php?evid=' . $this->ev_id;
+        $btnText = 'Подробно';
+
+        if($this->pay == 3 and !$this->complited) {
+            $btnHref = $this->ticket_link;
+            $btnText = 'Купить онлайн';
+        }
+
+        if($this->complited and $this->youtube_id){
+            $btnHref = 'https://www.youtube.com/watch?v=' . $this->youtube_id;
+            $btnText = 'Смотреть видео';
+        }
+
+        return '<p>
+                <a href="'.$btnHref.'" class="tdno">
+                    <div class="bybtn">
+                        <span class="bybtntxt">'.$btnText.'</span>
+                    </div>
+                </a>
+			</p>';
     }
 
 }

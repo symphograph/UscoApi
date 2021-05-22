@@ -53,15 +53,15 @@ class Anonce
         return self::clone($q);
     }
 
-
-
     public function EvdateFormated()
     {
         $evdate = strtotime($this->datetime);
-        $evdateru = ru_date('%e&nbsp;%bg&nbsp',$evdate);
-        $evtime = date('H:i',$evdate);
-        if(date('Y',$evdate) == date('Y',time()))
+
+        if(date('Y',$evdate) == date('Y',time())){
+            $evdateru = ru_date('%e&nbsp;%bg&nbsp',$evdate);
+            $evtime = date('H:i',$evdate);
             return $evdateru.' в '.$evtime;
+        }
         else
             return date('d.m.Y в H:i',$evdate);
     }
