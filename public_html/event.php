@@ -77,7 +77,16 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
                     <div class="eventcol"><?php echo $aftitle;?></div>
                     <p><b><?php echo $prog_name ?></b></p>
                     <p><?php echo $description?></p>
-                    <?php echo $byebtn;?>
+                    <?php echo $byebtn;
+                    if (strtotime($datetime) > strtotime('2020-03-10')){
+                        ?>
+                        <br><br>
+                        <small>Уважаемые посетители, убедительная просьба соблюдать
+                            меры безопасности в связи с распространением короновирусной инфекции!</small>
+                        <?php
+                    }
+                    ?>
+
 
                     <br><br>
                     Справки по тел:<br>

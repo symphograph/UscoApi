@@ -29,7 +29,7 @@ class AnonceCard extends Anonce
             <div class="pressme" >
                 <div>
                     <div class="affot">
-                        <img src="<?php echo 'img/afisha/'.$this->topimg;?>?ver=<?php echo md5_file('img/afisha/'.$this->topimg)?>" width="100%" height="auto">
+                        <img src="<?php echo 'img/afisha/'.$this->topimg;?>?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/img/afisha/'.$this->topimg)?>" width="100%" height="auto">
 
                         <?php
                         if($this->age) {
