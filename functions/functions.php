@@ -379,7 +379,7 @@ function GetNextFreeFeedMailId()
 
 function jsFile($file)
 {
-    ?><script src="<?php echo 'js/'.$file.'?ver='.md5_file($_SERVER['DOCUMENT_ROOT'].'/js/'.$file)?>"></script><?php
+    ?><script type="text/javascript" src="<?php echo 'js/'.$file.'?ver='.md5_file($_SERVER['DOCUMENT_ROOT'].'/js/'.$file)?>"></script><?php
 }
 
 function anonceYears() : array
