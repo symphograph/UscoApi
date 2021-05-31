@@ -245,7 +245,7 @@ function VideoItem($youtube_id) //Подразумевается youtube. Ины
 	//width="360" 
 	//height="180"
 	?>
-	<div class="vitem">
+	<div class="vitem" id="<?php echo $youtube_id?>">
 	<iframe 
 			width="100%"
 			height="100%"

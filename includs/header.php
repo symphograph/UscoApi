@@ -70,14 +70,16 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
                 <span>и главный дирижер</span>
                 <a href="<?php echo $host.'tsa.php'?>"><span class="tsa">Тигран Ахназарян</span></a>
             </div>
-            <div id="finevision_banner" title="Версия для слабовидящих"
-                 onclick="finevision.activate_navbar()"
-                 style="cursor: pointer;
-                 ">
+            <noindex>
+                <div id="finevision_banner" title="Версия для слабовидящих"
+                     onclick="finevision.activate_navbar()"
+                     style="cursor: pointer;
+                     ">
 
-                <div class="conductor"><img width="30px" height="30px" src="img/loupe.svg?ver=3"><span>Версия для слабовидящих</span></div>
-                <script src="https://finevision.ru/static/js/finevision_banner.js"></script>
-            </div>
+                    <div class="conductor"><img width="30px" height="30px" src="img/loupe.svg?ver=3"><span>Версия для слабовидящих</span></div>
+                    <script src="https://finevision.ru/static/js/finevision_banner.js"></script>
+                </div>
+            </noindex>
 
 
         </div>
