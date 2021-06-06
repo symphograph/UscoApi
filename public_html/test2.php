@@ -5,6 +5,7 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/functions/functions.php';
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config2.php';
 if(!$myip) exit;
+
 ?>
 <!doctype html>
 <html lang="ru">
@@ -20,6 +21,20 @@ if(!$myip) exit;
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 
 <?php
+$image = new Imagick($_SERVER['DOCUMENT_ROOT'].'/img/albums/2021-05-25 Ева Геворгян/2021-05-25_IMG_3577.jpg');
+//$geo=$image->getImageGeometry();
+//printr($geo);
+$exifArray = $image->getImageProperties('*');
+printr($exifArray);
+foreach ($exifArray as $name => $property)
+{
+    echo "{$name} => {$property}<br />\n";
+}
+?>
+
+<?php
+//printr($image);
+
 printr(time() > (strtotime('2021-05-21 15:00:00')-3600*8));
 ?>
 
