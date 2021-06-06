@@ -8,13 +8,6 @@ if(!$new_id)
 }
 $root = $_SERVER['DOCUMENT_ROOT'];
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
-?>
-<!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<?php
-
 
 $qwe = qwe("
 SELECT * from `news`
@@ -30,12 +23,18 @@ $q = mysqli_fetch_object($qwe);
 
 $p_title = 'Южно-Сахалинский камерный оркестр';
 $ver = random_str(8);
+$indexes = ['noindex','index'];
+$index = $indexes[intval($q->show == 1)];
 ?>
-<title><?php echo $p_title;?></title>
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title><?php echo $p_title;?></title>
     <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
     <?php CssMeta(['menu.css','index.css','news.css','menum.css', 'right_nav.css'])?>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="<?php echo $index?>"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
