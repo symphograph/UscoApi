@@ -95,8 +95,11 @@ ORDER BY anonces.datetime
 
     </div>
     <div class="eventsarea">
-        <?php  NewsCol();?>
-        <a href="news.php">К другим новостям</a>
+        <div class="newscol"><br>
+            <div class="ntitle"><b>Новости оркестра</b></div><br><hr><br>
+            <?php  NewsCol();?>
+            <a href="news.php">К другим новостям</a>
+        </div>
     </div>
 
     <?php

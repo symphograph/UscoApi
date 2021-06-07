@@ -13,10 +13,7 @@ $ver = random_str(8);
 ?>
 <title><?php echo $p_title;?></title>
     <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
-<link href="css/menu.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menu.css');?>" rel="stylesheet">
-<link href="css/index.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/index.css');?>" rel="stylesheet">
-<link href="css/menum.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/menum.css');?>" rel="stylesheet">
-<link href="css/right_nav.css?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/css/right_nav.css');?>" rel="stylesheet">
+    <?php CssMeta(['menu.css', 'index.css', 'menum.css', 'right_nav.css']) ?>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 </head>
@@ -40,10 +37,28 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
 
         ?>
         <div class="eventsarea">
-            <?php  NewsCol($query);?>
+            <div class="p_title">
+                <div>
+                    <?php echo $p_title;?>
+                </div>
+                <div class="selectors">
+                    <?php selectYear(newsYears());?>
+
+                    <select name="filter" id="filter">
+                        <option value="0">Новости оркестра</option>
+                        <option <?php if(isset($_GET['filter'])) echo ' selected ' ?> value="1">Прочие новости</option>
+                    </select>
+                </div>
+            </div><br><br>
+            <div class="newscol" id="news">
+
+            </div>
         </div>
     </div>
 </div>
-<?php require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/footer.php'; ?>
+<?php
+    require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/footer.php';
+    jsFile('news.js');
+?>
 </body>
 </html>

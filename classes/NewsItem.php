@@ -58,7 +58,7 @@ class NewsItem
     function PrintItem()
     {
         ?>
-        <br><hr><br>
+
         <div class="narea">
         <div class="nimg_block">
             <div>

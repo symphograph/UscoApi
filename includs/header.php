@@ -20,7 +20,7 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
                 <li><a href="<?php echo $host;?>posters.php">Афиши</a></li>
 
                 <li>
-                    <a href="">Медиа</a>
+                    <a href="/">Медиа</a>
                     <ul class="submenu">
                     <li><a href="<?php echo $host;?>gallery.php">Фото</a></li>
                     <li><a href="<?php echo $host;?>video.php">Видео</a></li>
@@ -28,18 +28,18 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
                 </li>
 
                 <li>
-                    <a href="<?php echo $host;?>">Новости</a>
+                    <a href="<?php echo $host;?>news.php">Новости</a>
                     <ul class="submenu">
                     <li><a href="<?php echo $host;?>news.php">Новости оркестра</a></li>
                     <li><a href="<?php echo $host;?>articles.php">Статьи</a></li>
-                    <li><a href="<?php echo $host;?>outside_news.php">Другие новости</a></li>
+                    <li><a href="<?php echo $host;?>news.php?filter=1">Прочие новости</a></li>
                     </ul>
                 </li>
 
                 <li><a href="<?php echo $host;?>contacts.php">Контакты</a></li>
 
                 <li>
-                    <a href="<?php echo $host;?>">Документы</a>
+                    <a href="<?php echo $host;?>documents.php">Документы</a>
                     <ul class="submenu">
                         <li><a href="<?php echo $host;?>main.php">Основные сведения</a></li>
                         <li><a href="<?php echo $host;?>documents.php">Документы</a></li>

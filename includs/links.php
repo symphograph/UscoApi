@@ -32,7 +32,7 @@ $pajes =
                 [
                     'news.php'=>'Новости',
                     'articles.php'=>'Статьи',
-                    'outside_news.php'=>'Другие новости'
+                    'news.php?filter=1'=>'Прочие новости'
                 ]
             ]
         ],

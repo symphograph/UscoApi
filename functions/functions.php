@@ -145,8 +145,8 @@ function NewsCol($qwe = false)
 {
 
 ?>
-	<div class="newscol">
-        <div class="ntitle"><b>НОВОСТИ</b></div><br>
+
+
         <?php
         if(!$qwe)
         $qwe = qwe("
@@ -161,10 +161,10 @@ function NewsCol($qwe = false)
             $Item = new NewsItem();
             $Item->InitByQwe($q);
             $Item->PrintItem();
+            echo '<br><hr><br>';
         }
         ?>
-        <br><hr><br>
-	</div>
+        <br><br>
 <?php
 }
 
@@ -401,4 +401,40 @@ function anonceYears() : array
 
     return $years;
 }
-?>
+
+function newsYears() : array
+{
+    $years = [];
+    $qwe = qwe("
+        SELECT year(date) as year 
+        FROM news 
+        GROUP BY year
+        ORDER BY year DESC 
+        ");
+    if(!$qwe or !$qwe->num_rows) {
+        return $years;
+    }
+
+    foreach ($qwe as $q) {
+        $years[] = $q['year'];
+    }
+
+    return $years;
+}
+
+function selectYear(array $years)
+{
+    ?>
+    <select name="year" id="yearFilter">
+        <?php
+        foreach ($years as $k => $y) {
+            $sel = '';
+            if ($y == date('Y'))
+                $sel = ' selected ';
+            ?>
+            <option value="<?php echo $y ?>"<?php echo $sel ?>> <?php echo $y ?> </option><?php
+        }
+        ?>
+    </select>
+    <?php
+}
