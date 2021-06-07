@@ -31,5 +31,4 @@
     Подробнее о проекте читайте на <a href="https://unioncomposers.ru/projects/506/">unioncomposers.ru</a>.
     <br><br>
     Источник: <a href="https://www.culture.ru/news/256468/soyuz-kompozitorov-rossii-obyavlyaet-programmu-noty-i-kvoty">culture.ru</a>
-
 </div>
