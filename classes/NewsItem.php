@@ -100,7 +100,7 @@ class NewsItem
             <div class="narea">
 
                 <?php
-                $file = $_SERVER['DOCUMENT_ROOT'].'/news/new_'.$this->id.'.php';
+                $file = dirname($_SERVER['DOCUMENT_ROOT']).'/includs/news/new_'.$this->id.'.php';
                 if(file_exists($file))
                 {
                     include_once $file;
