@@ -466,6 +466,11 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	width: 260px;
 	height: 162px;
 	overflow: hidden;
+	box-shadow: 1px 2px 2px #555353;
+}
+
+.nimg_block:hover{
+	box-shadow: 1px 2px 5px #000000;
 }
 
 .nimg_block div{
