@@ -45,10 +45,10 @@ class Anonce
             WHERE a.concert_id = '$ev_id'
             ");
 
-        if(!$qwe or !$qwe->num_rows)
+        if(!$qwe or !$qwe->rowCount())
             return false;
 
-        $q = mysqli_fetch_object($qwe);
+        $q = $qwe->fetchObject();
 
         return self::clone($q);
     }

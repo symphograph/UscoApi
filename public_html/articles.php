@@ -20,8 +20,8 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
 
 <body>
 <?php
-include ROOT.'/includs/links.php';
-include ROOT.'/includs/header.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/links.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
 ?>
 
 

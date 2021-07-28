@@ -35,7 +35,7 @@ $qwe = qwe("
         LEFT JOIN video ON anonces.concert_id = video.concert_id
         WHERE year(datetime) = '$year'
         ORDER BY anonces.datetime ".$sorts[$sort]);
-        if(!$qwe or !$qwe->num_rows)
+        if(!$qwe or !$qwe->rowCount())
             die();
 
 foreach($qwe as $q)

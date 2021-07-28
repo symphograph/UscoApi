@@ -3,31 +3,37 @@
 
 class NewsItem
 {
-    public int $id = 0;
-    public string $tit = 'Заголовок новости';
-    public string $descr = 'Краткое описание';
-    public string $content = 'Текст новости';
-    public string $img = 'img/news/default_news_img.svg';
-    public string $ver = '892648eb37542d469424b3448268d452';
-    public string $date = '01.01.1970';
-    public int $show = 0;
-    public int $evid = 0;
-    public string $link = '';
 
-    function InitById(int $new_id)
+
+    public function __construct(
+        public int $id = 0,
+        public string $tit = 'Заголовок новости',
+        public string $descr = 'Краткое описание',
+        public string $content = 'Текст новости',
+        public string $img = 'img/news/default_news_img.svg',
+        public string $ver = '892648eb37542d469424b3448268d452',
+        public string $date = '01.01.1970',
+        public int $show = 0,
+        public int $evid = 0,
+        public string $link = ''
+    )
+    {
+    }
+
+    function byId(int $new_id) : bool
     {
         $qwe = qwe("
         SELECT * from `news`
         WHERE `new_id` = '$new_id'
         ");
-        if(!$qwe or !$qwe->num_rows)
+        if(!$qwe or !$qwe->rowCount())
             return false;
-        $q = mysqli_fetch_object($qwe);
+        $q = $qwe->fetchObject();
 
-        return self::InitByQwe($q) ;
+        return self::byQ($q) ;
     }
 
-    function InitByQwe(object $q)
+    function byQ(object $q)
     {
         $this->id = $q->new_id;
         $this->tit = $q->new_tit ?? '';

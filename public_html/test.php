@@ -41,7 +41,7 @@ if(!$myip) exit;
 <div class="content">
 <?php
 $Item = new NewsItem;
-$Item->InitById(44);
+$Item->byId(44);
 ?>
 <br><br>
 Как будет в ленте

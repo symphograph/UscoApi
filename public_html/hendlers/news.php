@@ -18,7 +18,7 @@ WHERE YEAR(`date`) = '$year'
 AND `show` = '$filter'
 order by date DESC 
 ");
-if(!$qwe or !$qwe->num_rows){
+if(!$qwe or !$qwe->rowCount()){
     die('Нет новостей');
 }
 NewsCol($qwe);

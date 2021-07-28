@@ -24,7 +24,9 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
 <?php
 
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/links.php';
+
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
+
 $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 ?>
 
@@ -127,7 +129,7 @@ ORDER BY anonces.datetime
 </div>
 
 <?php
-include ROOT.'/includs/footer.php';
+include dirname($_SERVER['DOCUMENT_ROOT']).'/includs/footer.php';
 ?>
  
 </body>

@@ -1,7 +1,5 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/ip.php';
-require_once dirname($_SERVER['DOCUMENT_ROOT']).'/functions/functions.php';
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
 
 $usersess = '';
@@ -13,8 +11,8 @@ if(!empty($_COOKIE['usersess']))
 {
 	$usersess = $_COOKIE['usersess'];
 	$usersess = OnlyText($usersess);
-	$usersess = mysqli_real_escape_string($dbLink,$_COOKIE['usersess']) ;
-	$query = qwe("
+	$usersess = $_COOKIE['usersess'];
+	$qwe = qwe("
 	SELECT
 	`spsessions`.`usersess`,
 	`spsessions`.`spect_id`,
@@ -25,12 +23,12 @@ if(!empty($_COOKIE['usersess']))
 	FROM
 	`spsessions`
 	INNER JOIN `spectors` ON `spsessions`.`spect_id` = `spectors`.`spect_id`
-	WHERE `usersess` = '$usersess'
-	");
+	WHERE `usersess` = :usersess
+	",['usersess'=>$usersess]);
 	
-	if(mysqli_num_rows($query) > 0)
+	if($qwe and $qwe->rowCount())
 	{
-		foreach($query as $q)
+		foreach($qwe as $q)
 		{
 			$usermail = $q['email'];
 			//var_dump($usermail);
@@ -42,7 +40,7 @@ if(!empty($_COOKIE['usersess']))
 			}else
 			$name = $q['name'];
 		}
-		if(($myip or $officeip) and in_array($usermail,['roman.chubich@gmail.com', 'ainaraen@gmail.com']))
+		if(($cfg->myip or $cfg->officeip) and in_array($usermail,['roman.chubich@gmail.com', 'ainaraen@gmail.com']))
 			$admin = 1;
 		
 		$query = qwe("
@@ -57,6 +55,6 @@ if(!empty($_COOKIE['usersess']))
 	}
 }
 	
-$identy = Metka($ip);
+$identy = Metka($cfg->ip);
 $is_TSA = ($identy === 'SWRjUykdleqQ');
 ?>

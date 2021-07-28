@@ -1,5 +1,4 @@
 <?php
-if(!isset($ip)) exit();
 $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 $pajes =
     [
@@ -93,6 +92,7 @@ function LiList(array $pajes)
 
     }
 }
+
 CookWarning();
 top_links();
 	?>

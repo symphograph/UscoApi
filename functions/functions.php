@@ -159,7 +159,7 @@ function NewsCol($qwe = false)
         {
             $q = (object) $q;
             $Item = new NewsItem();
-            $Item->InitByQwe($q);
+            $Item->byQ($q);
             $Item->PrintItem();
             echo '<br><hr><br>';
         }
@@ -199,11 +199,11 @@ function Metka($ip)
     {
         return false;
     }
-    $query = qwe("
+    $qwe = qwe("
         SELECT * FROM `identy`
         WHERE `identy` = '$identy'
         ");
-    if($query and $query->num_rows == 1)
+    if($qwe and $qwe->rowCount() == 1)
     {
         qwe("
         UPDATE `identy` SET
@@ -344,10 +344,10 @@ function AskToken($identy)
     AND last_time >= (NOW() - INTERVAL 10 MINUTE)
     AND LENGTH(`token`) = 12
     ");
-    if(!$qwe or !$qwe->num_rows)
+    if(!$qwe or !$qwe->rowCount())
         return false;
 
-    $q = mysqli_fetch_object($qwe);
+    $q = $qwe->fetchObject();
     return $q->token;
 }
 
@@ -372,7 +372,7 @@ function GetNextFreeFeedMailId()
     if(!$qwe or $qwe->num_rows != 1)
         return 1;
 
-    $q = mysqli_fetch_object($qwe);
+    $q = $qwe->fetchObject();
 
     return $q->max + 1;
 }
@@ -391,7 +391,7 @@ function anonceYears() : array
         GROUP BY year
         ORDER BY year DESC 
         ");
-    if(!$qwe or !$qwe->num_rows) {
+    if(!$qwe or !$qwe->rowCount()) {
         return $years;
     }
 
@@ -411,7 +411,7 @@ function newsYears() : array
         GROUP BY year
         ORDER BY year DESC 
         ");
-    if(!$qwe or !$qwe->num_rows) {
+    if(!$qwe or !$qwe->rowCount()) {
         return $years;
     }
 

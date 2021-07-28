@@ -1,7 +1,6 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
-require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config2.php';
 
 $p_title = 'Состав оркестра';
 $ver = random_str(8);

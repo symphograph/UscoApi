@@ -14,12 +14,12 @@ SELECT * from `news`
 WHERE `new_id` = '$new_id'
 AND `show`
 ");
-if(!$qwe or !$qwe->num_rows)
+if(!$qwe or !$qwe->rowCount())
 {
     header("Location: ../news.php");
     die();
 }
-$q = mysqli_fetch_object($qwe);
+$q = $qwe->fetchObject();
 
 $p_title = 'Южно-Сахалинский камерный оркестр';
 $ver = random_str(8);
@@ -48,7 +48,7 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 <div class="content">
     <?php
     $NewsItem = new NewsItem;
-    $NewsItem->InitByQwe($q);
+    $NewsItem->byQ($q);
     $NewsItem->PajeItem();
     ?>
 </div>
