@@ -498,3 +498,4 @@ ip.php
 .ENV
 /public_html/img/albums/
 /logs/
+/lite_php_browscap.ini
