@@ -15,7 +15,9 @@ class NewsItem
         public string $date = '01.01.1970',
         public int $show = 0,
         public int $evid = 0,
-        public string $link = ''
+        public string $link = '',
+        public string $refName = '',
+        public string $refLink = '',
     )
     {
     }
@@ -48,6 +50,8 @@ class NewsItem
         $this->date = $q->date;
         $this->show = $q->show;
         $this->evid = $q->evid;
+        $this->refName = $q->refName ?? '';
+        $this->refLink = $q->refLink ?? '';
 
 
         if($this->evid){
@@ -98,7 +102,6 @@ class NewsItem
 
     function PajeItem()
     {
-        $img = '<img src="'.$this->img.$this->ver.'" width="320px"/>';
        ?>
         <div class="newsarea">
             <div class="ntitle"><?php echo $this->tit;?></div>
@@ -118,7 +121,18 @@ class NewsItem
                 {
                     echo '<div class="text">' . $this->content . '</div>';
                 }
+
+                if(!empty($this->refLink && !empty($this->refName))){
+                    ?><br><br>
+                    <div>
+                    <b>Источник: </b>
+                    <a href="<?php echo $this->refLink?>"><?php echo $this->refName?></a>
+                    </div>
+                    <?php
+                }
                 ?>
+
+
             </div>
         </div>
         <?php

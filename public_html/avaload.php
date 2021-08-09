@@ -2,8 +2,7 @@
 //
 $root = $_SERVER['DOCUMENT_ROOT'];
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
-require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config2.php';
-if(!$myip) die();
+if(!$cfg->myip) die();
 
 $pers_id = $_GET['pers_id'] ?? 0;
 ?>

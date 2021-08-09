@@ -70,19 +70,24 @@ $headers = array(
     'X-Mailer' => 'PHP/' . phpversion()
 );
 
-$email = mysqli_real_escape_string($dbLink,$email);
-$name = mysqli_real_escape_string($dbLink,$name);
-$msg = mysqli_real_escape_string($dbLink,$msg);
 $msg_id = GetNextFreeFeedMailId();
 $msg_key = random_str(12);
 $agent = $_SERVER['HTTP_USER_AGENT'];
-$agent = mysqli_real_escape_string($dbLink,$agent);
 
 $qwe = qwe("INSERT INTO `feed_mails` 
 (`msg_id`, `email`, `name`, `msg`, `identy`,`msg_time`, `ip`,`agent`,`msg_key`) 
 VALUES 
-('$msg_id','$email','$name','$msg', '$identy',now(),'$ip','$agent','$msg_key')
-");
+(:msg_id, :email, :name, :msg, :identy, now(), :ip, :agent, :msg_key)
+",[
+    'msg_id' => $msg_id,
+    'email' => $email,
+    'name'=> $name,
+    'msg' => $msg,
+    'identy' => $identy,
+    'ip' => $cfg->ip,
+    'agent' => $agent,
+    'msg_key' => $msg_key
+]);
 if(!$qwe)
     die();
 

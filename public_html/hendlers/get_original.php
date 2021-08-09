@@ -1,7 +1,7 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
-if(!$myip) die();
+if(!$cfg->myip) die();
 
 
 $dir = 'img/avatars/upload/';
