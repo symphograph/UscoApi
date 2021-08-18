@@ -780,6 +780,11 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	width: 80px;
 	height: 80px;
 }
+
+.danger {
+    color: red;
+}
+
 /* Adapting block */
 
 @media screen and (min-device-width: 800px) {
