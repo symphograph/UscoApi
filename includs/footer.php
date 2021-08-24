@@ -50,4 +50,4 @@
         <a href="tel:+78002000122">8-800-2000-122</a></p>
     </div>
 </div>
-<script type="text/javascript" src="https://culturaltracking.ru/static/js/spxl.js?pixelId=1032" data-pixel-id="1032"></script>
+<script async src="https://culturaltracking.ru/static/js/spxl.js?pixelId=16513" data-pixel-id="16513"></script>
