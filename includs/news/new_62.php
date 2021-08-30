@@ -1,7 +1,7 @@
-
-<div class="text">
-    <img src="img/logo/euterpe.svg" width="100%">
+ <div class="postEuterpe">
+    <img src="img/logo/euterpe.svg" style="box-shadow: none" width="100%">
     <br><br>
+     <div class="EuterpText">
     С 27 октября по 3 ноября 2021 года Муниципальное бюджетное учреждение «Южно-Сахалинский камерный оркестр» при
     поддержке Компании «ЭКСОН НЕФТЕГАЗ ЛИМИТЕД» проводит IV Дальневосточный музыкальный фестиваль для детей и юношества
     «Звезды Эвтерпы». Главная цель фестиваля - выявление и поддержка одаренных детей и молодежи. Основатель и
@@ -30,5 +30,6 @@
     <br><br>
     <a href="documents/euterpe/request_form.docx" target="_blank">Заявка</a><br><br>
     <a href="documents/euterpe/state_2021.pdf" target="_blank">Положение</a>
-
+     </div>
 </div>
+<br><br>

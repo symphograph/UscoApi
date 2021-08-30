@@ -790,9 +790,29 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
     color: red;
 }
 
+.postEuterpe {
+    background-color: #fbf5db;
+    box-shadow: 0 0 0.5em black;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    text-align: justify;
+    font: caption;
+    color: #4A3B22;
+    text-shadow: 1px 1px 1px rgb(255 255 255); padding: 4em"
+}
+
+.EuterpText {
+    padding: 1em;
+}
+
 /* Adapting block */
 
 @media screen and (min-device-width: 800px) {
+
+    .EuterpText {
+        padding: 4em;
+
+    }
 
 	.conductor{
 
@@ -861,7 +881,6 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 		font-size: 12px;
 	}
 }
-
 
 @media screen and (max-device-width: 399px) {
 
