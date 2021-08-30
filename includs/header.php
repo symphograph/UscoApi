@@ -59,7 +59,7 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
                 <div class="sitename">
                     <div>
                         <a id="uscologo" href="<?php echo '/index.php';?>">
-                            <img src="<?php echo $host;?>img/logo/logo.svg?ver=2"  alt="Логотип"/>
+                            <img src="img/logo/logo.svg?ver=2"  alt="Логотип"/>
                         </a>
                         <a id="orgname" href="<?php echo $host;?>index.php">Южно-Сахалинский камерный оркестр</a>
                     </div>

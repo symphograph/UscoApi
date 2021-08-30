@@ -69,6 +69,21 @@ ORDER BY anonces.datetime
         ?>
     </div>
 </div>
+    <div class="eventsarea">
+        <a href="new.php?new_id=62" style="text-decoration: none">
+            <div style="background-color: #fbf5db">
+                <img src="img/logo/euterpe.svg" alt="ttt" style="width: 100%">
+                <div style="
+                    color: #2d3a63; padding: 1em;
+                    text-align: center;
+                    font-family: GoudyTrajan,serif;">
+                    IV Дальневосточный музыкальный фестиваль для детей и юношества
+                    <br><br><br>
+                </div>
+            </div>
+        </a><br><hr><br>
+    </div>
+
 <div class="eventsarea">
     <?php
     $qwe = qwe( "SELECT * FROM video ORDER BY v_date DESC LIMIT 6");
@@ -84,16 +99,6 @@ ORDER BY anonces.datetime
             <br>
             по независимой оценке качества условий оказания услуг учреждениями культуры<br><br>
         </div>
-
-        <a href="http://polerusskoe.ru/" target="_blank"
-           style="color: white; font-size: 20px; text-decoration: none;">
-            <div class="opros rupole" >
-                <p style="font-family: 'Rubik Mono One',serif;">Русское поле</p>
-                <br>
-
-                Фестиваль<br>славянского<br>искусства<br>
-            </div>
-        </a>
 
     </div>
     <div class="eventsarea">

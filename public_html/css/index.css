@@ -1,12 +1,17 @@
 @charset "utf-8";
 @font-face {
-	font-family: 'Rubik Mono One'; /* Гарнитура шрифта */
-	src: url(/fonts/RubikMonoOne-Regular.ttf) format("opentype"); /* Путь к файлу со шрифтом */
+	font-family: 'Rubik Mono One';
+	src: url(/fonts/RubikMonoOne-Regular.ttf) format("opentype");
 }
 
 @font-face {
-	font-family: 'Open Sans Condensed'; /* Гарнитура шрифта */
-	src: url(/fonts/Open_Sans_Condensed/OpenSansCondensed-Bold.ttf) format("opentype"); /* Путь к файлу со шрифтом */
+	font-family: 'Open Sans Condensed';
+	src: url(/fonts/Open_Sans_Condensed/OpenSansCondensed-Bold.ttf) format("opentype");
+}
+
+@font-face {
+    font-family: 'GoudyTrajan';
+    src: url(/fonts/GoudyTrajan-Medium.otf) format("opentype");
 }
 
 a{
