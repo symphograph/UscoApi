@@ -806,9 +806,14 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 }
 
 #sputnikArea {
-padding: 2em;
+    padding: 2em;
     display: flex;
     justify-content: center;
+}
+
+.newsImg {
+    width: 100%;
+    box-shadow: 0 0 0.5em black;
 }
 
 /* Adapting block */
