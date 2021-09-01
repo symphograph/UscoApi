@@ -805,6 +805,12 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
     padding: 1em;
 }
 
+#sputnikArea {
+padding: 2em;
+    display: flex;
+    justify-content: center;
+}
+
 /* Adapting block */
 
 @media screen and (min-device-width: 800px) {
@@ -898,3 +904,4 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	}
 
 }
+
