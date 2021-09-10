@@ -38,7 +38,7 @@ a.disabled{
 	margin: auto;
 	background-repeat: no-repeat;
 	background-image: url(../img/hed.png);
-	background-size: cover;	
+	background-size: cover;
 }
 
 .hederc{
@@ -415,7 +415,7 @@ input[type="submit"]:active , button[type="submit"]:active, input[type="file"]:a
 .ftiocon{
 	width: 50px;
 	height: 50px;
-	background-size: contain;	
+	background-size: contain;
 }
 
 .text{
@@ -453,7 +453,7 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	padding-left: 35px;
 	display:table-cell;
 	vertical-align:bottom;
-	
+
 }
 
 .tel:hover{
@@ -545,12 +545,9 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
+    margin: auto;
 }
 
-.logorow{
-
-	margin: auto;
-}
 .footcol > p > a{
 	text-decoration: none;
 	color: #babab8;
@@ -655,6 +652,7 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	float: left;
 	padding: 30px;
 	/*width: 300px;*/
+    line-height: 0;
 }
 
 

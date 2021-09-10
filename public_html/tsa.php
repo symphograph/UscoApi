@@ -22,11 +22,9 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/header.php';
 
 
 <div class="content">
-
     <div class="text">
         <div class="p_title"><?php echo $p_title; ?></div>
         <div class="rcol"><img src="img/tsa1.jpg"/></div>
-
         <div class="paragraph"><br>
             Художественный руководитель и главный дирижёр Южно-Сахалинского Камерного Оркестра.<br><br>
             Тигран Ахназарян окончил Ереванскую государственную консерваторию им. Комитаса по классу скрипки (профессор

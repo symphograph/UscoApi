@@ -93,7 +93,6 @@ ORDER BY anonces.datetime
     $qwe = qwe( "SELECT * FROM video ORDER BY v_date DESC LIMIT 6");
     VideoItems($qwe);
     ?>
-
 </div>
     <div class="tisers">
         <div class="opros">

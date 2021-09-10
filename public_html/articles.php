@@ -26,28 +26,26 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
 
 
 <div class="content">
+    <script type="text/javascript" src="https://vk.com/js/api/openapi.js?159"></script>
+    <div class="eventsarea">
+        <div class="artbox">
+            <div class="article">
+                <div id="my_article-tigran-ahnazaryan"></div>
+                <script type="text/javascript">
+                    VK.Widgets.Article('my_article-tigran-ahnazaryan', '@-166038484-tigran-ahnazaryan');
+                </script>
+            </div>
+        </div>
 
-
-<script type="text/javascript" src="https://vk.com/js/api/openapi.js?159"></script>
-<div class="eventsarea">
-<div class="artbox">
-<div class="article">
-<div id="my_article-tigran-ahnazaryan"></div>
-<script type="text/javascript">
-VK.Widgets.Article('my_article-tigran-ahnazaryan', '@-166038484-tigran-ahnazaryan');
-</script>
-</div>
-</div>
-
-<div class="artbox">
-<div class="article">
-<div id="my_article-molitva-orkestru"></div>
-<script type="text/javascript">
-VK.Widgets.Article('my_article-molitva-orkestru', '@-166038484-molitva-orkestru');
-</script>
-</div>
-</div>
-</div>
+        <div class="artbox">
+            <div class="article">
+                <div id="my_article-molitva-orkestru"></div>
+                <script type="text/javascript">
+                    VK.Widgets.Article('my_article-molitva-orkestru', '@-166038484-molitva-orkestru');
+                </script>
+            </div>
+        </div>
+    </div>
 </div>
 
 
