@@ -652,7 +652,7 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	float: left;
 	padding: 30px;
 	/*width: 300px;*/
-    line-height: 0;
+    /*line-height: 0;*/
 }
 
 
