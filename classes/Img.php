@@ -14,14 +14,13 @@ class Img
     private function versioner()
     {
         $file = $_SERVER['DOCUMENT_ROOT'].'/' . $this->file;
-        if(!file_exists($_SERVER['DOCUMENT_ROOT'].'/' . $this->file)){
+        if(!file_exists($file)){
             return '';
         }
 
         $this->md5 = md5_file($file);
 
         return $this->file . '?ver=' . $this->md5;
-
     }
 
     public function tagArticle() : string
