@@ -21,7 +21,7 @@
 
 @media screen and (min-device-width: 800px) {
 	.group{
-		min-height: 440px;
+		min-height: 25em;
 	}
 
 }
@@ -44,6 +44,7 @@
 	display: flex;
 	justify-content: flex-start;
 	height: 52px;
+    cursor: default;
 }
 
 .ava{

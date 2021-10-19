@@ -133,7 +133,7 @@ ORDER BY
 
         ?>
 
-        <div class="pers_cell" id="p_<?php echo $pers_id?>" style="cursor: <?php if($photo) echo 'pointer'; else echo 'auto'?>">
+        <div class="pers_cell" id="p_<?php echo $pers_id?>">
             <div class="ava" style="background-image: url(<?php echo $ava?>)">
                 <div class="ava_round"></div>
             </div>
