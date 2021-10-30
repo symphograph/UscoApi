@@ -33,9 +33,15 @@ foreach($query as $q)
 	$time = date('H:i',strtotime($datetime));
 	$description = '<br><p><b>'.$date.' '.$time.'</b></p><br>'.$description;
 	$imglink = $host.'img/afisha/'.$img;
-	$size = getimagesize($imglink);
-	$width = $size[0];
-	$height = $size[1];
+    $file = $_SERVER['DOCUMENT_ROOT'].'/img/afisha/'.$img;
+    $width = 1080;
+    $height = 1520;
+    if(file_exists($file)){
+        $size = getimagesize($file);
+        $width = $size[0];
+        $height = $size[1];
+    }
+
 	//$bg = 'style="background-image: url(img/afisha/'.$q['img'].')"' ?? '';
     $bg = '';
     $prrow = '';
