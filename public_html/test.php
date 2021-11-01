@@ -1,9 +1,9 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/ip.php';
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/functions/functions.php';
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
 if(!$cfg->myip) exit;
+
 ?>
 <!doctype html>
 <html lang="ru">

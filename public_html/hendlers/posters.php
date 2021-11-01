@@ -33,11 +33,11 @@ $qwe = qwe("
         anonces
         INNER JOIN halls ON anonces.hall_id = halls.hall_id
         LEFT JOIN video ON anonces.concert_id = video.concert_id
-        WHERE year(datetime) = '$year'
-        ORDER BY anonces.datetime ".$sorts[$sort]);
+        WHERE year(datetime) = :year
+        ORDER BY anonces.datetime ".$sorts[$sort],['year'=>$year]);
         if(!$qwe or !$qwe->rowCount())
             die();
-
+$qwe = $qwe->fetchAll(PDO::FETCH_CLASS,"Anonce");
 foreach($qwe as $q)
 {
     $Anonce = new AnonceCard();

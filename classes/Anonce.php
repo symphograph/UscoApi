@@ -8,6 +8,7 @@ class Anonce
     public string|null $prog_name = 'Название';
     public string|null $sdescr = '';
     public string|null $description;
+    public string|null $img;
     public string|null $topimg;
     public string|null $aftitle;
     public string|null $datetime;
@@ -17,22 +18,30 @@ class Anonce
     public string|null $hall_name = '';
     public string|null $youtube_id = '';
     public bool $complited = false;
+    public Hall $Hall;
+    public string|null $map;
     const PAYS = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Билеты в продаже'];
 
-
-    public function clone(object|array $q)
+    public function __set(string $name, $value): void
     {
-        $q = (object) $q;
+
+    }
+
+    public function clone(Anonce $q): bool
+    {
+        //$q = (object) $q;
         foreach ($q as $k=>$v){
             if(!$v or empty($v))
                 continue;
             $this->$k = $v;
         }
         $this->complited = (strtotime($this->datetime) < (time()+3600*8));
+        $this->Hall = new Hall(id: $this->hall_id, name: $this->hall_name, map: $this->map);
         return true;
     }
 
-    public function byId(int $ev_id){
+    public function byId(int $ev_id): bool
+    {
         $qwe = qwe("
             SELECT
             a.*,
@@ -42,18 +51,18 @@ class Anonce
             FROM
             anonces as a
             INNER JOIN halls as h ON a.hall_id = h.hall_id
-            WHERE a.concert_id = '$ev_id'
-            ");
+            WHERE a.concert_id = :ev_id
+            ",['ev_id'=>$ev_id]);
 
         if(!$qwe or !$qwe->rowCount())
             return false;
 
-        $q = $qwe->fetchObject();
+        $q = $qwe->fetchAll(PDO::FETCH_CLASS,"Anonce");
 
-        return self::clone($q);
+        return self::clone($q[0]);
     }
 
-    public function EvdateFormated()
+    public function EvdateFormated(): string
     {
         $evdate = strtotime($this->datetime);
 
@@ -65,4 +74,16 @@ class Anonce
         else
             return date('d.m.Y в H:i',$evdate);
     }
+
+    public function fDate() : string
+    {
+        return date('d.m.Y',strtotime($this->datetime));
+    }
+
+    public function fTime() : string
+    {
+        return date('H:i',strtotime($this->datetime));
+    }
+
+
 }

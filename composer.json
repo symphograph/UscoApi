@@ -16,6 +16,7 @@
     "ext-curl": "*",
     "ext-bcmath": "*",
     "ext-json": "*",
-    "ext-imagick": "*"
+    "ext-imagick": "*",
+    "ext-pdo": "*"
   }
 }

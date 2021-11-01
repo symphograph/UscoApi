@@ -4,10 +4,8 @@
 class AnonceCard extends Anonce
 {
     public string|null $prrow = '';
-    public string|null $img;
-    public string|null $map;
 
-    public function clone(object|array $q)
+    public function clone(Anonce $q) : bool
     {
         if(!parent::clone($q)){
             return false;
@@ -39,7 +37,7 @@ class AnonceCard extends Anonce
                     </div>
                     <br>
                     <?php self::evDate(); ?>
-                    <a href="<?php echo $this->map;?>" class="hall_href" target="_blank"><?php echo $this->hall_name;?></a>
+                    <a href="<?php echo $this->Hall->map;?>" class="hall_href" target="_blank"><?php echo $this->Hall->name;?></a>
                 </div>
 
 
@@ -77,7 +75,7 @@ class AnonceCard extends Anonce
         <?php
     }
 
-    function byeButton()
+    function byeButton(): string
     {
         $btnHref = 'event.php?evid=' . $this->ev_id;
         $btnText = 'Подробно';

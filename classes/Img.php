@@ -3,21 +3,36 @@
 class Img
 {
     private string $md5 = '';
+    private bool $exist;
+    public int $width;
+    public int $height;
+    public string $verLink = '';
 
     public function __construct(
-        private string $file = ''
+        public string $file = ''
     )
-    {
 
-    }
-
-    private function versioner()
     {
         $file = $_SERVER['DOCUMENT_ROOT'].'/' . $this->file;
-        if(!file_exists($file)){
+        $this->exist = file_exists($file);
+        if(!$this->exist)
+            return;
+
+        $size = getimagesize($file);
+        $this->width = $size[0];
+        $this->height = $size[1];
+
+        $this->verLink = self::versioner();
+    }
+
+    private function versioner(): string
+    {
+
+        if(!$this->exist){
             return '';
         }
 
+        $file = $_SERVER['DOCUMENT_ROOT'].'/' . $this->file;
         $this->md5 = md5_file($file);
 
         return $this->file . '?ver=' . $this->md5;
@@ -25,8 +40,7 @@ class Img
 
     public function tagArticle() : string
     {
-        $url = self::versioner();
-        return "<img src='$url' class='newsImg'>";
+        return "<img src='$this->verLink' class='newsImg'>";
     }
 
 

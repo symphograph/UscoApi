@@ -57,19 +57,20 @@ halls.map
 FROM
 anonces
 INNER JOIN halls ON anonces.hall_id = halls.hall_id
-WHERE /*anonces.concert_id > 3 AND*/ datetime >= NOW()
+WHERE  datetime >= NOW()
 ORDER BY anonces.datetime
 ");
-
-
+$qwe = $query->fetchAll(PDO::FETCH_CLASS,"Anonce");
 ?>
     <div class="evcols">
         <?php
-            foreach($query as $q) {
+            foreach($qwe as $q) {
+
                 $Anonce = new AnonceCard();
                 $Anonce->clone($q);
                 $Anonce->printItem();
             }
+
         ?>
     </div>
 </div>
