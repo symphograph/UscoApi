@@ -42,6 +42,4 @@ class Img
     {
         return "<img src='$this->verLink' class='newsImg'>";
     }
-
-
 }

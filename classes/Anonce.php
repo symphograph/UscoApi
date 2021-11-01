@@ -85,5 +85,12 @@ class Anonce
         return date('H:i',strtotime($this->datetime));
     }
 
+    public function getProgNameClean() : string
+    {
+        $progName = str_replace('<br>',' ',$this->prog_name);
+        $progName = strip_tags($progName);
+        return preg_replace('/^ +| +$|( ) +/m', '$1', $progName);
+    }
+
 
 }

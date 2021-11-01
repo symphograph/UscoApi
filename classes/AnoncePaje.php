@@ -14,7 +14,6 @@ class AnoncePaje extends Anonce
 
     public function getHtml() : string
     {
-        $description = '<br><p><b>'.$this->fDate().' '.$this->fTime().'</b></p><br>'.$this->description;
         $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
         ob_start();
         ?>
@@ -25,8 +24,10 @@ class AnoncePaje extends Anonce
             <div class="eventboxin">
                 <div class="text">
                     <div class="eventcol"></div>
-                    <p><b><?php echo strip_tags($this->prog_name) ?></b></p>
-                    <p><?php echo $description?></p>
+                    <p><b><?php echo self::getProgNameClean() ?></b></p>
+                    <br>
+                    <p><b><?php echo $this->fDate().' '.$this->fTime()?></b></p>
+                    <?php echo $this->description?>
                     <?php
                     if (strtotime($this->datetime) > strtotime('2020-03-10')){
                         ?>
