@@ -117,7 +117,7 @@ class AnoncePaje extends Anonce
             return false;
         }
 
-        $this->Poster = new Img($file);
+        $this->Poster = new Img($newFile);
         return $this->Poster->exist;
 
     }
