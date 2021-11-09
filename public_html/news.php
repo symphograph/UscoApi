@@ -30,11 +30,11 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
 <div class="content">
     <div class="eventsarea">
         <?php
-        $query = qwe("
+        /*$query = qwe("
         SELECT * from `news`
-        WHERE `show` = 1
+        WHERE `show` in (1,3)
         ORDER BY `date` DESC
-        ");
+        ");*/
 
         ?>
         <div class="eventsarea">
@@ -46,8 +46,17 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
                     <?php selectYear(newsYears());?>
 
                     <select name="filter" id="filter">
-                        <option value="0">Новости оркестра</option>
-                        <option <?php if(isset($_GET['filter'])) echo ' selected ' ?> value="1">Прочие новости</option>
+                        <?php
+                        //$filter = $_GET['filter'] ?? 1;
+                        $filter = intval($_GET['filter'] ?? 1);
+                        $sel = ['',' selected '];
+                        if(!$filter)
+                            $filter = 1;
+
+                        ?>
+                        <option <?php echo $sel[intval($filter == 1)]?> value="1">Новости оркестра</option>
+                        <option <?php echo $sel[intval($filter == 2)]?> value="2">Прочие новости</option>
+                        <option <?php echo $sel[intval($filter == 3)]?> value="3">Звезды Эвтерпы</option>
                     </select>
                 </div>
             </div><br><br>

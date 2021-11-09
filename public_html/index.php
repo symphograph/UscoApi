@@ -75,7 +75,7 @@ $qwe = $query->fetchAll(PDO::FETCH_CLASS,"Anonce");
     </div>
 </div>
     <div class="eventsarea">
-        <a href="new.php?new_id=62" style="text-decoration: none">
+        <a href="news.php?filter=3" style="text-decoration: none">
             <div style="background-color: #fbf5db">
                 <img src="img/logo/euterpe.svg" alt="ttt" style="width: 100%">
                 <div style="

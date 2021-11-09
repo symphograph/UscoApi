@@ -84,7 +84,7 @@ class DB
     private function writelog($typelog, $log_text)
     {
         $log = fopen($_SERVER['DOCUMENT_ROOT'].'/../logs/'.$typelog.'.txt','a+');
-        fwrite($log, "$log_text\r\n");
+        $wr = fwrite($log, "$log_text\r\n");
         fclose($log);
     }
 

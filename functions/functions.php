@@ -151,7 +151,7 @@ function NewsCol($qwe = false)
         if(!$qwe)
         $qwe = qwe("
         SELECT * from `news`
-        WHERE `show` = 1
+        WHERE `show` in (1,3)
         ORDER BY `date` DESC
         limit 5
         ");
