@@ -3,10 +3,11 @@
 class Img
 {
     private string $md5 = '';
-    private bool $exist;
+    public bool $exist;
     public int $width;
     public int $height;
     public string $verLink = '';
+    public string $fileName = '';
 
     public function __construct(
         public string $file = ''
@@ -14,6 +15,7 @@ class Img
 
     {
         $file = $_SERVER['DOCUMENT_ROOT'].'/' . $this->file;
+        $this->fileName = basename($file);
         $this->exist = file_exists($file);
         if(!$this->exist)
             return;
@@ -42,4 +44,5 @@ class Img
     {
         return "<img src='$this->verLink' class='newsImg'>";
     }
+
 }

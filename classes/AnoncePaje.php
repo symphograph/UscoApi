@@ -3,12 +3,17 @@
 class AnoncePaje extends Anonce
 {
     public Img $Poster;
+
+    /**
+     * @throws ImagickException
+     */
     public function __construct(int $evid = 0)
     {
         if(!$evid || !parent::byId($evid)){
             return false;
         }
-        $this->Poster = new Img('img/afisha/'.$this->img);
+
+        self::getPosterUrl(self::imgSizeOptimal());
         return true;
     }
 
@@ -68,5 +73,62 @@ class AnoncePaje extends Anonce
 
         <?php
         return ob_get_clean();
+    }
+
+    /**
+     * @throws ImagickException
+     */
+    public function getPosterUrl(int $size = 480) : bool
+    {
+        $file = 'img/posters/'.$size.'/'.$this->img;
+        $this->Poster = new Img($file);
+        if($this->Poster->exist){
+            return true;
+        }
+
+        $file = 'img/posters/origins/'.$this->img;
+
+        if(!file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$file)){
+            $file = 'img/afisha/'.$this->img;
+            if(!file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$file)){
+                return false;
+            }
+        }
+
+        return $this->reCachePoster($size,$file);
+    }
+
+    /**
+     * @throws ImagickException
+     */
+    public function reCachePoster(int $size, string $file): bool
+    {
+        $image = new Imagick($file);
+        $image->setImageFormat ("jpeg");
+        $image->stripimage();
+        $image->setImageResolution(72,72);
+        $image->resampleImage(72,72,\Imagick::FILTER_LANCZOS,1);
+        $image->resizeImage($size,0,0,1);
+
+        $newFile = 'img/posters/' . $size . '/' . pathinfo($file,PATHINFO_FILENAME) . '.jpg';
+        try {
+            $image->writeImage($newFile);
+        } catch (ImagickException $e) {
+            return false;
+        }
+
+        $this->Poster = new Img($file);
+        return $this->Poster->exist;
+
+    }
+
+    private function imgSizeOptimal() : int
+    {
+        $agent = get_browser();
+        if($agent->ismobiledevice){
+            return 1080;
+        }
+
+        return 480;
     }
 }
