@@ -90,20 +90,31 @@ class NewsItem
 
     }
 
+    private function isThumbnailCached() : bool
+    {
+        $file = $_SERVER['DOCUMENT_ROOT'].'/' . $this->img;
+        $ext = pathinfo($file,PATHINFO_EXTENSION);
+        $cachedFile = 'img/news/pw/' . $this->id . $ext;
+        if(file_exists($cachedFile) && !is_dir($cachedFile)){
+            $this->pwImg = new Img($cachedFile);
+            return true;
+        }
+        $this->pwImg = new Img($this->img);
+        return false;
+    }
+
     function PrintItem()
     {
-        $this->pwImg = new Img($this->img);
-        if(!$this->pwImg->exist){
-            $this->pwImg = new Img('img/news/default_news_img.svg');
+        if(!self::isThumbnailCached()){
+            if(!$this->pwImg->exist){
+                $this->pwImg = new Img('img/news/default_news_img.svg');
+            }
+
+            if($this->pwImg->extension != 'svg'){
+                self::resizePw($this->pwImg->file, 260, $this->pwImg->extension);
+
+            }
         }
-
-        if($this->pwImg->extension != 'svg'){
-            self::resizePw($this->pwImg->file, 260, $this->pwImg->extension);
-
-        }
-
-        //printr(Img::isImage($_SERVER['DOCUMENT_ROOT']. '/' .$this->pwImg->file));
-        //printr($this->pwImg->extension);
         ?>
 
         <div class="narea">
