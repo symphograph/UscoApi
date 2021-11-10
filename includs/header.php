@@ -32,7 +32,8 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
                     <ul class="submenu">
                     <li><a href="<?php echo $host;?>news.php">Новости оркестра</a></li>
                     <li><a href="<?php echo $host;?>articles.php">Статьи</a></li>
-                    <li><a href="<?php echo $host;?>news.php?filter=1">Прочие новости</a></li>
+                    <li><a href="<?php echo $host;?>news.php?filter=3">Звезды Эвтерпы</a></li>
+                    <li><a href="<?php echo $host;?>news.php?filter=2">Прочие новости</a></li>
                     </ul>
                 </li>
 
