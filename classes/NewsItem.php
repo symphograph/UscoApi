@@ -46,11 +46,11 @@ class NewsItem
         $this->descr = $q->descr ?? '';
         $this->content = $q->content ?? '';
         $this->img = $q->img ?? '';
-        if(empty($this->img))
-            $this->img = 'img/news/default_news_img.svg';
-        if(!file_exists($_SERVER['DOCUMENT_ROOT'] . '/' . $this->img))
-            $this->img = $q->img = 'img/news/default_news_img.svg';
-        $this->ver = '?ver=' . md5_file($_SERVER['DOCUMENT_ROOT'] . '/' . $this->img);
+        //if(empty($this->img))
+        //    $this->img = 'img/news/default_news_img.svg';
+        //if(!file_exists($_SERVER['DOCUMENT_ROOT'] . '/' . $this->img))
+        //    $this->img = $q->img = 'img/news/default_news_img.svg';
+        //$this->ver = '?ver=' . md5_file($_SERVER['DOCUMENT_ROOT'] . '/' . $this->img);
         $this->date = $q->date;
         $this->show = $q->show;
         $this->evid = $q->evid;
@@ -69,17 +69,48 @@ class NewsItem
         return true;
     }
 
+    private function resizePw(string $file, int $size, string $extension)
+    {
+        $newFile = 'img/news/pw/' . $this->id . '.' . $extension;
+        if(file_exists($_SERVER['DOCUMENT_ROOT']. '/'. $newFile)){
+            $this->pwImg = new Img($newFile);
+            return $this->pwImg->exist;
+        }
+        $image = new Imagick($_SERVER['DOCUMENT_ROOT']. '/' .$file);
+        $image->thumbnailImage(260,162);
+
+        try {
+            $image->writeImage($_SERVER['DOCUMENT_ROOT']. '/'. $newFile);
+        } catch (ImagickException $e) {
+            return false;
+        }
+
+        $this->pwImg = new Img($newFile);
+        return $this->pwImg->exist;
+
+    }
+
     function PrintItem()
     {
-        //$this->pwImg = new Img($this->img);
-        //$this->pwImg->
+        $this->pwImg = new Img($this->img);
+        if(!$this->pwImg->exist){
+            $this->pwImg = new Img('img/news/default_news_img.svg');
+        }
+
+        if($this->pwImg->extension != 'svg'){
+            self::resizePw($this->pwImg->file, 260, $this->pwImg->extension);
+
+        }
+
+        //printr(Img::isImage($_SERVER['DOCUMENT_ROOT']. '/' .$this->pwImg->file));
+        //printr($this->pwImg->extension);
         ?>
 
         <div class="narea">
         <div class="nimg_block">
             <div>
                 <a href="<?php echo $this->link;?>">
-                    <img src="<?php echo $this->img, $this->ver?>" width="260px" alt="Изображение не найдено"/>
+                    <img src="<?php echo $this->pwImg->verLink?>" width="260px" alt="Изображение не найдено"/>
                 </a>
             </div>
         </div>

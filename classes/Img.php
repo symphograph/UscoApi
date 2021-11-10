@@ -8,7 +8,11 @@ class Img
     public int $height;
     public string $verLink = '';
     public string $fileName = '';
+    public string $extension = '';
 
+    /**
+     * @throws ImagickException
+     */
     public function __construct(
         public string $file = ''
     )
@@ -17,8 +21,10 @@ class Img
         $this->file = str_replace('%20', ' ', $this->file);
         $file = $_SERVER['DOCUMENT_ROOT'].'/' . $this->file;
         $this->fileName = basename($file);
-        $this->exist = file_exists($file);
+        $this->extension = pathinfo($file,PATHINFO_EXTENSION);
+        $this->exist = file_exists($file) && !is_dir($file);
         if(!$this->exist){
+            //printr($file);
             return;
         }
 
@@ -45,6 +51,42 @@ class Img
     public function tagArticle() : string
     {
         return "<img src='$this->verLink' class='newsImg'>";
+    }
+
+    public static function isImage(string $filename)
+    {
+
+        $img_types = [
+            0=>'UNKNOWN',
+            1=>'GIF',
+            2=>'JPEG',
+            3=>'PNG',
+            4=>'SWF',
+            5=>'PSD',
+            6=>'BMP',
+            7=>'TIFF_II',
+            8=>'TIFF_MM',
+            9=>'JPC',
+            10=>'JP2',
+            11=>'JPX',
+            12=>'JB2',
+            13=>'SWC',
+            14=>'IFF',
+            15=>'WBMP',
+            16=>'XBM',
+            17=>'ICO',
+            18=>'webp'
+        ];
+        $is        = @getimagesize($filename);
+
+        if(!$is)
+            return false;
+
+        if(!key_exists($is[2],$img_types))
+            return false;
+
+        return strtolower($img_types[$is[2]]);
+
     }
 
 }
