@@ -24,7 +24,6 @@ class Img
 
         $image = new Imagick($file);
 
-        //$size = getimagesize($file);
         $this->width = $image->getImageWidth();
         $this->height = $image->getImageHeight();
         $this->verLink = self::versioner();

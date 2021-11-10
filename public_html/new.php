@@ -11,7 +11,7 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
 
 $qwe = qwe("
 SELECT * from `news`
-WHERE `new_id` = '$new_id'
+WHERE `id` = '$new_id'
 AND `show`
 ");
 if(!$qwe or !$qwe->rowCount())
@@ -47,9 +47,9 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 
 <div class="content">
     <?php
-    $NewsItem = new NewsItem;
-    $NewsItem->byQ($q);
-    $NewsItem->PajeItem();
+    $NewsItem = new NewsItem(id: $new_id);
+    //$NewsItem->byQ($q);
+    echo $NewsItem->PajeItem();
     ?>
 </div>
 <?php

@@ -4,30 +4,34 @@
 class NewsItem
 {
 
+    public Img $pwImg;
 
     public function __construct(
-        public int $id = 0,
-        public string $tit = 'Заголовок новости',
+        public int    $id = 0,
+        public string $title = 'Заголовок новости',
         public string $descr = 'Краткое описание',
         public string $content = 'Текст новости',
         public string $img = 'img/news/default_news_img.svg',
         public string $ver = '892648eb37542d469424b3448268d452',
         public string $date = '01.01.1970',
-        public int $show = 0,
-        public int $evid = 0,
+        public int    $show = 0,
+        public int    $evid = 0,
         public string $link = '',
         public string $refName = '',
         public string $refLink = '',
     )
     {
+        if($id)
+            return self::byId($id);
+        return false;
     }
 
-    function byId(int $new_id) : bool
+    function byId(int $id) : bool
     {
         $qwe = qwe("
         SELECT * from `news`
-        WHERE `new_id` = '$new_id'
-        ");
+        WHERE `id` = :id
+        ",['id'=>$id]);
         if(!$qwe or !$qwe->rowCount())
             return false;
         $q = $qwe->fetchObject();
@@ -37,8 +41,8 @@ class NewsItem
 
     function byQ(object $q)
     {
-        $this->id = $q->new_id;
-        $this->tit = $q->new_tit ?? '';
+        $this->id    = $q->id;
+        $this->title = $q->title ?? '';
         $this->descr = $q->descr ?? '';
         $this->content = $q->content ?? '';
         $this->img = $q->img ?? '';
@@ -67,6 +71,8 @@ class NewsItem
 
     function PrintItem()
     {
+        //$this->pwImg = new Img($this->img);
+        //$this->pwImg->
         ?>
 
         <div class="narea">
@@ -82,7 +88,7 @@ class NewsItem
         <div class="tcol">
             <div class="ntitle">
                 <a href="<?php echo $this->link;?>">
-                    <b><?php echo $this->tit;?></b>
+                    <b><?php echo $this->title;?></b>
                 </a>
             </div>
             <br>
@@ -90,22 +96,25 @@ class NewsItem
                 <?php echo $this->descr;?>
             </a>
             <br><br>
-            <?php
-            $ndate = strtotime($this->date);
-            $ndate = ru_date('',$ndate);
-            ?>
-            <span class="ndate"><?php echo $ndate;?></span>
+            <span class="ndate"><?php echo self::dateFormated()?></span>
             <br>
         </div>
         </div><?php
     }
 
-    function PajeItem()
+    private function dateFormated() : string
     {
+        return ru_date('',strtotime($this->date));
+    }
+
+    function PajeItem() : string
+    {
+        ob_start();
        ?>
         <div class="newsarea">
-            <div class="ntitle"><?php echo $this->tit;?></div>
+            <div class="ntitle"><?php echo $this->title;?></div>
             <hr>
+
             <div class="narea">
 
                 <?php
@@ -137,5 +146,6 @@ class NewsItem
             </div>
         </div>
         <?php
+        return ob_get_clean();
     }
 }
