@@ -1,5 +1,10 @@
- <div class="postEuterpe">
-    <img src="img/logo/euterpe.svg" style="box-shadow: none" width="100%">
+<?php
+$new_id = 62;
+$imgFolder = 'img/news/' . $new_id . '/';
+?>
+<div class="postEuterpe">
+<img src="img/logo/euterpe.svg" style="box-shadow: none" width="100%">
+     <?php /*echo (new Img('img/logo/euterpe.svg'))->tagArticle() */?>
     <br><br>
      <div class="EuterpText">
     С 27 октября по 3 ноября 2021 года Муниципальное бюджетное учреждение «Южно-Сахалинский камерный оркестр» при

@@ -1,6 +1,10 @@
+<?php
+$new_id = 35;
+$imgFolder = 'img/news/' . $new_id . '/';
+?>
 <div class="text"><br>
     <a href="http://polerusskoe.ru/">
-        <img src="img/news/rp2.jpg" width="100%">
+        <?php echo (new Img('img/news/35/001.jpg'))->tagArticle() ?>
     </a>
 
     <br><br>

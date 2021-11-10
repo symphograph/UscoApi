@@ -1,8 +1,12 @@
+<?php
+$new_id = 60;
+$imgFolder = 'img/news/' . $new_id . '/';
+?>
 <div class="text"><br>
     <br><br>
 
     <br><br>
-    <img src="/img/news/60/01.jpg" width="100%">
+    <?php echo (new Img('img/news/60/01.jpg'))->tagArticle() ?>
     <br><br>
 
     Курс позволит слушателям сформировать навыки по управлению бизнес-процессами и подготовить проект в сфере креативных

@@ -1,3 +1,7 @@
+<?php
+$new_id = 63;
+$imgFolder = 'img/news/' . $new_id . '/';
+?>
 <div class="text"><br>
     <br><br>
     21 августа Южно-Сахалинский камерный оркестр (художественный

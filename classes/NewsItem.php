@@ -112,6 +112,7 @@ class NewsItem
                 $file = dirname($_SERVER['DOCUMENT_ROOT']).'/includs/news/new_'.$this->id.'.php';
                 if(file_exists($file))
                 {
+                    $img = (new Img($this->img))->tagArticle();
                     include_once $file;
 
                 }elseif(!$this->content)

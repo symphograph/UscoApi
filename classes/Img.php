@@ -14,16 +14,19 @@ class Img
     )
 
     {
+        $this->file = str_replace('%20', ' ', $this->file);
         $file = $_SERVER['DOCUMENT_ROOT'].'/' . $this->file;
         $this->fileName = basename($file);
         $this->exist = file_exists($file);
-        if(!$this->exist)
+        if(!$this->exist){
             return;
+        }
 
-        $size = getimagesize($file);
-        $this->width = $size[0];
-        $this->height = $size[1];
+        $image = new Imagick($file);
 
+        //$size = getimagesize($file);
+        $this->width = $image->getImageWidth();
+        $this->height = $image->getImageHeight();
         $this->verLink = self::versioner();
     }
 

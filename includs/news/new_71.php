@@ -1,3 +1,7 @@
+<?php
+$new_id = 71;
+$imgFolder = 'img/news/' . $new_id . '/';
+?>
 <div class="text"><br>
     <br><br>
     <?php echo (new Img('img/news/71/01.jpg'))->tagArticle() ?>
