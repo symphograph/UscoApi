@@ -31,7 +31,7 @@ $pajes =
                 [
                     'news.php'=>'Новости',
                     'articles.php'=>'Статьи',
-                    'news.php?filter=3'=>'Звезды Этерпы',
+                    'news.php?filter=3'=>'Звезды Эвтерпы',
                     'news.php?filter=2'=>'Прочие новости'
                 ]
             ]
