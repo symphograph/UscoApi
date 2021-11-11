@@ -466,7 +466,7 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	justify-content: space-around;
 }
 
-.nimg_block{
+.narea .nimg_block{
 
 	width: 260px;
 	height: 162px;
@@ -750,8 +750,9 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 }
 
 .tisers{
+    padding-top: 2em;
 	display: flex;
-	justify-content: center;
+	justify-content: space-evenly;
 	flex-wrap: wrap;
 }
 

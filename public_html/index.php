@@ -96,12 +96,20 @@ $qwe = $query->fetchAll(PDO::FETCH_CLASS,"Anonce");
     ?>
 </div>
     <div class="tisers">
+
         <div class="opros">
             <a href="https://clck.ru/RautH" target="_blank">
                 Пройти опрос
             </a>
             <br>
             по независимой оценке качества условий оказания услуг учреждениями культуры<br><br>
+        </div>
+        <div class="nimg_block">
+            <div>
+                <a href="new.php?new_id=76">
+                    <img src="img/news/pw/76.jpg?ver=bf5237f077839489cd089d15011e1a1f" width="260px" alt="Изображение не найдено">
+                </a>
+            </div>
         </div>
 
     </div>
