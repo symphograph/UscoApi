@@ -22,9 +22,8 @@ function FileList($dir)
 	foreach($files as $file)
 	{
 		if(in_array($file, $skip) or is_dir($dir.'/'.$file))
-		{}else
+		    continue;
 		$files2[] = $file;
-		  // $folders[] = $file;
 	}
 	return $files2;
 }
