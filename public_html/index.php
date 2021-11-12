@@ -74,7 +74,8 @@ $qwe = $query->fetchAll(PDO::FETCH_CLASS,"Anonce");
         ?>
     </div>
 </div>
-    <div class="eventsarea">
+
+<!--    <div class="eventsarea">
         <a href="news.php?filter=3" style="text-decoration: none">
             <div style="background-color: #fbf5db">
                 <img src="img/logo/euterpe.svg" alt="ttt" style="width: 100%">
@@ -87,31 +88,32 @@ $qwe = $query->fetchAll(PDO::FETCH_CLASS,"Anonce");
                 </div>
             </div>
         </a><br><hr><br>
+    </div>-->
+
+    <div class="eventsarea">
+        <?php
+        $qwe = qwe( "SELECT * FROM video ORDER BY v_date DESC LIMIT 6");
+        VideoItems($qwe);
+        ?>
     </div>
-
-<div class="eventsarea">
-    <?php
-    $qwe = qwe( "SELECT * FROM video ORDER BY v_date DESC LIMIT 6");
-    VideoItems($qwe);
-    ?>
-</div>
-    <div class="tisers">
-
-        <div class="opros">
-            <a href="https://clck.ru/RautH" target="_blank">
-                Пройти опрос
-            </a>
-            <br>
-            по независимой оценке качества условий оказания услуг учреждениями культуры<br><br>
-        </div>
-        <div class="nimg_block">
-            <div>
-                <a href="new.php?new_id=76">
-                    <img src="img/news/pw/76.jpg?ver=bf5237f077839489cd089d15011e1a1f" width="260px" alt="Изображение не найдено">
-                </a>
+    <div class="eventsarea"><br><hr><br><br>
+        <div class="tisers">
+            <div class="nimg_block">
+                    <a href="https://clck.ru/RautH" target="_blank">
+                        <img src="img/tisers/opros.svg">
+                    </a>
+            </div>
+            <div class="nimg_block">
+                    <a href="news.php?filter=3">
+                        <img src="img/afisha/topp_euterpe_2021.svg">
+                    </a>
+            </div>
+            <div class="nimg_block">
+                    <a href="new.php?new_id=76">
+                        <img src="img/news/pw/76.jpg?ver=bf5237f077839489cd089d15011e1a1f">
+                    </a>
             </div>
         </div>
-
     </div>
     <div class="eventsarea">
         <div class="newscol"><br>

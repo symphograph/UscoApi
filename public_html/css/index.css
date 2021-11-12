@@ -474,14 +474,16 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	box-shadow: 1px 2px 2px #555353;
 }
 
-.nimg_block:hover{
-	box-shadow: 1px 2px 5px #000000;
-}
+
 
 .nimg_block div{
 	box-sizing: content-box;
 	margin: 0 auto;
 
+}
+
+.nimg_block img {
+    width: 100%;
 }
 
 .tcol{
@@ -761,10 +763,22 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 }
 
 .tisers{
-    padding-top: 2em;
-	display: flex;
-	justify-content: space-evenly;
-	flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 2vw;
+}
+
+.tisers .nimg_block{
+
+    width: auto;
+    height: 0;
+    padding-bottom: 63.33%;
+    overflow: hidden;
+    box-shadow: 1px 2px 2px #555353;
+    border-radius: 1em;
+}
+.nimg_block:hover{
+    box-shadow: 1px 2px 5px #000000;
 }
 
 .opros{
