@@ -1,7 +1,7 @@
 <?php
 function ReplFoldersFromYaDisk($albumsdir,$shared_folder_link)
 {
-	$yd_url = 'https://cloud-api.yandex.net:443/v1/disk/public/resources?public_key='.$shared_folder_link;
+	$yd_url = 'https://cloud-api.yandex.net:443/v1/disk/public/resources?limit=30&public_key='.$shared_folder_link;
 	$respons = file_get_contents($yd_url);
 	if(!$respons) return false;
 	
