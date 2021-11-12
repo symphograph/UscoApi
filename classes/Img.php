@@ -53,7 +53,7 @@ class Img
         return "<img src='$this->verLink' class='newsImg'>";
     }
 
-    public static function isImage(string $filename)
+    public static function isImage(string $file): bool|string
     {
 
         $img_types = [
@@ -77,7 +77,7 @@ class Img
             17=>'ICO',
             18=>'webp'
         ];
-        $is        = @getimagesize($filename);
+        $is        = @getimagesize($file);
 
         if(!$is)
             return false;

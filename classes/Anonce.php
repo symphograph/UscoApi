@@ -3,22 +3,22 @@
 
 class Anonce
 {
-    public int|null $ev_id = 0;
-    public int|null $hall_id = 8;
-    public string|null $prog_name = 'Название';
-    public string|null $sdescr = '';
+    public int|null    $ev_id       = 0;
+    public int|null    $hall_id     = 8;
+    public string|null $prog_name   = 'Название';
+    public string|null $sdescr      = '';
     public string|null $description;
     public string|null $img;
     public string|null $topimg;
     public string|null $aftitle;
     public string|null $datetime;
-    public int|null $pay = 0;
-    public int|null $age = null;
+    public int|null    $pay         = 0;
+    public int|null    $age         = null;
     public string|null $ticket_link = '';
-    public string|null $hall_name = '';
-    public string|null $youtube_id = '';
-    public bool $complited = false;
-    public Hall $Hall;
+    public string|null $hall_name   = '';
+    public string|null $youtube_id  = '';
+    public bool        $complited   = false;
+    public Hall        $Hall;
     public string|null $map;
     const PAYS = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Билеты в продаже'];
 
@@ -29,14 +29,17 @@ class Anonce
 
     public function clone(Anonce $q): bool
     {
-        //$q = (object) $q;
         foreach ($q as $k=>$v){
             if(!$v or empty($v))
                 continue;
             $this->$k = $v;
         }
         $this->complited = (strtotime($this->datetime) < (time()+3600*8));
-        $this->Hall = new Hall(id: $this->hall_id, name: $this->hall_name, map: $this->map);
+        $this->Hall = new Hall(
+            id:   $this->hall_id,
+            name: $this->hall_name,
+            map:  $this->map
+        );
         return true;
     }
 
@@ -92,5 +95,64 @@ class Anonce
         return preg_replace('/^ +| +$|( ) +/m', '$1', $progName);
     }
 
+    public static function getCollection(int $sort, int $year = 0) : array|bool
+    {
+        if(!$year){
+            $year = date('Y');
+        }
+        $sorts = ['DESC', ''];
+        $qwe = qwe("
+        SELECT
+        anonces.concert_id as ev_id,
+        anonces.hall_id,
+        anonces.prog_name,
+        anonces.sdescr,
+        anonces.img,
+        anonces.topimg,
+        anonces.aftitle,
+        anonces.datetime,
+        anonces.pay,
+        anonces.age,
+        anonces.ticket_link,
+        halls.hall_name,
+        halls.map,
+        video.youtube_id
+        FROM
+        anonces
+        INNER JOIN halls ON anonces.hall_id = halls.hall_id
+        LEFT JOIN video ON anonces.concert_id = video.concert_id
+        WHERE year(datetime) = :year
+        ORDER BY anonces.datetime ".$sorts[$sort],['year'=>$year]);
+        if(!$qwe or !$qwe->rowCount()){
+            return false;
+        }
 
+        $qwe = $qwe->fetchAll(PDO::FETCH_CLASS,"Anonce");
+        $arr = [];
+        foreach ($qwe as $q){
+            $Anonce = new AnonceCard();
+            $Anonce->clone($q);
+            //printr($Anonce);
+            $arr[] = $Anonce;
+        }
+
+        return $arr;
+    }
+
+    public static function apiValidation() : array|bool
+    {
+        if(empty($_POST)){
+            return false;
+        }
+
+        $year = $_POST['year'] ?? date('Y');
+        $year = intval($year);
+
+        $sort = $_POST['sort'] ?? 0;
+        $sort = intval($sort);
+        return [
+            'year' => $year,
+            'sort' => $sort
+        ];
+    }
 }

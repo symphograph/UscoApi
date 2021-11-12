@@ -4,6 +4,8 @@
 class AnonceCard extends Anonce
 {
     public string|null $prrow = '';
+    public string|null $topImgUrl;
+    public string|null $dateFormated;
 
     public function clone(Anonce $q) : bool
     {
@@ -15,7 +17,14 @@ class AnonceCard extends Anonce
         if($this->pay == 3 and $this->complited){
             $this->prrow = 'Продажа завершена';
         }
+        self::getTopImgUrl();
+        $this->dateFormated = self::EvdateFormated();
         return true;
+    }
+
+    private function getTopImgUrl(){
+        $img = new Img('img/afisha/'.$this->topimg);
+        $this->topImgUrl = $img->verLink;
     }
 
     public function printItem()
@@ -27,7 +36,7 @@ class AnonceCard extends Anonce
             <div class="pressme" >
                 <div>
                     <div class="affot">
-                        <img src="<?php echo 'img/afisha/'.$this->topimg;?>?ver=<?php echo md5_file($_SERVER['DOCUMENT_ROOT'].'/img/afisha/'.$this->topimg)?>" width="100%" height="auto">
+                        <img src="<?php echo $this->topImgUrl ?>" width="100%" height="auto">
 
                         <?php
                         if($this->age) {

@@ -5,8 +5,7 @@ if(!$cfg->myip)
     die();
 
 ?><meta charset="utf-8"><?php
-printr(get_browser());
-echo pathinfo('includs/config.php',PATHINFO_FILENAME);
+echo $_SERVER['REQUEST_METHOD'];
 die();
 //require dirname($_SERVER['DOCUMENT_ROOT']).'/vendor/autoload.php';
 //use Intervention\Image\ImageManagerStatic as Image;

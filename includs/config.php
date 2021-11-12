@@ -21,7 +21,14 @@ if($cfg->myip)
 	error_reporting(E_ALL);
     $cfg->debug = true;
 }
+if(str_starts_with($_SERVER['SCRIPT_NAME'],'/hendlers/') || str_starts_with($_SERVER['SCRIPT_NAME'],'/api/')){
+    if ( !in_array($_SERVER['REQUEST_METHOD'],['POST','OPTIONS']))
+        die();
 
+    if($cfg->debug){
+        cors();
+    }
+}
 spl_autoload_register(function ($class_name) {
     require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/classes/' . $class_name . '.php';
 });
