@@ -33,4 +33,5 @@ $imgFolder = 'img/news/' . $new_id . '/';
     <br><br>
     <?php VideoItem('nLBOeSr_O7A');?>
     <br><br>
+    <a href="gallery.php#d1dc31781c1680c6e474a55e1c7de6d2">Смотреть фото</a>
 </div>
