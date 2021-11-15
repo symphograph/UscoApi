@@ -1,5 +1,5 @@
 <?php
-
+/*
 if(preg_match('/www./',$_SERVER['SERVER_NAME']))
 {
 	$server_name = str_replace('www.','',$_SERVER['SERVER_NAME']);
@@ -9,7 +9,7 @@ if(preg_match('/www./',$_SERVER['SERVER_NAME']))
 	header("Location: https://".$server_name."/".$ref);
 	exit();
 }
-
+*/
 
 $cfg = require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/ip.php';
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/functions/functions.php';
