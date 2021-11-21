@@ -105,7 +105,7 @@ FROM
     INNER JOIN reglist_ls rl 
         ON personal.id = rl.pers_id
         AND rl.ortid in (1,2)
-        AND rl.main < 3
+        AND rl.main in (1,2,5)
         AND '$date' BETWEEN rl.accept and rl.dismiss
     GROUP BY personal.id
 ORDER BY
