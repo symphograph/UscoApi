@@ -97,7 +97,7 @@ $qwe = $query->fetchAll(PDO::FETCH_CLASS,"Anonce");
         ?>
     </div>
     <div class="eventsarea"><br><hr><br><br>
-        <div class="tisers">
+        <div class="teasers">
             <div class="nimg_block">
                     <a href="https://clck.ru/RautH" target="_blank">
                         <img src="img/tisers/opros.svg">

@@ -762,13 +762,13 @@ div[class="text"] > a:hover, div[class="text"] > div > a:hover{
 	margin: 0 auto;
 }
 
-.tisers{
+.teasers{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 2vw;
 }
 
-.tisers .nimg_block{
+.teasers .nimg_block{
 
     width: auto;
     height: 0;
