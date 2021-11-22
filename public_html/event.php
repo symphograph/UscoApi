@@ -5,6 +5,7 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 $evid = intval($_GET['evid']);
 $ptypes = ['','','Вход свободный','Онлайн продажа завершена','Вход по пригласительным'];
 $Anonce = new AnoncePaje($evid);
+
 ?>
 <html lang="ru">
 <head>

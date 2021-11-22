@@ -88,10 +88,11 @@ class AnoncePaje extends Anonce
 
         $file = 'img/posters/origins/'.$this->img;
 
-        if(!file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$file)){
-            $file = 'img/afisha/'.$this->img;
-            if(!file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$file)){
-                return false;
+        if(!file_exists($_SERVER['DOCUMENT_ROOT'] . '/' . $file)) {
+            $file = 'img/afisha/' . $this->img;
+            if(!file_exists($_SERVER['DOCUMENT_ROOT'] . '/' . $file)) {
+                $this->Poster = new Img('img/afisha/empty.jpg');
+                return true;
             }
         }
 
