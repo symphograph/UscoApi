@@ -4,6 +4,6 @@ $imgFolder = 'img/news/' . $new_id . '/';
 ?>
 <div class="text"><div style="width: 100vw"></div><br>
     <br><br>
-    <?php VideoItem('N7xSpGIWFR0');?>
+    <?php VideoItem('ZKDgQuxlGoY');?>
     <br><br>
 </div>
