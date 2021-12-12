@@ -7,9 +7,9 @@ class Anonce
     public int|null    $hall_id     = 8;
     public string|null $prog_name   = 'Название';
     public string|null $sdescr      = '';
-    public string|null $description;
+    public string|null $description = 'Описание';
     public string|null $img;
-    public string|null $topimg;
+    public string|null $topimg = 'deftop3.jpg';
     public string|null $aftitle;
     public string|null $datetime;
     public int|null    $pay         = 0;

@@ -23,6 +23,10 @@ class AnonceCard extends Anonce
     }
 
     private function getTopImgUrl(){
+        $file = 'img/afisha/'.$this->topimg;
+        if(!file_exists($file)){
+            $file = 'img/afisha/deftop3.jpg';
+        }
         $img = new Img('img/afisha/'.$this->topimg);
         $this->topImgUrl = $img->verLink;
     }
