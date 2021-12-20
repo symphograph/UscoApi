@@ -14,7 +14,7 @@ function FolderList($dir)
 	return($folders);
 }
 
-function FileList($dir)
+function FileList($dir): array
 {
 	$files = scandir($dir);
 	$skip = ['.', '..'];

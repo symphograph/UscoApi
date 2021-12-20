@@ -5,6 +5,7 @@ class NewsItem
 {
 
     public Img $pwImg;
+    public NewsImgCollection $imgCollection;
 
     public function __construct(
         public int    $id = 0,
@@ -185,4 +186,10 @@ class NewsItem
         <?php
         return ob_get_clean();
     }
+
+    public static function printImg(string $link)
+    {
+
+    }
+
 }

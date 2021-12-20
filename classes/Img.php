@@ -50,6 +50,9 @@ class Img
 
     public function tagArticle() : string
     {
+        if(empty($this->verLink)){
+            return '';
+        }
         return "<img src='$this->verLink' class='newsImg'>";
     }
 
@@ -87,6 +90,15 @@ class Img
 
         return strtolower($img_types[$is[2]]);
 
+    }
+
+    public static function printInNews(string $link) : string
+    {
+        if(empty($link)){
+            return '';
+        }
+
+        return "<img src='$link' class='newsImg'>";
     }
 
 }
