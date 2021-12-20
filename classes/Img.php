@@ -48,6 +48,11 @@ class Img
         return $this->file . '?ver=' . $this->md5;
     }
 
+    public static function getVerLink(string $file) : string
+    {
+        return (new Img($file))->verLink;
+    }
+
     public function tagArticle() : string
     {
         if(empty($this->verLink)){
@@ -92,11 +97,12 @@ class Img
 
     }
 
-    public static function printInNews(string $link) : string
+    public static function printInNews(string $file) : string
     {
-        if(empty($link)){
+        if(empty($file)){
             return '';
         }
+        $link = Img::getVerLink($file);
 
         return "<img src='$link' class='newsImg'>";
     }

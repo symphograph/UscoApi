@@ -60,15 +60,17 @@ class NewsImgCollection
     ): array
     {
         $Images = new NewsImgCollection($newId,$start,$alradyUsed);
-        $links = [];
+        $files = [];
         foreach ($Images->files as $file){
+            /*
             $link = (new Img($Images->imgFolder . $file))->verLink;
             if(empty($link)){
                 continue;
-            }
-            $links[] = $link;
+            }*/
+            $file = $Images->imgFolder . $file;
+            $files[] = $file;
         }
-        return $links;
+        return $files;
     }
 
     public static function printImages(array $images) : string
