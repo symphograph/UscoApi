@@ -2,11 +2,10 @@
 $new_id = 60;
 $imgFolder = 'img/news/' . $new_id . '/';
 ?>
-<div class="text"><br>
     <br><br>
 
     <br><br>
-    <?php echo (new Img('img/news/60/01.jpg'))->tagArticle() ?>
+    <?php echo Img::printInNews($imgFolder . '001.jpg'); ?>
     <br><br>
 
     Курс позволит слушателям сформировать навыки по управлению бизнес-процессами и подготовить проект в сфере креативных
@@ -127,6 +126,3 @@ $imgFolder = 'img/news/' . $new_id . '/';
 
     Образовательная программа проекта доступна бесплатно всем в личном кабинете участника после регистрации на
     официальном сайте проекта <a href="https://art-team.moscow/register">art-team.moscow</a>
-
-
-</div>

@@ -50,8 +50,8 @@ $imgFolder = 'img/news/' . $new_id . '/';
     <br><br>
     <div class="vidarea">
         <?php
-        VideoItem('GHVDMuhsmeQ');
-        VideoItem('_qEGjaL4Yks');
+        echo Video::getVitem('GHVDMuhsmeQ');
+        echo Video::getVitem('_qEGjaL4Yks');
         ?>
     </div>
     <br><br>

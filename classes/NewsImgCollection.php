@@ -13,7 +13,7 @@ class NewsImgCollection
     {
         require_once dirname($_SERVER['DOCUMENT_ROOT']).'/functions/filefuncts.php';
         $this->imgFolder = 'img/news/' . $newId . '/';
-        $this->files = FileList($this->imgFolder);
+        $this->files = FileList($_SERVER['DOCUMENT_ROOT'].'/'.$this->imgFolder);
         if(!count($this->files)){
             return;
         }
@@ -48,9 +48,18 @@ class NewsImgCollection
             if(in_array($file,$this->alradyUsed)){
                 continue;
             }
+            if(in_array(self::fileAsNum($file),$this->alradyUsed)){
+                continue;
+            }
             $files[] = $file;
         }
         $this->files = $files;
+    }
+
+    private function fileAsNum(string|int $file) : int
+    {
+        $file = pathinfo($file, PATHINFO_FILENAME);
+        return intval($file);
     }
 
     public static function getLinks(
@@ -62,19 +71,19 @@ class NewsImgCollection
         $Images = new NewsImgCollection($newId,$start,$alradyUsed);
         $files = [];
         foreach ($Images->files as $file){
-            /*
-            $link = (new Img($Images->imgFolder . $file))->verLink;
-            if(empty($link)){
-                continue;
-            }*/
             $file = $Images->imgFolder . $file;
             $files[] = $file;
         }
         return $files;
     }
 
-    public static function printImages(array $images) : string
+    public static function printImages(
+        int   $newId,
+        int   $start = 0,
+        array $alradyUsed = []
+    ): string
     {
+        $images = self::getLinks($newId, $start,$alradyUsed);
         if(!count($images)){
             return '<br>Изображения не найдены<br>';
         }

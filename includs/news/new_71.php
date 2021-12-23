@@ -4,7 +4,7 @@ $imgFolder = 'img/news/' . $new_id . '/';
 ?>
 <div class="text"><br>
     <br><br>
-    <?php echo (new Img('img/news/71/01.jpg'))->tagArticle() ?>
+    <?php echo Img::printInNews($imgFolder . '001.jpg'); ?>
     <br><br>
     Ярким культурным событием для областного центра стал концерт Южно-Сахалинского камерного оркестра, посвященный
     творчеству Людвига ван Бетховена. На сцене Чехов-центра музыкальный коллектив под руководством дирижера Тиграна
@@ -15,7 +15,7 @@ $imgFolder = 'img/news/' . $new_id . '/';
     столица». Солистами на заключительном концерте выступили артисты международного уровня Гаянэ Ахназарян (фортепиано),
     Сурен Ахназарян (скрипка) и Нарек Ахназарян (виолончель).
     <br><br>
-    <?php echo (new Img('img/news/71/02.jpg'))->tagArticle() ?>
+    <?php echo Img::printInNews($imgFolder . '002.jpg'); ?>
     <br><br>
 
     Перед концертом с приветственным словом к коллективу и зрителям обратился мэр Южно-Сахалинска Сергей Надсадин.
@@ -27,20 +27,20 @@ $imgFolder = 'img/news/' . $new_id . '/';
 </blockquote>
      – отметил Сергей Надсадин.
     <br><br>
-    <?php echo (new Img('img/news/71/03.jpg'))->tagArticle() ?>
+    <?php echo Img::printInNews($imgFolder . '003.jpg'); ?>
     <br><br>
-    <?php echo (new Img('img/news/71/04.jpg'))->tagArticle() ?>
+    <?php echo Img::printInNews($imgFolder . '004.jpg'); ?>
     <br><br>
-    <?php echo (new Img('img/news/71/05.jpg'))->tagArticle() ?>
+    <?php echo Img::printInNews($imgFolder . '005.jpg'); ?>
     <br><br>
-    <?php echo (new Img('img/news/71/06.jpg'))->tagArticle() ?>
+    <?php echo Img::printInNews($imgFolder . '006.jpg'); ?>
     <br><br>
-    <?php echo (new Img('img/news/71/07.jpg'))->tagArticle() ?>
+    <?php echo Img::printInNews($imgFolder . '007.jpg'); ?>
     <br><br>
     Официальной частью мероприятия стало вручение Тиграну Ахназаряну благодарственного письма администрации города за
     вклад в развитие культуры Южно-Сахалинска.
     <br><br>
-    <?php echo (new Img('img/news/71/08.jpg'))->tagArticle() ?>
+    <?php echo Img::printInNews($imgFolder . '008.jpg'); ?>
     <br><br>
 
     Напомним, в рамках «FestaFette «Бетховен — 250» было заявлено и исполнено за год 25 творений композитора,

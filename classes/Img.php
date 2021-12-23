@@ -103,6 +103,9 @@ class Img
             return '';
         }
         $link = Img::getVerLink($file);
+        if(str_starts_with($_SERVER['SCRIPT_NAME'],'/api/')){
+            $link = 'https://' . $_SERVER['SERVER_NAME'] . '/' . $link;
+        }
 
         return "<img src='$link' class='newsImg'>";
     }

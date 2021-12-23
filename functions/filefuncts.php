@@ -17,6 +17,8 @@ function FolderList($dir)
 function FileList($dir): array
 {
 	$files = scandir($dir);
+    if(!$files)
+        return [];
 	$skip = ['.', '..'];
 	$files2 = [];
 	foreach($files as $file)

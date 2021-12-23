@@ -14,8 +14,13 @@ if(!$NewsItem->show)
     header("Location: ../news.php");
     die();
 }
+if($NewsItem->evid)
+{
+    header("Location: ../event.php?evid={$NewsItem->evid}");
+    die();
+}
 
-$p_title = 'Южно-Сахалинский камерный оркестр';
+$p_title = 'Новости';
 $ver = random_str(8);
 $indexes = ['noindex','index'];
 $index = $indexes[intval(in_array($NewsItem->show,[1,3]))];

@@ -2,7 +2,7 @@
 $new_id = 63;
 $imgFolder = 'img/news/' . $new_id . '/';
 ?>
-<div class="text"><br>
+<br>
     <br><br>
     21 августа Южно-Сахалинский камерный оркестр (художественный
     руководитель и главный дирижер - Тигран Ахназарян) сыграл свой
@@ -13,10 +13,10 @@ $imgFolder = 'img/news/' . $new_id . '/';
     классические шедевры, а также известную музыку из советских
     кинофильмов.
     <br><br>
-    <?php echo (new Img('img/news/63/02.jpg'))->tagArticle() ?>
+    <?php echo Img::printInNews($imgFolder . '002.jpg'); ?>
     За дирижерским пультом в этот раз стоял ассистент дирижера - скрипач оркестра Александр Лопатин.
     <br><br><br>
-    <?php echo (new Img('img/news/63/03.jpg'))->tagArticle() ?>
+<?php echo Img::printInNews($imgFolder . '003.jpg'); ?>
     <br><br>
     При этом Тигран Суренович не остался в стороне и выступил в ролях ведущего и артиста, исполив партии ударных инструментов, чем оказал большую поддержку оркестру.
     <br><br>
@@ -25,4 +25,3 @@ $imgFolder = 'img/news/' . $new_id . '/';
     <br><br>
     <a href="gallery.php#fb37ad0b6c370e2f103b60ec7f73fb8b">Смотреть фото</a>
     <br><br>
-</div>

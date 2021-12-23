@@ -126,7 +126,7 @@ function ru_date($format, $date = false) {
 		$date = time();
 	}
 	if ($format === '') {
-		$format = '%e&nbsp;%bg&nbsp;%Y';
+		$format = '%e %bg %Y';
 	}
 	$months = explode("|", '|января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря');
 	$format = preg_replace("~\%bg~", $months[date('n', $date)], $format);
@@ -242,18 +242,18 @@ function EvdateFormated($datetime)
 
 function VideoItem($youtube_id) //Подразумевается youtube. Иные не преюполагаются.
 {
-	//width="360" 
-	//height="180"
+
+
 	?>
 	<div class="vitem" id="<?php echo $youtube_id?>">
-	<iframe 
-			width="100%"
-			height="100%"
-			src="https://www.youtube.com/embed/<?php echo $youtube_id?>"
-			frameborder="0"
-			allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-			allowfullscreen>
-	</iframe>
+        <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/<?php echo $youtube_id?>"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+        </iframe>
 	</div>
 	<?php
 }
@@ -266,7 +266,8 @@ function VideoItems($qwe = false)
 	foreach($qwe as $q)
 	{
 		extract($q);
-		VideoItem($youtube_id);
+        echo Video::getVitem($youtube_id);
+		//VideoItem($youtube_id);
 	}
 	?></div><?php
 }
@@ -447,6 +448,8 @@ function cors() {
         header('Access-Control-Max-Age: 86400');    // cache for 1 day
     }
 
+    //printr($_SERVER['REQUEST_METHOD']);
+    //die();
     if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
         if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))

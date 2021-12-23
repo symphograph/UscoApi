@@ -15,7 +15,8 @@ if(!$cfg->myip) exit;
 
 <body>
 <?php
-echo intval('001');
+$News = NewsItem::getCollection(2021);
+//printr($News);
 ?>
 </body>
 </html>

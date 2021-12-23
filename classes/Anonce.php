@@ -43,7 +43,7 @@ class Anonce
         return true;
     }
 
-    public function byId(int $ev_id): bool
+    public function byId(int $ev_id) : bool
     {
         $qwe = qwe("
             SELECT
