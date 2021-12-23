@@ -159,7 +159,7 @@ class NewsItem
 
     public function getContent() : string
     {
-        return self::contentByFile() ?? $this->content ?? '';
+        return self::contentByFile() ?? $this->content ?? 'tt';
     }
 
     private function contentByFile(): string|null

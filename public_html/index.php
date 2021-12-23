@@ -74,6 +74,13 @@ $qwe = $query->fetchAll(PDO::FETCH_CLASS,"Anonce");
         ?>
     </div>
 </div>
+    <div class="eventsarea">
+        <?php
+        $NewItem = new NewsItem(84);
+        echo $NewItem->PajeItem();
+        ?>
+        <br><hr><br><br>
+    </div>
 
 <!--    <div class="eventsarea">
         <a href="news.php?filter=3" style="text-decoration: none">

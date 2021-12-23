@@ -273,7 +273,10 @@ blockquote{
 	font-size: 18px;
 	max-width: 800px;
 }
-
+.ntitle{
+    font-size: 30px;
+    padding: 20px;
+}
 .eventsarea{
 
 	padding: 1em;
