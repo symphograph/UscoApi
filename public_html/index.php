@@ -74,7 +74,7 @@ $qwe = $query->fetchAll(PDO::FETCH_CLASS,"Anonce");
         ?>
     </div>
 </div>
-    <div class="eventsarea">
+    <div class="eventsarea" id="banner">
         <?php
         $NewItem = new NewsItem(84);
         echo $NewItem->PajeItem();
