@@ -224,14 +224,15 @@ class NewsItem
         return json_encode(['data' => $Item]);
     }
 
-    public static function getCollection(int $year, array $filter = [1,2,3]) : string|bool
+    public static function getCollection(int $year, array $filter = [1,2,3], $limit = 100) : string|bool
     {
         $qwe = qwe("
             SELECT * FROM news 
             WHERE `show` 
             AND year(date) = :year
-            ORDER BY DATE DESC",
-            ['year'=>$year]
+            ORDER BY DATE DESC
+            LIMIT :limit",
+            ['year'=>$year,'limit' => $limit]
         );
 
         if(!$qwe or !$qwe->rowCount()){

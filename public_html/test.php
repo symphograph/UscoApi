@@ -15,8 +15,9 @@ if(!$cfg->myip) exit;
 
 <body>
 <?php
-$News = NewsItem::getCollection(2021);
-//printr($News);
+//$images = Album::getImages($_SERVER['DOCUMENT_ROOT'] . '/img/albums/2021-12-06 - Реквием');
+$images = Album::getAlbums();
+printr($images);
 ?>
 </body>
 </html>
