@@ -24,3 +24,5 @@ $imgFolder = 'img/news/' . $new_id . '/';
 Китайский Новый год!
 <br><br>
 <b>С праздником друзья!</b>
+<br><br>
+<a href="/gallery.php#4a09ab07e6d0bef5d6d76fd97d8996d5">Смотреть фото</a>
