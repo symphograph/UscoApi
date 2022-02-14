@@ -100,7 +100,7 @@ ORDER BY anonces.datetime
 
     <div class="eventsarea">
         <?php
-        $qwe = qwe("SELECT * FROM video ORDER BY v_date DESC LIMIT 6");
+        $qwe = qwe("SELECT * FROM video WHERE `show` = 1 ORDER BY v_date DESC LIMIT 6");
         VideoItems($qwe);
         ?>
     </div>
