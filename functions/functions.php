@@ -168,59 +168,6 @@ function NewsCol($qwe = false)
 <?php
 }
 
-function Metka($ip)
-{
-	//проверяем, помечен ли юзер
-	//если не помечен, метим
-	$unix_time = time();
-	$datetime = date('Y-m-d H:i:s',$unix_time);
-    $cooktime = $unix_time+60*60*24*365*5;
-
-	if(empty($_COOKIE['identy']))
-	{
-        $identy = random_str(12);
-
-        setcookie('identy',$identy,$cooktime,'/','',true,true);
-        $qwe = qwe("
-        INSERT INTO `identy`
-        (`identy`, `ip`, `time`, `last_ip`, `last_time`)
-        VALUES
-        ('$identy','$ip','$datetime','$ip','$datetime')
-        ");
-
-        if(!$qwe)
-            return false;
-        else
-            return $identy;
-	}
-
-    $identy = OnlyText($_COOKIE['identy']);
-    if(iconv_strlen($identy) != 12)
-    {
-        return false;
-    }
-    $qwe = qwe("
-        SELECT * FROM `identy`
-        WHERE `identy` = '$identy'
-        ");
-    if($qwe and $qwe->rowCount() == 1)
-    {
-        qwe("
-        UPDATE `identy` SET
-        `last_ip` = '$ip',
-        `last_time` = '$datetime'
-        WHERE `identy` = '$identy'
-        ");
-        setcookie('identy',$identy,$cooktime,'/','',true,true);
-    }else
-    {
-        setcookie ("identy", "", time() - 3600*24*360*10);
-        return false;
-    }
-
-	return $identy;
-}
-
 function myUrlEncode($string) {
     $entities = ['%21', '%2A', '%27', '%28', '%29', '%3B', '%3A', '%40', '%26', '%3D', '%2B', '%24', '%2C', '%2F', '%3F', '%25', '%23', '%5B', '%5D'];
     $replacements = ['!', '*', "'", "(", ")", ";", ":", "@", "&", "=", "+", "$", ",", "/", "?", "%", "#", "[", "]"];
@@ -237,8 +184,6 @@ function EvdateFormated($datetime)
 	else
 	    return date('d.m.Y в H:i',$evdate);
 }
-
-
 
 function VideoItem($youtube_id) //Подразумевается youtube. Иные не преюполагаются.
 {
