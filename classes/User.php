@@ -14,7 +14,7 @@ class User
         if(!$identy) return false;
         $this->identy = $identy;
 
-        $Sess = Session::check();
+        $Sess = Session::check($identy);
         if(!$Sess) return false;
         $this->Sess = $Sess;
         return true;

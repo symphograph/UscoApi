@@ -1,6 +1,7 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
+$User = User::byCheck();
 $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 $evid = intval($_GET['evid']);
 $ptypes = ['','','Вход свободный','Онлайн продажа завершена','Вход по пригласительным'];

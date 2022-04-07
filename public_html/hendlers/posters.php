@@ -1,6 +1,7 @@
 <?php
 
-require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
+$User = User::byCheck();
 $data = Anonce::apiValidation();
 if(!$data)
     die();

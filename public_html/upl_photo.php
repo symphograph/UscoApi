@@ -1,7 +1,8 @@
 <?php
 die();
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
+$User = User::byCheck();
 ?>
 <!DOCTYPE HTML>
 <html lang="ru">

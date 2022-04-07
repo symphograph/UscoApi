@@ -1,7 +1,8 @@
 <?php
 //
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
+$User = User::byCheck();
 if(!$cfg->myip) die();
 
 $pers_id = $_GET['pers_id'] ?? 0;

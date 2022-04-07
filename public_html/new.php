@@ -6,7 +6,8 @@ if(!$new_id)
     header("Location: ../news.php");
     die();
 }
-require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
+$User = User::byCheck();
 
 $NewsItem = new NewsItem(id: $new_id);
 if(!$NewsItem->show)

@@ -154,14 +154,23 @@ class Session
         return self::updateIdenty($ip,$datetime,$cooktime);
     }
 
-    private function updateDB()
+    private function updateDB() : void
     {
-        qwe("UPDATE sessions SET last_ip = :last_ip, last_time = now() WHERE id = :id",
-        ['last_ip' => $_SERVER['REMOTE_ADDR'], 'id'=> $this->id]
+        $this->last_time = date('Y-m-d H:i:s');
+
+        qwe("UPDATE sessions SET 
+                    last_ip = :last_ip, 
+                    last_time = :last_time WHERE 
+                                                 id = :id",
+            [
+                'last_ip'   => $_SERVER['REMOTE_ADDR'],
+                'id'        => $this->id,
+                'last_time' => $this->last_time
+            ]
         );
     }
 
-    private static function newSess(): Session|bool
+    private static function newSess(string $identy): Session|bool
     {
         $id = random_bytes(12);
         $id = bin2hex($id);
@@ -170,11 +179,12 @@ class Session
         $token = bin2hex($token);
 
         qwe("INSERT INTO sessions 
-            (id, token, first_ip, last_ip, datetime, last_time) 
+            (id, identy, token, first_ip, last_ip, datetime, last_time) 
             VALUES 
-            (:id, :token, :first_ip, :last_ip, now(), now())",
+            (:id, :identy, :token, :first_ip, :last_ip, now(), now())",
             [
                 'id'       => $id,
+                'identy'   => $identy,
                 'token'    => $token,
                 'first_ip' => $_SERVER['REMOTE_ADDR'],
                 'last_ip'  => $_SERVER['REMOTE_ADDR']
@@ -188,12 +198,12 @@ class Session
         return $sess;
     }
 
-    public static function check(): Session|bool
+    public static function check($identy): Session|bool
     {
         $sess = self::byCook();
 
         if(!$sess){
-            $sess = self::newSess();
+            $sess = self::newSess($identy);
         }
         return $sess;
     }

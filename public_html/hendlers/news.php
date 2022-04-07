@@ -17,7 +17,8 @@ $filters = [
 $filter = $filters[$filter] ?? '1,3';
 $filter = ' ('.$filter.')';
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/check.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
+$User = User::byCheck();
 
 
 $qwe = qwe("
