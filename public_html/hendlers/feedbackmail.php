@@ -12,7 +12,7 @@ $root = $_SERVER['DOCUMENT_ROOT'];
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
 $User = User::byCheck();
 
-if(!TokenValid($identy))
+if(!TokenValid($User->identy))
     die('reload');
 
 if(!empty($_POST['email2']))
@@ -84,8 +84,8 @@ VALUES
     'email' => $email,
     'name'=> $name,
     'msg' => $msg,
-    'identy' => $identy,
-    'ip' => $cfg->ip,
+    'identy' => $User->identy,
+    'ip' => $_SERVER['REMOTE_ADDR'],
     'agent' => $agent,
     'msg_key' => $msg_key
 ]);

@@ -15,7 +15,7 @@ $ver = random_str(8);
     <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
     <?php CssMeta(['menu.css','index.css','menum.css', 'right_nav.css'])?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="token" content="<?php echo SetToken($identy)?>">
+    <meta name="token" content="<?php echo SetToken($User->identy)?>">
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 </head>
 

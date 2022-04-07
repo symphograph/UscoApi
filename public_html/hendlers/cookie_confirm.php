@@ -7,7 +7,7 @@ $User = User::byCheck();
 
 if(isset($_COOKIE['identy']))
 {
-    qwe("UPDATE `identy` SET `cookie_confirm` = '1' WHERE `identy` = '$identy'");
+    qwe("UPDATE `identy` SET `cookie_confirm` = '1' WHERE `identy` = :identy",['identy'=>$User->identy]);
     $cooktime = time()+60*60*24*365;
     setcookie('cookok',1,$cooktime,'/','',true,true);
 }
