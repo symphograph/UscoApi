@@ -15,9 +15,9 @@ if(!$cfg->myip) exit;
 
 <body>
 <?php
-//$images = Album::getImages($_SERVER['DOCUMENT_ROOT'] . '/img/albums/2021-12-06 - Реквием');
-$images = Album::getAlbums();
-printr($images);
+$Video = new Video();
+$a = $Video->getCollection();
+printr($a);
 ?>
 </body>
 </html>

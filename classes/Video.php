@@ -4,13 +4,23 @@
 class Video
 {
     public function __construct(
-        public string $youtube_id,
+        public string $youtube_id = '',
         public string $pw = '',
-        public string $name = ''
+        public string $name = '',
+        public        $vid_id = null,
+        public        $vid_name = null,
+        public        $concert_id = null,
+        public        $v_descript = null,
+        public        $v_date = null,
+        public        $show = null
     )
     {
 
 
+    }
+
+    public function __set(string $name, $value): void
+    {
     }
 
     public static function getVitem(string $youtube_id) : string
@@ -21,17 +31,11 @@ class Video
         return self::getIFrame($youtube_id);
     }
 
-    public static function getForApi(string $youtube_id) : string
+    public static function getCollection(int $limit): bool|string
     {
-        return
-            <<<HTML
-                <div class="vitem">
-                    <q-video
-                    :ratio="16/9"
-                    :src="https://www.youtube.com/embed/{$youtube_id}"
-                    ></q-video>
-                </div>
-            HTML;
+        $qwe = qwe( "SELECT * FROM video where `show` = 1 ORDER BY v_date DESC LIMIT :limit",['limit'=>$limit]);
+        $qwe = $qwe->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,"Video");
+        return json_encode(['data' => $qwe]);
     }
 
     public static function getIFrame(string $youtube_id) : string
