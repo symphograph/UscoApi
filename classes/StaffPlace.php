@@ -151,7 +151,7 @@ class StaffPlace
         $q = $qwe->fetchObject();
         $prewStart = $q->start;
         if(strtotime($q->stop) >=  strtotime($start)){
-            printr($q);
+            //printr($q);
             qwe2("
                 UPDATE pers_place 
                 SET stop = DATE_SUB(:start, INTERVAL 1 DAY)
@@ -202,7 +202,6 @@ class StaffPlace
             return [];
         }
         $qwe = $qwe->fetchAll();
-        //printr($qwe);
         return $qwe;
     }
 

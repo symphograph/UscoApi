@@ -3,7 +3,8 @@
 class Session
 {
 
-    private string      $id;
+    public string      $id;
+    public string|null  $user_id;
     private string      $identy;
     private string      $token;
     private string      $first_ip;
@@ -22,7 +23,7 @@ class Session
         string      $path = '/',
         string|null $domain = null,
         bool        $secure = true,
-        bool        $httponly = false,
+        bool        $httponly = true,
         string      $samesite = 'None' // None || Lax  || Strict
     ) : array
     {
@@ -170,13 +171,21 @@ class Session
         );
     }
 
+    public function tokenValid(string $token) : bool
+    {
+        return $token === $this->token;
+    }
+
+    private static function newToken(): string
+    {
+        $token = random_bytes(12);
+        return bin2hex($token);
+    }
+
     private static function newSess(string $identy): Session|bool
     {
         $id = random_bytes(12);
         $id = bin2hex($id);
-
-        $token = random_bytes(12);
-        $token = bin2hex($token);
 
         qwe("INSERT INTO sessions 
             (id, identy, token, first_ip, last_ip, datetime, last_time) 
@@ -185,7 +194,7 @@ class Session
             [
                 'id'       => $id,
                 'identy'   => $identy,
-                'token'    => $token,
+                'token'    => self::newToken(),
                 'first_ip' => $_SERVER['REMOTE_ADDR'],
                 'last_ip'  => $_SERVER['REMOTE_ADDR']
             ]
@@ -195,6 +204,7 @@ class Session
             return false;
         }
         setcookie('sess_id',$id, self::cookOpts());
+        //setcookie('sess_id',$id, self::cookOpts());
         return $sess;
     }
 

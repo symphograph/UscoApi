@@ -3,6 +3,8 @@ $root = $_SERVER['DOCUMENT_ROOT'];
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/functions/functions.php';
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
 if(!$cfg->myip) exit;
+//$User = User::byCheck();
+//$User->apiAuth(100);
 
 ?>
 <!doctype html>
@@ -15,9 +17,8 @@ if(!$cfg->myip) exit;
 
 <body>
 <?php
-$Video = new Video();
-$a = $Video->getCollection();
-printr($a);
+
+
 ?>
 </body>
 </html>

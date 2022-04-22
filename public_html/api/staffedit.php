@@ -1,7 +1,9 @@
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
 $User = User::byCheck();
-$_POST = json_decode(file_get_contents('php://input'), true)['params'];
+$User->apiAuth(90);
+
+$_POST = json_decode(file_get_contents('php://input'), true)['params'] ?? null;
 if(empty($_POST['groups']))
     die(http_response_code(400));
 if(!is_array($_POST['groups']))
