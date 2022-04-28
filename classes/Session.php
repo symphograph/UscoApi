@@ -113,7 +113,7 @@ class Session
         SELECT * FROM `identy`
         WHERE `identy` = :identy
         ",['identy'   => $identy]);
-        if($qwe and $qwe->rowCount() == 1) {
+        if(!$qwe or !$qwe->rowCount()) {
             setcookie ("identy", "", time() - 3600*24*360*10,"/", secure: true);
             return false;
         }
