@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\ArrayShape;
+
 class Session
 {
 
@@ -30,7 +32,7 @@ class Session
         if(!$expires){
             $expires = time() + 60*60*24*30;
         }
-        $domain = $domain ?? $_SERVER['SERVER_NAME'];
+        //$domain = $domain ?? $_SERVER['SERVER_NAME'];
         return [
             'expires'  => $expires,
             'path'     => $path,
@@ -103,6 +105,7 @@ class Session
     {
         $identy = OnlyText($_COOKIE['identy']);
         if(iconv_strlen($identy) != 12 and iconv_strlen($identy) != 24) {
+            setcookie ("identy", "", time() - 3600*24*360*10,"/", secure: true);
             return false;
         }
 
@@ -110,33 +113,31 @@ class Session
         SELECT * FROM `identy`
         WHERE `identy` = :identy
         ",['identy'   => $identy]);
-        if($qwe and $qwe->rowCount() == 1)
-        {
-            qwe("
-                UPDATE `identy` SET
-                `last_ip` = :ip,
-                `last_time` = :datetime
-                WHERE `identy` = :identy
-                ",
-                [
-                     'ip'       => $ip,
-                     'datetime' => $datetime,
-                     'identy'   => $identy
-                ]
-            );
-
-            setcookie('identy', $identy,
-                      Session::cookOpts(
-                          expires : $cooktime,
-                          httponly: true,
-                          samesite: 'Strict'
-                      )
-            );
-        }else
-        {
-            setcookie ("identy", "", time() - 3600*24*360*10);
+        if($qwe and $qwe->rowCount() == 1) {
+            setcookie ("identy", "", time() - 3600*24*360*10,"/", secure: true);
             return false;
         }
+
+        qwe("
+            UPDATE `identy` SET
+            `last_ip` = :ip,
+            `last_time` = :datetime
+            WHERE `identy` = :identy
+            ",
+            [
+                 'ip'       => $ip,
+                 'datetime' => $datetime,
+                 'identy'   => $identy
+            ]
+        );
+
+        setcookie('identy', $identy,
+                  Session::cookOpts(
+                      expires : $cooktime,
+                      httponly: true,
+                      samesite: 'Strict'
+                  )
+        );
 
         return $identy;
     }
