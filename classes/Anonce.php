@@ -148,7 +148,7 @@ class Anonce
         $year = $_POST['year'] ?? date('Y');
         $year = intval($year);
 
-        $sort = $_POST['sort']['value'] ?? 0;
+        $sort = $_POST['sort'] ?? 0;
         $sort = intval($sort);
         return [
             'year' => $year,
