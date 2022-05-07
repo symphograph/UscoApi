@@ -31,4 +31,38 @@ $imgFolder = 'img/news/' . $new_id . '/';
 Проект Пасхальные встречи - это праздник веры, надежды и конечно любви, проведение
 которого на Сахалине стало уже доброй традицией.
 <br><br>
+<br><br>
+Южно-Сахалинск:<br><br>
+<a href="https://xn--80aaagntdxteaiocodn4cj5q.xn--
+p1ai/%D0%BF%D0%B0%D1%81%D1%85%D0%B0%D0%BB%D1%8C%D0%
+BD%D1%8B%D0%B9-
+%D0%BA%D0%BE%D0%BD%D1%86%D0%B5%D1%80%D1%82-%D0%B2-
+%D1%8E%D0%B6%D0%BD%D0%BE-
+%D1%81%D0%B0%D1%85%D0%B0%D0%BB%D0%B8%D0%BD%D1%81%
+D0%BA%D0%B5/" target="_blank">Южно-Сахалинская и Курильская епархия:</a>
+<br>
+<a href="https://culture.admsakhalin.ru/news/post/5967/" target="_blank">Министерство культуры и архивного дела Сахалинской области</a><br><br>
+<a href="https://www.youtube.com/watch?v=kY-EsF4dLGg" target="_blank">ОТВ Сахалин</a><br><br>
+<a href="https://sakhkino.ru/news/post/176/" target="_blank">ГАУК «Кинодосуговое объединение»</a><br><br>
+<br><br>
+Холмск<br><br>
+<a href="https://ok.ru/nashkholmsk/topic/154823128102350" target="_blank">Социальная сеть «одноклассники»</a><br><br>
+<a href="https://admkholmsk.ru/about/info/news/16241/" target="_blank">Администрация муниципального образования &quot;Холмский городской округ&quot;</a><br><br>
+<a href="https://holmsk.bezformata.com/listnews/tcentralnom-dome-kulturi-
+holmska/104989599/" target="_blank">сайт BezFormata (мультирегиональный агрегатор новостей)</a><br><br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <a href="/gallery.php#0883f7352bae2641a383eeead2e70ead" >Смотреть фото</a>
