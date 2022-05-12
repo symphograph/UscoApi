@@ -35,7 +35,6 @@ $pers_id = $_GET['pers_id'] ?? 0;
 <body>
 
 <?php
-//FacebookScript();
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/links.php';
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
 $host = 'https://'.$_SERVER['SERVER_NAME'].'/';

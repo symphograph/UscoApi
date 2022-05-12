@@ -15,20 +15,9 @@ $Anonce = new AnoncePaje($evid);
     <link rel="icon" href="img/logo/logo.svg" sizes="any" type="image/svg+xml">
     <?php CssMeta(['menu.css','index.css','event.css','menum.css', 'right_nav.css'])?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- You can use Open Graph tags to customize link previews.
-    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
-    <meta property="og:url"           content="<?php echo $host.'event.php?evid='.$Anonce->ev_id?>" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="<?php echo strip_tags($Anonce->prog_name)?>" />
-    <meta property="og:description"   content="<?php echo $Anonce->fDate().' '.$Anonce->fTime()?>" />
-    <meta property="og:image"         content="<?php echo $host.$Anonce->Poster->file;?>" />
-    <meta property="og:image:width"   content="<?php echo $Anonce->Poster->width?>" />
-    <meta property="og:image:height"  content="<?php echo $Anonce->Poster->height?>" />
 </head>
 <body>
 <?php
-FacebookScript();
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/links.php';
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
 ?>
