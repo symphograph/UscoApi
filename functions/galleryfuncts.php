@@ -55,7 +55,6 @@ function ReplFilesFromYaDisk($items2,$folder)
 	foreach($items2 as $k => $v)
 	{
 		extract($v);
-		//printr($v);
 		
 		$files[] = $name;//Файлы на YaDisk
 		if(file_exists("$folder/$name"))
@@ -68,7 +67,7 @@ function ReplFilesFromYaDisk($items2,$folder)
 			$NeedLoad = true;
 			//echo 'Новый файл<br>';
 		}
-		if($NeedLoad)
+		if($NeedLoad && isset($preview))
 		{
 			$pw = file_get_contents($preview);
 			file_force_contents($folder.'/pw/'.$name, $pw);
