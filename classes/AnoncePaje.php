@@ -64,12 +64,6 @@ class AnoncePaje extends Anonce
                             document.write(VK.Share.button(false, {type: "round", text: "Поделиться"}));
                         </script>
                     </div>
-                    <div class="fbb">
-                        <div class="fb-share-button"
-                             data-href="<?php echo $host . 'event.php?evid=' . $this->ev_id ?>"
-                             data-layout="button_count">
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
