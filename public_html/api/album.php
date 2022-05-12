@@ -21,7 +21,6 @@ if($_POST['what'] == 'data') {
     }
     $files = Album::getImages($_SERVER['DOCUMENT_ROOT'] . '/img/albums/' . $album)
     or die(http_response_code(204));
-    //$opts = Album::getOptions();
 
     echo json_encode(['files' => $files]);
 }

@@ -2,8 +2,9 @@
 
 class AnoncePaje extends Anonce
 {
-    public Img $Poster;
     public string $verLink = '';
+    public string $date = '';
+    public string $time = '';
 
     /**
      * @throws ImagickException
@@ -11,10 +12,10 @@ class AnoncePaje extends Anonce
     public function __construct(int $evid = 0)
     {
         if(!$evid || !parent::byId($evid)) {
+            $this->error = 'Анонс не найден';
             return false;
         }
 
-        self::getPosterUrl(self::imgSizeOptimal());
         return true;
     }
 
@@ -80,34 +81,11 @@ class AnoncePaje extends Anonce
     /**
      * @throws ImagickException
      */
-    public function getPosterUrl(int $size = 480): bool
-    {
-        $file         = 'img/posters/' . $size . '/' . $this->img;
-        $this->Poster = new Img($file);
-        if($this->Poster->exist) {
-            return true;
-        }
-
-        $file = 'img/posters/origins/' . $this->img;
-
-        if(!file_exists($_SERVER['DOCUMENT_ROOT'] . '/' . $file)) {
-            $file = 'img/afisha/' . $this->img;
-            if(!file_exists($_SERVER['DOCUMENT_ROOT'] . '/' . $file)) {
-                $this->Poster = new Img('img/afisha/empty.jpg');
-                return true;
-            }
-        }
-
-        return $this->reCachePoster($size, $file);
-    }
-
-    /**
-     * @throws ImagickException
-     */
     public function reCachePoster(int $size, string $file): bool
     {
         $file = $_SERVER['DOCUMENT_ROOT'].'/'.$file;
-        //printr($file);
+        if(!file_exists($file) or is_dir($file))
+            return false;
         $image = new Imagick($file);
         $image->setImageFormat("jpeg");
         $image->stripimage();
@@ -127,15 +105,7 @@ class AnoncePaje extends Anonce
 
     }
 
-    private function imgSizeOptimal(): int
-    {
-        $agent = get_browser();
-        if($agent->ismobiledevice) {
-            return 1080;
-        }
 
-        return 480;
-    }
 
     public static function apiValidation(): array|bool
     {
@@ -150,12 +120,25 @@ class AnoncePaje extends Anonce
         return ['id' => $id];
     }
 
-    public static function getJson(int $id): bool|string
+    public static function getJson(int $id): bool|Anonce
     {
         $Anonce = new AnoncePaje($id);
+        if($Anonce->error) return $Anonce;
         $Anonce->verLink = 'https://'. $_SERVER['SERVER_NAME'] .'/'.$Anonce->Poster->verLink;
         $Anonce->prog_name = strip_tags($Anonce->prog_name);
-        $data = json_encode(['data' => $Anonce]);
-        return $data;
+        $Anonce->getTopImgUrl();
+        $Anonce->date = date('Y-m-d', strtotime($Anonce->datetime));
+        $Anonce->time = date('H:i', strtotime($Anonce->datetime));
+        //$data = json_encode(['data' => $Anonce]);
+        return $Anonce;
+    }
+
+    public static function byAPI()
+    {
+        if(empty($_POST['anonce'])){
+           // return false;
+        }
+        $Anonce = new Anonce();
+        return $Anonce;
     }
 }

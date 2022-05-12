@@ -9,4 +9,7 @@ or die(http_response_code(400));
 $Anonce = AnoncePaje::getJson($data['id'])
 or die(http_response_code(204));
 
-echo AnoncePaje::getJson($data['id']);
+echo json_encode($Anonce);
+
+
+//echo AnoncePaje::getJson($data['id']);

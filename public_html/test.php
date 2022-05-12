@@ -17,7 +17,21 @@ if(!$cfg->myip) exit;
 
 <body>
 <?php
-
+$qwe = qwe("SELECT concert_id, datetime FROM anonces");
+foreach ($qwe as $q){
+    $date = date('Y-m-d',strtotime($q['datetime']));
+    $folder = '/img/posters/topp/origins/';
+    $ext = '.png';
+    $file = $folder . $date . $ext;
+    $file = $_SERVER['DOCUMENT_ROOT'] . $file;
+    if(!file_exists($file)) continue;
+    $to = $_SERVER['DOCUMENT_ROOT'] . $folder . 'poster_' . $q['concert_id'] . $ext;
+    echo $to . '<br>';
+    rename($file,$to);
+    //echo "<img src='$file'>";
+}
+//$files = FileHelper::FileList('/img/posters/origins/');
+//printr($files);
 
 ?>
 </body>

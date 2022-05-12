@@ -4,7 +4,6 @@
 class AnonceCard extends Anonce
 {
     public string|null $prrow = '';
-    public string|null $topImgUrl;
     public string|null $dateFormated;
 
     public function clone(Anonce $q) : bool
@@ -20,15 +19,6 @@ class AnonceCard extends Anonce
         self::getTopImgUrl();
         $this->dateFormated = self::EvdateFormated();
         return true;
-    }
-
-    private function getTopImgUrl(){
-        $file = 'img/afisha/'.$this->topimg;
-        if(!file_exists($file)){
-            $file = 'img/afisha/deftop3.jpg';
-        }
-        $img = new Img('img/afisha/'.$this->topimg);
-        $this->topImgUrl = $img->verLink;
     }
 
     public function printItem()

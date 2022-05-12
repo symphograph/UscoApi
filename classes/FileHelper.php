@@ -4,6 +4,10 @@ class FileHelper
 {
     public static function FileList(string $dir): array
     {
+        //$dir = $_SERVER['DOCUMENT_ROOT'] . '/' . $dir;
+        if(!file_exists($dir)){
+            return [];
+        }
         $files = scandir($dir);
         if(!$files)
             return [];
