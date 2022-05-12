@@ -55,16 +55,16 @@ class User
         }
 
         $_POST = json_decode(file_get_contents('php://input'), true)['params'] ?? null;
-
-        if(empty($_POST['token'])){
-            die(json_encode(['status'=>'emptyToken']));
+        $token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['token'] ?? null;
+        if(empty($token)){
+            die(json_encode(['status'=>'emptyToken','error'=>'Ошибка авторизации']));
         }
 
-        if(!$this->Sess->tokenValid($_POST['token'])){
-            die(json_encode(['status'=>'badToken']));
+        if(!$this->Sess->tokenValid($token)){
+            die(json_encode(['status'=>'badToken', 'error' => 'Ошибка авторизации']));
         }
         if($this->lvl < $lvl){
-            die(json_encode(['status'=>'badLvl']));
+            die(json_encode(['status'=>'badLvl', 'error'=>'Недостаточно прав']));
         }
     }
 
@@ -91,5 +91,36 @@ class User
             (:id, :tele_id, now(), now(),:lvl)",
             ['id'=>$id, 'tele_id'=>$tele_id,'lvl'=>$lvl]
         );
+    }
+
+    public static function authByToken(int $lvl = 0)
+    {
+        $token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['token'] ?? null;
+        if(empty($token)){
+            die(json_encode(['status'=>'emptyToken']));
+        }
+
+        $Sess = Session::byToken($token);
+        if(!$Sess){
+            die(json_encode(['status'=>'badToken']));
+        }
+        if(!$lvl){
+            return true;
+        }
+
+        if(!$Sess->user_id){
+            die(json_encode(['status'=>'noUser']));
+        }
+
+        $User = User::byId($Sess->user_id);
+        if(!$User){
+            die(json_encode(['status'=>'errorUser']));
+        }
+
+        if($User->lvl && $User->lvl >= $lvl){
+            return true;
+        }
+
+        die(json_encode(['status'=>'badLvl']));
     }
 }

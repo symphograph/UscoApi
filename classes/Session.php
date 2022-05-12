@@ -71,6 +71,15 @@ class Session
         return $qwe->fetchAll(PDO::FETCH_CLASS,"Session")[0];
     }
 
+    public static function byToken(string $token) : Session|bool
+    {
+        $qwe = qwe("SELECT * FROM sessions WHERE token = :token",['token'=>$token]);
+        if(!$qwe or !$qwe->rowCount()){
+            return false;
+        }
+        return $qwe->fetchAll(PDO::FETCH_CLASS,"Session")[0];
+    }
+
     private static function delCook() : void
     {
         setcookie('sess_id','', self::cookOpts(expires: time()-3600));
@@ -85,7 +94,7 @@ class Session
                   Session::cookOpts(
                       expires : $cooktime,
                       httponly: true,
-                      samesite: 'Strict'
+                      samesite: 'None'
                   )
         );
         $qwe = qwe("
@@ -135,7 +144,6 @@ class Session
                   Session::cookOpts(
                       expires : $cooktime,
                       httponly: true,
-                      samesite: 'Strict'
                   )
         );
 
