@@ -25,9 +25,13 @@ class Video
 
     public static function getVitem(string $youtube_id) : string
     {
-        /*if(str_starts_with($_SERVER['SCRIPT_NAME'],'/api/')){
-            return self::getForApi($youtube_id);
-        }*/
+        if(
+            str_starts_with($_SERVER['SCRIPT_NAME'],'/api/')
+            ||
+            str_starts_with($_SERVER['SCRIPT_NAME'],'/test')
+            ){
+            return PHP_EOL . "![video]($youtube_id)" . PHP_EOL;
+        }
         return self::getIFrame($youtube_id);
     }
 

@@ -4,7 +4,7 @@ $imgFolder = 'img/news/' . $new_id . '/';
 ?>
 <br>
 <br><br>
-<?php echo Img::printInNews($imgFolder . '001.jpg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '001.jpg'); ?>
 <br><br>
 С 1 октября, в рамках фестиваля национальных культур «Музыка разных народов» в Южно-Сахалинске звучали произведения
 знаменитых композиторов Армении, внесших значительный вклад в развитие мировой культуры.
@@ -40,9 +40,9 @@ echo NewsImgCollection::printImages(newId: $new_id, start: 2, alradyUsed: [13, 1
 Гаянэ Ахназарян.
 <br><br>
 <br><br>
-<?php echo Img::printInNews($imgFolder . '013.jpg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '013.jpg'); ?>
 <br><br>
-<?php echo Img::printInNews($imgFolder . '014.jpg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '014.jpg'); ?>
 <br><br>
 Подводя итоги Дней Армянской культуры, которые в Южно-Сахалинске проходят уже 13-й раз, председатель совета
 Ассамблеи народов Сахалинской области Майя Кириллова отметила, что это был настоящий праздник армянской музыки.

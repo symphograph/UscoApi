@@ -6,7 +6,7 @@ $_POST = json_decode(file_get_contents('php://input'), true)['params'];
 $data = NewsItem::apiValidation()
 or die(http_response_code(400));
 
-$Item = NewsItem::getJson($data['id'])
+$Item = Entry::byID($data['id'])
 or die(http_response_code(204));
-
-echo $Item;
+//$Item->Images = json_encode($Item->Images);
+echo json_encode($Item);

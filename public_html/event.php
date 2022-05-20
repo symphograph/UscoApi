@@ -3,9 +3,9 @@ $root = $_SERVER['DOCUMENT_ROOT'];
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
 $User = User::byCheck();
 $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
-$evid = intval($_GET['evid']);
+$evid = intval($_GET['evid'] ?? 0);
 $ptypes = ['','','Вход свободный','Онлайн продажа завершена','Вход по пригласительным'];
-$Anonce = new AnoncePaje($evid);
+$Anonce = Anonce::getReady($evid)
 //printr($Anonce);
 ?>
 <html lang="ru">

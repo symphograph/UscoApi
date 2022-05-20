@@ -35,4 +35,72 @@ class FileHelper
         }
         return($folders);
     }
+
+    /**
+     * Сохраняет файл. Если нет дириктории, создаёт её.
+     * @param string $dir
+     * @param $data
+     */
+    public static function fileForceContents(string $dir,$data)
+    {
+        //Сохраняет файл. Если нет дириктории, создаёт её.
+        $parts = explode('/', $dir);
+
+        $file = array_pop($parts);
+        $dir = '';
+        $i=0;
+        foreach($parts as $part)
+        {$i++;
+            if($i==1)
+                $dir = $part;
+            else
+                $dir .= "/$part";
+            if(!is_dir($dir)) mkdir($dir, 0700, true);
+        }
+        file_put_contents("$dir/$file", $data);
+    }
+
+    public static function moveUploaded(string $from, string $to) : bool
+    {
+        if(!self::forceDir($to))
+            return false;
+
+        return @move_uploaded_file($from, $to);
+    }
+
+    public static function forceDir(string $to, bool $addRoot = false) : bool
+    {
+        if($addRoot){
+            $to = $_SERVER['DOCUMENT_ROOT']. '/' . $to;
+            $to = self::removeDoubleSeparators($to);
+        }
+        $dir = pathinfo($to,PATHINFO_DIRNAME);
+        if(!is_dir($dir)){
+            if(!mkdir($dir, 0700, true)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static function copy(string $from,string $to, $addRoot = false)
+    {
+        if($addRoot){
+            $from = $_SERVER['DOCUMENT_ROOT']. '/' . $from;
+            $to = $_SERVER['DOCUMENT_ROOT']. '/' . $to;
+        }
+
+        if(!file_exists($from))
+            return false;
+
+        if(!self::forceDir($to))
+            return false;
+
+        return @copy($from,$to);
+    }
+
+    public static function removeDoubleSeparators(string $dir)
+    {
+        return str_replace('//','/',$dir);
+    }
 }

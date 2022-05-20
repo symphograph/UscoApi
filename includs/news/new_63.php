@@ -13,10 +13,10 @@ $imgFolder = 'img/news/' . $new_id . '/';
     классические шедевры, а также известную музыку из советских
     кинофильмов.
     <br><br>
-    <?php echo Img::printInNews($imgFolder . '002.jpg'); ?>
+    <?php echo Img::printInNews($new_id, $imgFolder . '002.jpg'); ?>
     За дирижерским пультом в этот раз стоял ассистент дирижера - скрипач оркестра Александр Лопатин.
     <br><br><br>
-<?php echo Img::printInNews($imgFolder . '003.jpg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '003.jpg'); ?>
     <br><br>
     При этом Тигран Суренович не остался в стороне и выступил в ролях ведущего и артиста, исполив партии ударных инструментов, чем оказал большую поддержку оркестру.
     <br><br>

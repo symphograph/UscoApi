@@ -1,15 +1,16 @@
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
 $User = User::byCheck();
-$_POST = json_decode(file_get_contents('php://input'), true)['params'];
 
-$data = AnoncePaje::apiValidation()
+
+$id = intval($_POST['id'] ?? 0)
 or die(http_response_code(400));
 
-$Anonce = AnoncePaje::getJson($data['id'])
+//$Anonce = Anonce::getReady($id)
+$Anonce = Anonce::byCache($id)
 or die(http_response_code(204));
 
-echo json_encode($Anonce);
-
+//echo json_encode($Anonce);
+echo $Anonce;
 
 //echo AnoncePaje::getJson($data['id']);

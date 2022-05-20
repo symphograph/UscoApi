@@ -4,7 +4,7 @@ $imgFolder = 'img/news/' . $new_id . '/';
 ?>
 <br>
 <br><br>
-<?php echo Img::printInNews($imgFolder . '001.jpg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '001.jpg'); ?>
 <br><br>
 25 апреля, в рамках фестиваля «Пасхальные встречи 2022», на сцене
 Киноконцертного зала «Октябрь» состоялся, ставший уже традиционным, праздничный

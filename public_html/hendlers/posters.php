@@ -2,17 +2,14 @@
 
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
 $User = User::byCheck();
-$data = Anonce::apiValidation();
-if(!$data)
-    die();
+$data = Anonce::apiValidation() or die();
 
-$qwe = Anonce::getCollection($data['sort'],$data['year']);
-if(!$qwe)
-    die();
+$qwe = Anonce::getCollection($data['sort'],$data['year']) or die();
 
 foreach($qwe as $q)
 {
-    $Anonce = new AnonceCard();
-    $Anonce->clone($q);
-    $Anonce->printItem();
+    if (!$q->show)
+        continue;
+    $Anonce = Anonce::clone($q);
+    $Anonce->printCard();
 }

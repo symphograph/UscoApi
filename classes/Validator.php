@@ -13,4 +13,13 @@ class Validator
         }
         return false;
     }
+
+    public static function date(string $date) : bool|string
+    {
+        if(date('Y-m-d', strtotime($date)) == $date){
+            return $date;
+        }
+        return false;
+    }
+
 }

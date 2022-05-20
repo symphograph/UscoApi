@@ -4,7 +4,7 @@ $imgFolder = 'img/news/' . $new_id . '/';
 ?>
 <br>
     <br><br>
-    <?php echo Img::printInNews($imgFolder . '001.jpg'); ?>
+    <?php echo Img::printInNews($new_id, $imgFolder . '001.jpg'); ?>
     <br><br>
     11 сентября, в День рождения города Южно-Сахалинска, в Городском парке
     культуры и отдыха Южно-Сахалинский камерный оркестр выступил с
@@ -30,8 +30,8 @@ $imgFolder = 'img/news/' . $new_id . '/';
     присутствующих хорошим настроением и подарили прекрасные эмоции.
     <br><br>
     <br><br>
-<?php echo Img::printInNews($imgFolder . '002.jpg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '002.jpg'); ?>
     <br><br>
-<?php echo Img::printInNews($imgFolder . '003.jpg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '003.jpg'); ?>
     <br><br>
-<?php echo Img::printInNews($imgFolder . '004.jpg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '004.jpg'); ?>

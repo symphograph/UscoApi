@@ -18,6 +18,7 @@ class NewsImgCollection
             return;
         }
         self::filterUsed();
+        //printr($this->files);
         self::clipStart();
     }
 
@@ -89,8 +90,8 @@ class NewsImgCollection
         }
         $arr = [];
         foreach ($images as $img){
-            $arr[] = Img::printInNews($img);
+            $arr[] = Img::printInNews($newId,$img);
         }
-        return implode('<br><br>',$arr);
+        return implode( PHP_EOL.PHP_EOL ,$arr);
     }
 }

@@ -2,17 +2,15 @@
 
 class Img
 {
-    private string $md5 = '';
+    public string $md5 = '';
     public bool $exist = false;
     public int $width = 0;
     public int $height = 0;
     public string $verLink = '';
     public string $fileName = '';
-    public string $extension = '';
+    public string $ext      = '';
 
-    /**
-     * @throws ImagickException
-     */
+
     public function __construct(
         public string $file = ''
     )
@@ -28,20 +26,26 @@ class Img
         $this->file = str_replace('%20', ' ', $this->file);
         $file = $_SERVER['DOCUMENT_ROOT'].'/' . $this->file;
         $this->fileName = basename($file);
-        $this->extension = pathinfo($file,PATHINFO_EXTENSION);
+        $this->ext = pathinfo($file,PATHINFO_EXTENSION);
         $this->exist = file_exists($file) && !is_dir($file);
         if(!$this->exist){
             //printr($file);
             return false;
         }
 
-        $image = new Imagick($file);
+        try {
+            $image = new Imagick($file);
 
-        $this->width = $image->getImageWidth();
-        $this->height = $image->getImageHeight();
-        $this->verLink = self::versioner();
+            $this->width = $image->getImageWidth();
+            $this->height = $image->getImageHeight();
+            $this->verLink = self::versioner();
 
-        return true;
+            return true;
+        } catch (ImagickException $e){
+            return false;
+        }
+
+
     }
 
     private function versioner(): string
@@ -60,14 +64,6 @@ class Img
     public static function getVerLink(string $file) : string
     {
         return (new Img($file))->verLink;
-    }
-
-    public function tagArticle() : string
-    {
-        if(empty($this->verLink)){
-            return '';
-        }
-        return "<img src='$this->verLink' class='newsImg'>";
     }
 
     public static function isImage(string $file): bool|string
@@ -105,17 +101,31 @@ class Img
 
     }
 
-    public static function printInNews(string $file) : string
+    public static function printInNews(int $id, string $file) : string
     {
         if(empty($file)){
             return '';
         }
-        $link = Img::getVerLink($file);
-        if(str_starts_with($_SERVER['SCRIPT_NAME'],'/api/')){
-            $link = 'https://' . $_SERVER['SERVER_NAME'] . '/' . $link;
+
+        //EntryImg::saveFromOld($file,$id);
+        $oldName = pathinfo($file,PATHINFO_BASENAME);
+        $newName = EntryImg::newName($id,$oldName);
+        //printr($newName);
+
+        if(
+            str_starts_with($_SERVER['SCRIPT_NAME'],'/api/')
+            ||
+            str_starts_with($_SERVER['SCRIPT_NAME'],'/test')
+        ){
+            $img = "![]($newName)";
+           // $link = 'https://' . $_SERVER['SERVER_NAME'] . '/' . $link;
+        }else{
+            $link = '/img/entry/1080/'. $id . '/' .$newName;
+            $img = "<img src='$link' class='newsImg'>";
         }
 
-        return "<img src='$link' class='newsImg'>";
+        //return "<img src='$link' class='newsImg'>";
+        return $img;
     }
 
     public static function uplErors(array $file) : string|bool
@@ -132,6 +142,10 @@ class Img
             return 'Недопустимый формат изображения.';
         }
 
+        if($file['size'] > 50000000){
+            return 'Файл слишком большой.';
+        }
+
         return false;
     }
 
@@ -143,6 +157,38 @@ class Img
         }
 
         return 480;
+    }
+
+    public static function optimize(string $from, string $to, int $width = 0, int $height = 0): bool
+    {
+        try {
+            $image = new Imagick($_SERVER['DOCUMENT_ROOT'] . '/' . $from);
+            $data = $image->identifyImage();
+            if ($data['mimetype'] == 'image/png')
+            {
+                //printr($data);
+                $image->setBackgroundColor(new ImagickPixel('transparent'));
+                $image = $image->mergeImageLayers(Imagick::LAYERMETHOD_FLATTEN);
+            }
+            if (!$image->setImageFormat("jpeg"))
+                return false;
+            $image->stripimage();
+            $image->setImageResolution(96, 96);
+            $image->resampleImage(96, 96, \Imagick::FILTER_LANCZOS, 1);
+
+            if($width || $height){
+                $image->resizeImage($width, $height, 0, 1);
+            }
+            $image->setCompression(Imagick::COMPRESSION_JPEG);
+            $image->setImageCompressionQuality(70);
+            FileHelper::forceDir($to,1);
+            $image->writeImage($_SERVER['DOCUMENT_ROOT'] . '/' . $to);
+
+
+        } catch (ImagickException $e){
+            return false;
+        }
+        return true;
     }
 
 }

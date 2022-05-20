@@ -69,13 +69,6 @@ class Poster extends Img
             return $Poster;
         }
 
-        /*
-        if($isTopp && !self::validSize($file['tmp_name'])){
-            $Poster->error = 'Недопустимое соотношение сторон';
-            return $Poster;
-        }
-        */
-
         if(!$Poster->putToOriginals($file)){
             $Poster->error = 'Ошибка при сохранении файла';
             return $Poster;
@@ -86,19 +79,24 @@ class Poster extends Img
             return $Poster;
         }
 
+        if(!Anonce::reCache(intval($_POST['id'] ?? 0))){
+            $Poster->error = 'Ошибка при кэшировании';
+            return $Poster;
+        }
+
         return $Poster;
     }
 
     private function nameById(array $file): bool
     {
-        $id = $_POST['id'] ?? 0;
+        $id = intval($_POST['id'] ?? 0);
         if(!$id){
             return false;
         }
 
-        $this->extension = pathinfo($file['name'],PATHINFO_EXTENSION);
+        $this->ext = pathinfo($file['name'],PATHINFO_EXTENSION);
 
-        $this->fileName = 'poster_' . $id . '.' . $this->extension;
+        $this->fileName = 'poster_' . $id . '.' . $this->ext;
         return true;
     }
 

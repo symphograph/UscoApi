@@ -15,12 +15,12 @@ $cfg = require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/ip.php';
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/functions/functions.php';
 
 
-if($cfg->myip)
-{
+if($cfg->myip) {
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
     $cfg->debug = true;
 }
+
 if(
     str_starts_with($_SERVER['SCRIPT_NAME'], '/hendlers/')
     ||
@@ -29,6 +29,11 @@ if(
 {
     if(!in_array($_SERVER['REQUEST_METHOD'], ['POST', 'OPTIONS']))
         die();
+
+    if(empty($_POST)){
+        $_POST = json_decode(file_get_contents('php://input'), true)['params'] ?? [];
+    }
+
 
     if($cfg->debug) {
 

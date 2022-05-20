@@ -4,6 +4,6 @@ $imgFolder = 'img/news/' . $new_id . '/';
 ?>
 <br><br>
 <a href="https://rodina-dk.ru/translyatsiya-kontserta-yuzhno-sahalinskogo-kamernogo-orkestra/">
-    <?php echo Img::printInNews($imgFolder . '001.jpg'); ?>
+    <?php echo Img::printInNews($new_id, $imgFolder . '001.jpg'); ?>
 </a>
 <br><br>

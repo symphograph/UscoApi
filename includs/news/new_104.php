@@ -4,7 +4,7 @@ $imgFolder = 'img/news/' . $new_id . '/';
 ?>
 <br>
 <br><br>
-<?php echo Img::printInNews($imgFolder . '001.jpg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '001.jpg'); ?>
 <br><br>
 Очередной концерт, в рамках «Пасхальных встреч 2022», прошел 26 апреля в городе
 Холмске. В зале Центрального дома культуры Южно-Сахалинский камерный оркестр

@@ -2,7 +2,7 @@
 $new_id = 62;
 $imgFolder = 'img/news/' . $new_id . '/';
 ?>
-<?php echo Img::printInNews($imgFolder . '001.svg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '001.svg'); ?>
 <div class="postEuterpe">
 
 

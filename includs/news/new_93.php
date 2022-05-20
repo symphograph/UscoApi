@@ -4,7 +4,7 @@ $imgFolder = 'img/news/' . $new_id . '/';
 ?>
 <br>
 <br><br>
-<?php echo Img::printInNews($imgFolder . '001.jpg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '001.jpg'); ?>
 <br><br>
 28 февраля в Киноконцертном зале «Октябрь» прошел концерт,
 посвященный памяти основателя, первого художественного руководителя и

@@ -6,7 +6,7 @@ class NewsItem
     public int         $id      = 0;
     public string|null $title   = 'Заголовок новости';
     public string|null $descr   = 'Краткое описание';
-    public string|null $content = 'Текст новости';
+    public string|null $content = '';
     public string|null $img     = 'img/news/default_news_img.svg';
     /*public string $ver = '892648eb37542d469424b3448268d452';*/
     public string|null       $date    = '01.01.1970';
@@ -18,6 +18,7 @@ class NewsItem
     public Img               $pwImg;
     public NewsImgCollection $imgCollection;
     public string|null $cache;
+    public array $Images = [];
 
     public function __construct(int $id = 0)
     {
@@ -53,7 +54,7 @@ class NewsItem
         $this->id    = $q->id;
         $this->title = $q->title ?? '';
         $this->descr = $q->descr ?? '';
-        $this->content = self::contentByFile() ?? $q->content ?? '';
+        $this->content = self::contentByFile($q->id) ?? $q->content ?? '';
         $this->img = $q->img ?? '';
         $this->date = $q->date;
         $this->show = $q->show;
@@ -115,8 +116,8 @@ class NewsItem
             $this->pwImg = new Img('img/news/default_news_img.svg');
         }
 
-        if($this->pwImg->extension != 'svg'){
-            self::resizePw($this->pwImg->file, 260, $this->pwImg->extension);
+        if($this->pwImg->ext != 'svg'){
+            self::resizePw($this->pwImg->file, 260, $this->pwImg->ext);
         }
     }
 
@@ -157,17 +158,21 @@ class NewsItem
         return ru_date('',strtotime($this->date));
     }
 
-    public function getContent() : string
+    public function getContent(int $id) : string
     {
-        return self::contentByFile() ?? $this->content ?? 'tt';
+        $content = self::contentByFile($id);
+        return $content ?? '';
+        //return $content ?? $this->content ?? 'tt';
     }
 
-    private function contentByFile(): string|null
+    private function contentByFile(int $id): string|null
     {
-        $file = dirname($_SERVER['DOCUMENT_ROOT']).'/includs/news/new_'.$this->id.'.php';
+        $file = dirname($_SERVER['DOCUMENT_ROOT']).'/includs/news/new_'.$id.'.php';
 
-        if(!file_exists($file))
+        if(!file_exists($file)){
             return null;
+        }
+
         ob_start();
         include_once $file;
         return ob_get_clean();
@@ -176,18 +181,20 @@ class NewsItem
     public function PajeItem() : string
     {
         $content = $this->content ?? $this->descr;
+
         $ref = self::getReferer();
-        return
+        $result =
             <<<HTML
                 <div class="newsarea">
                     <div class="ntitle">$this->title</div>
                     <hr>
                     <div class="narea">
-                        <div class="text">{$content}</div>
-                        {$ref}
+                        <div class="text">$content</div>
+                        $ref
                     </div>
                 </div>
             HTML;
+        return $result;
     }
 
     public function getReferer() : string
@@ -221,6 +228,7 @@ class NewsItem
     public static function getJson(int $id): bool|string
     {
         $Item = new NewsItem($id);
+        $Item->Images = Entry::getImages($id);
         return json_encode(['data' => $Item]);
     }
 

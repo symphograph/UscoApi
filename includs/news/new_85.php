@@ -4,7 +4,7 @@ $imgFolder = 'img/news/' . $new_id . '/';
 ?>
     <br>
     <br><br>
-<?php echo Img::printInNews($imgFolder . '001.png'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '001.png'); ?>
     <br><br>
 
 2021 концертный год для Южно-Сахалинского камерного оркестра

@@ -4,7 +4,7 @@ $imgFolder = 'img/news/' . $new_id . '/';
 ?>
 <br>
 <br><br>
-<?php echo Img::printInNews($imgFolder . '001.jpg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '001.jpg'); ?>
 <br><br>
 13 марта свой День Рождения отметил художественный руководитель и
 главный дирижер Южно-Сахалинского камерного оркестра Тигран
@@ -37,5 +37,5 @@ $imgFolder = 'img/news/' . $new_id . '/';
 Также в адрес именинника пришли поздравления от деятелей культуры из
 разных регионов страны.
     <br><br>
-<?php echo Img::printInNews($imgFolder . '002.png'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '002.png'); ?>
 <br><br>

@@ -4,7 +4,7 @@ $imgFolder = 'img/news/' . $new_id . '/';
 ?>
 <br>
 <br><br>
-<?php echo Img::printInNews($imgFolder . '001.jpg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '001.jpg'); ?>
 <br><br>
 Очередной день рождения Южно-Сахалинского камерного оркестра -
 это ли не повод рассказать о музыкальном коллективе, ставшем уже легендой

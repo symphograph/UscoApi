@@ -65,21 +65,19 @@ ORDER BY anonces.datetime
         ?>
         <div class="evcols">
             <?php
-            foreach ($qwe as $q) {
-
-                $Anonce = new AnonceCard();
-                $Anonce->clone($q);
-                $Anonce->printItem();
-            }
-
+                foreach ($qwe as $q) {
+                    $Anonce = Anonce::byQ($q);
+                    if(!$Anonce) continue;
+                    $Anonce->printCard();
+                }
             ?>
         </div>
     </div>
     <!--
     <div class="eventsarea" id="banner">
         <?php
-    $NewItem = new NewsItem(84);
-    echo $NewItem->PajeItem();
+    //$NewItem = new NewsItem(84);
+    //echo $NewItem->PajeItem();
     ?>
         <br><hr><br><br>
     </div>

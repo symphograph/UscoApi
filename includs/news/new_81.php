@@ -4,7 +4,7 @@ $imgFolder = 'img/news/' . $new_id . '/';
 ?>
 <br>
 <br><br>
-<?php echo Img::printInNews($imgFolder . '001.jpg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '001.jpg'); ?>
 <br><br>
 Ещё одно значимое событие в культурной жизни города Южно-
 Сахалинска произошло в конце уходящего года. 6 декабря в Конгресс-холле

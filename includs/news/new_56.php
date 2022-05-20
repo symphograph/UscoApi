@@ -3,7 +3,7 @@ $new_id    = 56;
 $imgFolder = 'img/news/' . $new_id . '/';
 ?>
 <br><br>
-<?php echo Img::printInNews($imgFolder . '001.jpg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '001.jpg'); ?>
 <br><br>
 <p>Проект организован в рамках ежегодной премии
     губернатора «Сахалинский маяк» и курируется администрацией губернатора и правительства Сахалинской

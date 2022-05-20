@@ -4,7 +4,7 @@ $imgFolder = 'img/news/' . $new_id . '/';
 ?>
 <br>
 <br><br>
-<?php echo Img::printInNews($imgFolder . '001.jpg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '001.jpg'); ?>
 <br><br>
 6 октября в областном центре состоялось открытие трёхдневного Sakhalin
 Jazz Festival. В первый фестивальный день знаменитый саксофонист,

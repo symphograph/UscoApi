@@ -1,7 +1,7 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
-
+require_once dirname($_SERVER['DOCUMENT_ROOT'])."/vendor/autoload.php";
 if(!$cfg->myip) exit;
 
 ?>
@@ -14,26 +14,19 @@ if(!$cfg->myip) exit;
 </head>
 
 <body>
-<!-- Include stylesheet -->
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-<script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
-
 <?php
-$image = new Imagick($_SERVER['DOCUMENT_ROOT'].'/img/albums/2021-05-25 Ева Геворгян/2021-05-25_IMG_3577.jpg');
-//$geo=$image->getImageGeometry();
-//printr($geo);
-$exifArray = $image->getImageProperties('*');
-printr($exifArray);
-foreach ($exifArray as $name => $property)
-{
-    echo "{$name} => {$property}<br />\n";
+/*
+$Entryes = Entry::getAlldbRows();
+foreach ($Entryes as $en){
+    @unlink($_SERVER['DOCUMENT_ROOT'].'/img/entry/1080/' . $en->id . '/.png');
+    @unlink($_SERVER['DOCUMENT_ROOT'].'/img/entry/1080/' . $en->id . '/.svg');
+    @unlink($_SERVER['DOCUMENT_ROOT'].'/img/entry/1080/' . $en->id . '/.jpeg');
+
+    @unlink($_SERVER['DOCUMENT_ROOT'].'/img/entry/origins/' . $en->id . '/.png');
+    @unlink($_SERVER['DOCUMENT_ROOT'].'/img/entry/origins/' . $en->id . '/.svg');
+    @unlink($_SERVER['DOCUMENT_ROOT'].'/img/entry/origins/' . $en->id . '/.jpeg');
 }
-?>
-
-<?php
-//printr($image);
-
-printr(time() > (strtotime('2021-05-21 15:00:00')-3600*8));
+*/
 ?>
 
 

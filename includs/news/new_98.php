@@ -4,7 +4,7 @@ $imgFolder = 'img/news/' . $new_id . '/';
 ?>
 <br>
 <br><br>
-<?php echo Img::printInNews($imgFolder . '001.jpg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '001.jpg'); ?>
 <br><br>
 25 и 26 марта Южно-Сахалинский камерный оркестр под управлением
 художественного руководителя и главного дирижера оркестра Тиграна
@@ -28,7 +28,7 @@ $imgFolder = 'img/news/' . $new_id . '/';
 на концерте, торжественно поздравил с праздником мэр города Южно-
 Сахалинска Сергей Александрович Надсадин.
 <br><br>
-<?php echo Img::printInNews($imgFolder . '002.jpg'); ?>
+<?php echo Img::printInNews($new_id, $imgFolder . '002.jpg'); ?>
 <br><br>
 В своем поздравлении Сергей
 Александрович отметил, что своим трудом работники культуры

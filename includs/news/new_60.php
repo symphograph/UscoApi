@@ -5,7 +5,7 @@ $imgFolder = 'img/news/' . $new_id . '/';
     <br><br>
 
     <br><br>
-    <?php echo Img::printInNews($imgFolder . '001.jpg'); ?>
+    <?php echo Img::printInNews($new_id, $imgFolder . '001.jpg'); ?>
     <br><br>
 
     Курс позволит слушателям сформировать навыки по управлению бизнес-процессами и подготовить проект в сфере креативных
