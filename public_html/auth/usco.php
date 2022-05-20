@@ -7,4 +7,9 @@ $User = User::byCheck();
 if(!$User->Sess) {
     die(http_response_code(401));
 }
-header("Location: https://localhost:8080/auth#{$User->Sess->getToken()}");
+$redirects = [
+    'test.sakh-orch.ru' => 'localhost:8080',
+    'sakh-orch.ru' => 'dev.sakh-orch.ru'
+];
+$redirect = $redirects[$_SERVER['SERVER_NAME']];
+header("Location: https://$redirect/auth#{$User->Sess->getToken()}");
