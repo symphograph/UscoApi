@@ -7,7 +7,6 @@ $data = Anonce::apiValidation()
 or die(http_response_code(400));
 
 $qwe = Anonce::getCollectionByCache($data['sort'],$data['year'],$data['new'])
-or Anonce::getCollection($data['sort'],$data['year'],$data['new'])
 or die(http_response_code(204));
 
 echo json_encode(['data' => $qwe]);
