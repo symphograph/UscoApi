@@ -5,27 +5,29 @@ $_POST = json_decode(file_get_contents('php://input'), true)['params'];
 
 /*$data = NewsItem::apiValidation()
 or die(http_response_code(400));*/
+
 $category = $_POST['category'] ?? false;
 if(!$category)
     die(http_response_code(400));
 
-$year = $_POST['year'] ?? 0;
-$year = intval($year);
-if(!$year) $year = date('Y',time());
+$year = intval($_POST['year'] ?? 0);
+if(!$year)
+    $year = intval(date('Y',time()));
 
-$limit = $_POST['limit'] ?? 100;
-$limit = intval($limit);
+$limit = intval($_POST['limit'] ?? 1000);
 
 $filters = [
-    'usco'    => [1, 3],
-    'other'   => [2],
-    'euterpe' => [3],
-    'all'     => [1, 2, 3]
+    'usco' => 1,
+    'other'=> 2,
+    'euterpe' => 3,
+    'all' => 4
 ];
+
+$categs = Entry::categsByShow($filters[$category]);
 if(!array_key_exists($_POST['category'], $filters))
     die(http_response_code(400));
-
-$Item = NewsItem::getCollection($year, $filters[$category],$limit)
+//printr($categs);
+$Item = Entry::getCollection($year, $categs, $limit)
+//$Item = NewsItem::getCollection($year, $filters[$category],$limit)
 or die(http_response_code(204));
-
-echo $Item;
+echo APIusco::resultData($Item);

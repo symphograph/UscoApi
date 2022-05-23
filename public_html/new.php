@@ -9,7 +9,8 @@ if(!$new_id)
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
 $User = User::byCheck();
 
-$NewsItem = new NewsItem(id: $new_id);
+//$NewsItem = new NewsItem(id: $new_id);
+$NewsItem = Entry::byID($new_id);
 if(!$NewsItem->show)
 {
     header("Location: ../news.php");
@@ -47,7 +48,8 @@ $host = 'https://'.$_SERVER['SERVER_NAME'].'/';
 
 <div class="content">
     <?php
-    echo $NewsItem->PajeItem();
+    //echo $NewsItem->PajeItem();
+    echo $NewsItem->htmlPaje();
     ?>
 </div>
 <?php

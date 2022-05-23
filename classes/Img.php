@@ -11,9 +11,7 @@ class Img
     public string $ext      = '';
 
 
-    public function __construct(
-        public string $file = ''
-    )
+    public function __construct(public string $file = '')
     {
         return self::initFileInfo($file);
     }
@@ -108,19 +106,19 @@ class Img
         }
 
         //EntryImg::saveFromOld($file,$id);
-        $oldName = pathinfo($file,PATHINFO_BASENAME);
-        $newName = EntryImg::newName($id,$oldName);
+        $fileName = pathinfo($file,PATHINFO_BASENAME);
+        //$newName = EntryImg::newName($id,$oldName);
         //printr($newName);
 
-        if(
-            str_starts_with($_SERVER['SCRIPT_NAME'],'/api/')
+        if (
+            str_starts_with($_SERVER['SCRIPT_NAME'], '/api/')
             ||
-            str_starts_with($_SERVER['SCRIPT_NAME'],'/test')
-        ){
-            $img = "![]($newName)";
-           // $link = 'https://' . $_SERVER['SERVER_NAME'] . '/' . $link;
-        }else{
-            $link = '/img/entry/1080/'. $id . '/' .$newName;
+            str_starts_with($_SERVER['SCRIPT_NAME'], '/test')
+        ) {
+            $img = "![]($fileName)";
+            // $link = 'https://' . $_SERVER['SERVER_NAME'] . '/' . $link;
+        } else {
+            $link = Entry::imgFolder . '/' . $id . '/' . $fileName;
             $img = "<img src='$link' class='newsImg'>";
         }
 

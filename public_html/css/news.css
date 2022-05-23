@@ -1,77 +1,87 @@
 @charset "utf-8";
 /* CSS Document */
-.newsarea{
-	/*min-width: 370px;*/
-	max-width: 900px;
-	margin: auto;
-	/*padding: 30px;*/
+.newsarea {
+    /*min-width: 370px;*/
+    max-width: 900px;
+    margin: auto;
+    /*padding: 30px;*/
 }
-.newsarea2{
-	/*min-width: 370px;*/
-	max-width: 1200px;
-	margin: auto;
-	/*padding: 30px;*/
+
+.newsarea2 {
+    /*min-width: 370px;*/
+    max-width: 1200px;
+    margin: auto;
+    /*padding: 30px;*/
 }
-.newbox{
-	width: 340px;
-	display: inline-block;
-	float: left;
-	padding: 10px;
-	height: 550px;
-	
+
+.newbox {
+    width: 340px;
+    display: inline-block;
+    float: left;
+    padding: 10px;
+    height: 550px;
+
 }
-.newboxin{
-	border: 1px solid #a98700;
-	height: 520px;
-	padding: 10px;
-	position: relative;
-	/*display: flex;*/
-	/*flex-direction: column;*/
-	/*justify-content:space-between;*/
+
+.newboxin {
+    border: 1px solid #a98700;
+    height: 520px;
+    padding: 10px;
+    position: relative;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content:space-between;*/
 }
-.nfot{
-	width: 300px;
-	height: 225px;
-	overflow: hidden;
-	border-radius: 5px;
+
+.nfot {
+    width: 300px;
+    height: 225px;
+    overflow: hidden;
+    border-radius: 5px;
 }
-.ntitle{
-	font-size: 30px;
-	padding: 20px;
+
+.ntitle {
+    font-size: 30px;
+    padding: 20px;
 }
-.nboxtitle{
-	min-height: 70px;
+
+.nboxtitle {
+    min-height: 70px;
 }
-.tnbox{
-	width: 300px;
-	margin: auto;
-	color: black;
-	padding: 10px;
-	font-size: 16px;
-	text-align: justify;
+
+.tnbox {
+    width: 300px;
+    margin: auto;
+    color: black;
+    padding: 10px;
+    font-size: 16px;
+    text-align: justify;
 }
-div[class="newboxin"] > div> a, div[class="newboxin"] > a{
-	text-decoration: none;
-	color: black;
-	transition: 200ms;
+
+div[class="newboxin"] > div > a, div[class="newboxin"] > a {
+    text-decoration: none;
+    color: black;
+    transition: 200ms;
 }
-div[class="newboxin"] > div> a:hover, div[class="newboxin"] > a:hover{
-	text-decoration: none;
-	/*letter-spacing: 1px;*/
-	text-shadow: 1px 1px 10px #797474;
-	transition: 100ms;
+
+div[class="newboxin"] > div > a:hover, div[class="newboxin"] > a:hover {
+    text-decoration: none;
+    /*letter-spacing: 1px;*/
+    text-shadow: 1px 1px 10px #797474;
+    transition: 100ms;
 }
+
 /*
 .ndate{
 	position: absolute;
 	bottom: 5px;
 }
 */
-.text img{
-	box-shadow: 0 0 0.5em black;
+.text img {
+    box-shadow: 0 0 0.5em black;
 }
 
-.vitem{
+.vitem {
     width: 100%;
     height: 0;
     padding-bottom: 56.25%;
@@ -79,5 +89,12 @@ div[class="newboxin"] > div> a:hover, div[class="newboxin"] > a:hover{
     position: relative;
 }
 
+.section-video {
+    margin: 1em 0;
+}
+
+.section-img {
+    margin: 1em 0;
+}
 
 

@@ -4,7 +4,7 @@ class FileHelper
 {
     public static function FileList(string $dir): array
     {
-        //$dir = $_SERVER['DOCUMENT_ROOT'] . '/' . $dir;
+        $dir = self::addRoot($dir);
         if(!file_exists($dir)){
             return [];
         }
@@ -83,12 +83,10 @@ class FileHelper
         return true;
     }
 
-    public static function copy(string $from,string $to, $addRoot = false)
+    public static function copy(string $from,string $to): bool
     {
-        if($addRoot){
-            $from = $_SERVER['DOCUMENT_ROOT']. '/' . $from;
-            $to = $_SERVER['DOCUMENT_ROOT']. '/' . $to;
-        }
+        $from = self::addRoot($from);
+        $to = self::addRoot($to);
 
         if(!file_exists($from))
             return false;
@@ -99,8 +97,35 @@ class FileHelper
         return @copy($from,$to);
     }
 
-    public static function removeDoubleSeparators(string $dir)
+    public static function removeDoubleSeparators(string $dir) : string
     {
         return str_replace('//','/',$dir);
+    }
+
+    public static function addRoot(string $file): string
+    {
+        if(!str_starts_with($file,'/tmp') && !str_starts_with($file,'/home')){
+            $file = $_SERVER['DOCUMENT_ROOT']. '/' . $file;
+        }
+
+        return self::removeDoubleSeparators($file);
+    }
+
+    public static function delDir($dir): bool
+    {
+        $dir = self::addRoot($dir);
+        $d = @opendir($dir);
+        if(!$d) return false;
+        while (($entry = readdir($d)) !== false) {
+            if ($entry != "." && $entry != "..") {
+                if (is_dir($dir . "/" . $entry)) {
+                    self::delDir($dir . "/" . $entry);
+                } else {
+                    unlink($dir . "/" . $entry);
+                }
+            }
+        }
+        closedir($d);
+        return rmdir($dir);
     }
 }

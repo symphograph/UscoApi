@@ -7,7 +7,7 @@ if(empty($_FILES)){
 }
 
 foreach ($_FILES as $FILE){
-    $EntryImg = EntryImg::upload($FILE);
+    $EntryImg = EntryImg::upload($FILE,1);
     if($EntryImg->error){
         die(APIusco::errorMsg($EntryImg->error));
     }

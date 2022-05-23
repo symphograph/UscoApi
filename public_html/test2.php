@@ -1,8 +1,8 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
-require_once dirname($_SERVER['DOCUMENT_ROOT'])."/vendor/autoload.php";
-if(!$cfg->myip) exit;
+require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/config.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']) . "/vendor/autoload.php";
+if (!$cfg->myip) exit;
 
 ?>
 <!doctype html>
@@ -10,25 +10,29 @@ if(!$cfg->myip) exit;
 <head>
     <meta charset="utf-8">
     <title>Тест</title>
-    <?php CssMeta(['menu.css','index.css','news.css','menum.css', 'right_nav.css'])?>
+    <?php CssMeta(['menu.css', 'index.css', 'news.css', 'menum.css', 'right_nav.css']) ?>
 </head>
 
 <body>
 <?php
-/*
+//$file = '/img/entry/1080/1/pw/001.jpg';
+//echo EntryImg::idByDir($file);
+
 $Entryes = Entry::getAlldbRows();
-foreach ($Entryes as $en){
-    @unlink($_SERVER['DOCUMENT_ROOT'].'/img/entry/1080/' . $en->id . '/.png');
-    @unlink($_SERVER['DOCUMENT_ROOT'].'/img/entry/1080/' . $en->id . '/.svg');
-    @unlink($_SERVER['DOCUMENT_ROOT'].'/img/entry/1080/' . $en->id . '/.jpeg');
+foreach ($Entryes as $Entry){
+    $Entry = Entry::clone($Entry);
+    /*
+    $EntryImg = EntryImg::copyPwFromOld($Entry);
+    if($EntryImg->error){
+        echo $Entry->id . ': ' . $EntryImg->error . '<br>';
+    }else{
+        echo $Entry->id . ': ' . $EntryImg->file . '<br>';
+    }
+    */
 
-    @unlink($_SERVER['DOCUMENT_ROOT'].'/img/entry/origins/' . $en->id . '/.png');
-    @unlink($_SERVER['DOCUMENT_ROOT'].'/img/entry/origins/' . $en->id . '/.svg');
-    @unlink($_SERVER['DOCUMENT_ROOT'].'/img/entry/origins/' . $en->id . '/.jpeg');
 }
-*/
-?>
 
+?>
 
 
 </body>
