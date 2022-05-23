@@ -71,9 +71,23 @@ class DB
         return $result ?? false;
     }
 
-    public function pHolders(array $list): string
+    public static function pHolders(array $list): string
     {
-        return rtrim(str_repeat('?, ', count($list)), ', ') ;
+        //return rtrim(str_repeat('?, ', count($list)), ', ') ;
+
+        $inKeys = array_map(function ($key) {
+            return ':var_' . intval($key);
+        }, array_keys($list));
+        return implode(', ', $inKeys);
+    }
+
+    public static function pHoldsArr(array $list): array
+    {
+        $arr = [];
+        foreach ($list as $key => $val) {
+            $arr['var_' . intval($key)] = $val;
+        }
+        return $arr;
     }
 
     private function prepLog(string $trace, string $sql, string $error) : string

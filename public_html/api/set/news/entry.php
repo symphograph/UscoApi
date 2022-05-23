@@ -20,12 +20,8 @@ die(APIusco::errorMsg('Не вижу дату'));
 $Entry->markdown = $entry['markdown'] or
 die(APIusco::errorMsg('Пустой текст'));
 
-$Entry->categs = json_encode($entry['categs'],JSON_FORCE_OBJECT)  or
+$Entry->categs = $entry['categs'] or
 die(APIusco::errorMsg('Ошибка определения категорий'));
-
-$Entry->catindex = implode('|',$entry['categs'])  or
-die(APIusco::errorMsg('Ошибка определения категорий'));
-
 
 $Entry->putToDB() or
 die(APIusco::errorMsg('Ошибка при сохранении'));

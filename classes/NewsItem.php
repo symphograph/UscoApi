@@ -121,36 +121,39 @@ class NewsItem
         }
     }
 
-    function PrintItem()
+    function PrintItem(): string
     {
+        $fDate = self::dateFormated();
+        $img = $this->pwImg->verLink;
+        $link = $this->link;
+        $title = $this->title;
+        $descr = $this->descr;
 
-        ?>
-
+        return <<<HTML
         <div class="narea">
-        <div class="nimg_block">
-            <div>
-                <a href="<?php echo $this->link;?>">
-                    <img src="<?php echo $this->pwImg->verLink?>" width="260px" alt="Изображение не найдено"/>
-                </a>
+            <div class="nimg_block">
+                <div>
+                    <a href="$link">
+                        <img src="$img" width="260px" alt="Изображение"/>
+                    </a>
+                </div>
             </div>
-        </div>
-
-
-        <div class="tcol">
-            <div class="ntitle">
-                <a href="<?php echo $this->link;?>">
-                    <b><?php echo $this->title;?></b>
+            <div class="tcol">
+                <div class="ntitle">
+                    <a href="$link">
+                        <b>$title</b>
+                    </a>
+                </div>
+                <br>
+                <a href="$link">
+                    $descr
                 </a>
+                <br><br>
+                <span class="ndate">$fDate</span>
+                <br>
             </div>
-            <br>
-            <a href="<?php echo $this->link;?>">
-                <?php echo $this->descr;?>
-            </a>
-            <br><br>
-            <span class="ndate"><?php echo self::dateFormated()?></span>
-            <br>
-        </div>
-        </div><?php
+        </div><br><hr><br>
+        HTML;
     }
 
     private function dateFormated() : string
@@ -167,7 +170,7 @@ class NewsItem
 
     private function contentByFile(int $id): string|null
     {
-        $file = dirname($_SERVER['DOCUMENT_ROOT']).'/includs/news/new_'.$id.'.php';
+        $file = dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/news/new_' . $id . '.php';
 
         if(!file_exists($file)){
             return null;
@@ -183,8 +186,7 @@ class NewsItem
         $content = $this->content ?? $this->descr;
 
         $ref = self::getReferer();
-        $result =
-            <<<HTML
+        return <<<HTML
                 <div class="newsarea">
                     <div class="ntitle">$this->title</div>
                     <hr>
@@ -194,7 +196,6 @@ class NewsItem
                     </div>
                 </div>
             HTML;
-        return $result;
     }
 
     public function getReferer() : string

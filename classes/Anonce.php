@@ -166,10 +166,11 @@ class Anonce
 
     private static function collectionParams(int $sort, int $year = 0, bool $new = false) : array
     {
-        $year = $year ?? date('Y');
+        if(!$year)
+            $year = date('Y');
 
         $sorts = ['anonces.datetime DESC', 'anonces.datetime ASC'];
-        $sort = $sorts[$sort] ?? 0;
+        $sort = $sorts[$sort] ?? 'anonces.datetime DESC';
         $curDate = '2000-01-01 00:00';
         if($new){
             $curDate = date('Y-m-d H:i');

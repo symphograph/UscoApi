@@ -38,38 +38,17 @@ $host = 'https://' . $_SERVER['SERVER_NAME'] . '/';
 <div class="content">
 
     <div class="eventsarea">
-
-        <?php
-        $query = qwe("
-SELECT
-anonces.concert_id as ev_id,
-anonces.hall_id,
-anonces.prog_name,
-anonces.sdescr,
-anonces.img,
-anonces.topimg,
-anonces.aftitle,
-anonces.datetime,
-anonces.pay,
-anonces.age,
-anonces.ticket_link,
-halls.hall_name,
-halls.map
-FROM
-anonces
-INNER JOIN halls ON anonces.hall_id = halls.hall_id
-WHERE  datetime >= NOW()
-ORDER BY anonces.datetime
-");
-        $qwe = $query->fetchAll(PDO::FETCH_CLASS, "Anonce");
-        ?>
         <div class="evcols">
             <?php
-                foreach ($qwe as $q) {
-                    $Anonce = Anonce::byQ($q);
-                    if(!$Anonce) continue;
-                    $Anonce->printCard();
-                }
+            $qwe = Anonce::getCollection(1,0,1);
+            if(!$qwe) $qwe = [];
+            foreach($qwe as $q)
+            {
+                if (!$q->show)
+                    continue;
+                $Anonce = Anonce::clone($q);
+                $Anonce->printCard();
+            }
             ?>
         </div>
     </div>
@@ -125,8 +104,15 @@ ORDER BY anonces.datetime
             <br>
             <hr>
             <br>
-            <?php NewsCol(); ?>
-            <a href="news.php">К другим новостям</a>
+            <?php
+            $Entryes = Entry::getCollection(date('Y'),[0,1,1,0],5);
+            foreach ($Entryes as $en){
+                $Entry = Entry::clone($en);
+                echo $Entry->PrintItem();
+            }
+            //NewsCol();
+            ?>
+            <a href="/news.php">К другим новостям</a>
         </div>
     </div>
 </div>

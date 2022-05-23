@@ -17,17 +17,17 @@ if(!$year)
 $limit = intval($_POST['limit'] ?? 1000);
 
 $filters = [
-    'usco' => 1,
-    'other'=> 2,
-    'euterpe' => 3,
-    'all' => 4
+    'usco'    => [0, 1, 1, 0],
+    'euterpe' => [0, 0, 1, 0],
+    'other'   => [0, 0, 0, 1],
+    'all'     => [0, 1, 1, 1]
 ];
 
-$categs = Entry::categsByShow($filters[$category]);
+
 if(!array_key_exists($_POST['category'], $filters))
     die(http_response_code(400));
+//$categs = Entry::categsByShow($filters);
 //printr($categs);
-$Item = Entry::getCollection($year, $categs, $limit)
-//$Item = NewsItem::getCollection($year, $filters[$category],$limit)
-or die(http_response_code(204));
+$Item = Entry::getCollection($year, $filters[$category], $limit)
+or die(APIusco::errorMsg("Нет новостей"));
 echo APIusco::resultData($Item);

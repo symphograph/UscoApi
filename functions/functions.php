@@ -160,8 +160,7 @@ function NewsCol($qwe = false)
             $q = (object) $q;
             $Item = new NewsItem();
             $Item->byQ($q);
-            $Item->PrintItem();
-            echo '<br><hr><br>';
+            echo $Item->PrintItem();
         }
         ?>
         <br><br>

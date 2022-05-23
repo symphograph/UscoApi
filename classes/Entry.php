@@ -11,33 +11,41 @@ class Entry
         2 => false,
         3 => false
     ];
-    public int         $id           = 0;
-    public string|null $title        = '';
-    public string|null $descr        = '';
-    public string|null $content      = '';
-    public string|null $markdown     = '';
-    public array|null  $parsedMD     = [];
-    public string|null $img          = '';
-    public string|null $date         = '';
-    public int|null    $show         = 0;
-    public int|null    $evid         = 0;
-    public string|null $link         = '';
-    public string|null $refName      = '';
-    public string|null $refLink      = '';
-    public Img|bool    $pwImg        = false;
-    public string|null $cache        = '{}';
-    public string|null|stdClass $categs       = '';
-    public array       $Images       = [];
-    public string|null $html         = '';
-    public array       $usedImages   = [];
-    public array       $unusedImages = [];
-    public string|null $catindex = '0|0|0|0';
+    public int                  $id           = 0;
+    public string|null          $title        = '';
+    public string|null          $descr        = '';
+    public string|null          $content      = '';
+    public string|null          $markdown     = '';
+    public array|null           $parsedMD     = [];
+    public string|null          $img          = '';
+    public string|null          $date         = '';
+    public int|null             $show         = 0;
+    public int|null             $evid         = 0;
+    public string|null          $link         = '';
+    public string|null          $refName      = '';
+    public string|null          $refLink      = '';
+    public Img|bool             $pwImg        = false;
+    public string|null          $cache        = '{}';
+    public array                $Images       = [];
+    public string|null          $html         = '';
+    public array                $usedImages   = [];
+    public array                $unusedImages = [];
+    public string|null          $catindex     = '0|0|0|0';
+    public string|null          $concategs    = '';
+    public array                $categs       = [];
 
     public function __set($name, $value) {}
 
     public static function byID(int $id) : Entry|bool
     {
-        $qwe = qwe("SELECT * FROM news WHERE id = :id",compact('id'));
+        $qwe = qwe("
+            SELECT news.*, 
+            GROUP_CONCAT(nn.categ_id) as concategs 
+            FROM news 
+            INNER JOIN nn_EntryCategs as nn ON news.id = nn.entry_id
+            AND id = :id",
+            compact('id')
+        );
         if(!$qwe || !$qwe->rowCount())
             return false;
 
@@ -53,8 +61,18 @@ class Entry
         $Entry->parsedMD = self::explodeHTMLByTags($Entry->markdown);
         $Entry->usedImages = self::getUsedImages($Entry->parsedMD);
         $Entry->unusedImages = $Entry->getUnusedImages();
-        $Entry->categs = json_decode($Entry->categs);
+        $Entry->categs = self::categsByConcategs($Entry->concategs);
         return $Entry;
+    }
+
+    public static function categsByConcategs(string $concategs): array
+    {
+        $arr = self::defaultCategs;
+        $categs = explode(',',$concategs);
+        foreach (self::defaultCategs as $k => $v){
+            $arr[$k] = in_array($k,$categs);
+        }
+        return $arr;
     }
 
     #[Pure] public static function clone(Entry $q) : Entry
@@ -78,27 +96,30 @@ class Entry
 
     public static function getCollection(int $year = 0, array $categs = self::defaultCategs,int $limit = 1000) : array
     {
-        $and = " AND catindex = :catindex";
-        $catindex = implode('|',$categs);
-        $pHoldels = ['year' => $year,'catindex' => $catindex];
-        $limit = ' LIMIT ' . $limit;
-        //printr($categs);
-        if($categs[0]){
-            $and = ' ';
-            $pHoldels = ['year' => $year];
-        }
+        $categs = array_filter($categs);
+        $categs = array_keys($categs);
+        $pHoldels = DB::pHolders($categs);
 
-        //printr($pHoldels);
+        $params = DB::pHoldsArr($categs);
+        //printr($params);
+        $params['year'] = $year ?? date('Y');
+        $limit = ' LIMIT ' . $limit;
+
+
         $qwe = qwe("
-            SELECT * FROM news 
-            WHERE YEAR(date) = :year" . $and .
-            " ORDER BY date DESC" . $limit,
-            $pHoldels
+            SELECT news.*, 
+            GROUP_CONCAT(nn.categ_id) as concategs FROM news
+            INNER JOIN nn_EntryCategs as nn ON news.id = nn.entry_id
+            AND nn.categ_id in ($pHoldels)
+            AND YEAR(news.date) = :year
+            GROUP BY news.id
+            ORDER BY news.date DESC" . $limit,
+            $params
         );
         if(!$qwe || !$qwe->rowCount())
             return [];
 
-        $rows = $qwe->fetchAll(PDO::FETCH_CLASS,'Entry') ?? [];
+        $rows = $qwe->fetchAll(PDO::FETCH_CLASS,'Entry');
 
         $Entryes = [];
         foreach ($rows as $Entry){
@@ -201,12 +222,11 @@ class Entry
 
     public function putToDB(): bool|PDOStatement
     {
-        $categs = $this->categs ?? json_encode([0=>0,1=>0,2=>0,3=>0]);
-        return qwe("
+        $qwe = qwe("
                 REPLACE INTO news 
-                (id, title, descr, content, markdown, img, date, `show`, evid, refName, refLink, cache, html, categs, catindex) 
+                (id, title, descr, content, markdown, img, date, `show`, evid, refName, refLink, cache, html) 
                         VALUES 
-               (:id, :title, :descr, :content, :markdown, :img, :date, :show, :evid, :refName, :refLink, null, :html, :categs, :catindex)",
+               (:id, :title, :descr, :content, :markdown, :img, :date, :show, :evid, :refName, :refLink, null, :html)",
             [
                 'id'       => $this->id,
                 'title'    => $this->title,
@@ -219,10 +239,18 @@ class Entry
                 'evid'     => $this->evid,
                 'refName'  => $this->refName,
                 'refLink'  => $this->refLink,
-                'html'     => $this->html,
-                'categs'   => $this->categs ?? json_encode([0=>0,1=>0,2=>0,3=>0]),
-                'catindex' => $this->catindex
+                'html'     => $this->html
         ]);
+        if(!$qwe)
+            return false;
+        $qwe = qwe("DELETE FROM nn_EntryCategs WHERE entry_id = :id",['id'=>$this->id]);
+        $categs = array_filter($this->categs);
+        foreach ($categs as $k => $v){
+            qwe("REPLACE INTO nn_EntryCategs (entry_id, categ_id) VALUES (:id,:cid)",
+            ['id'=>$this->id,'cid'=>$k]
+            );
+        }
+        return true;
     }
 
     public static function getUsedImages(array $parsedMD): array
@@ -310,7 +338,7 @@ class Entry
             1 => [
                 0 => false,
                 1 => true,
-                2 => true,
+                2 => false,
                 3 => false
             ],
             2 => [
@@ -321,7 +349,7 @@ class Entry
             ],
             3 => [
                 0 => false,
-                1 => false,
+                1 => true,
                 2 => true,
                 3 => false
             ],
@@ -335,7 +363,7 @@ class Entry
         };
     }
 
-    public static function getPw(int $id): string
+    private static function getPw(int $id): string
     {
         $size = 260;
         $agent = get_browser();
@@ -357,6 +385,49 @@ class Entry
             $dir = '/img/entry/' . $size . '/' . $id . '/pw/';
             FileHelper::delDir($dir);
         }
+    }
+
+    public function getLink(): string
+    {
+        if($this->evid)
+            return 'event.php?evid=' . $this->evid;
+
+        return 'new.php?new_id=' . $this->id;
+    }
+
+    public function PrintItem(): string
+    {
+        $fDate = ru_date('',strtotime($this->date));
+        $img = $this->img;
+        $link = self::getLink();
+        $title = $this->title;
+        $descr = $this->descr;
+
+        return <<<HTML
+        <div class="narea">
+            <div class="nimg_block">
+                <div>
+                    <a href="$link">
+                        <img src="$img" width="260px" alt="Изображение"/>
+                    </a>
+                </div>
+            </div>
+            <div class="tcol">
+                <div class="ntitle">
+                    <a href="$link">
+                        <b>$title</b>
+                    </a>
+                </div>
+                <br>
+                <a href="$link">
+                    $descr
+                </a>
+                <br><br>
+                <span class="ndate">$fDate</span>
+                <br>
+            </div>
+        </div><br><hr><br>
+        HTML;
     }
 
 }

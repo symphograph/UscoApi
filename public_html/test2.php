@@ -15,12 +15,20 @@ if (!$cfg->myip) exit;
 
 <body>
 <?php
-//$file = '/img/entry/1080/1/pw/001.jpg';
-//echo EntryImg::idByDir($file);
+$categs = Entry::categsByShow(2);
+//$categs = array_filter($categs);
 
-$Entryes = Entry::getAlldbRows();
+$Entryes = Entry::getCollection(2021,$categs);
 foreach ($Entryes as $Entry){
-    $Entry = Entry::clone($Entry);
+    printr($Entry->id);
+    //$Entry = Entry::clone($Entry);
+
+    //$categs = Entry::categsByShow($Entry->show);
+    //$Entry->categs = json_encode($categs,JSON_FORCE_OBJECT);
+    //$Entry->catindex = implode('|',$categs);
+    //$Entry->putToDB();
+
+
     /*
     $EntryImg = EntryImg::copyPwFromOld($Entry);
     if($EntryImg->error){
