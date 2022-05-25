@@ -224,22 +224,20 @@ class Entry
     {
         $qwe = qwe("
                 REPLACE INTO news 
-                (id, title, descr, content, markdown, img, date, `show`, evid, refName, refLink, cache, html) 
+                (id, title, descr, content, markdown, date, `show`, evid, refName, refLink, cache) 
                         VALUES 
-               (:id, :title, :descr, :content, :markdown, :img, :date, :show, :evid, :refName, :refLink, null, :html)",
+               (:id, :title, :descr, :content, :markdown, :date, :show, :evid, :refName, :refLink, null)",
             [
                 'id'       => $this->id,
                 'title'    => $this->title,
                 'descr'    => $this->descr,
                 'content'  => $this->content,
                 'markdown' => $this->markdown,
-                'img'      => $this->img,
                 'date'     => $this->date,
                 'show'     => $this->show,
                 'evid'     => $this->evid,
                 'refName'  => $this->refName,
-                'refLink'  => $this->refLink,
-                'html'     => $this->html
+                'refLink'  => $this->refLink
         ]);
         if(!$qwe)
             return false;
@@ -250,7 +248,16 @@ class Entry
             ['id'=>$this->id,'cid'=>$k]
             );
         }
+        self::reCache($this->id);
         return true;
+    }
+
+    public static function reCache(int $id): bool|PDOStatement
+    {
+        $Entry = Entry::byID($id);
+        return qwe("UPDATE news SET cache = :cache WHERE id = :id",
+        ['id' => $id, 'cache' => json_encode($Entry)]
+        );
     }
 
     public static function getUsedImages(array $parsedMD): array
