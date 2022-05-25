@@ -71,6 +71,7 @@ class Session
             return false;
         }
         $sess->updateDB();
+        setcookie('sess_id',$_COOKIE['sess_id'], self::cookOpts(debug: $cfg->debug));
         return $sess;
     }
 
@@ -156,7 +157,8 @@ class Session
         setcookie('identy', $identy,
                   Session::cookOpts(
                       expires : $cooktime,
-                      samesite: 'Strict',debug: $cfg->debug
+                      samesite: 'Strict',
+                      debug: $cfg->debug
                   )
         );
 
