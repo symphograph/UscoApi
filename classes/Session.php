@@ -71,6 +71,7 @@ class Session
             return false;
         }
         $sess->updateDB();
+        global $cfg;
         setcookie('sess_id',$_COOKIE['sess_id'], self::cookOpts(debug: $cfg->debug));
         return $sess;
     }
