@@ -18,7 +18,7 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/functions/functions.php';
 if($cfg->myip) {
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
-    $cfg->debug = true;
+    //$cfg->debug = true;
 }
 
 if(
