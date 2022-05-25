@@ -26,13 +26,25 @@ class Session
         string|null $domain = null,
         bool        $secure = true,
         bool        $httponly = true,
-        string      $samesite = 'None' // None || Lax  || Strict
+        string      $samesite = 'None', // None || Lax  || Strict
+        bool        $debug = false
     ) : array
     {
         if(!$expires){
             $expires = time() + 60*60*24*30;
         }
         //$domain = $domain ?? $_SERVER['SERVER_NAME'];
+
+        if($debug){
+            return [
+                'expires'  => $expires,
+                'path'     => '/',
+                'domain'   => null,
+                'secure'   => true,
+                'httponly' => true,
+                'samesite' => 'None'
+            ];
+        }
         return [
             'expires'  => $expires,
             'path'     => $path,
@@ -87,14 +99,15 @@ class Session
 
     private static function setNewIdenty($ip,$datetime,$cooktime): bool|string
     {
+        global $cfg;
         $identy = random_bytes(12);
         $identy = bin2hex($identy);
 
         setcookie('identy',$identy,
                   Session::cookOpts(
                       expires : $cooktime,
-                      httponly: true,
-                      samesite: 'None'
+                      samesite: 'Strict',
+                      debug: $cfg->debug
                   )
         );
         $qwe = qwe("
@@ -139,11 +152,11 @@ class Session
                  'identy'   => $identy
             ]
         );
-
+        global $cfg;
         setcookie('identy', $identy,
                   Session::cookOpts(
                       expires : $cooktime,
-                      httponly: true,
+                      samesite: 'Strict',debug: $cfg->debug
                   )
         );
 
@@ -195,6 +208,7 @@ class Session
     {
         $id = random_bytes(12);
         $id = bin2hex($id);
+        global $cfg;
 
         qwe("INSERT INTO sessions 
             (id, identy, token, first_ip, last_ip, datetime, last_time) 
@@ -212,7 +226,7 @@ class Session
         if(!$sess){
             return false;
         }
-        setcookie('sess_id',$id, self::cookOpts());
+        setcookie('sess_id',$id, self::cookOpts(debug: $cfg->debug));
         //setcookie('sess_id',$id, self::cookOpts());
         return $sess;
     }
