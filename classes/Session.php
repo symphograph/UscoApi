@@ -26,7 +26,7 @@ class Session
         string|null $domain = null,
         bool        $secure = true,
         bool        $httponly = true,
-        string      $samesite = 'None', // None || Lax  || Strict
+        string      $samesite = 'Strict', // None || Lax  || Strict
         bool        $debug = false
     ) : array
     {
