@@ -9,7 +9,7 @@ if(!$User->Sess) {
 }
 $redirects = [
     'test.sakh-orch.ru' => 'localhost:8080',
-    'sakh-orch.ru' => 'musicrom.ru'
+    'sakh-orch.ru' => 'dev.sakh-orch.ru'
 ];
 $redirect = $redirects[$_SERVER['SERVER_NAME']];
 header("Location: https://$redirect/auth#{$User->Sess->getToken()}");
