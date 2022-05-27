@@ -61,7 +61,10 @@ class Entry
         $Entry->parsedMD = self::explodeHTMLByTags($Entry->markdown);
         $Entry->usedImages = self::getUsedImages($Entry->parsedMD);
         $Entry->unusedImages = $Entry->getUnusedImages();
-        $Entry->categs = self::categsByConcategs($Entry->concategs);
+        $Entry->categs = self::categsByConcategs($Entry->concategs ?? '');
+        if(empty($Entry->date)){
+            $Entry->date = date('Y-m-d');
+        }
         return $Entry;
     }
 
@@ -435,6 +438,31 @@ class Entry
             </div>
         </div><br><hr><br>
         HTML;
+    }
+
+    private static function createNewID() : int
+    {
+        $qwe = qwe("SELECT max(id)+1 as id FROM news");
+        if(!$qwe or !$qwe->rowCount()){
+            return 0;
+        }
+        return $qwe->fetchObject()->id ?? 0;
+    }
+
+    public static function addNewEntry(): bool|Entry
+    {
+        $id = self::createNewID();
+        if(!$id)
+            return false;
+
+        $Entry = Entry::byId(1);
+        if(!$Entry)
+            return false;
+        $Entry->id = $id;
+        if(!$Entry->putToDB())
+            return false;
+
+        return $Entry;
     }
 
 }
