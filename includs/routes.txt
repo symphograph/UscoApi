@@ -1,0 +1,108 @@
+import { RouteRecordRaw } from 'vue-router'
+
+const routes: RouteRecordRaw[] = [
+  {
+    path: '/',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/Index.vue') }]
+  },
+  {
+    path: '/vacancies',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/Vacancies.vue') }]
+  },
+  {
+    path: '/main',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/MainInfo.vue') }]
+  },
+  {
+    path: '/contacts',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/Contacts.vue') }]
+  },
+  {
+    path: '/pdn',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/PdnInfo.vue') }]
+  },
+  {
+    path: '/anonces',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/Anonces.vue') }]
+  },
+  {
+    path: '/anonce/:evid',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/Anonce.vue') }]
+  },
+  {
+    path: '/conductor',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/Conductor.vue') }]
+  },
+  {
+    path: '/history',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/History.vue') }]
+  },
+  {
+    path: '/AlexandrZrazaev',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/AlexandrZrazaev.vue') }]
+  },
+  {
+    path: '/video',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/Video.vue') }]
+  },
+  {
+    path: '/articles',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/Articles.vue') }]
+  },
+  {
+    path: '/news/:category',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/News.vue') }]
+  },
+  {
+    path: '/new/:id',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/NewPaje.vue') }]
+  },
+  {
+    path: '/gallery/:album',
+    component: () => import('layouts/PhotoLayout.vue'),
+    children: [{ path: '', component: () => import('pages/Gallery.vue') }]
+  },
+  {
+    path: '/corrupt',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/Corrupt.vue') }]
+  },
+  {
+    path: '/docs',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/Docs.vue') }]
+  },
+  {
+    path: '/staff',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/Staff.vue') }]
+  },
+  {
+    path: '/auth',
+    component: () => import('layouts/AuthLayout.vue'),
+    children: [{ path: '', component: () => import('pages/AuthPaje.vue') }]
+  },
+
+  // Always leave this as last one,
+  // but you can also remove it AlexandrZrazaev
+  {
+    path: '/:catchAll(.*)*',
+    component: () => import('pages/Error404.vue')
+  }
+]
+
+export default routes

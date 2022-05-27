@@ -1,7 +1,12 @@
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/config.php';
 $User = User::byCheck();
-
+$path = $_GET['path'] ?? '/anonce/100';
+//printr($path);
+//die();
+$path = PathHelper::validPath($path);
+//printr($path);
+//die();
 //$_POST = json_decode(file_get_contents('php://input'), true)['params'] ?? null;
 
 if(!$User->Sess) {
@@ -12,4 +17,5 @@ $redirects = [
     'sakh-orch.ru' => 'dev.sakh-orch.ru'
 ];
 $redirect = $redirects[$_SERVER['SERVER_NAME']];
-header("Location: https://$redirect/auth#{$User->Sess->getToken()}");
+//$path = '/anonces';
+header("Location: https://$redirect/auth?path=$path#{$User->Sess->getToken()}");

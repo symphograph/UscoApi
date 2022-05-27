@@ -18,9 +18,7 @@ require_once dirname($_SERVER['DOCUMENT_ROOT'])."/vendor/autoload.php";
 
 <body>
 <?php
-$year = 0;
-$year = intval($year ?? date('Y'));
-var_dump($year);
+
 ?>
 </body>
 </html>
