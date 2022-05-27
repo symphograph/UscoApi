@@ -227,9 +227,9 @@ class Entry
     {
         $qwe = qwe("
                 REPLACE INTO news 
-                (id, title, descr, content, markdown, date, `show`, evid, refName, refLink, cache) 
+                (id, title, descr, content, markdown, date, `show`, evid, refName, refLink) 
                         VALUES 
-               (:id, :title, :descr, :content, :markdown, :date, :show, :evid, :refName, :refLink, null)",
+               (:id, :title, :descr, :content, :markdown, :date, :show, :evid, :refName, :refLink)",
             [
                 'id'       => $this->id,
                 'title'    => $this->title,
@@ -244,7 +244,7 @@ class Entry
         ]);
         if(!$qwe)
             return false;
-        $qwe = qwe("DELETE FROM nn_EntryCategs WHERE entry_id = :id",['id'=>$this->id]);
+        qwe("DELETE FROM nn_EntryCategs WHERE entry_id = :id",['id'=>$this->id]);
         $categs = array_filter($this->categs);
         foreach ($categs as $k => $v){
             qwe("REPLACE INTO nn_EntryCategs (entry_id, categ_id) VALUES (:id,:cid)",
