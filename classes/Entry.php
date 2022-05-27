@@ -11,28 +11,28 @@ class Entry
         2 => false,
         3 => false
     ];
-    public int                  $id           = 0;
-    public string|null          $title        = '';
-    public string|null          $descr        = '';
-    public string|null          $content      = '';
-    public string|null          $markdown     = '';
-    public array|null           $parsedMD     = [];
-    public string|null          $img          = '';
-    public string|null          $date         = '';
-    public int|null             $show         = 0;
-    public int|null             $evid         = 0;
-    public string|null          $link         = '';
-    public string|null          $refName      = '';
-    public string|null          $refLink      = '';
-    public Img|bool             $pwImg        = false;
-    public string|null          $cache        = '{}';
-    public array                $Images       = [];
-    public string|null          $html         = '';
-    public array                $usedImages   = [];
-    public array                $unusedImages = [];
-    public string|null          $catindex     = '0|0|0|0';
-    public string|null          $concategs    = '';
-    public array                $categs       = [];
+    public int         $id           = 0;
+    public string|null $title        = '';
+    public string|null $descr        = '';
+    public string|null $content      = '';
+    public string|null $markdown     = '';
+    public array|null  $parsedMD     = [];
+    public string|null $img          = '';
+    public string|null $date         = '';
+    public int|null    $show         = 0;
+    public int|null    $evid         = 0;
+    public string|null $link         = '';
+    public string|null $refName      = '';
+    public string|null $refLink      = '';
+    public Img|bool    $pwImg        = false;
+    public string|null $cache        = '{}';
+    public array       $Images       = [];
+    public string|null $html         = '';
+    public array       $usedImages   = [];
+    public array       $unusedImages = [];
+    public string|null $catindex     = '0|0|0|0';
+    public string|null $concategs    = '';
+    public array       $categs       = [];
 
     public function __set($name, $value) {}
 

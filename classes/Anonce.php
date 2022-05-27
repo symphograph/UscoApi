@@ -301,11 +301,10 @@ class Anonce
 
     public static function setByPost() : Anonce|bool
     {
-        $data = $_POST ?? json_decode(file_get_contents('php://input'), true)['params'] ?? null;
-        if(empty($data['evdata']))
+        if(empty($_POST['evdata']))
             return false;
 
-        $data = (object) $data['evdata'];
+        $data = (object) $_POST['evdata'];
 
         $Anonce = new self();
         foreach ($Anonce as $k => $v){
@@ -367,7 +366,7 @@ class Anonce
 
     public static function delete(int $id): bool|PDOStatement
     {
-        return qwe("DELETE FROM anonces WHERE concert_id = :id",['id'=>$id]);
+        return qwe("DELETE FROM anonces WHERE concert_id = :id AND concert_id != 1",['id'=>$id]);
     }
 
     public function getHtml(): string
