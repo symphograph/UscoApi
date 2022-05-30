@@ -18,7 +18,10 @@ require_once dirname($_SERVER['DOCUMENT_ROOT'])."/vendor/autoload.php";
 <?php
 if(empty($_COOKIE['identy'])){
     echo 'hghgfgh';
+
 }
+$qwe = qwe("SELECT * FROM identy WHERE identy = :identy",['identy'=>$_COOKIE['identy']]);
+printr($qwe->fetchObject());
 ?>
 </body>
 </html>
