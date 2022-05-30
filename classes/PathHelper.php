@@ -60,7 +60,7 @@ class PathHelper
     {
         $path = trim($path);
         $white = self::whiteList();
-        //$alowedVars = self::alowedVars();
+
         if (in_array($path, $white))
             return $path;
 
@@ -68,7 +68,7 @@ class PathHelper
         if($var){
             $arr = explode('/',$path);
             if(in_array('/' . $arr[1],$white))
-            return '/' . $arr[1] . '/' . $arr[2];
+                return '/' . $arr[1] . '/' . $arr[2];
         }
 
         return '/';

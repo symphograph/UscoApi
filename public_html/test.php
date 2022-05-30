@@ -1,6 +1,4 @@
 <?php
-$root = $_SERVER['DOCUMENT_ROOT'];
-require_once dirname($_SERVER['DOCUMENT_ROOT']).'/functions/functions.php';
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
 if(!$cfg->myip) exit;
 //$User = User::byCheck();
@@ -18,7 +16,9 @@ require_once dirname($_SERVER['DOCUMENT_ROOT'])."/vendor/autoload.php";
 
 <body>
 <?php
-
+if(empty($_COOKIE['identy'])){
+    echo 'hghgfgh';
+}
 ?>
 </body>
 </html>
