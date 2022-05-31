@@ -108,7 +108,6 @@ class Session
         setcookie('identy',$identy,
                   Session::cookOpts(
                       expires : $cooktime,
-                      samesite: 'Strict',
                       debug: $cfg->debug
                   )
         );
@@ -174,6 +173,7 @@ class Session
         $cooktime = $unix_time+60*60*24*365*5;
 
         if(empty($_COOKIE['identy'])) {
+            printr('hgfdgh');
             return self::setNewIdenty($ip,$datetime,$cooktime);
         }
 

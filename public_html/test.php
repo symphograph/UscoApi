@@ -20,7 +20,11 @@ if(empty($_COOKIE['identy'])){
     echo 'hghgfgh';
 
 }
-$qwe = qwe("SELECT * FROM identy WHERE identy = :identy",['identy'=>$_COOKIE['identy']]);
+$qwe = qwe("
+SELECT * FROM identy 
+WHERE identy = :identy",
+    ['identy'=>$_COOKIE['identy']]
+);
 printr($qwe->fetchObject());
 ?>
 </body>

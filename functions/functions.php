@@ -111,9 +111,12 @@ function CssMeta(array $css_arr)
 }
 
 function printr($var) {
-  echo '<pre>';
-  print_r($var);
-  echo '</pre>';
+    global $cfg;
+    if(!$cfg->myip)
+        return;
+    echo '<pre>';
+    print_r($var);
+    echo '</pre>';
 }
 
 function is_Date($str){
