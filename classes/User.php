@@ -20,7 +20,7 @@ class User
 
     private function checkSess(bool $noCreate = false): bool
     {
-        if($noCreate || empty($_COOKIE['identy'])){
+        if($noCreate && empty($_COOKIE['identy'])){
             return false;
         }
         $this->ip = $_SERVER['REMOTE_ADDR'];
