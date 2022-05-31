@@ -1,14 +1,14 @@
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/config.php';
-
-$User = User::byCheck(1);
-if(!$User->Sess) {
-    die(http_response_code(401));
-}
-
 if(empty($_POST['token'])){
     die();
 }
+$User = User::byCheck(1);
+if(!$User->Sess) {
+    header("Location: /auth/newsess.php");
+    //die(http_response_code(401));
+}
+
 $qwe = qwe2("SELECT * FROM sessions where token = :token",['token'=>$_POST['token']]);
 if(!$qwe or !$qwe->rowCount()){
     die('badToken');
