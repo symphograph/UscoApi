@@ -35,12 +35,12 @@ class User
         return true;
     }
 
-    public static function byCheck(bool $noCreate = false): User
+    public static function byCheck(bool $noCreate = false): User|bool
     {
         $User = new User();
         $User->checkSess($noCreate);
         if(!$User->Sess){
-            //die('sessionErr');
+            return false;
         }
         if($User->Sess->user_id) {
             $Sess = $User->Sess;
