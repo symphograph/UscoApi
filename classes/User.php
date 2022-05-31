@@ -40,7 +40,7 @@ class User
         $User = new User();
         $User->checkSess($noCreate);
         if(!$User->Sess){
-            die('sessionErr');
+            //die('sessionErr');
         }
         if($User->Sess->user_id) {
             $Sess = $User->Sess;
