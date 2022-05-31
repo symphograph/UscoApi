@@ -279,6 +279,22 @@ class Entry
         return array_diff(self::getImages($this->id),$this->usedImages);
     }
 
+    private function printUnusetImages(): string
+    {
+        if(empty($this->unusedImages))
+            return '';
+
+        $row = '<hr><br><br>';
+        foreach ($this->unusedImages as $img){
+            $src = self::imgFolder . '/' . $this->id . '/' . $img;
+            $row .= <<<HTML
+                    <img src="$src" class="newsImg" alt="img"><br><br>
+                    HTML;
+
+        }
+        return $row;
+    }
+
     #[Pure] public function htmlByMD() : string
     {
         if(empty($this->parsedMD))
@@ -310,8 +326,8 @@ class Entry
     #[Pure] public function htmlPaje() : string
     {
         $content = $this->htmlByMD();
-
         $ref = self::getReferer();
+        $images = self::printUnusetImages();
         $result =
             <<<HTML
                 <div class="newsarea">
@@ -320,6 +336,8 @@ class Entry
                     <div class="narea">
                         <div class="text">$content</div>
                         $ref
+                        <div class="text">$images</div>
+                        
                     </div>
                 </div>
             HTML;

@@ -1,21 +1,18 @@
 <?php
-$new_id = $_GET['new_id'] ?? 0;
-$new_id = intval($new_id);
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
+
+$new_id = intval($_GET['new_id'] ?? 0) ;
 if(!$new_id)
 {
     header("Location: ../news.php");
     die();
 }
-require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
+
 $User = User::byCheck();
 
 //$NewsItem = new NewsItem(id: $new_id);
 $NewsItem = Entry::byID($new_id);
-if(!$NewsItem->show)
-{
-    header("Location: ../news.php");
-    die();
-}
+
 if($NewsItem->evid)
 {
     header("Location: ../event.php?evid={$NewsItem->evid}");

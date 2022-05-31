@@ -17,6 +17,9 @@ die(APIusco::errorMsg('Пустой заголовок'));
 $Entry->date = Validator::date($entry['date'] ?? '') or
 die(APIusco::errorMsg('Не вижу дату'));
 
+$Entry->descr = $entry['descr'] or
+die(APIusco::errorMsg('Пустое описание'));
+
 $Entry->markdown = $entry['markdown'] or
 die(APIusco::errorMsg('Пустой текст'));
 
