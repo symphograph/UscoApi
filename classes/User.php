@@ -18,8 +18,11 @@ class User
         return $qwe->fetchAll(PDO::FETCH_CLASS,"User")[0] ?? false;
     }
 
-    private function checkSess(): bool
+    private function checkSess(bool $noCreate = false): bool
     {
+        if($noCreate || empty($_COOKIE['identy'])){
+            return false;
+        }
         $this->ip = $_SERVER['REMOTE_ADDR'];
 
         $identy = Session::chkIdenty();
@@ -32,10 +35,10 @@ class User
         return true;
     }
 
-    public static function byCheck(): User
+    public static function byCheck(bool $noCreate = false): User
     {
         $User = new User();
-        $User->checkSess();
+        $User->checkSess($noCreate);
         if(!$User->Sess){
             die('sessionErr');
         }
