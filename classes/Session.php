@@ -173,7 +173,7 @@ class Session
         $cooktime = $unix_time+60*60*24*365*5;
 
         if(empty($_COOKIE['identy'])) {
-            printr('hgfdgh');
+            //printr('hgfdgh');
             return self::setNewIdenty($ip,$datetime,$cooktime);
         }
 
