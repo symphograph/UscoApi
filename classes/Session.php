@@ -122,7 +122,8 @@ class Session
             return false;
 
         header("Refresh:0");
-        return true;
+        die();
+        //return $identy;
     }
 
     private static function updateIdenty($ip,$datetime,$cooktime): bool|string
