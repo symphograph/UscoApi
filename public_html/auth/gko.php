@@ -3,6 +3,10 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/config.php';
 if(empty($_POST['token'])){
     die();
 }
+if(empty($_COOKIE['identy'])){
+    //header("Location: /auth/newsess.php");
+    //die();
+}
 $User = User::byCheck(1);
 if(!$User->Sess) {
     header("Location: /auth/newsess.php");

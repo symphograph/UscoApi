@@ -40,6 +40,12 @@ if(
     }
     cors();
 }
+
+if(str_starts_with($_SERVER['SCRIPT_NAME'],'/test/')){
+    if(!$cfg->myip){
+        die('permis');
+    }
+}
 spl_autoload_register(function ($class_name) {
     require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/classes/' . $class_name . '.php';
 });

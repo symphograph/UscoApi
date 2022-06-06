@@ -26,6 +26,9 @@ die(APIusco::errorMsg('Пустой текст'));
 $Entry->categs = $entry['categs'] or
 die(APIusco::errorMsg('Ошибка определения категорий'));
 
+$Entry->refLink = $entry['refLink'] ?? '';
+$Entry->refName = $entry['refName'] ?? '';
+
 $Entry->putToDB() or
 die(APIusco::errorMsg('Ошибка при сохранении'));
 

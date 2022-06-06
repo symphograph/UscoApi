@@ -420,6 +420,9 @@ class Entry
         if($this->evid)
             return 'event.php?evid=' . $this->evid;
 
+        if ($this->refLink)
+            return $this->refLink;
+
         return 'new.php?new_id=' . $this->id;
     }
 
