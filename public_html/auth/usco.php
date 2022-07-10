@@ -1,6 +1,6 @@
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/config.php';
-$User = User::byCheck();
+$User = User::byCheck(0);
 $path = $_GET['path'] ?? '/anonce/100';
 //printr($path);
 //die();
@@ -12,8 +12,13 @@ $path = PathHelper::validPath($path);
 if(!$User->Sess) {
     die(http_response_code(401));
 }
+$testSPA = 'dev.sakh-orch.ru';
+if($cfg->debug){
+    //$testSPA = 'localhost:8080';
+}
 $redirects = [
-    'test.sakh-orch.ru' => 'localhost:8080',
+    'test.sakh-orch.ru' => $testSPA,
+    'tapi.sakh-orch.ru' => $testSPA,
     'sakh-orch.ru' => 'dev.sakh-orch.ru'
 ];
 $redirect = $redirects[$_SERVER['SERVER_NAME']];

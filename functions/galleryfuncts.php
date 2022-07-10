@@ -38,13 +38,13 @@ function ReplFoldersFromYaDisk($albumsdir,$shared_folder_link)
 		//break;
 	}
 	
-	$myfolders = FolderList($albumsdir);
+	$myfolders = FileHelper::folderList($albumsdir);
 	
 	foreach($myfolders as $k=>$folder)//Удаляем папки, которых нет на YaDisk
 	{
 		if(!in_array($folder,$folders))
 		{
-			delFolderRecurs($albumsdir.$folder);
+			FileHelper::delDir($albumsdir.$folder);
 		}
 	}
 }
@@ -70,13 +70,13 @@ function ReplFilesFromYaDisk($items2,$folder)
 		if($NeedLoad && isset($preview))
 		{
 			$pw = file_get_contents($preview);
-			file_force_contents($folder.'/pw/'.$name, $pw);
+			FileHelper::fileForceContents($folder.'/pw/'.$name, $pw);
 			$fileimg = file_get_contents($file);
-			file_force_contents("$folder/$name", $fileimg);	
+            FileHelper::fileForceContents("$folder/$name", $fileimg);
 		}
 	}
 	//printr($files);
-	$myfiles = FileList($folder);
+	$myfiles = FileHelper::fileList($folder);
 	$diff = array_diff($myfiles, $files);
 	//Удаляем фалы, которых нет на YaDisk
 	if(count($diff)>0)
@@ -89,7 +89,7 @@ function ReplFilesFromYaDisk($items2,$folder)
 
 function Albums($albumsdir)
 {
-	$myfolders = FolderList($albumsdir);
+	$myfolders = FileHelper::folderList($albumsdir);
 
 	arsort($myfolders);
 
@@ -97,7 +97,7 @@ function Albums($albumsdir)
 	{	
 		
 		$folder = $albumsdir.$name;
-		$items2 = FileList($folder);
+		$items2 = FileHelper::fileList($folder);
 		?>
 		{
 			title: '<?php echo $name?>',

@@ -36,7 +36,9 @@ $msg = filter_var($msg, FILTER_SANITIZE_STRING);
 
 $arr = [
     'sakh-orch.ru'=>'mbu-gko@yandex.ru',
-    'test.sakh-orch.ru'=>'roman.chubich@gmail.com'
+    'api.sakh-orch.ru'=>'mbu-gko@yandex.ru',
+    'test.sakh-orch.ru'=>'roman.chubich@gmail.com',
+    'tapi.sakh-orch.ru'=>'roman.chubich@gmail.com'
     ];
 
 $to      = $arr[$_SERVER['SERVER_NAME']];

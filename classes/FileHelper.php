@@ -25,6 +25,7 @@ class FileHelper
     public static function folderList(string $dir): array
     {
         //Получает массив с именами папок в директории
+        $dir = self::addRoot($dir);
         $files = scandir($dir);
         $skip = ['.', '..'];
         $folders = [];
@@ -55,7 +56,7 @@ class FileHelper
                 $dir = $part;
             else
                 $dir .= "/$part";
-            if(!is_dir($dir)) mkdir($dir, 0700, true);
+            if(!is_dir($dir)) mkdir($dir, 0775, true);
         }
         file_put_contents("$dir/$file", $data);
     }
@@ -104,7 +105,7 @@ class FileHelper
 
     public static function addRoot(string $file): string
     {
-        if(!str_starts_with($file,'/tmp') && !str_starts_with($file,'/home')){
+        if(!str_starts_with($file,'/tmp/') && !str_starts_with($file,'/home/')){
             $file = $_SERVER['DOCUMENT_ROOT']. '/' . $file;
         }
 

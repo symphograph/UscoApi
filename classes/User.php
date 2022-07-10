@@ -37,6 +37,9 @@ class User
 
     public static function byCheck(bool $noCreate = false): User|bool
     {
+        if(str_starts_with($_SERVER['SCRIPT_NAME'], '/api/')){
+            $noCreate = true;
+        }
         $User = new User();
         $User->checkSess($noCreate);
         if(!$User->Sess){

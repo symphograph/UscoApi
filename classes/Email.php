@@ -5,8 +5,10 @@ use JetBrains\PhpStorm\Pure;
 class Email
 {
     public const recipients = [
-        'sakh-orch.ru'      => 'mbu-gko@yandex.ru',
-        'test.sakh-orch.ru' => 'roman.chubich@gmail.com'
+        'sakh-orch.ru'=>'mbu-gko@yandex.ru',
+        'api.sakh-orch.ru'=>'mbu-gko@yandex.ru',
+        'test.sakh-orch.ru'=>'roman.chubich@gmail.com',
+        'tapi.sakh-orch.ru'=>'roman.chubich@gmail.com'
     ];
 
     public string $email   = '';

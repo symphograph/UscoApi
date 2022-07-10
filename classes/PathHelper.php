@@ -26,7 +26,8 @@ class PathHelper
         return $arr;
     }
 
-    public static function whiteList(){
+    private static function whiteList(): array
+    {
         $links = self::linksFromFile();
         $arr = [];
         foreach ($links as $l){
@@ -37,23 +38,11 @@ class PathHelper
         return $arr;
     }
 
-    public static function chkVar(string $path) {
+    private static function chkVar(string $path) {
         $arr = explode('/',$path);
         $arr = array_map('trim',$arr);
         $arr = array_filter($arr);
         return $arr[2] ?? false;
-    }
-
-    public static function alowedVars()
-    {
-        $links = self::linksFromFile();
-        $arr = [];
-        foreach ($links as $l){
-            $var = chkVar($l);
-            if($var)
-                $arr[] = $var;
-        }
-        return $arr;
     }
 
     public static function validPath(string $path): string

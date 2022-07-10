@@ -1,15 +1,15 @@
 <?php
+session_start();
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/config.php';
+if(isset($_POST) & count($_POST)) { $_SESSION['post'] = $_POST; }
+if(isset($_SESSION['post']) && count($_SESSION['post'])) { $_POST = $_SESSION['post']; }
 if(empty($_POST['token'])){
-    die();
+    die('empty');
 }
-if(empty($_COOKIE['identy'])){
-    //header("Location: /auth/newsess.php");
-    //die();
-}
-$User = User::byCheck(1);
+
+$User = User::byCheck(0);
 if(!$User->Sess) {
-    header("Location: /auth/newsess.php");
+    //header("Location: /auth/newsess.php");
     //die(http_response_code(401));
 }
 

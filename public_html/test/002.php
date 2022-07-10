@@ -6,13 +6,14 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
 <head>
     <meta charset="utf-8">
     <title>Тест</title>
-    <?php CssMeta(['menu.css', 'index.css', 'news.css', 'menum.css', 'right_nav.css']) ?>
 </head>
 
-<body>
+<body style="color: white; background-color: #262525">
 <?php
-printr(empty($_COOKIE['identy']));
-//printr($_SERVER);
+echo 'jkgjhk';
+$Item = Entry::byID(107);
+
+printr($Item);
 ?>
 </body>
 </html>

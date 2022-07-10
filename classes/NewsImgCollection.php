@@ -11,9 +11,9 @@ class NewsImgCollection
         public array $alradyUsed = []
     )
     {
-        require_once dirname($_SERVER['DOCUMENT_ROOT']).'/functions/filefuncts.php';
+        //require_once dirname($_SERVER['DOCUMENT_ROOT']).'/functions/filefuncts.php';
         $this->imgFolder = 'img/news/' . $newId . '/';
-        $this->files = FileList($_SERVER['DOCUMENT_ROOT'].'/'.$this->imgFolder);
+        $this->files = FileHelper::fileList($this->imgFolder);
         if(!count($this->files)){
             return;
         }

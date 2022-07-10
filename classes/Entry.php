@@ -43,13 +43,14 @@ class Entry
             GROUP_CONCAT(nn.categ_id) as concategs 
             FROM news 
             INNER JOIN nn_EntryCategs as nn ON news.id = nn.entry_id
-            AND id = :id",
+            AND id = :id
+            group by id",
             compact('id')
         );
         if(!$qwe || !$qwe->rowCount())
             return false;
 
-        $q = $qwe->fetchAll(PDO::FETCH_CLASS,'Entry')[0] ?? false;
+        $q = $qwe->fetchObject(get_class());
         return self::byQ($q);
     }
 

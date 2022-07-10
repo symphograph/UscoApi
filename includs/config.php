@@ -14,7 +14,7 @@ if(preg_match('/www./',$_SERVER['SERVER_NAME']))
 $cfg = require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/ip.php';
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/functions/functions.php';
 
-
+session_set_cookie_params(0, "/", $_SERVER['SERVER_NAME'], True, True);
 if($cfg->myip) {
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
@@ -42,12 +42,14 @@ if(
 }
 
 if(str_starts_with($_SERVER['SCRIPT_NAME'],'/test/')){
-    if(!$cfg->myip){
+    if(!$cfg->myip && !$cfg->server_ip){
         die('permis');
     }
 }
-spl_autoload_register(function ($class_name) {
-    require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/classes/' . $class_name . '.php';
+
+spl_autoload_register(function ($className) {
+    $fileName = str_replace('\\', '/', $className) . '.php';
+    require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/classes/' . $fileName;
 });
 
 $cfg->vueprod = '.prod';
@@ -78,4 +80,3 @@ function qwe2(string $sql, array $args = null) : bool|PDOStatement
 
     return $DB2->qwe($sql,$args);
 }
-

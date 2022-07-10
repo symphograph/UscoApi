@@ -139,7 +139,7 @@ class Anonce
         $evdate = strtotime($this->datetime);
 
         if(date('Y',$evdate) == date('Y',time())){
-            $evdateru = ru_date('%e %bg',$evdate);
+            $evdateru = ru_date('d %bg',$evdate);
             $evtime = date('H:i',$evdate);
             return $evdateru.' в '.$evtime;
         }

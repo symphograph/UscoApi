@@ -88,19 +88,6 @@ function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzAB
     return $str;
 }
 
-//Опшенсы простого селекта
-function SelectOpts($query, $col_val, $col_name, $sel_val, $defoult)
-{	$selected = '';
-	echo '<option value="0">'.$defoult.'</option>';
-	foreach($query as $q)
-	{
-		if($q[$col_val] == $sel_val)
-			$selected = 'selected';
-		echo '<option value="'.$q[$col_val].'" '.$selected.'>'.$q[$col_name].'</option>';
-		$selected = '';
-	}
-}
-
 function CssMeta(array $css_arr)
 {
     $root = $_SERVER['DOCUMENT_ROOT'];
@@ -112,15 +99,11 @@ function CssMeta(array $css_arr)
 
 function printr($var) {
     global $cfg;
-    if(!$cfg->myip)
+    if(!$cfg->myip && !$cfg->server_ip)
         return;
     echo '<pre>';
     print_r($var);
     echo '</pre>';
-}
-
-function is_Date($str){
-    return is_numeric(strtotime($str));
 }
 
 function ru_date($format, $date = false) {
@@ -129,11 +112,13 @@ function ru_date($format, $date = false) {
 		$date = time();
 	}
 	if ($format === '') {
-		$format = '%e %bg %Y';
+		$format = 'd %bg Y';
 	}
+
 	$months = explode("|", '|января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря');
-	$format = preg_replace("~\%bg~", $months[date('n', $date)], $format);
-	return strftime($format, $date);
+    $n = date('n', $date);
+	$format = preg_replace("~\%bg~", $months[$n], $format);
+    return date($format, $date);
 }
 
 function OnlyText($string)
@@ -170,41 +155,6 @@ function NewsCol($qwe = false)
 <?php
 }
 
-function myUrlEncode($string) {
-    $entities = ['%21', '%2A', '%27', '%28', '%29', '%3B', '%3A', '%40', '%26', '%3D', '%2B', '%24', '%2C', '%2F', '%3F', '%25', '%23', '%5B', '%5D'];
-    $replacements = ['!', '*', "'", "(", ")", ";", ":", "@", "&", "=", "+", "$", ",", "/", "?", "%", "#", "[", "]"];
-    return str_replace($entities, $replacements, urlencode($string));
-}
-
-function EvdateFormated($datetime)
-{
-    $evdate = strtotime($datetime);
-	$evdateru = ru_date('%e&nbsp;%bg&nbsp',$evdate);
-	$evtime = date('H:i',$evdate);
-    if(date('Y',$evdate) == date('Y',time()))
-	    return $evdateru.' в '.$evtime;
-	else
-	    return date('d.m.Y в H:i',$evdate);
-}
-
-function VideoItem($youtube_id) //Подразумевается youtube. Иные не преюполагаются.
-{
-
-
-	?>
-	<div class="vitem" id="<?php echo $youtube_id?>">
-        <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/<?php echo $youtube_id?>"
-                frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-        </iframe>
-	</div>
-	<?php
-}
-
 function VideoItems($qwe = false)
 {
 	if(!$qwe)
@@ -217,38 +167,6 @@ function VideoItems($qwe = false)
 		//VideoItem($youtube_id);
 	}
 	?></div><?php
-}
-
-function FacebookScript()
-{
-    ?>
-    <div id="fb-root"></div>
-    <script async defer
-    crossorigin="anonymous"
-    src="https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v7.0"
-    nonce="RyPHx5MY">
-    </script>
-    <?php
-}
-
-function FacebookCol()
-{
-    ?>
-    <div class="fb-page"
-     data-href="https://www.facebook.com/SakhalinSymphony/"
-     data-tabs="timeline"
-     data-width=""
-     data-height=""
-     data-small-header="false"
-     data-adapt-container-width="true"
-     data-hide-cover="false"
-     data-show-facepile="false">
-        <blockquote cite="https://www.facebook.com/SakhalinSymphony/" class="fb-xfbml-parse-ignore">
-            <a href="https://www.facebook.com/SakhalinSymphony/">Sakhalin Symphony Orchestra</a>
-        </blockquote>
-    </div>
-
-    <?php
 }
 
 function CookWarning()

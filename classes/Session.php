@@ -107,7 +107,8 @@ class Session
 
         setcookie('identy',$identy,
                   Session::cookOpts(
-                      expires : $cooktime,
+                      expires: $cooktime,
+                      samesite: 'None',
                       debug: $cfg->debug
                   )
         );
@@ -121,7 +122,7 @@ class Session
         if(!$qwe)
             return false;
 
-        header("Refresh:0");
+        header("Refresh:0",0);
         die();
         //return $identy;
     }
@@ -232,8 +233,9 @@ class Session
             return false;
         }
         setcookie('sess_id',$id, self::cookOpts(debug: $cfg->debug));
-        //setcookie('sess_id',$id, self::cookOpts());
-        return $sess;
+        header("Refresh:0",0);
+        die();
+        //return $sess;
     }
 
     public static function check($identy): Session|bool
