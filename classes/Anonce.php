@@ -32,10 +32,11 @@ class Anonce
     public string      $time        = '';
     public string|null $prrow       = '';
     public string|null $dateFormated = '';
+    private string|null $cache;
 
     const PAYS = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Билеты в продаже'];
 
-    public static function addNewAnonce(): bool|Anonce
+    public static function addNewAnonce(): bool|self
     {
         $id = self::createNewID();
         if(!$id)
@@ -67,7 +68,7 @@ class Anonce
 
     }
 
-    #[Pure] public static function clone(Anonce $q) : Anonce
+    #[Pure] public static function clone(self $q) : self
     {
         $Anonce = new Anonce();
         foreach ($q as $k=>$v){
@@ -76,14 +77,14 @@ class Anonce
         return $Anonce;
     }
 
-    public static function byQ(Anonce $q) : Anonce|bool
+    private static function checkClass(self $Object) : self
     {
-        $Anonce = new Anonce();
-        foreach ($q as $k=>$v){
-            if(!$v or empty($v))
-                continue;
-            $Anonce->$k = $v;
-        }
+        return $Object;
+    }
+
+    public static function byQ(self $q) : Anonce|bool
+    {
+        $Anonce = self::checkClass($q);
 
         $Anonce->Hall = new Hall(
             id:   $Anonce->hall_id,
@@ -112,7 +113,7 @@ class Anonce
 
     }
 
-    public static function byId(int $ev_id) : bool|Anonce
+    public static function byId(int $ev_id) : bool|self
     {
 
         $qwe = qwe("
@@ -130,8 +131,8 @@ class Anonce
         if(!$qwe or !$qwe->rowCount())
             return false;
 
-        $q = $qwe->fetchAll(PDO::FETCH_CLASS,"Anonce");
-        return Anonce::byQ($q[0]);
+        $q = $qwe->fetchObject(get_class());
+        return Anonce::byQ($q);
     }
 
     private function EvdateFormated(): string
@@ -235,7 +236,7 @@ class Anonce
     {
         $params = self::collectionParams($sort, $year, $new);
         $qwe = qwe("
-            SELECT concert_id id, cache from anonces
+            SELECT concert_id ev_id, cache from anonces
             WHERE year(datetime) = :year
             AND anonces.datetime >= :curDate
             ORDER BY " . $params['sort'],
@@ -247,19 +248,22 @@ class Anonce
         if(!$qwe || !$qwe->rowCount())
             return [];
 
+        $qwe = $qwe->fetchAll(PDO::FETCH_CLASS,get_class());
+
         $arr = [];
 
-        foreach ($qwe as $q){
-            if(!empty($q['cache'])){
-                $arr[] = json_decode($q['cache']);
+        foreach ($qwe as $Anonce){
+            $Anonce = self::checkClass($Anonce);
+            if(!empty($Anonce->cache)){
+                $arr[] = json_decode($Anonce->cache);
                 continue;
             }
 
-            if(!Anonce::reCache($q['id'])){
+            if(!Anonce::reCache($Anonce->ev_id)){
                 continue;
             }
 
-            $recachedAnonce = Anonce::byCache($q['id']);
+            $recachedAnonce = Anonce::byCache($Anonce->ev_id);
             if(!$recachedAnonce) {
                 continue;
             }
@@ -267,7 +271,7 @@ class Anonce
             $arr[] = json_decode($recachedAnonce);
         }
 
-        if(count($arr) === $qwe->rowCount()){
+        if(count($arr) === count($qwe)){
             return $arr;
         }
         return [];
@@ -299,7 +303,7 @@ class Anonce
         */
     }
 
-    public static function setByPost() : Anonce|bool
+    public static function setByPost() : self|bool
     {
         if(empty($_POST['evdata']))
             return false;
@@ -312,8 +316,6 @@ class Anonce
                 $Anonce->$k = $data->$k;
             }
         }
-        //$Anonce->show = intval($data);
-        $Anonce->Hall = new Hall($data->Hall['id'],$data->Hall['name'], $data->Hall['map']);
         return $Anonce;
     }
 
@@ -348,7 +350,7 @@ class Anonce
                       )",
                     [
                         'concert_id'  => $this->ev_id,
-                        'hall_id'     => $this->Hall->id,
+                        'hall_id'     => $this->hall_id,
                         'prog_name'   => $this->prog_name,
                         'sdescr'      => $this->sdescr,
                         'description' => $this->description,
@@ -357,7 +359,7 @@ class Anonce
                         'pay'         => $this->pay,
                         'age'         => $this->age,
                         'ticket_link' => $this->ticket_link,
-                        'show'        => $this->show
+                        'show'        => intval($this->show)
                     ]
         );
 
@@ -437,8 +439,20 @@ class Anonce
         $Anonce->getTopImgUrl();
         $Anonce->date = date('Y-m-d', strtotime($Anonce->datetime));
         $Anonce->time = date('H:i', strtotime($Anonce->datetime));
-        //$data = json_encode(['data' => $Anonce]);
+        $Anonce->initVideo();
+
+
         return $Anonce;
+    }
+
+    private function initVideo(): void
+    {
+        $qwe = qwe("select youtube_id from video where concert_id = :id",['id'=>$this->ev_id]);
+        if(!$qwe || !$qwe->rowCount()){
+            return;
+        }
+        $qwe = $qwe->fetchObject();
+        $this->youtube_id = $qwe->youtube_id ?? '';
     }
 
     public function saveCache(): bool|PDOStatement
@@ -455,23 +469,6 @@ class Anonce
                         'id'    => $this->ev_id
                         ]
                 );
-    }
-
-    public static function reCacheAll(): bool
-    {
-        qwe("UPDATE anonces 
-                    SET cache = null");
-
-        $qwe = qwe("SELECT concert_id FROM anonces");
-        if(!$qwe || !$qwe->rowCount()){
-            return false;
-        }
-        foreach($qwe as $q){
-            $Anonce = Anonce::getReady($q['concert_id']);
-            if(!$Anonce) continue;
-            $Anonce->saveCache();
-        }
-        return true;
     }
 
     public static function reCache(int $id) : bool

@@ -12,13 +12,13 @@ class Hall
 
     //public function __set(string $name, $value): void{}
 
-    public static function getCollection(): array
+    public static function getList(): array
     {
         $qwe = qwe("SELECT hall_id as id, hall_name name, map FROM halls");
         if(!$qwe or !$qwe->rowCount()){
             return [];
         }
-        return $qwe->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,"Hall");
+        return $qwe->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,get_class());
     }
 
 

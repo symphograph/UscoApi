@@ -1,5 +1,6 @@
 <?php
 
+use api\Api;
 use JetBrains\PhpStorm\ArrayShape;
 
 class Session
@@ -91,7 +92,7 @@ class Session
         if(!$qwe or !$qwe->rowCount()){
             return false;
         }
-        return $qwe->fetchAll(PDO::FETCH_CLASS,"Session")[0];
+        return $qwe->fetchObject(get_class());
     }
 
     private static function delCook() : void
@@ -233,8 +234,9 @@ class Session
             return false;
         }
         setcookie('sess_id',$id, self::cookOpts(debug: $cfg->debug));
+        //echo 'hgfdh';
         header("Refresh:0",0);
-        die();
+        die(Api::errorMsg('Refresh for new Sess'));
         //return $sess;
     }
 
@@ -243,6 +245,7 @@ class Session
         $sess = self::byCook();
 
         if(!$sess){
+
             $sess = self::newSess($identy);
         }
         return $sess;

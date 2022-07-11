@@ -8,7 +8,7 @@ or die(http_response_code(400));
 
 //$Anonce = Anonce::getReady($id)
 $Anonce = Anonce::byCache($id)
-or die(http_response_code(204));
+    or die(http_response_code(204));
 
 //echo json_encode($Anonce);
 echo $Anonce;

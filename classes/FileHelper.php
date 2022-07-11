@@ -77,7 +77,7 @@ class FileHelper
         }
         $dir = pathinfo($to,PATHINFO_DIRNAME);
         if(!is_dir($dir)){
-            if(!mkdir($dir, 0700, true)){
+            if(!mkdir($dir, 0775, true)){
                 return false;
             }
         }
@@ -128,5 +128,23 @@ class FileHelper
         }
         closedir($d);
         return rmdir($dir);
+    }
+
+    public static function delete(string $file)
+    {
+        $file = self::addRoot($file);
+        if(file_exists($file) && !is_dir($file)){
+            @unlink($file);
+            //echo 'да: ' . $file.'<br>';
+        }
+        //echo 'нет: ' . $file.'<br>';
+    }
+
+    public static function delAllExtensions(string $fileName, array $exts = ['.jpg', '.png', '.jpeg', '.svg'])
+    {
+        foreach ($exts as $ext)
+        {
+            self::delete($fileName . $ext);
+        }
     }
 }

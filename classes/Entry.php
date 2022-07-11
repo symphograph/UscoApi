@@ -1,5 +1,6 @@
 <?php
 
+use api\Api;
 use JetBrains\PhpStorm\Pure;
 
 class Entry
@@ -39,11 +40,11 @@ class Entry
     public static function byID(int $id) : Entry|bool
     {
         $qwe = qwe("
-            SELECT news.*, 
+            select news.*, 
             GROUP_CONCAT(nn.categ_id) as concategs 
-            FROM news 
-            INNER JOIN nn_EntryCategs as nn ON news.id = nn.entry_id
-            AND id = :id
+            from news 
+            left join nn_EntryCategs as nn ON news.id = nn.entry_id
+            where id = :id
             group by id",
             compact('id')
         );
@@ -478,11 +479,15 @@ class Entry
             return false;
 
         $Entry = Entry::byId(1);
-        if(!$Entry)
-            return false;
+        if(!$Entry){
+            die(Api::errorMsg('Ошибка извлечения'));
+        }
+
         $Entry->id = $id;
-        if(!$Entry->putToDB())
-            return false;
+        if(!$Entry->putToDB()){
+            die(Api::errorMsg('Ошибка базы данных'));
+        }
+
 
         return $Entry;
     }

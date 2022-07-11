@@ -1,5 +1,7 @@
 <?php
 
+use api\Api;
+
 class User
 {
     public int $id;
@@ -23,13 +25,17 @@ class User
         if($noCreate && (empty($_COOKIE['identy']) || empty($_COOKIE['sess_id']))){
             return false;
         }
+
         $this->ip = $_SERVER['REMOTE_ADDR'];
 
         $identy = Session::chkIdenty();
-        if(!$identy) return false;
+        if(!$identy){
+            return false;
+        }
         $this->identy = $identy;
 
         $Sess = Session::check($identy);
+
         if(!$Sess) return false;
         $this->Sess = $Sess;
         return true;
@@ -45,6 +51,7 @@ class User
         if(!$User->Sess){
             return $User;
         }
+
         if($User->Sess->user_id) {
             $Sess = $User->Sess;
             $User = User::byId($Sess->user_id);
@@ -52,6 +59,14 @@ class User
         }
 
         return $User;
+    }
+
+    private function getToken() : bool|string
+    {
+        if(!$this->Sess)
+            return false;
+        $token = $this->Sess->getToken();
+        return $token ?? false;
     }
 
     public function apiAuth(int $lvl = 0)
@@ -63,21 +78,29 @@ class User
         $_POST = json_decode(file_get_contents('php://input'), true)['params'] ?? null;
         $token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['token'] ?? null;
         if(empty($token)){
-            die(json_encode(['status'=>'emptyToken','error'=>'Ошибка авторизации']));
+            die(Api::errorMsg('emptyToken'));
         }
 
         if(!$this->Sess->tokenValid($token)){
-            die(json_encode(['status'=>'badToken', 'error' => 'Ошибка авторизации']));
+            die(Api::errorMsg('badToken'));
         }
         if($this->lvl < $lvl){
-            die(json_encode(['status'=>'badLvl', 'error'=>'Недостаточно прав']));
+            die(Api::errorMsg('Недостаточно прав'));
         }
     }
 
-    public function chkLvl(int $pers_id)
+    public function chkLvl(int $pers_id, string $token)
     {
-        $curl = curl('https://test.mbugko.ru/api/pers.php',['pers_id'=>1]);
+        $curl = curl(
+            'https://tapi.staff.sakh-orch.ru/api/pers.php',
+            [
+                'pers_id'=>$pers_id,
+                'token' => $token
+            ]
+        );
         $pers = json_decode($curl);
+        //printr($pers);
+        //die();
         if(!empty($pers->lvl)){
             $this->lvl = $pers->lvl;
         }
@@ -103,30 +126,41 @@ class User
     {
         $token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['token'] ?? null;
         if(empty($token)){
-            die(json_encode(['status'=>'emptyToken']));
+            die(Api::errorMsg('emptyToken'));
         }
 
         $Sess = Session::byToken($token);
         if(!$Sess){
-            die(json_encode(['status'=>'badToken']));
+            die(Api::errorMsg('badToken'));
         }
         if(!$lvl){
             return true;
         }
 
         if(!$Sess->user_id){
-            die(json_encode(['status'=>'noUser']));
+            die(Api::errorMsg('badToken'));
         }
 
         $User = User::byId($Sess->user_id);
         if(!$User){
-            die(json_encode(['status'=>'errorUser']));
+            die(Api::errorMsg('errorUser'));
         }
 
         if($User->lvl && $User->lvl >= $lvl){
             return true;
         }
+        die(Api::errorMsg('badLvl'));
+    }
 
-        die(json_encode(['status'=>'badLvl']));
+    public function goToSPA(bool $debug, string $path = '/'){
+        global $cfg;
+        $spaUrl = $cfg->spaUrl;
+
+        if($debug){
+            $spaUrl = 'localhost:8080';
+        }
+
+        $token = self::getToken();
+        header("Location: https://$spaUrl/auth?#{$token}");
     }
 }

@@ -8,6 +8,8 @@ if(empty($_FILES)){
 
 $file = array_shift($_FILES);
 $response = Poster::upload($file);
+if(!empty($response->error))
+    die(http_response_code(500));
 
 header('Content-Type: application/json');
 echo json_encode($response, JSON_UNESCAPED_UNICODE);

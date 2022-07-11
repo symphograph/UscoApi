@@ -64,6 +64,7 @@ class Poster extends Img
             return $Poster;
         }
 
+
         if(!$Poster->nameById($file)){
             $Poster->error = 'Не вижу дату';
             return $Poster;
@@ -73,6 +74,7 @@ class Poster extends Img
             $Poster->error = 'Ошибка при сохранении файла';
             return $Poster;
         }
+
 
         if(!$Poster->makeSizes()){
             $Poster->error = 'Ошибка при конвертации';
@@ -157,6 +159,20 @@ class Poster extends Img
             return Img::getVerLink($file);
         }
         return false;
+    }
+
+    public static function delPosters(int $id)
+    {
+        FileHelper::delAllExtensions('/img/posters/480/poster_' . $id);
+        FileHelper::delAllExtensions('/img/posters/1080/poster_'. $id);
+        FileHelper::delAllExtensions('/img/posters/origins/poster_' . $id);
+    }
+
+    public static function delTopps(int $id)
+    {
+        FileHelper::delAllExtensions('/img/posters/topp/480/poster_' . $id);
+        FileHelper::delAllExtensions('/img/posters/topp/1080/poster_'. $id);
+        FileHelper::delAllExtensions('/img/posters/topp/origins/poster_' . $id);
     }
 
 }

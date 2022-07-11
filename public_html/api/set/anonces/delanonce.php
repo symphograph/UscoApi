@@ -11,4 +11,6 @@ $qwe = Anonce::delete($_POST['id']);
 if (!$qwe){
     die(json_encode(['error'=>'Ошибка данных']));
 }
+Poster::delPosters($id);
+Poster::delTopps($id);
 echo json_encode(['result'=>'Ok']);

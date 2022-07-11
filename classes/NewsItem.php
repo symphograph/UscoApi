@@ -213,19 +213,6 @@ class NewsItem
         HTML;
     }
 
-    public static function apiValidation(): array|bool
-    {
-        if(empty($_POST)) {
-            return false;
-        }
-        $id = $_POST['id'] ?? 0;
-        $id = intval($id);
-        if(!$id)
-            return false;
-
-        return ['id' => $id];
-    }
-
     public static function getJson(int $id): bool|string
     {
         $Item = new NewsItem($id);
