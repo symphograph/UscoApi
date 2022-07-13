@@ -85,17 +85,16 @@ class User
     public function chkLvl(int $pers_id, string $token)
     {
         global $cfg;
-        $server = $cfg->staffApi;
+
         $curl = curl(
-            'https://'.$server.'/api/pers.php',
+            'https://'.$cfg->staffApi.'/api/pers.php',
             [
                 'pers_id'=>$pers_id,
                 'token' => $token
             ]
         );
         $pers = json_decode($curl);
-        //printr($pers);
-        //die();
+
         if(!empty($pers->lvl)){
             $this->lvl = $pers->lvl;
         }

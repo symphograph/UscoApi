@@ -18,7 +18,7 @@ class StaffPlace
             return [];
         }
         if(empty($date)){
-            $date = date('Y-m-d',time());
+            $date = date('Y-m-d');
         }
         $qwe = qwe2("
             SELECT pers_place.pers_id,
@@ -32,7 +32,7 @@ class StaffPlace
             INNER JOIN places on pers_place.place_id = places.place_id
                 AND places.group_id = :group_id
                 AND :date BETWEEN start AND stop
-            INNER JOIN reglist_ls ON reglist_ls.pers_id = pers_place.pers_id
+            INNER JOIN employs ON employs.pers_id = pers_place.pers_id
                 AND :date2 BETWEEN accept AND dismiss
             INNER JOIN `groups` g on places.group_id = g.group_id
             INNER JOIN personal ON personal.id = pers_place.pers_id
@@ -51,7 +51,7 @@ class StaffPlace
         return $arr;
     }
 
-    public static function byQ(StaffPlace $q) : StaffPlace
+    public static function byQ(self $q) : self
     {
         $q->ava = $q->initAva();
         $q->labels = $q->getLabels();
@@ -101,7 +101,7 @@ class StaffPlace
     public function updatePlace(string $start = '', string $stop = '')
     {
         if(empty($start)){
-            $start = date('Y-m-d', time());
+            $start = date('Y-m-d');
         }
         if(empty($stop)){
             $stop = '2037-12-31';
@@ -191,10 +191,10 @@ class StaffPlace
     private function getLabels() : array
     {
         $qwe = qwe2("
-            SELECT job_name FROM pers_job 
-            INNER JOIN jobs ON pers_job.job_id = jobs.id 
-            AND pers_job.pers_id = :pers_id
-            AND jobs.site_visible
+            SELECT powers.name FROM pers_power 
+            INNER JOIN powers on pers_power.power_id = powers.id
+            AND pers_power.pers_id = :pers_id
+            AND powers.site_visible
             ORDER BY site_visible",
             ['pers_id' => $this->pers_id]
         );

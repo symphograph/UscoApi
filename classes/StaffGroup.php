@@ -16,6 +16,11 @@ class StaffGroup
     {
     }
 
+    public static function checkClass($Object) : self
+    {
+        return $Object;
+    }
+
     public static function byId(int $group_id) : StaffGroup|bool
     {
         $qwe = qwe2("
@@ -29,7 +34,7 @@ class StaffGroup
         return $qwe->fetchAll(PDO::FETCH_CLASS,"StaffGroup")[0];
     }
 
-    public static function getCollection() : array|bool
+    public static function getCollection(string $date) : array|bool
     {
         $qwe = qwe2("
             SELECT * FROM `groups` 
@@ -40,12 +45,12 @@ class StaffGroup
             return false;
         }
 
-        $groups = $qwe->fetchAll(PDO::FETCH_CLASS,"StaffGroup");
+        $groups = $qwe->fetchAll(PDO::FETCH_CLASS,get_class());
         $arr = [];
 
         foreach ($groups as $group){
-            $group = StaffGroup::byQ($group);
-            $group->initPlayers();
+            $group = self::checkClass($group);
+            $group->initPlayers($date);
             $arr[$group->priority] = $group;
         }
         return self::getUngrouped($arr);
@@ -56,7 +61,7 @@ class StaffGroup
         $complited = $groups2 = [];
 
         foreach ($groups as $group){
-            $group = StaffGroup::byQ($group);
+            $group = self::checkClass($group);
             $complited = array_merge($complited,array_column($group->Players, 'pers_id'));
             $groups2[$group->priority] = $group;
         }
@@ -75,7 +80,7 @@ class StaffGroup
         if(!$qwe or !$qwe->rowCount()){
             return [];
         }
-        $qwe = $qwe->fetchAll(PDO::FETCH_CLASS,"StaffPlace");
+        $qwe = $qwe->fetchAll(PDO::FETCH_CLASS,'StaffPlace');
         $arr = [];
 
         foreach ($qwe as $q){
@@ -84,11 +89,6 @@ class StaffGroup
         //printr($groups2);
         $groups2[17]->Players = $arr;
         return $groups2;
-    }
-
-    public static function byQ(StaffGroup $group)  : StaffGroup|bool
-    {
-        return $group;
     }
 
     public static function byArray(array|object $group) : StaffGroup
@@ -113,12 +113,12 @@ class StaffGroup
         $this->Players = StaffPlace::getCollection($this->group_id,$date);
     }
 
-    public function editPlacesOrder()
+    public function editPlacesOrder(string $date)
     {
         foreach ($this->Players as $player){
             $player = StaffPlace::byQ($player);
-            $player->start = date('Y-m-d');
-            $player->updatePlace();
+            $player->start = $date;
+            $player->updatePlace($date);
         }
     }
 
