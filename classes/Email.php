@@ -76,10 +76,7 @@ class Email
     #[Pure] public static function byPost(): Email
     {
         $Email = new Email();
-        if(empty($_COOKIE['identy'])){
-            $Email->error = 'identy';
-            return $Email;
-        }
+
         $email = $_POST['email'] ?? '';
         if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
             $Email->error = 'email';
@@ -110,17 +107,16 @@ class Email
     public function putToDb(): bool
     {
 
-        $identy = OnlyText($_COOKIE['identy']);
+
         $qwe = qwe("INSERT INTO `feed_mails` 
-            (`msg_id`, `email`, `name`, `msg`, `identy`,`msg_time`, `ip`,`agent`,`msg_key`) 
+            (`msg_id`, `email`, `name`, `msg`,`msg_time`, `ip`,`agent`,`msg_key`) 
             VALUES 
-            (:msg_id, :email, :name, :msg, :identy, now(), :ip, :agent, :msg_key)",
+            (:msg_id, :email, :name, :msg, now(), :ip, :agent, :msg_key)",
            [
                'msg_id'  => self::GetNextFreeFeedMailId(),
                'email'   => $this->email,
                'name'    => $this->name,
                'msg'     => $this->msg,
-               'identy'  => $identy,
                'ip'      => $_SERVER['REMOTE_ADDR'],
                'agent'   => $_SERVER['HTTP_USER_AGENT'],
                'msg_key' => random_str(12)

@@ -93,7 +93,7 @@ function CssMeta(array $css_arr)
     $root = $_SERVER['DOCUMENT_ROOT'];
     foreach ($css_arr as $css)
     {
-        ?><link href="css/<?php echo $css?>?ver=<?php echo md5_file($root.'/css/'.$css)?>" rel="stylesheet"><?php
+        ?><link href="/css/<?php echo $css?>?ver=<?php echo md5_file($root.'/css/'.$css)?>" rel="stylesheet"><?php
     }
 }
 
@@ -185,48 +185,6 @@ function CookWarning()
         </div>
     </div>
 <?php
-}
-
-function SetToken($identy)
-{
-    $token = AskToken($identy);
-    if($token)
-        return $token;
-
-    $token = random_str(12);
-    qwe("
-    UPDATE identy 
-    SET token = '$token'
-    WHERE identy = '$identy'
-    ");
-    return $token;
-}
-
-function AskToken($identy)
-{
-    $qwe = qwe("
-    SELECT * FROM identy 
-    WHERE identy = '$identy'
-    AND last_time >= (NOW() - INTERVAL 10 MINUTE)
-    AND LENGTH(`token`) = 12
-    ");
-    if(!$qwe or !$qwe->rowCount())
-        return false;
-
-    $q = $qwe->fetchObject();
-    return $q->token;
-}
-
-function TokenValid($identy)
-{
-    $ptoken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? 0;
-    $ptoken = OnlyText($ptoken);
-    $token = AskToken($identy);
-
-    if((!$token) or (!$ptoken) or $ptoken != $token)
-        return false;
-    else
-        return true;
 }
 
 function GetNextFreeFeedMailId()

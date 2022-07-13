@@ -117,7 +117,7 @@ class StaffGroup
     {
         foreach ($this->Players as $player){
             $player = StaffPlace::byQ($player);
-            $player->start = date('Y-m-d',time());
+            $player->start = date('Y-m-d');
             $player->updatePlace();
         }
     }

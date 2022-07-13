@@ -6,7 +6,6 @@ class User
 {
     public int $id;
     public string $ip = '';
-    public string $identy = '';
     public int|null $tele_id = null;
     public int $lvl = 0;
     public Session|bool $Sess = false;
@@ -22,19 +21,13 @@ class User
 
     private function checkSess(bool $noCreate = false): bool
     {
-        if($noCreate && (empty($_COOKIE['identy']) || empty($_COOKIE['sess_id']))){
+        if($noCreate && (empty($_COOKIE['sess_id']))){
             return false;
         }
 
         $this->ip = $_SERVER['REMOTE_ADDR'];
 
-        $identy = Session::chkIdenty();
-        if(!$identy){
-            return false;
-        }
-        $this->identy = $identy;
-
-        $Sess = Session::check($identy);
+        $Sess = Session::check();
 
         if(!$Sess) return false;
         $this->Sess = $Sess;
@@ -91,8 +84,10 @@ class User
 
     public function chkLvl(int $pers_id, string $token)
     {
+        global $cfg;
+        $server = $cfg->staffApi;
         $curl = curl(
-            'https://tapi.staff.sakh-orch.ru/api/pers.php',
+            'https://'.$server.'/api/pers.php',
             [
                 'pers_id'=>$pers_id,
                 'token' => $token

@@ -1,15 +1,14 @@
 <?php
 session_start();
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/config.php';
-if(isset($_POST) & count($_POST)) { $_SESSION['post'] = $_POST; }
-if(isset($_SESSION['post']) && count($_SESSION['post'])) { $_POST = $_SESSION['post']; }
-if(empty($_POST['token'])){
-    die('emptyToken');
+
+if(empty($_GET['token'])){
+    die('emptyTokennnn');
 }
-$token = $_POST['token'];
+$token = $_GET['token'];
 $User = User::byCheck(0);
 
-$debug = (!empty($_POST['debug']) && $cfg->myip);
+$debug = (!empty($_GET['debug']) && $cfg->myip);
 
 $qwe = qwe2("SELECT * FROM sessions where token = :token",['token'=>$token]);
 if(!$qwe or !$qwe->rowCount()){
@@ -24,16 +23,34 @@ if(!$qwe or !$qwe->rowCount()){
 $q = $qwe->fetchObject();
 if(isset($User->id) && $q->id == $User->id){
     $User->setLvl($User->chkLvl($q->id,$token));
-    header("Location: /");
+    qwe("delete from sessions where user_id = :user_id and id != :sess_id",
+        ['user_id'=>$q->id,'sess_id'=>$User->Sess->id]);
+    qwe("UPDATE sessions 
+    SET user_id = :user_id,
+        token = :token
+    WHERE id = :sess_id",
+        [
+            'user_id'=>$q->id,
+            'token' => $token,
+            'sess_id'=>$User->Sess->id
+        ]
+    );
+    $User->goToSPA($debug);
+    die();
 }
 
 
 $User::create($q->id,$q->tele_id,$User->chkLvl($q->id,$token));
+qwe("delete from sessions where user_id = :user_id and id != :sess_id",
+    ['user_id'=>$q->id,'sess_id'=>$User->Sess->id]);
+
 qwe("UPDATE sessions 
-    SET user_id = :user_id 
+    SET user_id = :user_id,
+        token = :token
     WHERE id = :sess_id",
     [
         'user_id'=>$q->id,
+        'token' => $token,
         'sess_id'=>$User->Sess->id
     ]
 );

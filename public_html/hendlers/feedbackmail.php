@@ -12,9 +12,6 @@ $root = $_SERVER['DOCUMENT_ROOT'];
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
 $User = User::byCheck();
 
-if(!TokenValid($User->identy))
-    die('reload');
-
 if(!empty($_POST['email2']))
     die();
 
@@ -78,15 +75,14 @@ $msg_key = random_str(12);
 $agent = $_SERVER['HTTP_USER_AGENT'];
 
 $qwe = qwe("INSERT INTO `feed_mails` 
-(`msg_id`, `email`, `name`, `msg`, `identy`,`msg_time`, `ip`,`agent`,`msg_key`) 
+(`msg_id`, `email`, `name`, `msg`,`msg_time`, `ip`,`agent`,`msg_key`) 
 VALUES 
-(:msg_id, :email, :name, :msg, :identy, now(), :ip, :agent, :msg_key)
+(:msg_id, :email, :name, :msg, now(), :ip, :agent, :msg_key)
 ",[
     'msg_id' => $msg_id,
     'email' => $email,
     'name'=> $name,
     'msg' => $msg,
-    'identy' => $User->identy,
     'ip' => $_SERVER['REMOTE_ADDR'],
     'agent' => $agent,
     'msg_key' => $msg_key

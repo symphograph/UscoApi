@@ -8,7 +8,6 @@ class Session
 
     public string      $id;
     public string|null  $user_id;
-    private string      $identy;
     private string      $token;
     private string      $first_ip;
     private string      $last_ip;
@@ -100,89 +99,6 @@ class Session
         setcookie('sess_id','', self::cookOpts(expires: time()-3600));
     }
 
-    private static function setNewIdenty($ip,$datetime,$cooktime): bool|string
-    {
-        global $cfg;
-        $identy = random_bytes(12);
-        $identy = bin2hex($identy);
-
-        setcookie('identy',$identy,
-                  Session::cookOpts(
-                      expires: $cooktime,
-                      samesite: 'None',
-                      debug: $cfg->debug
-                  )
-        );
-        $qwe = qwe("
-        INSERT INTO `identy`
-        (`identy`, `ip`, `time`, `last_ip`, `last_time`)
-        VALUES
-        (:identy, :ip, :datetime, :lip, :ldatetime)
-        ",['identy'=>$identy,'ip'=>$ip,'datetime'=>$datetime,'lip'=>$ip,'ldatetime'=>$datetime]);
-
-        if(!$qwe)
-            return false;
-
-        header("Refresh:0",0);
-        die();
-        //return $identy;
-    }
-
-    private static function updateIdenty($ip,$datetime,$cooktime): bool|string
-    {
-        $identy = OnlyText($_COOKIE['identy']);
-        if(iconv_strlen($identy) != 12 and iconv_strlen($identy) != 24) {
-            setcookie ("identy", "", time() - 3600*24*360*10,"/", secure: true);
-            return false;
-        }
-
-        $qwe = qwe("
-        SELECT * FROM `identy`
-        WHERE `identy` = :identy
-        ",['identy'   => $identy]);
-        if(!$qwe or !$qwe->rowCount()) {
-            setcookie ("identy", "", time() - 3600*24*360*10,"/", secure: true);
-            return false;
-        }
-
-        qwe("
-            UPDATE `identy` SET
-            `last_ip` = :ip,
-            `last_time` = :datetime
-            WHERE `identy` = :identy
-            ",
-            [
-                 'ip'       => $ip,
-                 'datetime' => $datetime,
-                 'identy'   => $identy
-            ]
-        );
-        global $cfg;
-        setcookie('identy', $identy,
-                  Session::cookOpts(
-                      expires : $cooktime,
-                      samesite: 'Strict',
-                      debug: $cfg->debug
-                  )
-        );
-
-        return $identy;
-    }
-
-    public static function chkIdenty(): bool|string
-    {
-        $ip = $_SERVER['REMOTE_ADDR'];
-        $unix_time = time();
-        $datetime = date('Y-m-d H:i:s',$unix_time);
-        $cooktime = $unix_time+60*60*24*365*5;
-
-        if(empty($_COOKIE['identy'])) {
-            //printr('hgfdgh');
-            return self::setNewIdenty($ip,$datetime,$cooktime);
-        }
-
-        return self::updateIdenty($ip,$datetime,$cooktime);
-    }
 
     private function updateDB() : void
     {
@@ -211,19 +127,18 @@ class Session
         return bin2hex($token);
     }
 
-    private static function newSess(string $identy): Session|bool
+    private static function newSess(): Session|bool
     {
         $id = random_bytes(12);
         $id = bin2hex($id);
         global $cfg;
 
         qwe("INSERT INTO sessions 
-            (id, identy, token, first_ip, last_ip, datetime, last_time) 
+            (id, token, first_ip, last_ip, datetime, last_time) 
             VALUES 
-            (:id, :identy, :token, :first_ip, :last_ip, now(), now())",
+            (:id, :token, :first_ip, :last_ip, now(), now())",
             [
                 'id'       => $id,
-                'identy'   => $identy,
                 'token'    => self::newToken(),
                 'first_ip' => $_SERVER['REMOTE_ADDR'],
                 'last_ip'  => $_SERVER['REMOTE_ADDR']
@@ -240,13 +155,13 @@ class Session
         //return $sess;
     }
 
-    public static function check($identy): Session|bool
+    public static function check(): Session|bool
     {
         $sess = self::byCook();
 
         if(!$sess){
 
-            $sess = self::newSess($identy);
+            $sess = self::newSess();
         }
         return $sess;
     }
