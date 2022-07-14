@@ -56,7 +56,7 @@ class StaffGroup
         return self::getUngrouped($arr);
     }
 
-    public static function getUngrouped(array $groups): array|bool
+    public static function getUngrouped(array $groups): array
     {
         $complited = $groups2 = [];
 
@@ -70,25 +70,9 @@ class StaffGroup
         }
         sort($complited);
         $complited = implode(',',$complited);
-        $qwe = qwe2("SELECT 
-        id as pers_id,
-       name,
-       last_name,
-       '2000-01-01' as start,
-       '2037-12-31' as stop
-       FROM personal WHERE id not in ($complited)");
-        if(!$qwe or !$qwe->rowCount()){
-            return [];
-        }
-        $qwe = $qwe->fetchAll(PDO::FETCH_CLASS,'StaffPlace');
-        $arr = [];
 
-        foreach ($qwe as $q){
-            $arr[] = StaffPlace::byQ($q);
-        }
-        //printr($groups2);
-        $groups2[17]->Players = $arr;
-        return $groups2;
+        return StaffPlace::getUngrouped($complited, $groups2);
+
     }
 
     public static function byArray(array|object $group) : StaffGroup

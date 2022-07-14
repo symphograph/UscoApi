@@ -205,4 +205,26 @@ class StaffPlace
         return $qwe;
     }
 
+    public static function getUngrouped(string $complited, array $groups): array
+    {
+        $qwe = qwe2("SELECT 
+        id as pers_id,
+       name,
+       last_name,
+       '2000-01-01' as start,
+       '2037-12-31' as stop
+       FROM personal WHERE id not in ($complited)");
+        if(!$qwe or !$qwe->rowCount()){
+            return [];
+        }
+        $qwe = $qwe->fetchAll(PDO::FETCH_CLASS,get_class());
+        $arr = [];
+
+        foreach ($qwe as $q){
+            $arr[] = self::byQ($q);
+        }
+        $groups[17]->Players = $arr;
+        return $groups;
+    }
+
 }
