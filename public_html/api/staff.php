@@ -7,9 +7,7 @@ or die(http_response_code(400));
 Helpers::isDate($date)
 or die(http_response_code(400));
 
-$StaffList = StaffGroup::getCollection($date);
-if(!$StaffList) {
-    die(http_response_code(401));
-}
+$StaffList = StaffGroup::getCollection($date)
+or die(\api\Api::errorMsg('Хм.. Ничего не вижу.'));
 
 echo json_encode(['data' => $StaffList]);

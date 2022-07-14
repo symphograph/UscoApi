@@ -53,10 +53,10 @@ class StaffGroup
             $group->initPlayers($date);
             $arr[$group->priority] = $group;
         }
-        return self::getUngrouped($arr);
+        return self::getUngrouped($arr,$date);
     }
 
-    public static function getUngrouped(array $groups): array
+    public static function getUngrouped(array $groups, string $date = ''): array
     {
         $complited = $groups2 = [];
 
@@ -71,7 +71,7 @@ class StaffGroup
         sort($complited);
         $complited = implode(',',$complited);
 
-        return StaffPlace::getUngrouped($complited, $groups2);
+        return StaffPlace::getUngrouped($complited, $groups2, $date);
 
     }
 

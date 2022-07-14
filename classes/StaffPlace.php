@@ -205,17 +205,24 @@ class StaffPlace
         return $qwe;
     }
 
-    public static function getUngrouped(string $complited, array $groups): array
+    public static function getUngrouped(string $complited, array $groups, string $date = ''): array
     {
+        if(empty($date)) $date = date('Y-m-d');
         $qwe = qwe2("SELECT 
-        id as pers_id,
-       name,
-       last_name,
-       '2000-01-01' as start,
-       '2037-12-31' as stop
-       FROM personal WHERE id not in ($complited)");
+            personal.id as pers_id,
+            name,
+            last_name,
+            '2000-01-01' as start,
+            '2037-12-31' as stop
+            FROM personal 
+                inner join employs e on personal.id = e.pers_id
+                    and :date between e.accept and e.dismiss
+                inner join jobs j on e.job_id = j.id
+                    and j.group_id = 10
+            WHERE personal.id not in ($complited)", ['date' => $date]
+        );
         if(!$qwe or !$qwe->rowCount()){
-            return [];
+            return $groups;
         }
         $qwe = $qwe->fetchAll(PDO::FETCH_CLASS,get_class());
         $arr = [];

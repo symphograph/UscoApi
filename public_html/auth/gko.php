@@ -23,12 +23,15 @@ if(!$qwe or !$qwe->rowCount()){
 $q = $qwe->fetchObject();
 if(isset($User->id) && $q->id == $User->id){
     $User->setLvl($User->chkLvl($q->id,$token));
+    /*
     qwe("delete from sessions where user_id = :user_id and id != :sess_id",
         ['user_id'=>$q->id,'sess_id'=>$User->Sess->id]);
-    qwe("UPDATE sessions 
-    SET user_id = :user_id,
+    */
+    qwe("
+        UPDATE sessions 
+        SET user_id = :user_id,
         token = :token
-    WHERE id = :sess_id",
+        WHERE id = :sess_id",
         [
             'user_id'=>$q->id,
             'token' => $token,
@@ -41,9 +44,10 @@ if(isset($User->id) && $q->id == $User->id){
 
 
 $User::create($q->id,$q->tele_id,$User->chkLvl($q->id,$token));
+/*
 qwe("delete from sessions where user_id = :user_id and id != :sess_id",
     ['user_id'=>$q->id,'sess_id'=>$User->Sess->id]);
-
+*/
 qwe("UPDATE sessions 
     SET user_id = :user_id,
         token = :token
