@@ -7,11 +7,10 @@ $User = User::byCheck();
 if(!$User->Sess){
     die(Api::errorMsg('sessError'));
 }
-//$Sess = Session::byToken($token)
-    //or die(die(Api::errorMsg('badToken')));
-//printr($User);
+
 $User->apiAuth();
 echo Api::resultData([
+    'Powers' => $User->Powers ?? [],
     'lvl'    => $User->lvl,
     'server' => $_SERVER['SERVER_NAME']
 ]);

@@ -9,6 +9,7 @@ class User
     public int|null $tele_id = null;
     public int $lvl = 0;
     public Session|bool $Sess = false;
+    public array|null $Powers;
 
     public static function byId(int $id) : User|bool
     {
@@ -49,9 +50,28 @@ class User
             $Sess = $User->Sess;
             $User = User::byId($Sess->user_id);
             $User->Sess = $Sess;
+            $User->initPowers();
         }
 
         return $User;
+    }
+
+    public static function getPowers(int $user_id) : array
+    {
+        $qwe = qwe2("
+            select power_id from pers_power 
+            where pers_id = :user_id",
+            ['user_id' => $user_id]
+        );
+        if(!$qwe || !$qwe->rowCount()){
+            return  [];
+        }
+        return $qwe->fetchAll(PDO::FETCH_COLUMN);
+    }
+
+    public function initPowers()
+    {
+        $this->Powers = self::getPowers($this->id);
     }
 
     private function getToken() : bool|string
@@ -62,7 +82,7 @@ class User
         return $token ?? false;
     }
 
-    public function apiAuth(int $lvl = 0)
+    public function apiAuth(int $needLvl = 0, $needPowers = [])
     {
         if(!$this->Sess){
             die(http_response_code(401));
@@ -77,9 +97,21 @@ class User
         if(!$this->Sess->tokenValid($token)){
             die(Api::errorMsg('badToken'));
         }
-        if($this->lvl < $lvl){
+        if($this->lvl < $needLvl){
             die(Api::errorMsg('Недостаточно прав'));
         }
+
+        if(!empty($needPowers)){
+            self::chkPower($needPowers) or die(Api::errorMsg('Недостаточно прав'));
+        }
+
+
+    }
+
+    public function chkPower(array $needPowers) : bool
+    {
+        self::initPowers();
+        return !empty(array_intersect($needPowers,$this->Powers));
     }
 
     public function chkLvl(int $pers_id, string $token)
@@ -157,4 +189,5 @@ class User
         $token = self::getToken();
         header("Location: https://$spaUrl/auth?#{$token}");
     }
+
 }
