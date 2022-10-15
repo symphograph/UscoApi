@@ -186,6 +186,10 @@ class User
             $spaUrl = 'localhost:8080';
         }
 
+        if(str_starts_with($_SERVER['HTTP_REFERER'],'https://dev.')){
+            $spaUrl = 'dev.sakh-orch.ru';
+        }
+
         $token = self::getToken();
         header("Location: https://$spaUrl/auth?#{$token}");
     }
