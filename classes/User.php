@@ -183,7 +183,7 @@ class User
         $spaUrl = $cfg->spaUrl;
 
         if($debug){
-            $spaUrl = 'localhost:9200';
+            $spaUrl = '192.168.0.200:9200';
         }
 
         if(str_starts_with($_SERVER['HTTP_REFERER'],'https://dev.')){

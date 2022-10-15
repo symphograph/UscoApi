@@ -151,8 +151,7 @@ class Session
         setcookie('sess_id',$id, self::cookOpts(debug: $cfg->debug));
         //echo 'hgfdh';
         header("Refresh:0",0);
-        die(Api::errorMsg('Refresh for new Sess'));
-        //return $sess;
+        die();
     }
 
     public static function check(): Session|bool
