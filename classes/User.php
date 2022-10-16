@@ -187,8 +187,8 @@ class User
             $spaUrl = '192.168.0.200:9200';
         }
         if($cfg->myip){
-            printr($_SERVER['HTTP_REFERER']);
-            die();
+            //printr($_SERVER['HTTP_REFERER']);
+            //die();
         }
 
         if(str_starts_with($_SERVER['HTTP_REFERER'],'https://dev.') || str_starts_with($_SERVER['HTTP_REFERER'],'http://dev.')){
@@ -197,6 +197,7 @@ class User
 
         $token = self::getToken();
         header("Location: https://$spaUrl/auth?#{$token}");
+        die();
     }
 
 }
