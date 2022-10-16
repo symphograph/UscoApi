@@ -186,6 +186,10 @@ class User
         if($debug){
             $spaUrl = '192.168.0.200:9200';
         }
+        if($cfg->myip){
+            printr($_SERVER['HTTP_REFERER']);
+            die();
+        }
 
         if(str_starts_with($_SERVER['HTTP_REFERER'],'https://dev.') || str_starts_with($_SERVER['HTTP_REFERER'],'http://dev.')){
             $spaUrl = 'dev.sakh-orch.ru';
