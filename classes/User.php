@@ -178,7 +178,8 @@ class User
         die(Api::errorMsg('badLvl'));
     }
 
-    public function goToSPA(bool $debug, string $path = '/'){
+    public function goToSPA(bool $debug, string $path = '/'): void
+    {
         global $cfg;
         $spaUrl = $cfg->spaUrl;
 
@@ -186,7 +187,7 @@ class User
             $spaUrl = '192.168.0.200:9200';
         }
 
-        if(str_starts_with($_SERVER['HTTP_REFERER'],'https://dev.')){
+        if(str_starts_with($_SERVER['HTTP_REFERER'],'https://dev.') || str_starts_with($_SERVER['HTTP_REFERER'],'http://dev.')){
             $spaUrl = 'dev.sakh-orch.ru';
         }
 
