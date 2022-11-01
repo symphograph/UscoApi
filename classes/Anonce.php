@@ -236,7 +236,7 @@ class Anonce
     {
         $params = self::collectionParams($sort, $year, $new);
         $qwe = qwe("
-            SELECT concert_id ev_id, cache from anonces
+            SELECT concert_id ev_id, datetime, cache from anonces
             WHERE year(datetime) = :year
             AND anonces.datetime >= :curDate
             ORDER BY " . $params['sort'],
