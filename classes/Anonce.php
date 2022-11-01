@@ -34,7 +34,7 @@ class Anonce
     public string|null $dateFormated = '';
     private string|null $cache;
 
-    const PAYS = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Билеты в продаже'];
+    const PAYS = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Продажа завершена'];
 
     public static function addNewAnonce(): bool|self
     {

@@ -1,5 +1,6 @@
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
+
 User::authByToken(90);
 
 if(empty($_FILES)){
