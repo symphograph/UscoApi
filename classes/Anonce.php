@@ -174,7 +174,7 @@ class Anonce
         $sort = $sorts[$sort] ?? 'anonces.datetime DESC';
         $curDate = '2000-01-01 00:00';
         if($new){
-            $curDate = date('Y-m-d H:i');
+            $curDate = date('Y-m-d H:i', time() + 3600 * 8);
         }
         return [
             'sort'    => $sort,
