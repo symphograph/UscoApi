@@ -20,7 +20,7 @@ class Anonce
     public string|null $hall_name   = '';
     public string|null $youtube_id  = '';
     public bool        $complited   = false;
-    public Hall        $Hall;
+    public Hall|null        $Hall;
     public Img|Poster  $Poster;
     public Img|Poster  $TopPoster;
     public string|null $map         = '';
@@ -250,12 +250,13 @@ class Anonce
 
         $qwe = $qwe->fetchAll(PDO::FETCH_CLASS,get_class());
 
+        /** @var array<self> $arr */
         $arr = [];
 
         foreach ($qwe as $Anonce){
             $Anonce = self::checkClass($Anonce);
             if(!empty($Anonce->cache)){
-                $arr[] = json_decode($Anonce->cache);
+                $arr[] = self::decodeFromJson($Anonce->cache);
                 continue;
             }
 
@@ -268,7 +269,7 @@ class Anonce
                 continue;
             }
 
-            $arr[] = json_decode($recachedAnonce);
+            $arr[] = $recachedAnonce;
         }
 
         if(count($arr) === count($qwe)){
@@ -563,7 +564,7 @@ class Anonce
 			</p>';
     }
 
-    public static function byCache(int $id, bool $tryReCache = true): bool|string
+    public static function byCache(int $id, bool $tryReCache = true): bool|self
     {
         $qwe = qwe("
             SELECT cache FROM anonces 
@@ -575,7 +576,7 @@ class Anonce
         }
         $cache = $qwe->fetchObject()->cache;
         if(!empty($cache)){
-            return $cache;
+            return self::decodeFromJson($cache);
         }
 
         if($tryReCache){
@@ -583,6 +584,20 @@ class Anonce
             return Anonce::byCache($id,false);
         }
         return false;
+    }
+
+
+    /**
+     * @param string $Json
+     * @return self
+     * @throws ReflectionException
+     */
+    private static function decodeFromJson(string $Json): self
+    {
+
+        /** @var Anonce $Anonce */
+        $Anonce = Helpers::cloneFromAny(json_decode($Json), new Anonce());
+        return $Anonce;
     }
 
 }

@@ -11,7 +11,7 @@ Anonce::reCache($id);
 $Anonce = Anonce::byCache($id)
     or die(http_response_code(204));
 
-//echo json_encode($Anonce);
-echo $Anonce;
+echo json_encode($Anonce,JSON_UNESCAPED_UNICODE);
+//echo $Anonce;
 
 //echo AnoncePaje::getJson($data['id']);
