@@ -502,3 +502,4 @@ ip.php
 /public_html/img/news/pw/
 /public_html/img/entry/
 /composer_2.phar
+/composer.lock
