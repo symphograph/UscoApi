@@ -20,6 +20,7 @@
     "ext-pdo": "*",
     "erusev/parsedown": "^1.7",
     "league/html-to-markdown": "^5.1",
-    "ext-dom": "*"
+    "ext-dom": "*",
+    "symphograph/bicycle": "^1.0"
   }
 }

@@ -37,7 +37,7 @@ if(
     if($cfg->debug) {
 
     }
-    cors();
+    //cors();
 }
 
 if(str_starts_with($_SERVER['SCRIPT_NAME'],'/test/')){
@@ -46,9 +46,15 @@ if(str_starts_with($_SERVER['SCRIPT_NAME'],'/test/')){
     }
 }
 
+require_once dirname($_SERVER['DOCUMENT_ROOT']).'/vendor/autoload.php';
+
 spl_autoload_register(function ($className) {
     $fileName = str_replace('\\', '/', $className) . '.php';
-    require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/classes/' . $fileName;
+    $file = dirname($_SERVER['DOCUMENT_ROOT']) . '/classes/' . $fileName;
+    if(file_exists($file)){
+        require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/classes/' . $fileName;
+    }
+
 });
 
 $cfg->vueprod = '.prod';

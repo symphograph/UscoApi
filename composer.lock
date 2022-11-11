@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f7485371665edd90a63c0ad2c9df8c33",
+    "content-hash": "0a43b8326e8a2b09f54facf6efee4a7d",
     "packages": [
         {
             "name": "erusev/parsedown",
@@ -144,6 +144,51 @@
                 }
             ],
             "time": "2022-03-02T17:24:08+00:00"
+        },
+        {
+            "name": "symphograph/bicycle",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symphograph/bicycle.git",
+                "reference": "08227ff7c6f05cea6676d9f3b7fd7c86971509ee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symphograph/bicycle/zipball/08227ff7c6f05cea6676d9f3b7fd7c86971509ee",
+                "reference": "08227ff7c6f05cea6676d9f3b7fd7c86971509ee",
+                "shasum": ""
+            },
+            "require": {
+                "ext-bcmath": "*",
+                "ext-calendar": "*",
+                "ext-curl": "*",
+                "ext-gmp": "*",
+                "ext-iconv": "*",
+                "ext-json": "*",
+                "ext-mysqli": "*",
+                "ext-pdo": "*",
+                "php": ">=8.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symphograph\\Bicycle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "symphograph",
+                    "email": "roman.chubich@gmail.com"
+                }
+            ],
+            "description": "My First Lib",
+            "support": {
+                "issues": "https://github.com/symphograph/bicycle/issues",
+                "source": "https://github.com/symphograph/bicycle/tree/v1.0.4"
+            },
+            "time": "2022-11-09T04:41:00+00:00"
         }
     ],
     "packages-dev": [],
@@ -161,8 +206,7 @@
         "ext-json": "*",
         "ext-imagick": "*",
         "ext-pdo": "*",
-      "erusev/parsedown": "^1.7",
-      "league/html-to-markdown": "^5.1"
+        "ext-dom": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.1.0"

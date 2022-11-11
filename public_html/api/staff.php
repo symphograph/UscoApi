@@ -1,5 +1,6 @@
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
+use Symphograph\Bicycle\Helpers;
 $_POST = json_decode(file_get_contents('php://input'), true)['params'];
 
 $date = $_POST['date']
