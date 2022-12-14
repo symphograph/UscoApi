@@ -8,7 +8,7 @@ if(empty($_GET['token'])){
 $token = $_GET['token'];
 $User = User::byCheck(0);
 
-$debug = (!empty($_GET['debug']) && $cfg->myip);
+$debug = (!empty($_GET['debug']) && $env->myip);
 
 $qwe = qwe2("SELECT * FROM sessions where token = :token",['token'=>$token]);
 if(!$qwe or !$qwe->rowCount()){

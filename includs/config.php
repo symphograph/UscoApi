@@ -9,15 +9,15 @@ if(preg_match('/www./',$_SERVER['SERVER_NAME']))
 	header("Location: https://".$server_name."/".$ref);
 	exit();
 }
-
-$cfg = require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/ip.php';
+use Symphograph\Bicycle\DB;
+$env = require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/ip.php';
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/functions/functions.php';
 
 session_set_cookie_params(0, "/", $_SERVER['SERVER_NAME'], True, True);
-if($cfg->myip) {
+if($env->myip) {
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
-    //$cfg->debug = true;
+    //$env->debug = true;
 }
 
 if(
@@ -34,14 +34,14 @@ if(
     }
 
 
-    if($cfg->debug) {
+    if($env->debug) {
 
     }
     //cors();
 }
 
 if(str_starts_with($_SERVER['SCRIPT_NAME'],'/test/')){
-    if(!$cfg->myip && !$cfg->server_ip){
+    if(!$env->myip && !$env->server_ip){
         die('permis');
     }
 }
@@ -57,9 +57,9 @@ spl_autoload_register(function ($className) {
 
 });
 
-$cfg->vueprod = '.prod';
+$env->vueprod = '.prod';
 if(str_starts_with($_SERVER['SERVER_NAME'],'test')){
-    $cfg->vueprod = '';
+    $env->vueprod = '';
 }
 
 //------------------------------------------------------------------

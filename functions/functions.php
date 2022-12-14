@@ -98,8 +98,8 @@ function CssMeta(array $css_arr)
 }
 
 function printr($var) {
-    global $cfg;
-    if(!$cfg->myip && !$cfg->server_ip)
+    global $env;
+    if(!$env->myip && !$env->server_ip)
         return;
     echo '<pre>';
     print_r($var);
@@ -287,8 +287,8 @@ function cors() {
 
 function curl($plink, array $data = [])
 {
-    global $cfg;
-    $data['apiKey'] = $cfg->apiKey;
+    global $env;
+    $data['apiKey'] = $env->apiKey;
     //printr($data);
 
     $curl = curl_init();

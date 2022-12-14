@@ -2,7 +2,7 @@
 $root = $_SERVER['DOCUMENT_ROOT'];
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
 $User = User::byCheck();
-if(!$cfg->myip) die();
+if(!$env->myip) die();
 
 
 $dir = 'img/avatars/upload/';

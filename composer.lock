@@ -147,16 +147,16 @@
         },
         {
             "name": "symphograph/bicycle",
-            "version": "v1.0.4",
+            "version": "v1.0.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symphograph/bicycle.git",
-                "reference": "08227ff7c6f05cea6676d9f3b7fd7c86971509ee"
+                "reference": "775c683e1968e110470e28221e589a6bf0c2451b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symphograph/bicycle/zipball/08227ff7c6f05cea6676d9f3b7fd7c86971509ee",
-                "reference": "08227ff7c6f05cea6676d9f3b7fd7c86971509ee",
+                "url": "https://api.github.com/repos/symphograph/bicycle/zipball/775c683e1968e110470e28221e589a6bf0c2451b",
+                "reference": "775c683e1968e110470e28221e589a6bf0c2451b",
                 "shasum": ""
             },
             "require": {
@@ -186,9 +186,9 @@
             "description": "My First Lib",
             "support": {
                 "issues": "https://github.com/symphograph/bicycle/issues",
-                "source": "https://github.com/symphograph/bicycle/tree/v1.0.4"
+                "source": "https://github.com/symphograph/bicycle/tree/v1.0.19"
             },
-            "time": "2022-11-09T04:41:00+00:00"
+            "time": "2022-11-29T17:57:34+00:00"
         }
     ],
     "packages-dev": [],
@@ -209,5 +209,5 @@
         "ext-dom": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }

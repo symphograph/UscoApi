@@ -4,6 +4,7 @@
 class DB
 {
     public PDO|null $pdo;
+    private ?array $opt;
 
     public function __construct(
         $connectName = '',
@@ -11,12 +12,12 @@ class DB
 
     )
     {
-        global $cfg;
+        global $env;
 
         if(empty($connectName)){
             $connectName = 0;
         }
-        $con = (object) $cfg->connects[$_SERVER['SERVER_NAME']][$connectName];
+        $con = (object) $env->connects[$_SERVER['SERVER_NAME']][$connectName];
 
         $dsn = "mysql:host=$con->Host;dbname=$con->Name;charset=$charset";
         $this->opt = [

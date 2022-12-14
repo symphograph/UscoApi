@@ -1,6 +1,6 @@
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
-if(!$cfg->myip) exit;
+if(!$env->myip) exit;
 //$User = User::byCheck();
 //$User->apiAuth(100);
 require_once dirname($_SERVER['DOCUMENT_ROOT'])."/vendor/autoload.php";

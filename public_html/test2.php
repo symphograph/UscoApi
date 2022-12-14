@@ -2,7 +2,7 @@
 $root = $_SERVER['DOCUMENT_ROOT'];
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/config.php';
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . "/vendor/autoload.php";
-if (!$cfg->myip) exit;
+if (!$env->myip) exit;
 
 ?>
 <!doctype html>

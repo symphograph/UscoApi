@@ -6,10 +6,16 @@ class User
 {
     public int $id;
     public string $ip = '';
-    public int|null $tele_id = null;
-    public int $lvl = 0;
+    public ?int $tele_id = null;
+    public ?int $lvl = 0;
+    public ?string $created;
+    public ?string $last_time;
     public Session|bool $Sess = false;
-    public array|null $Powers;
+    public ?array $Powers;
+
+    public function __set(string $name, $value): void
+    {
+    }
 
     public static function byId(int $id) : User|bool
     {
@@ -17,7 +23,7 @@ class User
         if(!$qwe or !$qwe->rowCount()){
             return false;
         }
-        return $qwe->fetchAll(PDO::FETCH_CLASS,"User")[0] ?? false;
+        return $qwe->fetchObject(self::class);
     }
 
     private function checkSess(bool $noCreate = false): bool
@@ -116,10 +122,10 @@ class User
 
     public function chkLvl(int $pers_id, string $token)
     {
-        global $cfg;
+        global $env;
 
         $curl = curl(
-            'https://'.$cfg->staffApi.'/api/pers.php',
+            'https://'.$env->staffApi.'/api/pers.php',
             [
                 'pers_id'=>$pers_id,
                 'token' => $token
@@ -180,15 +186,11 @@ class User
 
     public function goToSPA(bool $debug, string $path = '/'): void
     {
-        global $cfg;
-        $spaUrl = $cfg->spaUrl;
+        global $env;
+        $spaUrl = $env->spaUrl;
 
         if($debug){
             $spaUrl = '192.168.0.200:9200';
-        }
-        if($cfg->myip){
-            //printr($_SERVER['HTTP_REFERER']);
-            //die();
         }
 
         if(str_starts_with($_SERVER['HTTP_REFERER'],'https://dev.') || str_starts_with($_SERVER['HTTP_REFERER'],'http://dev.')){

@@ -23,7 +23,7 @@ require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/links.php';
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/header.php';
 
 /*
-if(!$cfg->myip)
+if(!$env->myip)
 {
     ?><div class="content">
     <div class="eventsarea">Технические работы</div><?php

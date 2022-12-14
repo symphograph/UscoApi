@@ -71,8 +71,8 @@ class Session
             return false;
         }
         $sess->updateDB();
-        global $cfg;
-        setcookie('sess_id',$_COOKIE['sess_id'], self::cookOpts(debug: $cfg->debug));
+        global $env;
+        setcookie('sess_id',$_COOKIE['sess_id'], self::cookOpts(debug: $env->debug));
         return $sess;
     }
 
@@ -131,7 +131,7 @@ class Session
     {
         $id = random_bytes(12);
         $id = bin2hex($id);
-        global $cfg;
+        global $env;
 
         qwe("INSERT INTO sessions 
             (id, token, first_ip, last_ip, datetime, last_time) 
@@ -148,7 +148,7 @@ class Session
         if(!$sess){
             return false;
         }
-        setcookie('sess_id',$id, self::cookOpts(debug: $cfg->debug));
+        setcookie('sess_id',$id, self::cookOpts(debug: $env->debug));
         //echo 'hgfdh';
         header("Refresh:0",0);
         die();
