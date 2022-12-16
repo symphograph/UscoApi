@@ -2,6 +2,7 @@
 
 
 use JetBrains\PhpStorm\Pure;
+use Symphograph\Bicycle\JsonDecoder;
 
 class Anonce
 {
@@ -596,7 +597,7 @@ class Anonce
     {
 
         /** @var Anonce $Anonce */
-        $Anonce = Helpers::cloneFromAny(json_decode($Json), new Anonce());
+        $Anonce = JsonDecoder::cloneFromAny(json_decode($Json), self::class);
         return $Anonce;
     }
 
