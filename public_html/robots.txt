@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://sakh-orch.ru/sitemap.txt
