@@ -108,6 +108,11 @@ class Entry
         $params = DB::pHoldsArr($categs);
         //printr($params);
         $params['year'] = $year ?? date('Y');
+        $params['year2'] = $params['year'];
+        if($limit === 5){
+            $params['year2'] = $params['year'] - 1;
+        }
+
         $limit = ' LIMIT ' . $limit;
 
 
@@ -116,7 +121,7 @@ class Entry
             GROUP_CONCAT(nn.categ_id) as concategs FROM news
             INNER JOIN nn_EntryCategs as nn ON news.id = nn.entry_id
             AND nn.categ_id in ($pHoldels)
-            AND YEAR(news.date) = :year
+            AND (YEAR(news.date) = :year or YEAR(news.date) = :year2)
             GROUP BY news.id
             ORDER BY news.date DESC" . $limit,
             $params
