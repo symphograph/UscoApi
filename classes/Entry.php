@@ -129,7 +129,7 @@ class Entry
         if(!$qwe || !$qwe->rowCount())
             return [];
 
-        $rows = $qwe->fetchAll(PDO::FETCH_CLASS,'Entry');
+        $rows = $qwe->fetchAll(PDO::FETCH_CLASS,self::class);
 
         $Entryes = [];
         foreach ($rows as $Entry){
