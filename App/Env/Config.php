@@ -2,6 +2,8 @@
 
 namespace App\Env;
 
+use App\api\Api;
+
 class Config
 {
     public const debugOnlyFolders = [
@@ -52,8 +54,7 @@ class Config
             $_POST = json_decode(file_get_contents('php://input'), true)['params'] ?? [];
         }
         if (empty($_POST['token']) && empty($_SERVER['HTTP_X_CSRF_TOKEN'])) {
-            http_response_code(401);
-            die('emptyToken');
+            die(Api::errorMsg('emptyToken'));
         }
 
     }
