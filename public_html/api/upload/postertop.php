@@ -1,6 +1,6 @@
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
-User::authByToken(90);
+User::authByToken(needPowers: [1,2,4]);
 
 if(empty($_FILES)){
     die(http_response_code(400));

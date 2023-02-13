@@ -5,7 +5,7 @@ use api\{Api, PersPlace};
 use Symphograph\Bicycle\Helpers;
 
 $User = User::byCheck();
-$User->apiAuth(90);
+$User->apiAuth(needPowers: [1,2,4]);
 
 $_POST = json_decode(file_get_contents('php://input'), true)['params'] ?? null;
 if(empty($_POST['groups']) || !is_array($_POST['groups']))

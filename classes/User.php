@@ -75,7 +75,7 @@ class User
         return $qwe->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    public function initPowers()
+    public function initPowers(): void
     {
         $this->Powers = self::getPowers($this->id);
     }
@@ -154,7 +154,7 @@ class User
         );
     }
 
-    public static function authByToken(int $lvl = 0)
+    public static function authByToken(int $lvl = 0, $needPowers = [])
     {
         $token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['token'] ?? null;
         if(empty($token)){
@@ -180,6 +180,9 @@ class User
 
         if($User->lvl && $User->lvl >= $lvl){
             return true;
+        }
+        if(!empty($needPowers)){
+            $User->chkPower($needPowers) or die(Api::errorMsg('Недостаточно прав'));
         }
         die(Api::errorMsg('badLvl'));
     }

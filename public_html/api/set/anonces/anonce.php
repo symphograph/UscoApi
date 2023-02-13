@@ -1,7 +1,7 @@
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/config.php';
 $User = User::byCheck();
-$User->apiAuth(90);
+$User->apiAuth(needPowers: [1,2,4]);
 
 if(empty($_POST['evdata']))
     die(APIusco::errorMsg('Ошибка запроса сервера'));
