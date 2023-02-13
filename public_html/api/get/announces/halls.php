@@ -4,6 +4,7 @@ use App\{Hall, User};
 
 $User = User::byCheck();
 
+
 $halls = Hall::getList();
 $opts = [];
 foreach ($halls as $hall){

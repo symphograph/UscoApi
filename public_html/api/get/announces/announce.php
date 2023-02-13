@@ -5,7 +5,6 @@ use App\{Anonce, User};
 
 $User = User::byCheck();
 
-
 $id = intval($_POST['id'] ?? 0)
 or die(http_response_code(400));
 
