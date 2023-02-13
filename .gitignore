@@ -504,3 +504,4 @@ ip.php
 /composer_2.phar
 /composer.lock
 /public_html/documents/
+/includes/env.php

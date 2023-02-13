@@ -1,5 +1,7 @@
 <?php
-require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/config.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/vendor/autoload.php';
+use App\{Anonce, APIusco, User};
+
 $User = User::byCheck();
 
 $data = Anonce::apiValidation()

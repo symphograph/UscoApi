@@ -1,5 +1,8 @@
 <?php
-require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/config.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/vendor/autoload.php';
+
+use App\{APIusco, Entry, User, Validator};
+
 $User = User::byCheck();
 $User->apiAuth(needPowers: [1,2,4]);
 

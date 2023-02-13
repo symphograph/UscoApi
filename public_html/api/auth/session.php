@@ -1,15 +1,17 @@
 <?php
-require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/config.php';
-use api\Api;
+require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/vendor/autoload.php';
 
-$token = $_POST['token'] or die(Api::errorMsg('emptyToken'));
+use App\APIusco;
+use App\User;
+
+$token = $_POST['token'] or die(Apiusco::errorMsg('emptyToken'));
 $User = User::byCheck();
 if(!$User->Sess){
-    die(Api::errorMsg('sessError'));
+    die(Apiusco::errorMsg('sessError'));
 }
 
 $User->apiAuth();
-echo Api::resultData([
+echo APIusco::resultData([
     'Powers' => $User->Powers ?? [],
     'lvl'    => $User->lvl,
     'server' => $_SERVER['SERVER_NAME']

@@ -1,11 +1,12 @@
 <?php
-require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/config.php';
-$User = User::byCheck(0);
+require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/vendor/autoload.php';
 
-$debug = (!empty($_GET['debug']) && $env->myip);
+use App\User;
+
+$User = User::byCheck(0);
 
 if(!$User->Sess) {
     die(http_response_code(401));
 }
 
-$User->goToSPA($debug);
+$User->goToSPA();

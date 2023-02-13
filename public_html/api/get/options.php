@@ -1,6 +1,8 @@
 <?php
-require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/includs/config.php';
-use api\Api;
+require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/vendor/autoload.php';
+
+use App\api\Api;
+use App\Hall;
 
 $Halls = Hall::getList()
     or die(Api::errorMsg('Halls'));

@@ -1,6 +1,7 @@
 <?php
+require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/vendor/autoload.php';
+
 $start = microtime(true);
-require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
 ?>
 <!doctype html>
 <html lang="ru">

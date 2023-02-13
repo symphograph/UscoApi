@@ -1,5 +1,7 @@
 <?php
-require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/vendor/autoload.php';
+
+use App\StaffGroup;
 use Symphograph\Bicycle\Helpers;
 $_POST = json_decode(file_get_contents('php://input'), true)['params'];
 
@@ -9,6 +11,6 @@ Helpers::isDate($date)
 or die(http_response_code(400));
 
 $StaffList = StaffGroup::getCollection($date)
-or die(\api\Api::errorMsg('Хм.. Ничего не вижу.'));
+or die(\App\api\Api::errorMsg('Хм.. Ничего не вижу.'));
 
 echo json_encode(['data' => $StaffList]);

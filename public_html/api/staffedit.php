@@ -1,7 +1,8 @@
 <?php
-require_once dirname($_SERVER['DOCUMENT_ROOT']).'/includs/config.php';
+require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/vendor/autoload.php';
 
-use api\{Api, PersPlace};
+use App\api\{Api, PersPlace};
+use App\{StaffGroup, User};
 use Symphograph\Bicycle\Helpers;
 
 $User = User::byCheck();
