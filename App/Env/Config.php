@@ -8,7 +8,6 @@ class Config
 {
     public const debugOnlyFolders = [
         'test',
-        'api',
         'services',
         'transfer'
     ];
