@@ -38,9 +38,9 @@ if(isset($User->id) && $q->id == $User->id){
     );
     $User->goToSPA();
 }
-
-
-$User::create($q->id,$q->tele_id,$User->chkLvl($q->id,$token));
+if(!User::byId($q->id)){
+    $User::create($q->id,$q->tele_id,$User->chkLvl($q->id,$token));
+}
 
 qwe("UPDATE sessions 
     SET user_id = :user_id,

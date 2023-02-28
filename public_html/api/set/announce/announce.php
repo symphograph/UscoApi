@@ -1,18 +1,21 @@
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/vendor/autoload.php';
 
-use App\{Anonce, APIusco, User};
+use App\{Anonce, User};
+use Symphograph\Bicycle\Api\Response;
+use Symphograph\Bicycle\Errors\AppErr;
+use Symphograph\Bicycle\Errors\ValidationErr;
 
 $User = User::byCheck();
-$User->apiAuth(needPowers: [1,2,4]);
+$User->apiAuth(needPowers: [1, 2, 4]);
 
-if(empty($_POST['evdata']))
-    die(APIusco::errorMsg('Ошибка запроса сервера'));
+if (empty($_POST['evdata']))
+    throw new ValidationErr('evdata');
 
 $Anonce = Anonce::setByPost() or
-die(APIusco::errorMsg('Ошибка в полученных данных'));
+throw new AppErr('Anonce::setByPost err');
 
 $Anonce->putToDB() or
-die(APIusco::errorMsg('Ошибка при сохранении'));
+throw new AppErr('putToDB err', 'Ошибка при сохранении');
 
-echo APIusco::resultData($Anonce);
+Response::data($Anonce);

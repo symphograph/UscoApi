@@ -2,7 +2,7 @@
 namespace App;
 
 use App\api\Api;
-use App\Env\Env;
+use Symphograph\Bicycle\Env\Env;
 use JetBrains\PhpStorm\ArrayShape;
 use PDO;
 

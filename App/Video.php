@@ -37,11 +37,16 @@ class Video
         return self::getIFrame($youtube_id);
     }
 
-    public static function getCollection(int $limit): bool|string
+    /**
+     * @return array<self>
+     */
+    public static function getCollection(int $limit): array
     {
         $qwe = qwe( "SELECT * FROM video where `show` = 1 ORDER BY v_date DESC LIMIT :limit",['limit'=>$limit]);
-        $qwe = $qwe->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,self::class);
-        return json_encode(['data' => $qwe]);
+        if(!$qwe->rowCount()){
+            return [];
+        }
+        return $qwe->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,self::class);
     }
 
     public static function getIFrame(string $youtube_id) : string

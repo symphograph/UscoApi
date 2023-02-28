@@ -21,7 +21,7 @@
     "erusev/parsedown": "^1.7",
     "league/html-to-markdown": "^5.1",
     "ext-dom": "*",
-    "symphograph/bicycle": "^2.0"
+    "symphograph/bicycle": "^3.0"
   },
   "autoload": {
     "psr-4": {

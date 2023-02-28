@@ -2,9 +2,11 @@
 namespace App;
 
 use App\api\Api;
-use App\Env\Env;
+use App\Env\UscoEnv;
+use Symphograph\Bicycle\Env\Env;
 use JetBrains\PhpStorm\NoReturn;
 use PDO;
+use Symphograph\Bicycle\Errors\AuthErr;
 
 class User
 {
@@ -99,22 +101,22 @@ class User
         }
 
         $_POST = json_decode(file_get_contents('php://input'), true)['params'] ?? null;
-        $token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['token'] ?? null;
+        $token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['token'] ?? $_SERVER['HTTP_AUTHORIZATION'] ?? null;
         if(empty($token)){
-            die(Api::errorMsg('emptyToken'));
+            throw new AuthErr('emptyToken');
         }
 
         if(!$this->Sess->tokenValid($token)){
-            die(Api::errorMsg('badToken'));
+            throw new AuthErr('badToken');
         }
         if($this->lvl < $needLvl){
-            die(Api::errorMsg('Недостаточно прав'));
+            throw new AuthErr('badLvl', 'Недостаточно прав', 403);
         }
 
         if(!empty($needPowers)){
-            self::chkPower($needPowers) or die(Api::errorMsg('Недостаточно прав'));
+            self::chkPower($needPowers)
+                or throw new AuthErr('badPower', 'Недостаточно прав', 403);
         }
-
 
     }
 
@@ -126,7 +128,7 @@ class User
 
     public function chkLvl(int $pers_id, string $token)
     {
-        $staffApi = Env::getStaffApi();
+        $staffApi = UscoEnv::getStaffApiDomain();
         $curl = curl(
             "https://$staffApi/api/pers.php",
             [
@@ -157,11 +159,23 @@ class User
         );
     }
 
+    public static function byToken(string $token): self|false
+    {
+        if(!$Sess = Session::byToken($token)){
+            return false;
+        }
+        if(!$User = self::byId($Sess->user_id ?? 0)){
+            return false;
+        }
+        $User->Sess = $Sess;
+        return $User;
+    }
+
     public static function authByToken(int $lvl = 0, $needPowers = [])
     {
-        $token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['token'] ?? null;
+        $token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['token'] ?? $_SERVER['HTTP_AUTHORIZATION'] ?? null;
         if(empty($token)){
-            die(Api::errorMsg('emptyToken'));
+            throw new AuthErr(message: 'emptyToken');
         }
 
         $Sess = Session::byToken($token);

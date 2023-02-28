@@ -2,15 +2,16 @@
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/vendor/autoload.php';
 
 use App\{Poster, User};
+use Symphograph\Bicycle\Api\Response;
+use Symphograph\Bicycle\Errors\ValidationErr;
 
 User::authByToken(needPowers: [1,2,4]);
 
 if(empty($_FILES)){
-    die(http_response_code(400));
+    throw new ValidationErr('$_FILES is empty', 'Файлы не доставлены');
 }
 
 $file = array_shift($_FILES);
 $response = Poster::upload($file, 1);
 
-header('Content-Type: application/json');
-echo json_encode($response, JSON_UNESCAPED_UNICODE);
+Response::success();

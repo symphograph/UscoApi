@@ -1,5 +1,7 @@
 <?php
-use App\Env\Env;
+
+use App\Env\UscoEnv;
+use Symphograph\Bicycle\Env\Env;
 use Symphograph\Bicycle\DB;
 
 //Для числительных. (год, года, лет)
@@ -56,7 +58,7 @@ function ru_date($format, $date = false) {
 
 function curl($plink, array $data = [])
 {
-    $data['apiKey'] = Env::getApiKey();
+    $data['apiKey'] = UscoEnv::getApiKey();
     //printr($data);
 
     $curl = curl_init();

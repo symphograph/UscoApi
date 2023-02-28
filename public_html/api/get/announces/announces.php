@@ -1,13 +1,13 @@
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/vendor/autoload.php';
-use App\{Anonce, APIusco, User};
+use App\{Anonce, User};
+use Symphograph\Bicycle\Api\Response;
 
 $User = User::byCheck();
 
-$data = Anonce::apiValidation()
-or die(http_response_code(400));
+$data = Anonce::apiValidation();
 
 $Anonces = Anonce::getCollectionByCache($data['sort'],$data['year'],$data['new'])
-or die(http_response_code(204));
+    or Response::error('No content', 204);
 
-echo APIusco::resultData($Anonces);
+Response::data($Anonces);

@@ -2,18 +2,22 @@
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/vendor/autoload.php';
 
 use App\{Anonce, Poster, User};
+use Symphograph\Bicycle\Api\Response;
+use Symphograph\Bicycle\Errors\AppErr;
+use Symphograph\Bicycle\Errors\ValidationErr;
 
 $User = User::byCheck();
 $User->apiAuth(needPowers: [1,2,4]);
 
-$id = $_POST['id'] ?? 0;
-if(!$id)
-    die(json_encode(['error'=>'Ошибка данных']));
+$id = intval($_POST['id'] ?? 0)
+    or throw new ValidationErr('id');
 
-$qwe = Anonce::delete($_POST['id']);
-if (!$qwe){
-    die(json_encode(['error'=>'Ошибка данных']));
+try {
+    Anonce::delete($_POST['id']);
+    Poster::delPosters($id);
+    Poster::delTopps($id);
+} catch (Exception $err) {
+    throw new AppErr($err->getMessage(), 'Ошибка при удалении');
 }
-Poster::delPosters($id);
-Poster::delTopps($id);
-echo json_encode(['result'=>'Ok']);
+
+Response::success();

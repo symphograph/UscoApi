@@ -281,7 +281,7 @@ class Anonce
         return [];
     }
 
-    public static function apiValidation() : array|bool
+    public static function apiValidation() : array
     {
         return [
             'year' => intval($_POST['year'] ?? date('Y')),

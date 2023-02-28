@@ -1,17 +1,18 @@
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/vendor/autoload.php';
 
-use App\APIusco;
 use App\User;
+use Symphograph\Bicycle\Api\Response;
+use Symphograph\Bicycle\Errors\AuthErr;
 
-$token = $_POST['token'] or die(Apiusco::errorMsg('emptyToken'));
+
 $User = User::byCheck();
 if(!$User->Sess){
-    die(Apiusco::errorMsg('sessError'));
+    throw new AuthErr('sessError', 'Ошибка сессии');
 }
 
 $User->apiAuth();
-echo APIusco::resultData([
+Response::data([
     'Powers' => $User->Powers ?? [],
     'lvl'    => $User->lvl,
     'server' => $_SERVER['SERVER_NAME']
