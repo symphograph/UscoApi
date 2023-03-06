@@ -417,7 +417,7 @@ class Entry
        return $path . $fileName;
     }
 
-    public static function delPw(int $id)
+    public static function delPw(int $id): void
     {
         $sizes = [260,1080];
         foreach ($sizes as $size){

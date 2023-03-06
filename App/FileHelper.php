@@ -116,7 +116,12 @@ class FileHelper
     public static function delDir($dir): bool
     {
         $dir = self::addRoot($dir);
-        $d = @opendir($dir);
+        try {
+            $d = opendir($dir);
+        } catch (\ErrorException $err) {
+            return false;
+        }
+
         if(!$d) return false;
         while (($entry = readdir($d)) !== false) {
             if ($entry != "." && $entry != "..") {
