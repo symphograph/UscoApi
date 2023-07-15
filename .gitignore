@@ -165,7 +165,6 @@ Sessionx.vim
 
 # Temporary
 .netrwhist
-*~
 # Auto-generated tag files
 tags
 # Persistent undo
@@ -173,7 +172,6 @@ tags
 
 ##### Emacs
 # -*- mode: gitignore; -*-
-*~
 \#*\#
 /.emacs.desktop
 /.emacs.desktop.lock
@@ -204,7 +202,6 @@ tramp
 
 # cask packages
 .cask/
-dist/
 
 # Flycheck
 flycheck_*.el
@@ -256,7 +253,7 @@ GitHub.sublime-settings
 
 ##### Notepad++
 # Notepad++ backups #
-*.bak
+
 
 ##### TextMate
 *.tmproj
@@ -361,8 +358,6 @@ fabric.properties
 .metadata
 bin/
 tmp/
-*.tmp
-*.bak
 *.swp
 *~.nib
 local.properties
@@ -453,6 +448,7 @@ gradle-app.setting
 
 ##### Composer
 composer.phar
+composer.lock
 /vendor/
 
 # Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
@@ -502,6 +498,5 @@ ip.php
 /public_html/img/news/pw/
 /public_html/img/entry/
 /composer_2.phar
-composer.lock
 /public_html/documents/
 /includes/env.php
