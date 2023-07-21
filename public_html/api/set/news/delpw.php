@@ -5,8 +5,7 @@ use App\{APIusco, Entry, User};
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\ValidationErr;
 
-$User = User::byCheck();
-$User->apiAuth(needPowers: [1,2,4]);
+User::auth([1, 2, 4]);
 
 $id = intval($_POST['id'] ?? 0) or
     throw new ValidationErr('id');

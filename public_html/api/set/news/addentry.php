@@ -5,8 +5,7 @@ use App\{Entry, User};
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\AppErr;
 
-$User = User::byCheck();
-$User->apiAuth(needPowers: [1,2,4]);
+User::auth([1, 2, 4]);
 
 
 $Entry = Entry::addNewEntry() or

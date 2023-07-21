@@ -15,9 +15,12 @@ class Hall
 
     //public function __set(string $name, $value): void{}
 
+    /**
+     * @return array<self>
+     */
     public static function getList(): array
     {
-        $qwe = qwe("SELECT hall_id as id, hall_name name, map FROM halls");
+        $qwe = qwe("SELECT id as id, name, map FROM halls");
         if(!$qwe or !$qwe->rowCount()){
             return [];
         }

@@ -1,10 +1,12 @@
 <?php
 
-namespace Test;
+namespace App\Test;
 
 class TestClass
 {
-    public readonly $tt = 3;
+    public readonly int $tt;
+
+    public static int $testStatic = 1;
 
     public static function testFunct()
     {

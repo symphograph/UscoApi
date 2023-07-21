@@ -2,6 +2,7 @@
 namespace App;
 
 use Imagick;
+use Symphograph\Bicycle\FileHelper;
 
 class Poster extends Img
 {
@@ -20,7 +21,7 @@ class Poster extends Img
 
     }
 
-    public static function byAnonceId(int $id,bool $isTopp = false) : Poster
+    public static function byAnnounceId(int $id,bool $isTopp = false) : Poster
     {
         $Poster = new Poster($isTopp);
         $Poster->fileName = 'poster_' . $id . '.jpg';
@@ -38,7 +39,7 @@ class Poster extends Img
         }
 
         if($Poster->makeSizes()){
-            $Poster = Poster::byAnonceId($id,$isTopp);
+            $Poster = Poster::byAnnounceId($id,$isTopp);
         }
 
         return $Poster;
@@ -84,7 +85,7 @@ class Poster extends Img
             return $Poster;
         }
 
-        if(!Anonce::reCache(intval($_POST['id'] ?? 0))){
+        if(!Announce::reCache(intval($_POST['id'] ?? 0))){
             $Poster->error = 'Ошибка при кэшировании';
             return $Poster;
         }

@@ -11,7 +11,7 @@ class Video
         public string $name = '',
         public        $vid_id = null,
         public        $vid_name = null,
-        public        $concert_id = null,
+        public        $announceId = null,
         public        $v_descript = null,
         public        $v_date = null,
         public        $show = null

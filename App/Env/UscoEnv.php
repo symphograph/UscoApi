@@ -18,7 +18,7 @@ readonly class UscoEnv extends Env
         return $env->staffApiDomain;
     }
 
-    public static function getApiKey()
+    public static function getApiKey(): string
     {
         $env = require dirname($_SERVER['DOCUMENT_ROOT']) . '/includes/env.php';
         return $env->apiKey;

@@ -1,5 +1,6 @@
 <?php
 namespace App;
+use Symphograph\Bicycle\FileHelper;
 
 class NewsImgCollection
 {

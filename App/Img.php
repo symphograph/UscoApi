@@ -3,6 +3,7 @@ namespace App;
 use Imagick;
 use ImagickException;
 use ImagickPixel;
+use Symphograph\Bicycle\FileHelper;
 
 class Img
 {

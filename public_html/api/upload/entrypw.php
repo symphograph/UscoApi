@@ -6,7 +6,7 @@ use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 
-User::authByToken(needPowers: [1,2,4]);
+User::auth([1, 2, 4]);
 
 if(empty($_FILES)){
     throw new ValidationErr('$_FILES is empty', 'Файлы не доставлены');

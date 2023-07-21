@@ -7,8 +7,7 @@ use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 use Symphograph\Bicycle\Helpers;
 
-$User = User::byCheck();
-$User->apiAuth(needPowers: [1,2,4]);
+User::auth([1, 2, 4]);
 
 
 $entry = $_POST['entry'] or

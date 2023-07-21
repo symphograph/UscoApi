@@ -11,7 +11,7 @@ class PersPlace
     public string|null $stop;
     public int|null $place_id;
 
-    public static function runPlaceFixer()
+    public static function runPlaceFixer(): void
     {
         $perses = self::getPerses();
         if(!$perses) return;

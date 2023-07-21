@@ -87,20 +87,10 @@ class Session
         return $qwe->fetchObject(self::class);
     }
 
-    public static function byToken(string $token) : Session|bool
-    {
-        $qwe = qwe("SELECT * FROM sessions WHERE token = :token",['token'=>$token]);
-        if(!$qwe or !$qwe->rowCount()){
-            return false;
-        }
-        return $qwe->fetchObject(get_class());
-    }
-
     private static function delCook() : void
     {
         setcookie('sess_id','', self::cookOpts(expires: time()-3600));
     }
-
 
     private function updateDB() : void
     {
@@ -163,11 +153,6 @@ class Session
             $sess = self::newSess();
         }
         return $sess;
-    }
-
-    public function getToken(): string
-    {
-        return $this->token;
     }
 
 }

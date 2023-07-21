@@ -1,65 +1,68 @@
 <?php
+
 namespace App;
 
 use JetBrains\PhpStorm\Pure;
 use PDO;
 use PDOStatement;
+use ReflectionException;
+use Symphograph\Bicycle\DB;
+use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\JsonDecoder;
 
-class Anonce
+class Announce
 {
-    public int|null    $ev_id       = 0;
-    public int|null    $concert_id  = 0;
-    public int|null    $hall_id     = 8;
-    public string|null $prog_name   = 'Название';
-    public string|null $sdescr      = '';
-    public string|null $description = 'Описание';
-    public string|null $img         = '';
-    public string|null $topimg      = 'deftop3.jpg';
-    public string|null $datetime    = '';
-    public int|null    $pay         = 0;
-    public int         $age         = 0;
-    public string|null $ticket_link = '';
-    public string|null $hall_name   = '';
-    public string|null $youtube_id  = '';
-    public bool        $complited   = false;
-    public Hall|null        $Hall;
-    public Img|Poster  $Poster;
-    public Img|Poster  $TopPoster;
-    public string|null $map         = '';
-    public string|null $topImgUrl   = '';
-    public string|bool $error       = false;
-    public int|bool    $show        = false;
-    public string      $verLink     = '';
-    public string      $date        = '';
-    public string      $time        = '';
-    public string|null $prrow       = '';
-    public string|null $dateFormated = '';
+    public int|null     $id           = 0;
+    public int|null     $hallId       = 8;
+    public string|null  $prog_name    = 'Название';
+    public string|null  $sdescr       = '';
+    public string|null  $description  = 'Описание';
+    public string|null  $img          = '';
+    public string|null  $topimg       = 'deftop3.jpg';
+    public string|null  $datetime     = '';
+    public int|null     $pay          = 0;
+    public int          $age          = 0;
+    public string|null  $ticket_link  = '';
+    public string|null  $hall_name    = '';
+    public string|null  $youtube_id   = '';
+    public bool         $complited    = false;
+    public Hall|null    $Hall;
+    public Img|Poster   $Poster;
+    public Img|Poster   $TopPoster;
+    public string|null  $map          = '';
+    public string|null  $topImgUrl    = '';
+    public string|bool  $error        = false;
+    public int|bool     $show         = false;
+    public string       $verLink      = '';
+    public string       $date         = '';
+    public string       $time         = '';
+    public string|null  $prrow        = '';
+    public string|null  $dateFormated = '';
     private string|null $cache;
 
-    const PAYS = ['','','Вход свободный','Билеты в продаже','Вход по пригласительным','Продажа завершена'];
+    const PAYS = ['', '', 'Вход свободный', 'Билеты в продаже', 'Вход по пригласительным', 'Продажа завершена'];
 
-    public static function addNewAnonce(): bool|self
+    public static function addNewAnnounce(): bool|self
     {
         $id = self::createNewID();
-        if(!$id)
+        if (!$id)
             return false;
 
-        $Anonce = Anonce::byId(1);
-        if(!$Anonce)
+        $Announce = Announce::byId(1);
+        if (!$Announce)
             return false;
 
-        $Anonce->ev_id = $id;
-        if(!$Anonce->putToDB())
+        $Announce->id = $id;
+        if (!$Announce->putToDB())
             return false;
 
-        return $Anonce;
+        return $Announce;
     }
 
-    private static function createNewID() : int|bool
+    private static function createNewID(): int|bool
     {
-        $qwe = qwe("SELECT max(concert_id)+1 as id FROM anonces");
-        if(!$qwe or !$qwe->rowCount()){
+        $qwe = qwe("SELECT max(id)+1 as id FROM anonces");
+        if (!$qwe or !$qwe->rowCount()) {
             return false;
         }
         $q = $qwe->fetchObject();
@@ -71,112 +74,111 @@ class Anonce
 
     }
 
-    #[Pure] public static function clone(self $q) : self
+    #[Pure] public static function clone(self $q): self
     {
-        $Anonce = new Anonce();
-        foreach ($q as $k=>$v){
-            $Anonce->$k = $v;
+        $Announce = new Announce();
+        foreach ($q as $k => $v) {
+            $Announce->$k = $v;
         }
-        return $Anonce;
+        return $Announce;
     }
 
-    private static function checkClass(self $Object) : self
+    private static function checkClass(self $Object): self
     {
         return $Object;
     }
 
-    public static function byQ(self $q) : Anonce|bool
+    public static function byQ(self $q): Announce|bool
     {
-        $Anonce = self::checkClass($q);
+        $Announce = self::checkClass($q);
 
-        $Anonce->Hall = new Hall(
-            id:   $Anonce->hall_id,
-            name: $Anonce->hall_name,
-            map:  $Anonce->map
+        $Announce->Hall = new Hall(
+            id: $Announce->hallId,
+            name: $Announce->hall_name,
+            map: $Announce->map
         );
 
-        $Anonce->Poster = Poster::byAnonceId($Anonce->ev_id);
-        $Anonce->TopPoster = Poster::byAnonceId($Anonce->ev_id,true);
-        if(empty($Anonce->datetime)){
-            $Anonce->datetime = date('Y-m-d H:i',time() + 3600*24);
+        $Announce->Poster = Poster::byAnnounceId($Announce->id);
+        $Announce->TopPoster = Poster::byAnnounceId($Announce->id, true);
+        if (empty($Announce->datetime)) {
+            $Announce->datetime = date('Y-m-d H:i', time() + 3600 * 24);
         }
-        $Anonce->complited = (strtotime($Anonce->datetime) < (time()+3600*8));
-        $Anonce->datetime = date('Y-m-d H:i',strtotime($Anonce->datetime));
-        $Anonce->date = date('Y-m-d',strtotime($Anonce->datetime));
-        $Anonce->show = boolval($Anonce->show);
-        $Anonce->getTopImgUrl();
-        $Anonce->prrow = self::PAYS[$Anonce->pay] ?? '';
-        if($Anonce->pay == 3 and $Anonce->complited){
-            $Anonce->prrow = 'Продажа завершена';
+        $Announce->complited = (strtotime($Announce->datetime) < (time() + 3600 * 8));
+        $Announce->datetime = date('Y-m-d H:i', strtotime($Announce->datetime));
+        $Announce->date = date('Y-m-d', strtotime($Announce->datetime));
+        $Announce->show = boolval($Announce->show);
+        $Announce->getTopImgUrl();
+        $Announce->prrow = self::PAYS[$Announce->pay] ?? '';
+        if ($Announce->pay == 3 and $Announce->complited) {
+            $Announce->prrow = 'Продажа завершена';
         }
 
-        $Anonce->dateFormated = $Anonce->EvdateFormated();
+        $Announce->dateFormated = $Announce->EvdateFormated();
 
-        return $Anonce;
+        return $Announce;
 
     }
 
-    public static function byId(int $ev_id) : bool|self
+    public static function byId(int $id): bool|self
     {
 
         $qwe = qwe("
             SELECT
             a.*,
-            a.concert_id as ev_id,
-            h.hall_name,
+            a.id,
+            h.name,
             h.map
             FROM
             anonces as a
-            INNER JOIN halls as h ON a.hall_id = h.hall_id
-            WHERE a.concert_id = :ev_id
-            ",['ev_id'=>$ev_id]);
+            INNER JOIN halls as h ON a.hallId = h.id
+            WHERE a.id = :id
+            ", ['id' => $id]);
 
-        if(!$qwe or !$qwe->rowCount())
+        if (!$qwe or !$qwe->rowCount())
             return false;
 
         $q = $qwe->fetchObject(get_class());
-        return Anonce::byQ($q);
+        return Announce::byQ($q);
     }
 
     private function EvdateFormated(): string
     {
         $evdate = strtotime($this->datetime);
 
-        if(date('Y',$evdate) == date('Y',time())){
-            $evdateru = ru_date('d %bg',$evdate);
-            $evtime = date('H:i',$evdate);
-            return $evdateru.' в '.$evtime;
-        }
-        else
-            return date('d.m.Y в H:i',$evdate);
+        if (date('Y', $evdate) == date('Y', time())) {
+            $evdateru = ru_date('d %bg', $evdate);
+            $evtime = date('H:i', $evdate);
+            return $evdateru . ' в ' . $evtime;
+        } else
+            return date('d.m.Y в H:i', $evdate);
     }
 
-    private function fDate() : string
+    private function fDate(): string
     {
-        return date('d.m.Y',strtotime($this->datetime));
+        return date('d.m.Y', strtotime($this->datetime));
     }
 
-    private function fTime() : string
+    private function fTime(): string
     {
-        return date('H:i',strtotime($this->datetime));
+        return date('H:i', strtotime($this->datetime));
     }
 
-    public function getProgNameClean() : string
+    public function getProgNameClean(): string
     {
-        $progName = str_replace('<br>',' ',$this->prog_name);
+        $progName = str_replace('<br>', ' ', $this->prog_name);
         $progName = strip_tags($progName);
         return preg_replace('/^ +| +$|( ) +/m', '$1', $progName);
     }
 
-    private static function collectionParams(int $sort, int $year = 0, bool $new = false) : array
+    private static function collectionParams(int $sort, int $year = 0, bool $new = false): array
     {
-        if(!$year)
+        if (!$year)
             $year = date('Y');
 
         $sorts = ['anonces.datetime DESC', 'anonces.datetime ASC'];
         $sort = $sorts[$sort] ?? 'anonces.datetime DESC';
         $curDate = '2000-01-01 00:00';
-        if($new){
+        if ($new) {
             $curDate = date('Y-m-d H:i', time() + 3600 * 8);
         }
         return [
@@ -186,13 +188,13 @@ class Anonce
         ];
     }
 
-    public static function getCollection(int $sort, int $year = 0, bool $new = false) : array|bool
+    public static function getCollection(int $sort, int $year = 0, bool $new = false): array|bool
     {
         $params = self::collectionParams($sort, $year, $new);
         $qwe = qwe("
         SELECT    
-        anonces.concert_id as ev_id,
-        anonces.hall_id,
+        anonces.id,
+        anonces.hallId,
         anonces.prog_name,
         anonces.sdescr,
         anonces.img,
@@ -203,32 +205,32 @@ class Anonce
         anonces.age,
         anonces.ticket_link,
         anonces.`show`,
-        halls.hall_name,
+        halls.name,
         halls.map,
         video.youtube_id
         FROM
         anonces
-        INNER JOIN halls ON anonces.hall_id = halls.hall_id
+        INNER JOIN halls ON anonces.hallId = halls.id
             AND anonces.datetime >= :curDate
-        LEFT JOIN video ON anonces.concert_id = video.concert_id
+        LEFT JOIN video ON anonces.id = video.announceId
         WHERE year(datetime) = :year
-        ORDER BY ".$params['sort'], [
+        ORDER BY " . $params['sort'], [
                 'curDate' => $params['curDate'],
                 'year'    => $params['year']
             ]
         );
 
-        if(!$qwe or !$qwe->rowCount()){
+        if (!$qwe or !$qwe->rowCount()) {
             return false;
         }
 
-        $qwe = $qwe->fetchAll(PDO::FETCH_CLASS,"Anonce");
+        $qwe = $qwe->fetchAll(PDO::FETCH_CLASS, "Announce");
         //printr($qwe);
         $arr = [];
-        foreach ($qwe as $q){
-            $Anonce = Anonce::byQ($q);
-            if(!$Anonce) continue;
-            $arr[] = $Anonce;
+        foreach ($qwe as $q) {
+            $Announce = Announce::byQ($q);
+            if (!$Announce) continue;
+            $arr[] = $Announce;
         }
 
 
@@ -239,7 +241,7 @@ class Anonce
     {
         $params = self::collectionParams($sort, $year, $new);
         $qwe = qwe("
-            SELECT concert_id ev_id, datetime, cache from anonces
+            SELECT id, datetime, cache from anonces
             WHERE year(datetime) = :year
             AND anonces.datetime >= :curDate
             ORDER BY " . $params['sort'],
@@ -248,40 +250,40 @@ class Anonce
                 'curDate' => $params['curDate']
             ]
         );
-        if(!$qwe || !$qwe->rowCount())
+        if (!$qwe || !$qwe->rowCount())
             return [];
 
-        $qwe = $qwe->fetchAll(PDO::FETCH_CLASS,get_class());
+        $qwe = $qwe->fetchAll(PDO::FETCH_CLASS, get_class());
 
         /** @var array<self> $arr */
         $arr = [];
 
-        foreach ($qwe as $Anonce){
-            $Anonce = self::checkClass($Anonce);
-            if(!empty($Anonce->cache)){
-                $arr[] = self::decodeFromJson($Anonce->cache);
+        foreach ($qwe as $Announce) {
+            $Announce = self::checkClass($Announce);
+            if (!empty($Announce->cache)) {
+                $arr[] = self::decodeFromJson($Announce->cache);
                 continue;
             }
 
-            if(!Anonce::reCache($Anonce->ev_id)){
+            if (!Announce::reCache($Announce->id)) {
                 continue;
             }
 
-            $recachedAnonce = Anonce::byCache($Anonce->ev_id);
-            if(!$recachedAnonce) {
+            $recachedAnnounce = Announce::byCache($Announce->id);
+            if (!$recachedAnnounce) {
                 continue;
             }
 
-            $arr[] = $recachedAnonce;
+            $arr[] = $recachedAnnounce;
         }
 
-        if(count($arr) === count($qwe)){
+        if (count($arr) === count($qwe)) {
             return $arr;
         }
         return [];
     }
 
-    public static function apiValidation() : array
+    public static function apiValidation(): array
     {
         return [
             'year' => intval($_POST['year'] ?? date('Y')),
@@ -292,8 +294,8 @@ class Anonce
 
     private function getTopImgUrl(): void
     {
-        $url = Poster::getSrc($this->ev_id,1);
-        if($url){
+        $url = Poster::getSrc($this->id, 1);
+        if ($url) {
             $this->topImgUrl = $url;
         }
 
@@ -307,72 +309,34 @@ class Anonce
         */
     }
 
-    public static function setByPost() : self|bool
+    public static function setByPost(): self|bool
     {
-        if(empty($_POST['evdata']))
+        if (empty($_POST['evdata']))
             return false;
 
-        $data = (object) $_POST['evdata'];
+        $data = (object)$_POST['evdata'];
 
-        $Anonce = new self();
-        foreach ($Anonce as $k => $v){
-            if(!empty($data->$k)){
-                $Anonce->$k = $data->$k;
+        $Announce = new self();
+        foreach ($Announce as $k => $v) {
+            if (!empty($data->$k)) {
+                $Announce->$k = $data->$k;
             }
         }
-        return $Anonce;
+        return $Announce;
     }
 
-    public function putToDB() : bool
+    public function putToDB(): void
     {
-        $qwe = qwe(
-            "REPLACE INTO anonces (
-                      concert_id, 
-                      hall_id, 
-                      prog_name, 
-                      sdescr, 
-                      description, 
-                      topimg, 
-                      datetime, 
-                      pay, 
-                      age, 
-                      ticket_link,
-                      `show`
-                      ) 
-                      VALUES (
-                      :concert_id, 
-                      :hall_id, 
-                      :prog_name, 
-                      :sdescr, 
-                      :description,
-                      :topimg, 
-                      :datetime, 
-                      :pay, 
-                      :age, 
-                      :ticket_link,
-                      :show
-                      )",
-                    [
-                        'concert_id'  => $this->ev_id,
-                        'hall_id'     => $this->hall_id,
-                        'prog_name'   => $this->prog_name,
-                        'sdescr'      => $this->sdescr,
-                        'description' => $this->description,
-                        'topimg'      => $this->topimg,
-                        'datetime'    => $this->datetime,
-                        'pay'         => $this->pay,
-                        'age'         => $this->age,
-                        'ticket_link' => $this->ticket_link,
-                        'show'        => intval($this->show)
-                    ]
-        );
-
-        return $qwe && self::reCache($this->ev_id);
+        qwe("START TRANSACTION");
+        $params = DB::initParams($this);
+        self::reCache($this->id)
+            or throw new AppErr('Err: Announce putToDB');
+        qwe("COMMIT");
     }
 
     public static function delete(int $id): bool|PDOStatement
     {
-        return qwe("DELETE FROM anonces WHERE concert_id = :id AND concert_id != 1",['id'=>$id]);
+        return qwe("DELETE FROM anonces WHERE id = :id AND id != 1", ['id' => $id]);
     }
 
     public function getHtml(): string
@@ -392,7 +356,7 @@ class Anonce
                     <p><b><?php echo $this->fDate() . ' ' . $this->fTime() ?></b></p>
                     <?php echo $this->description ?>
                     <?php
-                    if(strtotime($this->datetime) > strtotime('2020-03-10')) {
+                    if (strtotime($this->datetime) > strtotime('2020-03-10')) {
                         ?>
                         <br><br>
                         <small>Уважаемые посетители, убедительная просьба соблюдать
@@ -420,10 +384,10 @@ class Anonce
                             document.write(VK.Share.button({
                                 text: "Поделиться",
                                 title: "<?php echo $this->EvdateFormated()?>",
-                                url: "<?php echo 'https://' . $_SERVER['SERVER_NAME'] . '/event.php?evid=' . $this->ev_id?>",
+                                url: "<?php echo 'https://' . $_SERVER['SERVER_NAME'] . '/event.php?evid=' . $this->id?>",
                                 image: "<?php echo 'https://' . $_SERVER['SERVER_NAME'] . $this->Poster->verLink?>",
                                 noparse: true
-                            },{ type: "round", text: "Поделиться"}));
+                            }, {type: "round", text: "Поделиться"}));
                         </script>
                     </div>
                 </div>
@@ -434,25 +398,25 @@ class Anonce
         return ob_get_clean();
     }
 
-    public static function getReady(int $id): bool|Anonce
+    public static function getReady(int $id): bool|Announce
     {
-        $Anonce = Anonce::byId($id);
-        if(!$Anonce) return false;
-        $Anonce->verLink = 'https://'. $_SERVER['SERVER_NAME'] .'/'.$Anonce->Poster->verLink;
-        $Anonce->prog_name = strip_tags($Anonce->prog_name);
-        $Anonce->getTopImgUrl();
-        $Anonce->date = date('Y-m-d', strtotime($Anonce->datetime));
-        $Anonce->time = date('H:i', strtotime($Anonce->datetime));
-        $Anonce->initVideo();
+        $Announce = Announce::byId($id);
+        if (!$Announce) return false;
+        $Announce->verLink = 'https://' . $_SERVER['SERVER_NAME'] . '/' . $Announce->Poster->verLink;
+        $Announce->prog_name = strip_tags($Announce->prog_name);
+        $Announce->getTopImgUrl();
+        $Announce->date = date('Y-m-d', strtotime($Announce->datetime));
+        $Announce->time = date('H:i', strtotime($Announce->datetime));
+        $Announce->initVideo();
 
 
-        return $Anonce;
+        return $Announce;
     }
 
     private function initVideo(): void
     {
-        $qwe = qwe("select youtube_id from video where concert_id = :id",['id'=>$this->ev_id]);
-        if(!$qwe || !$qwe->rowCount()){
+        $qwe = qwe("select youtube_id from video where announceId = :id", ['id' => $this->id]);
+        if (!$qwe || !$qwe->rowCount()) {
             return;
         }
         $qwe = $qwe->fetchObject();
@@ -461,59 +425,59 @@ class Anonce
 
     public function saveCache(): bool|PDOStatement
     {
-        $Anonce = $this;
-        if(isset($Anonce->cache))
-            unset($Anonce->cache);
+        $Announce = $this;
+        if (isset($Announce->cache))
+            unset($Announce->cache);
 
         return qwe("
                     UPDATE anonces 
                     SET cache = :cache 
-                    WHERE concert_id = :id", [
-                        'cache' => json_encode($this,JSON_HEX_QUOT),
-                        'id'    => $this->ev_id
-                        ]
-                );
+                    WHERE id = :id", [
+                'cache' => json_encode($this, JSON_HEX_QUOT),
+                'id'    => $this->id
+            ]
+        );
     }
 
-    public static function reCache(int $id) : bool
+    public static function reCache(int $id): bool
     {
-        $Anonce = Anonce::getReady($id);
-        if(!$Anonce){
+        $Announce = Announce::getReady($id);
+        if (!$Announce) {
             return false;
         }
 
-        return boolval($Anonce->saveCache());
+        return boolval($Announce->saveCache());
 
     }
 
     private function evDate()
     {
         ?>
-        <div class="evdate" <?php if(!$this->complited) echo 'style="box-shadow:  0 1px 16px 0px #00ff09a8"'?>>
-            <?php echo self::EvdateFormated()?>
+        <div class="evdate" <?php if (!$this->complited) echo 'style="box-shadow:  0 1px 16px 0px #00ff09a8"' ?>>
+            <?php echo self::EvdateFormated() ?>
         </div>
         <?php
     }
 
     private function byeButton(): string
     {
-        $btnHref = 'event.php?evid=' . $this->ev_id;
+        $btnHref = 'event.php?evid=' . $this->id;
         $btnText = 'Подробно';
 
-        if($this->pay == 3 and !$this->complited) {
+        if ($this->pay == 3 and !$this->complited) {
             $btnHref = $this->ticket_link;
             $btnText = 'Купить онлайн';
         }
 
-        if($this->complited and $this->youtube_id){
+        if ($this->complited and $this->youtube_id) {
             $btnHref = 'https://www.youtube.com/watch?v=' . $this->youtube_id;
             $btnText = 'Смотреть видео';
         }
 
         return '<p>
-                <a href="'.$btnHref.'" class="tdno">
+                <a href="' . $btnHref . '" class="tdno">
                     <div class="bybtn">
-                        <span class="bybtntxt">'.$btnText.'</span>
+                        <span class="bybtntxt">' . $btnText . '</span>
                     </div>
                 </a>
 			</p>';
@@ -523,20 +487,20 @@ class Anonce
     {
         $qwe = qwe("
             SELECT cache FROM anonces 
-            WHERE concert_id = :id",
+            WHERE id = :id",
             compact('id')
         );
-        if(!$qwe or !$qwe->rowCount()){
+        if (!$qwe or !$qwe->rowCount()) {
             return false;
         }
         $cache = $qwe->fetchObject()->cache;
-        if(!empty($cache)){
+        if (!empty($cache)) {
             return self::decodeFromJson($cache);
         }
 
-        if($tryReCache){
-            Anonce::reCache($id);
-            return Anonce::byCache($id,false);
+        if ($tryReCache) {
+            Announce::reCache($id);
+            return Announce::byCache($id, false);
         }
         return false;
     }
@@ -550,9 +514,9 @@ class Anonce
     private static function decodeFromJson(string $Json): self
     {
 
-        /** @var Anonce $Anonce */
-        $Anonce = JsonDecoder::cloneFromAny(json_decode($Json), self::class);
-        return $Anonce;
+        /** @var Announce $Announce */
+        $Announce = JsonDecoder::cloneFromAny(json_decode($Json), self::class);
+        return $Announce;
     }
 
 }

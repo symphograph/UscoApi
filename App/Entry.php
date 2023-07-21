@@ -1,11 +1,12 @@
 <?php
 namespace App;
 
-use App\api\Api;
 use JetBrains\PhpStorm\Pure;
 use PDO;
 use PDOStatement;
 use Symphograph\Bicycle\DB;
+use Symphograph\Bicycle\Errors\AppErr;
+use Symphograph\Bicycle\FileHelper;
 
 class Entry
 {
@@ -487,15 +488,13 @@ class Entry
         if(!$id)
             return false;
 
-        $Entry = Entry::byId(1);
-        if(!$Entry){
-            die(Api::errorMsg('Ошибка извлечения'));
-        }
+        $Entry = Entry::byId(1) or
+        throw new AppErr('Ошибка извлечения');
 
         $Entry->id = $id;
-        if(!$Entry->putToDB()){
-            die(Api::errorMsg('Ошибка базы данных'));
-        }
+        $Entry->putToDB() or
+        throw new AppErr('Insert Error', 'Ошибка при сохранении');
+
 
 
         return $Entry;

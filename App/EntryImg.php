@@ -1,6 +1,6 @@
 <?php
 namespace App;
-
+use Symphograph\Bicycle\FileHelper;
 class EntryImg extends Img
 {
     public string|bool $error   = '';
