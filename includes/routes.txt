@@ -27,12 +27,12 @@ const routes: RouteRecordRaw[] = [
     children: [{ path: '', component: () => import('pages/PdnInfo.vue') }]
   },
   {
-    path: '/anonces',
+    path: '/announces',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/Announces.vue') }]
   },
   {
-    path: '/anonce/:evid',
+    path: '/announce/:evid',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/Announce.vue') }]
   },

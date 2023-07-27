@@ -5,20 +5,19 @@ use App\{Announce, User};
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
+use Symphograph\Bicycle\JsonDecoder;
 
 User::auth([1, 2, 4]);
 
 
-if (empty($_POST['evdata']))
-    throw new ValidationErr('evdata');
+if (empty($_POST['announce']))
+    throw new ValidationErr('announce is empty');
 
 $Announce = Announce::setByPost() or
 throw new AppErr('Announce::setByPost err');
-printr($Announce);
-$Announce = \Symphograph\Bicycle\JsonDecoder::cloneFromAny($_POST['evdata'], Announce::class);
-printr($Announce);
-die();
-$Announce->putToDB() or
-throw new AppErr('putToDB err', 'Ошибка при сохранении');
+
+/** @var Announce $Announce */
+$Announce = JsonDecoder::cloneFromAny($_POST['announce'], Announce::class);
+$Announce->putToDB();
 
 Response::data($Announce);

@@ -14,7 +14,7 @@ class Video
         public        $announceId = null,
         public        $v_descript = null,
         public        $v_date = null,
-        public        $show = null
+        public        $isShow = null
     )
     {
 
@@ -25,24 +25,12 @@ class Video
     {
     }
 
-    public static function getVitem(string $youtube_id) : string
-    {
-        if(
-            str_starts_with($_SERVER['SCRIPT_NAME'],'/api/')
-            ||
-            str_starts_with($_SERVER['SCRIPT_NAME'],'/test')
-            ){
-            return PHP_EOL . "![video]($youtube_id)" . PHP_EOL;
-        }
-        return self::getIFrame($youtube_id);
-    }
-
     /**
      * @return array<self>
      */
     public static function getCollection(int $limit): array
     {
-        $qwe = qwe( "SELECT * FROM video where `show` = 1 ORDER BY v_date DESC LIMIT :limit",['limit'=>$limit]);
+        $qwe = qwe( "SELECT * FROM video where isShow = 1 ORDER BY v_date DESC LIMIT :limit",['limit'=>$limit]);
         if(!$qwe->rowCount()){
             return [];
         }

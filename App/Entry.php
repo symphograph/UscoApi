@@ -24,9 +24,9 @@ class Entry
     public string|null $markdown     = '';
     public array|null  $parsedMD     = [];
     public string|null $img          = '';
-    public string|null $date         = '';
-    public int|null    $show         = 0;
-    public int|null    $evid         = 0;
+    public string|null $date   = '';
+    public int|null    $isShow = 0;
+    public int|null    $evid   = 0;
     public string|null $link         = '';
     public string|null $refName      = '';
     public string|null $refLink      = '';
@@ -237,11 +237,12 @@ class Entry
 
     public function putToDB(): bool|PDOStatement
     {
+        qwe("START TRANSACTION");
         $qwe = qwe("
                 REPLACE INTO news 
-                (id, title, descr, content, markdown, date, `show`, evid, refName, refLink) 
+                (id, title, descr, content, markdown, date, isShow, evid, refName, refLink) 
                         VALUES 
-               (:id, :title, :descr, :content, :markdown, :date, :show, :evid, :refName, :refLink)",
+               (:id, :title, :descr, :content, :markdown, :date, :isShow, :evid, :refName, :refLink)",
             [
                 'id'       => $this->id,
                 'title'    => $this->title,
@@ -249,7 +250,7 @@ class Entry
                 'content'  => $this->content,
                 'markdown' => $this->markdown,
                 'date'     => $this->date,
-                'show'     => $this->show,
+                'isShow'     => $this->isShow,
                 'evid'     => $this->evid,
                 'refName'  => $this->refName,
                 'refLink'  => $this->refLink
@@ -264,6 +265,7 @@ class Entry
             );
         }
         self::reCache($this->id);
+        qwe("COMMIT");
         return true;
     }
 
@@ -335,26 +337,7 @@ class Entry
         return $content;
     }
 
-    #[Pure] public function htmlPaje() : string
-    {
-        $content = $this->htmlByMD();
-        $ref = self::getReferer();
-        $images = self::printUnusetImages();
-        $result =
-            <<<HTML
-                <div class="newsarea">
-                    <div class="ntitle">$this->title</div>
-                    <hr>
-                    <div class="narea">
-                        <div class="text">$content</div>
-                        $ref
-                        <div class="text">$images</div>
-                        
-                    </div>
-                </div>
-            HTML;
-        return $result;
-    }
+
 
     public function getReferer() : string
     {
@@ -371,9 +354,10 @@ class Entry
         HTML;
     }
 
-    public static function categsByShow(int $show): array
+    /*
+    public static function categsByShow(int $isShow): array
     {
-        return match ($show)
+        return match ($isShow)
         {
             1 => [
                 0 => false,
@@ -402,7 +386,7 @@ class Entry
             default => self::defaultCategs
         };
     }
-
+*/
     private static function getPw(int $id): string
     {
         $size = 260;

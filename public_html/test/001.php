@@ -1,5 +1,6 @@
 <?php
 
+use App\Announce;
 use App\Test\TestClass;
 use App\Test\TestClass2;
 
@@ -15,29 +16,11 @@ $start = microtime(true);
 </head>
 <body style="color: white; background-color: #262525">
 <?php
-
-function projectGallery(array $project_gallery)
-{
-    //Случаи прекращения работы функции желательно описывать в её начале.
-    if (empty($project_gallery)) {
-        return;
-    }
-
-    foreach ($project_gallery as $mediaItem) {
-        if (mediaType($mediaItem) === 'video') {
-            <<<HTML
-                <video controls="" autoplay="" name="media" src="{$video['url']}" type="video/mp4" class="project-slider__image"></video>
-            HTML;
-        }
-
-    }
-}
-
-function mediaType($mediaItem)
-{
-    //Определяем тип медиа, возвращаем результат.
-    return 'video'; //или img
-}
+$id = 140;
+printr(ob_list_handlers());
+echo ob_get_clean();
+$Announce = Announce::byId($id);
+printr($Announce);
 
 echo '<br>Время выполнения скрипта: ' . round(microtime(true) - $start, 4) . ' сек.';
 ?>
