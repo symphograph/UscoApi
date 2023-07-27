@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use PDO;
@@ -6,14 +7,13 @@ use PDO;
 class Video
 {
     public function __construct(
-        public string $youtube_id = '',
+        public string $youtubeId = '',
         public string $pw = '',
         public string $name = '',
-        public        $vid_id = null,
-        public        $vid_name = null,
+        public        $vidId = null,
         public        $announceId = null,
-        public        $v_descript = null,
-        public        $v_date = null,
+        public        $descr = null,
+        public        $createdAt = null,
         public        $isShow = null
     )
     {
@@ -30,21 +30,21 @@ class Video
      */
     public static function getCollection(int $limit): array
     {
-        $qwe = qwe( "SELECT * FROM video where isShow = 1 ORDER BY v_date DESC LIMIT :limit",['limit'=>$limit]);
-        if(!$qwe->rowCount()){
+        $qwe = qwe("SELECT * FROM video where isShow = 1 ORDER BY createdAt DESC LIMIT :limit", ['limit' => $limit]);
+        if (!$qwe->rowCount()) {
             return [];
         }
-        return $qwe->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,self::class);
+        return $qwe->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, self::class);
     }
 
-    public static function getIFrame(string $youtube_id) : string
+    public static function getIFrame(string $youtubeId): string
     {
         return
             <<<HTML
-            <div class="vitem" id="{$youtube_id}">
+            <div class="vitem" id="{$youtubeId}">
             
                 <iframe 
-                        src="https://www.youtube.com/embed/{$youtube_id}"
+                        src="https://www.youtube.com/embed/{$youtubeId}"
                         frameborder="0"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
@@ -52,10 +52,6 @@ class Video
             </div>
         HTML;
     }
-
-
-
-
 
 
 }

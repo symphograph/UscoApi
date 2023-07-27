@@ -9,7 +9,7 @@ class AnnounceDTO extends DTO implements AnnounceITF
 {
     public ?int       $id;
     public ?int       $hallId;
-    public ?string    $prog_name;
+    public ?string    $progName;
     public ?string    $sdescr;
     public ?string    $description;
     public ?string    $img;
@@ -17,7 +17,7 @@ class AnnounceDTO extends DTO implements AnnounceITF
     public ?string    $datetime;
     public ?int       $pay;
     public int        $age;
-    public ?string    $ticket_link;
+    public ?string    $ticketLink;
     public int|bool   $isShow;
     protected ?string $cache;
 

@@ -15,7 +15,7 @@ use Symphograph\Bicycle\JsonDecoder;
 
 class Announce extends AnnounceDTO implements AnnounceITF
 {
-    public string|null  $youtube_id   = '';
+    public string|null  $youtubeId   = '';
     public bool         $complited    = false;
     public HallDTO|null $Hall;
     public Img|Poster   $Poster;
@@ -245,7 +245,7 @@ class Announce extends AnnounceDTO implements AnnounceITF
         $Announce = Announce::byId($id);
         if (!$Announce) return false;
         $Announce->verLink = 'https://' . $_SERVER['SERVER_NAME'] . '/' . $Announce->Poster->verLink;
-        $Announce->prog_name = strip_tags($Announce->prog_name);
+        $Announce->progName = strip_tags($Announce->progName);
         $Announce->getTopImgUrl();
         $Announce->date = date('Y-m-d', strtotime($Announce->datetime));
         $Announce->time = date('H:i', strtotime($Announce->datetime));
@@ -257,12 +257,12 @@ class Announce extends AnnounceDTO implements AnnounceITF
 
     private function initVideo(): void
     {
-        $qwe = qwe("select youtube_id from video where announceId = :id", ['id' => $this->id]);
+        $qwe = qwe("select youtubeId from video where announceId = :id", ['id' => $this->id]);
         if (!$qwe || !$qwe->rowCount()) {
             return;
         }
         $qwe = $qwe->fetchObject();
-        $this->youtube_id = $qwe->youtube_id ?? '';
+        $this->youtubeId = $qwe->youtubeId ?? '';
     }
 
     public function saveCache(): bool|PDOStatement

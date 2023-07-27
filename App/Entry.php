@@ -153,15 +153,6 @@ class Entry
     }
 
     /**
-     * Возвращает массив имен
-     */
-    public static function getOldImages(int $id) : array
-    {
-        $dir = $_SERVER['DOCUMENT_ROOT'] . '/img/news/' . $id;
-        return FileHelper::FileList($dir);
-    }
-
-    /**
      * Возвращает массив объектов Img
      */
     public static function getAllImages(int $id, array $images): array
@@ -309,84 +300,6 @@ class Entry
         return $row;
     }
 
-    #[Pure] public function htmlByMD() : string
-    {
-        if(empty($this->parsedMD))
-            return '';
-
-        $content = '';
-        foreach ($this->parsedMD as $section) {
-
-            if (empty($section))
-                continue;
-
-            if ($section['type'] == 'text')
-                $content .= '<section>' . $section['content'] . '</section>';
-
-            if ($section['type'] == 'img') {
-                $src = Entry::imgFolder . $this->id . '/' . $section['content'];
-                if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/' . $src))
-                    $content .= "<section class='section-img'><img src='$src' class='newsImg' alt='Изображение'></section>";
-            }
-
-            if ($section['type'] == 'video') {
-                $content .= '<section class="section-video">' . Video::getIFrame($section['content']) . '</section>';
-            }
-        }
-
-        return $content;
-    }
-
-
-
-    public function getReferer() : string
-    {
-        if (empty($this->refLink) || empty($this->refName))
-            return '';
-
-        return
-            <<<HTML
-            <br><br>
-            <div>
-                <b>Источник: </b>
-                <a href="$this->refLink">$this->refName</a>
-            </div>
-        HTML;
-    }
-
-    /*
-    public static function categsByShow(int $isShow): array
-    {
-        return match ($isShow)
-        {
-            1 => [
-                0 => false,
-                1 => true,
-                2 => false,
-                3 => false
-            ],
-            2 => [
-                0 => false,
-                1 => false,
-                2 => false,
-                3 => true
-            ],
-            3 => [
-                0 => false,
-                1 => true,
-                2 => true,
-                3 => false
-            ],
-            4 => [
-                0 => true,
-                1 => true,
-                2 => true,
-                3 => true
-            ],
-            default => self::defaultCategs
-        };
-    }
-*/
     private static function getPw(int $id): string
     {
         $size = 260;
@@ -409,52 +322,6 @@ class Entry
             $dir = '/img/entry/' . $size . '/' . $id . '/pw/';
             FileHelper::delDir($dir);
         }
-    }
-
-    public function getLink(): string
-    {
-        if($this->evid)
-            return 'event.php?evid=' . $this->evid;
-
-        if ($this->refLink)
-            return $this->refLink;
-
-        return 'new.php?new_id=' . $this->id;
-    }
-
-    public function PrintItem(): string
-    {
-        $fDate = ru_date('',strtotime($this->date));
-        $img = $this->img;
-        $link = self::getLink();
-        $title = $this->title;
-        $descr = $this->descr;
-
-        return <<<HTML
-        <div class="narea">
-            <div class="nimg_block">
-                <div>
-                    <a href="$link">
-                        <img src="$img" width="260px" alt="Изображение"/>
-                    </a>
-                </div>
-            </div>
-            <div class="tcol">
-                <div class="ntitle">
-                    <a href="$link">
-                        <b>$title</b>
-                    </a>
-                </div>
-                <br>
-                <a href="$link">
-                    $descr
-                </a>
-                <br><br>
-                <span class="ndate">$fDate</span>
-                <br>
-            </div>
-        </div><br><hr><br>
-        HTML;
     }
 
     private static function createNewID() : int
