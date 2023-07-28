@@ -23,9 +23,10 @@ class Album
      */
     public static function getAlbums() : array|bool
     {
-        $albums = FileHelper::folderList($_SERVER['DOCUMENT_ROOT'] . '/img/albums');
-        if(!count($albums))
+        $albums = FileHelper::folderList($_SERVER['DOCUMENT_ROOT'] . self::albumsDir);
+        if(!count($albums)){
             return false;
+        }
 
         return $albums;
     }
@@ -57,7 +58,8 @@ class Album
     public static function byName(string $name, bool $safety = false): self
     {
         if($safety && !self::isNameExist($name)){
-            throw new ValidationErr('invalid album name', 'Альбом не найден');
+
+            throw new ValidationErr('invalid album name: ' . $name, 'Альбом не найден');
         }
 
         $Album = new self();
@@ -70,7 +72,7 @@ class Album
     public static function isNameExist(string $name): bool
     {
         $albumNames = self::getAlbums();
-        return !!array_search($name, $albumNames);
+        return in_array($name, $albumNames);
     }
 
     public function initImages(): void
