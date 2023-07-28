@@ -10,16 +10,7 @@ User::auth([1, 2, 4]);
 $id = intval($_POST['id'] ?? 0) or
 throw new ValidationErr('id');
 
-if(empty($_POST['istop']))
-    throw new ValidationErr('istop');
-
-if($_POST['istop'] === 'top'){
-    Poster::delTopps($id);
-}
-
-if($_POST['istop'] === 'poster'){
-    Poster::delPosters($id);
-}
+Poster::delTopps($id);
 Announce::reCache($id);
 
 Response::success();
