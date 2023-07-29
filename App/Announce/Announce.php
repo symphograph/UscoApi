@@ -241,7 +241,7 @@ class Announce extends AnnounceDTO implements AnnounceITF
         );
     }
 
-    protected static function reCache(int $id): bool
+    public static function reCache(int $id): bool
     {
         $Announce = Announce::getReady($id);
         if (!$Announce) {
