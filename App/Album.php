@@ -10,8 +10,8 @@ class Album
     public string $dir;
     public string $avatar;
     public string $date;
-    public array $images = [];
-    public array $pwImages = [];
+    public array  $images   = [];
+    public array  $pwImages = [];
 
     public static function getImages(string $dir) : array
     {
@@ -58,7 +58,6 @@ class Album
     public static function byName(string $name, bool $safety = false): self
     {
         if($safety && !self::isNameExist($name)){
-
             throw new ValidationErr('invalid album name: ' . $name, 'Альбом не найден');
         }
 

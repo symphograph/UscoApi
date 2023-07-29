@@ -1,7 +1,7 @@
 <?php
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/vendor/autoload.php';
 
-use App\{Announce, Poster, User};
+use App\{Announce\Announce, Poster, User};
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\ValidationErr;
 

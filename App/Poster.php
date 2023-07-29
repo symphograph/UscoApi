@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use App\Announce\Announce;
 use Imagick;
 use Symphograph\Bicycle\FileHelper;
 
@@ -165,14 +166,14 @@ class Poster extends Img
         return false;
     }
 
-    public static function delPosters(int $id)
+    public static function delPosters(int $id) : void
     {
         FileHelper::delAllExtensions('/img/posters/480/poster_' . $id);
         FileHelper::delAllExtensions('/img/posters/1080/poster_'. $id);
         FileHelper::delAllExtensions('/img/posters/origins/poster_' . $id);
     }
 
-    public static function delTopps(int $id)
+    public static function delTopps(int $id) : void
     {
         FileHelper::delAllExtensions('/img/posters/topp/480/poster_' . $id);
         FileHelper::delAllExtensions('/img/posters/topp/1080/poster_'. $id);
