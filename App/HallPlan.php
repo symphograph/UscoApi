@@ -1,9 +1,9 @@
 <?php
 namespace App;
 
+use App\DTO\AnnounceDTO;
 use App\DTO\HallPlanDTO;
 use App\ITF\HallPlanITF;
-use Symphograph\Bicycle\DB;
 use Symphograph\Bicycle\JsonDecoder;
 
 class HallPlan extends HallPlanDTO implements HallPlanITF
@@ -30,6 +30,27 @@ class HallPlan extends HallPlanDTO implements HallPlanITF
         $this->pricing = json_decode($this->pricing);
         $this->tickets = json_decode($this->tickets);
         $this->structure = json_decode($this->structure, JSON_OBJECT_AS_ARRAY );
+    }
+
+    public static function findLast(int $id): self|false
+    {
+        $Announce = AnnounceDTO::byId($id);
+        $hallId = $Announce->hallId;
+        $qwe = qwe("
+        select hp.id from announces an
+        inner join hallPlans hp 
+            on an.id = hp.id
+            and an.hallId = :hallId
+        order by an.datetime desc limit 1",
+        ['hallId' => $hallId]
+        );
+        if(!$qwe || !$qwe->rowCount()){
+            return false;
+        }
+        $planId = $qwe->fetchColumn();
+        $HallPlan = self::byId($planId);
+        $HallPlan->id = $id;
+        return $HallPlan;
     }
 /*
     public function putToDB(): void

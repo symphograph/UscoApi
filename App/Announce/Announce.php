@@ -127,6 +127,14 @@ class Announce extends AnnounceDTO implements AnnounceITF
     /**
      * @return Announce[]
      */
+    protected static function allCachList(): array
+    {
+        return self::listByCaches(AnnounceCach::allCacheList());
+    }
+
+    /**
+     * @return Announce[]
+     */
     protected static function hallCachList(int $hallId): array
     {
         return self::listByCaches(AnnounceCach::hallCacheList($hallId));

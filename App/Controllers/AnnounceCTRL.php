@@ -3,11 +3,13 @@
 namespace App\Controllers;
 
 
+use App\Entry;
 use App\Poster;
 use App\User;
 use Exception;
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\AppErr;
+use Symphograph\Bicycle\Errors\NoContentErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 use Symphograph\Bicycle\JsonDecoder;
 
@@ -32,7 +34,7 @@ class AnnounceCTRL extends \App\Announce\Announce
         }
 
         $Announces = self::yearCachList($_POST['year'])
-        or Response::error('No content', 204);
+            or throw new NoContentErr();
 
         Response::data($Announces);
     }
@@ -40,9 +42,28 @@ class AnnounceCTRL extends \App\Announce\Announce
     public static function futureList(): void
     {
         $Announces = self::futureCachList()
-        or Response::error('No content', 204);
+            or throw new NoContentErr();
 
         Response::data($Announces);
+    }
+
+    public static function allList(): void
+    {
+        $Announces = self::allCachList()
+            or throw new NoContentErr();
+
+        $arr = [];
+        $halls = [];
+        foreach ($Announces as $announce){
+            if(in_array($announce->hallId, $halls)){
+                continue;
+            }
+            $halls[] = $announce->hallId;
+            $arr[] = $announce;
+        }
+
+
+        Response::data($arr);
     }
 
     public static function get(): void
@@ -95,6 +116,7 @@ class AnnounceCTRL extends \App\Announce\Announce
 
         /** @var parent $Announce */
         $Announce = JsonDecoder::cloneFromAny($_POST['announce'], self::class);
+
         $Announce->putToDB();
 
         Response::data($Announce);

@@ -26,6 +26,19 @@ class AnnounceCach
     /**
      * @return self[]
      */
+    public static function allCacheList(): array
+    {
+        $qwe = qwe("
+            SELECT id, datetime, cache 
+            from announces 
+            order by datetime desc"
+        );
+        return $qwe->fetchAll(PDO::FETCH_CLASS, self::class) ?? [];
+    }
+
+    /**
+     * @return self[]
+     */
     public static function hallCacheList(int $hallId): array
     {
         $qwe = qwe("
