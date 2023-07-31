@@ -17,7 +17,15 @@ class HallPlanCTRL extends \App\HallPlan
 
         $HallPlan = self::findLast($id)
             or throw new NoContentErr();
-
+        $tickets = [];
+        foreach ($HallPlan->tickets as $k => $v){
+            if(isset($v->id)){
+                $v->cellId = $v->id;
+                unset($v->id);
+            }
+            $tickets[$k] = $v;
+        }
+        $HallPlan->tickets = $tickets;
         Response::data(compact('HallPlan'));
     }
 

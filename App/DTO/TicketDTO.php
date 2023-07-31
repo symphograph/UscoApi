@@ -2,7 +2,9 @@
 
 namespace App\DTO;
 
-class TicketDTO extends DTO
+use App\ITF\TicketITF;
+
+class TicketDTO extends DTO implements TicketITF
 {
 
 }
