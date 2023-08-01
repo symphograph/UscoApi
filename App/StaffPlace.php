@@ -9,7 +9,7 @@ class StaffPlace
     public int|null    $place_id;
     public int|null    $chair;
     public string|null $name;
-    public string|null $last_name;
+    public string|null $lastName;
     public array|null $labels;
     public string|null $start;
     public string|null $stop;
@@ -31,7 +31,7 @@ class StaffPlace
             pers_place.place_id,
             places.chair,
             personal.`name`,
-            personal.last_name,
+            personal.lastName,
             pers_place.start,
             pers_place.stop
             FROM pers_place
@@ -81,7 +81,7 @@ class StaffPlace
         $StaffPlace = new StaffPlace;
         $StaffPlace->pers_id = $place->pers_id;
         $StaffPlace->name = $place->name;
-        $StaffPlace->last_name = $place->last_name;
+        $StaffPlace->lastName = $place->lastName;
         return $StaffPlace;
     }
 
@@ -218,13 +218,13 @@ class StaffPlace
         $qwe = qwe2("SELECT 
             personal.id as pers_id,
             name,
-            last_name,
+            lastName,
             '2000-01-01' as start,
             '2037-12-31' as stop
             FROM personal 
                 inner join employs e on personal.id = e.pers_id
                     and :date between e.accept and e.dismiss
-                inner join jobs j on e.job_id = j.id
+                inner join jobs j on e.jobId = j.id
                     and j.group_id = 10
             WHERE personal.id not in ($complited)", ['date' => $date]
         );
