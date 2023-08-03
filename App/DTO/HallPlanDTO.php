@@ -40,7 +40,6 @@ class HallPlanDTO extends DTO implements HallPlanITF
 
     public function putToDB(): void
     {
-        //$this->seats = json_encode($this->seats);
         $params = DB::initParams($this);
         DB::replace('hallPlans', $params);
     }

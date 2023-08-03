@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 
+use App\Announce\Announce;
 use App\Entry;
 use App\Poster;
 use App\User;
@@ -114,7 +115,7 @@ class AnnounceCTRL extends \App\Announce\Announce
         if (empty($_POST['announce']))
             throw new ValidationErr('announce is empty');
 
-        /** @var parent $Announce */
+        /** @var Announce $Announce */
         $Announce = JsonDecoder::cloneFromAny($_POST['announce'], self::class);
 
         $Announce->putToDB();

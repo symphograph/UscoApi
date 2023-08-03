@@ -4,6 +4,7 @@ namespace App;
 use App\DTO\AnnounceDTO;
 use App\DTO\HallPlanDTO;
 use App\ITF\HallPlanITF;
+use Symphograph\Bicycle\DB;
 use Symphograph\Bicycle\JsonDecoder;
 
 class HallPlan extends HallPlanDTO implements HallPlanITF
@@ -15,7 +16,6 @@ class HallPlan extends HallPlanDTO implements HallPlanITF
         $selfObject->initData();
         return $selfObject;
     }
-
 
     public static function byArray(array $plan): self
     {
@@ -52,12 +52,19 @@ class HallPlan extends HallPlanDTO implements HallPlanITF
         $HallPlan->id = $id;
         return $HallPlan;
     }
-/*
+
     public function putToDB(): void
     {
-        //$this->seats = json_encode($this->seats);
-        $params = DB::initParams($this);
-        DB::replace('hallPlans', $params);
+        qwe("START TRANSACTION");
+        parent::putToDB();
+        qwe("delete from tickets where announceId = :announceId", ['announceId' => $this->id]);
+        foreach ($this->tickets as $tic){
+            $ticket = new Ticket();
+            $ticket->bindSelf($tic);
+            $ticket->announceId = $this->id;
+            $ticket->putToDB();
+        }
+        qwe("COMMIT");
     }
-*/
+
 }
