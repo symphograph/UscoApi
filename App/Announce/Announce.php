@@ -76,6 +76,11 @@ class Announce extends AnnounceDTO implements AnnounceITF
 
     public static function byId(int $id): self
     {
+        /*
+        if(!$objectDTO = parent::byId($id)){
+            return false;
+        }
+        */
         $selfObject = new self();
         $selfObject->bindSelf(parent::byId($id));
         $selfObject->initData();

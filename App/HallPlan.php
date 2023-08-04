@@ -9,6 +9,11 @@ use Symphograph\Bicycle\JsonDecoder;
 
 class HallPlan extends HallPlanDTO implements HallPlanITF
 {
+    /**
+     * @var Ticket[]
+     */
+    public array        $tickets;
+
     public static function byId(int $id): self
     {
         $selfObject = new self();
@@ -21,6 +26,13 @@ class HallPlan extends HallPlanDTO implements HallPlanITF
     {
         /** @var self $plan */
         $plan = JsonDecoder::cloneFromAny($plan, self::class);
+        $tickets = [];
+        foreach ($plan->tickets as $tic){
+            $ticket = new Ticket();
+            $ticket->bindSelf($tic);
+            $tickets[] = $ticket;
+        }
+        $plan->tickets = $tickets;
         return $plan;
     }
 
@@ -34,12 +46,7 @@ class HallPlan extends HallPlanDTO implements HallPlanITF
 
     private function initTickets(): void
     {
-        $tickets = Ticket::getListOfAnnounce($this->id);
-        if(!empty($tickets)){
-            $this->tickets = $tickets;
-            return;
-        }
-        $this->tickets = json_decode($this->tickets);
+        $this->tickets = Ticket::getListOfAnnounce($this->id);
     }
 
     public static function byLast(int $id): self|false
@@ -53,12 +60,10 @@ class HallPlan extends HallPlanDTO implements HallPlanITF
         $HallPlan->id = $id;
         $tickets = [];
         foreach ($HallPlan->tickets as $ticket){
-            if(!isset($ticket->cellId)){
-                $ticket->cellId = $ticket->id;
-            }
             unset($ticket->id);
             unset($ticket->userId);
             unset($ticket->reservedAt);
+            unset($ticket->hasAccount);
             $tickets[] = $ticket;
         }
         $HallPlan->tickets = $tickets;
@@ -87,11 +92,11 @@ class HallPlan extends HallPlanDTO implements HallPlanITF
     public function putToDB(): void
     {
         qwe("START TRANSACTION");
+        $tickets = $this->tickets;
+        unset($this->tickets);
         parent::putToDB();
         qwe("delete from tickets where announceId = :announceId", ['announceId' => $this->id]);
-        foreach ($this->tickets as $tic){
-            $ticket = new Ticket();
-            $ticket->bindSelf($tic);
+        foreach ($tickets as $ticket){
             $ticket->announceId = $this->id;
             $ticket->putToDB();
         }

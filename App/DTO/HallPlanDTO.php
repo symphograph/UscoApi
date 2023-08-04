@@ -4,6 +4,7 @@ namespace App\DTO;
 
 use App\ITF\AnnounceITF;
 use App\ITF\HallPlanITF;
+use App\Ticket;
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\DB;
 use Symphograph\Bicycle\Errors\AppErr;
@@ -14,7 +15,6 @@ class HallPlanDTO extends DTO implements HallPlanITF
     public int          $id;
     public array|string $pricing;
     public array|string $cells;
-    public array|string $tickets;
     public array|string $structure;
 
 

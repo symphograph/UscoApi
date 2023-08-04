@@ -23,9 +23,10 @@ class AnnounceDTO extends DTO implements AnnounceITF
 
     public static function byId(int $id): self
     {
-        $qwe = qwe("SELECT * from announces where id = :id", ['id' => $id])
-        or throw new AppErr('Announce ' . $id . ' does not exist');
-        return $qwe->fetchObject(self::class);
+        $qwe = qwe("SELECT * from announces where id = :id", ['id' => $id]);
+        $qwe = $qwe->fetchObject(self::class)
+        or throw new AppErr('Announce ' . $id . ' does not exist', 'Анонс не найден', 404);
+        return $qwe;
     }
 
     protected static function byChild(AnnounceITF $childObject): self

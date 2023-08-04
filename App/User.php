@@ -4,10 +4,14 @@ namespace App;
 use PDO;
 use Symphograph\Bicycle\Errors\AuthErr;
 use Symphograph\Bicycle\Token\AccessToken;
+use Symphograph\Bicycle\Token\AccessTokenData;
 use Symphograph\Bicycle\Token\Token;
 
 class User
 {
+    const authTypes = [
+        'telegram'
+    ];
     public int $id;
     public string $ip = '';
     public ?int $tele_id = null;
@@ -113,6 +117,12 @@ class User
     public static function auth(array $allowedPowers = []): void
     {
         AccessToken::validation($_SERVER['HTTP_ACCESSTOKEN'], $allowedPowers);
+    }
+
+    public static function hasAccount(): bool
+    {
+        $tokenData = new AccessTokenData();
+        return in_array($tokenData->authType, self::authTypes);
     }
 
     public static function getIdByJWT(): int

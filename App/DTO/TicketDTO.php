@@ -8,15 +8,16 @@ use Symphograph\Bicycle\DB;
 
 class TicketDTO extends DTO implements TicketITF
 {
-    public int    $id;
-    public int    $announceId;
-    public ?int   $userId;
+    public int     $id;
+    public int     $announceId;
+    public ?int    $userId;
     public ?string $reservedAt;
-    public int    $cellId;
-    public bool   $offline;
-    public int    $seatRow;
-    public int    $seatNum;
-    public string $priceType;
+    public int     $cellId;
+    public bool    $offline;
+    public int     $seatRow;
+    public int     $seatNum;
+    public string  $priceType;
+    public bool    $hasAccount;
 
     public static function byId(int $id): self|false
     {
