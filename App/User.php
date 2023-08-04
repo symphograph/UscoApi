@@ -4,6 +4,7 @@ namespace App;
 use PDO;
 use Symphograph\Bicycle\Errors\AuthErr;
 use Symphograph\Bicycle\Token\AccessToken;
+use Symphograph\Bicycle\Token\Token;
 
 class User
 {
@@ -112,6 +113,12 @@ class User
     public static function auth(array $allowedPowers = []): void
     {
         AccessToken::validation($_SERVER['HTTP_ACCESSTOKEN'], $allowedPowers);
+    }
+
+    public static function getIdByJWT(): int
+    {
+        $tokenArr = Token::toArray($_SERVER['HTTP_ACCESSTOKEN']);
+        return $tokenArr['uid'];
     }
 
     public function chkPower(array $needPowers) : bool

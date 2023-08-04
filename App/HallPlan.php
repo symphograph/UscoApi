@@ -28,11 +28,45 @@ class HallPlan extends HallPlanDTO implements HallPlanITF
     {
         $this->cells = json_decode($this->cells);
         $this->pricing = json_decode($this->pricing);
-        $this->tickets = json_decode($this->tickets);
+        self::initTickets();
         $this->structure = json_decode($this->structure, JSON_OBJECT_AS_ARRAY );
     }
 
-    public static function findLast(int $id): self|false
+    private function initTickets(): void
+    {
+        $tickets = Ticket::getListOfAnnounce($this->id);
+        if(!empty($tickets)){
+            $this->tickets = $tickets;
+            return;
+        }
+        $this->tickets = json_decode($this->tickets);
+    }
+
+    public static function byLast(int $id): self|false
+    {
+        $lastId = self::findLast($id);
+        $HallPlan = self::byId($lastId);
+        if($HallPlan->id === $id){
+            return $HallPlan;
+        }
+
+        $HallPlan->id = $id;
+        $tickets = [];
+        foreach ($HallPlan->tickets as $ticket){
+            if(!isset($ticket->cellId)){
+                $ticket->cellId = $ticket->id;
+            }
+            unset($ticket->id);
+            unset($ticket->userId);
+            unset($ticket->reservedAt);
+            $tickets[] = $ticket;
+        }
+        $HallPlan->tickets = $tickets;
+        $HallPlan->putToDB();
+        return $HallPlan;
+    }
+
+    private static function findLast(int $id): int|false
     {
         $Announce = AnnounceDTO::byId($id);
         $hallId = $Announce->hallId;
@@ -42,15 +76,12 @@ class HallPlan extends HallPlanDTO implements HallPlanITF
             on an.id = hp.id
             and an.hallId = :hallId
         order by an.datetime desc limit 1",
-        ['hallId' => $hallId]
+            ['hallId' => $hallId]
         );
         if(!$qwe || !$qwe->rowCount()){
             return false;
         }
-        $planId = $qwe->fetchColumn();
-        $HallPlan = self::byId($planId);
-        $HallPlan->id = $id;
-        return $HallPlan;
+        return $qwe->fetchColumn();
     }
 
     public function putToDB(): void

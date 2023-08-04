@@ -11,6 +11,7 @@ class TicketDTO extends DTO implements TicketITF
     public int    $id;
     public int    $announceId;
     public ?int   $userId;
+    public ?string $reservedAt;
     public int    $cellId;
     public bool   $offline;
     public int    $seatRow;
@@ -39,4 +40,5 @@ class TicketDTO extends DTO implements TicketITF
         $params = DB::initParams($this);
         DB::replace('tickets', $params);
     }
+
 }

@@ -15,17 +15,9 @@ class HallPlanCTRL extends \App\HallPlan
         $id = ($_POST['id'] ?? false)
         or throw new ValidationErr();
 
-        $HallPlan = self::findLast($id)
+        $HallPlan = parent::byLast($id)
             or throw new NoContentErr();
-        $tickets = [];
-        foreach ($HallPlan->tickets as $k => $v){
-            if(isset($v->id)){
-                $v->cellId = $v->id;
-                unset($v->id);
-            }
-            $tickets[$k] = $v;
-        }
-        $HallPlan->tickets = $tickets;
+
         Response::data(compact('HallPlan'));
     }
 
