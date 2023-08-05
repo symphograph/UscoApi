@@ -5,6 +5,7 @@ namespace App;
 use App\Announce\Announce;
 use App\DTO\TicketDTO;
 use PDO;
+use Symphograph\Bicycle\Helpers;
 
 class Ticket extends DTO\TicketDTO
 {
@@ -38,9 +39,20 @@ class Ticket extends DTO\TicketDTO
         };
     }
 
-    protected function isExpired(): bool
+    protected function isReservExpired(): bool
     {
-        $Announce = Announce::byId($this->announceId);
-        return $Announce->datetime > date();
+        return self::reservExpiredAt() < time();
+    }
+
+    private function reservExpiredAt(): int
+    {
+        return strtotime($this->reservedAt) + 60 * 15;
+    }
+
+    protected function unsetUser(): void
+    {
+        $this->userId = null;
+        $this->hasAccount = false;
+        $this->reservedAt = null;
     }
 }

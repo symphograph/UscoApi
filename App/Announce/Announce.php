@@ -13,6 +13,7 @@ use PDOStatement;
 use ReflectionException;
 use Symphograph\Bicycle\DB;
 use Symphograph\Bicycle\Errors\AppErr;
+use Symphograph\Bicycle\Helpers;
 use Symphograph\Bicycle\JsonDecoder;
 
 class Announce extends AnnounceDTO implements AnnounceITF
@@ -96,7 +97,7 @@ class Announce extends AnnounceDTO implements AnnounceITF
         if (empty($this->datetime)) {
             $this->datetime = date('Y-m-d H:i', time() + 3600 * 24);
         }
-        $this->complited = (strtotime($this->datetime) < (time() + 3600 * 8));
+        $this->complited = Helpers::isExpired($this->datetime);
         $this->datetime = date('Y-m-d H:i', strtotime($this->datetime));
         $this->date = date('Y-m-d', strtotime($this->datetime));
         $this->isShow = boolval($this->isShow);
@@ -107,6 +108,12 @@ class Announce extends AnnounceDTO implements AnnounceITF
         }
 
         $this->dateFormated = self::EvdateFormated();
+    }
+
+    public static function isComplited(int $id): bool
+    {
+        $AnnounceDTO = AnnounceDTO::byId($id);
+        return Helpers::isExpired($AnnounceDTO->datetime);
     }
 
     private function EvdateFormated(): string

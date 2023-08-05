@@ -12,5 +12,6 @@ if (empty($_POST['method'])) {
 match ($_POST['method']) {
     'reserve' => TicketCTRL::reserve(),
     'returnTicket' => TicketCTRL::returnTicket(),
+    'updateUserId' => TicketCTRL::updateUserId(),
     default => throw new ApiErr()
 };
