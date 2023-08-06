@@ -45,7 +45,7 @@ class TicketCTRL extends \App\Ticket
             throw new AuthErr();
         }
         if(Announce::isComplited($ticket->announceId)){
-            throw new TicketErr('Expired', 'Билет просрочен');
+            throw new TicketErr('Expired', 'Бронирование завершено');
         }
         $ticket->unsetUser();
         $ticket->putToDB();

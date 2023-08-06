@@ -9,6 +9,8 @@ use Symphograph\Bicycle\Helpers;
 
 class Ticket extends DTO\TicketDTO
 {
+    const minsForTmpReserve = 15;
+
     public static function byId(int $id): self|false
     {
 
@@ -41,12 +43,30 @@ class Ticket extends DTO\TicketDTO
 
     protected function isReservExpired(): bool
     {
+        if($this->hasAccount){
+            return false;
+        }
         return self::reservExpiredAt() < time();
     }
 
     private function reservExpiredAt(): int
     {
-        return strtotime($this->reservedAt) + 60 * 15;
+        if(empty($this->reservedAt)){
+            return time() + 60 * self::minsForTmpReserve;
+        }
+        return strtotime($this->reservedAt) + 60 * self::minsForTmpReserve;
+    }
+
+
+    public static function unsetExpiredReserves(int $announceId): void
+    {
+        $tickets = self::getListOfAnnounce($announceId);
+        foreach ($tickets as $ticket){
+            if($ticket->isReservExpired()){
+                $ticket->unsetUser();
+                $ticket->putToDB();
+            }
+        }
     }
 
     protected function unsetUser(): void

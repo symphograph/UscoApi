@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\HallPlan;
 use App\User;
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\NoContentErr;
@@ -15,7 +16,7 @@ class HallPlanCTRL extends \App\HallPlan
         $id = ($_POST['id'] ?? false)
         or throw new ValidationErr();
 
-        $HallPlan = parent::byLast($id)
+        $HallPlan = HallPlan::byLast($id)
             or throw new NoContentErr();
 
         Response::data(compact('HallPlan'));

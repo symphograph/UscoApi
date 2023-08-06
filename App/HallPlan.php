@@ -53,6 +53,7 @@ class HallPlan extends HallPlanDTO implements HallPlanITF
     {
         $lastId = self::findLast($id);
         $HallPlan = self::byId($lastId);
+        Ticket::unsetExpiredReserves($id);
         if($HallPlan->id === $id){
             return $HallPlan;
         }
