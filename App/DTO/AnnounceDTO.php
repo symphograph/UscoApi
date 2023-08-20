@@ -3,6 +3,7 @@
 namespace App\DTO;
 
 use App\ITF\AnnounceITF;
+use Symphograph\Bicycle\DB;
 use Symphograph\Bicycle\Errors\AppErr;
 
 class AnnounceDTO extends DTO implements AnnounceITF
@@ -36,5 +37,10 @@ class AnnounceDTO extends DTO implements AnnounceITF
         return $objectDTO;
     }
 
+    protected function putToDB()
+    {
+        $params = DB::initParams($this);
+        DB::replace('announces', $params);
+    }
 
 }

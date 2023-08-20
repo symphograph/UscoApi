@@ -38,7 +38,7 @@ class TicketCTRL extends \App\Ticket
         $id = intval($_POST['id'] ?? false)
         or throw new ValidationErr();
 
-        $tokenData = new AccessTokenData();
+        $tokenData = new AccessTokenData($_SERVER['HTTP_ACCESSTOKEN']);
         $ticket = Ticket::byId($id)
         or throw new TicketErr();
         if($ticket->userId !== $tokenData->userId){

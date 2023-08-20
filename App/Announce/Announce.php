@@ -208,8 +208,8 @@ class Announce extends AnnounceDTO implements AnnounceITF
     public function putToDB(): void
     {
         qwe("START TRANSACTION");
-        $params = DB::initParams(parent::byChild($this));
-        DB::replace('announces', $params);
+        $parent = parent::byChild($this);
+        $parent->putToDB();
         self::reCache($this->id)
         or throw new AppErr('Err: Announce reCache');
         qwe("COMMIT");
