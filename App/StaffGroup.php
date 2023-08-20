@@ -5,8 +5,8 @@ use PDO;
 
 class StaffGroup
 {
-    public int         $group_id;
-    public string|null $group_name;
+    public int         $groupId;
+    public string|null $groupName;
     public int|null    $p_group;
     public int|null    $deep;
     public int|null    $boss;
@@ -24,12 +24,12 @@ class StaffGroup
         return $Object;
     }
 
-    public static function byId(int $group_id) : StaffGroup|bool
+    public static function byId(int $groupId) : StaffGroup|bool
     {
         $qwe = qwe2("
             SELECT * FROM `groups` 
-            WHERE group_id = :id",
-                   ['id' => $group_id]
+            WHERE groupId = :id",
+                   ['id' => $groupId]
         );
         if(!$qwe or !$qwe->rowCount()){
             return false;
@@ -41,7 +41,7 @@ class StaffGroup
     {
         $qwe = qwe2("
             SELECT * FROM `groups` 
-            WHERE group_id < 1000
+            WHERE groupId < 1000
             AND priority"
         );
         if(!$qwe or !$qwe->rowCount()){
@@ -65,7 +65,7 @@ class StaffGroup
 
         foreach ($groups as $group){
             $group = self::checkClass($group);
-            $complited = array_merge($complited,array_column($group->Players, 'pers_id'));
+            $complited = array_merge($complited,array_column($group->Players, 'persId'));
             $groups2[$group->priority] = $group;
         }
         if(!count($complited)){
@@ -82,14 +82,14 @@ class StaffGroup
     {
         $group = (object) $group;
         $StaffGroup = new StaffGroup();
-        $StaffGroup->group_id = $group->group_id;
-        $StaffGroup->group_name = $group->group_name;
+        $StaffGroup->groupId = $group->groupId;
+        $StaffGroup->groupName = $group->groupName;
         $StaffGroup->Players = [];
 
         foreach ($group->Players as $chair => $player){
-            $newPlaceId = StaffPlace::getPlaceIdByChair($StaffGroup->group_id, $chair);
+            $newPlaceId = StaffPlace::getPlaceIdByChair($StaffGroup->groupId, $chair);
             $Player = StaffPlace::byArray($player);
-            $Player->place_id = $newPlaceId;
+            $Player->placeId = $newPlaceId;
             $StaffGroup->Players[$chair] = $Player;
         }
         return $StaffGroup;
@@ -97,7 +97,7 @@ class StaffGroup
 
     private function initPlayers(string $date = '')
     {
-        $this->Players = StaffPlace::getCollection($this->group_id,$date);
+        $this->Players = StaffPlace::getCollection($this->groupId,$date);
     }
 
     public function editPlacesOrder(string $date)

@@ -6,10 +6,10 @@ use PDO;
 
 class PersPlace
 {
-    public int|null $pers_id;
+    public int|null $persId;
     public string|null $start;
     public string|null $stop;
-    public int|null $place_id;
+    public int|null $placeId;
 
     public static function runPlaceFixer(): void
     {
@@ -24,7 +24,7 @@ class PersPlace
 
     private static function getPerses(): bool|array
     {
-        $qwe = qwe2("SELECT pers_id FROM pers_place group by pers_id");
+        $qwe = qwe2("SELECT persId FROM pers_place group by persId");
         return $qwe->fetchAll(PDO::FETCH_COLUMN);
     }
 
@@ -35,13 +35,13 @@ class PersPlace
         if(!$nextPlace){
             qwe2("UPDATE pers_place 
                 SET stop = '2037-12-31' 
-                WHERE pers_id = '$fPlace->pers_id' 
+                WHERE persId = '$fPlace->persId' 
                 AND start = '$fPlace->start'"
             );
             return;
         }
 
-        if($fPlace->place_id !== $nextPlace->place_id){
+        if($fPlace->placeId !== $nextPlace->placeId){
             self::fixRedundad($nextPlace);
             return;
         }
@@ -49,20 +49,20 @@ class PersPlace
 
         qwe2("
                 DELETE FROM pers_place 
-                WHERE pers_id = '$nextPlace->pers_id'
+                WHERE persId = '$nextPlace->persId'
                 AND start = '$nextPlace->start'"
         );
         qwe2("UPDATE pers_place 
                 SET stop = '$nextPlace->stop' 
-                WHERE pers_id = '$fPlace->pers_id' 
+                WHERE persId = '$fPlace->persId' 
                 AND start = '$fPlace->start'"
         );
         self::fixRedundad($fPlace);
     }
 
-    private static function getFirstPlace(int $pers_id) : self|bool
+    private static function getFirstPlace(int $persId) : self|bool
     {
-        $qwe = qwe2("SELECT * FROM pers_place WHERE pers_id = :pers_id order by start LIMIT 1",['pers_id'=> $pers_id]);
+        $qwe = qwe2("SELECT * FROM pers_place WHERE persId = :persId order by start LIMIT 1",['persId'=> $persId]);
         return $qwe->fetchObject(get_class());
     }
 
@@ -70,10 +70,10 @@ class PersPlace
     {
         $qwe = qwe2("
                 SELECT * FROM pers_place 
-                WHERE pers_id = :pers_id 
+                WHERE persId = :persId 
                 AND start > '$Place->start'
                 order by start LIMIT 1",
-            ['pers_id'=> $Place->pers_id]
+            ['persId'=> $Place->persId]
         );
         if(!$qwe or !$qwe->rowCount()){
             return false;

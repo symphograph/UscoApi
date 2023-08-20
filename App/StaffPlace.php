@@ -5,8 +5,8 @@ use PDO;
 
 class StaffPlace
 {
-    public int|null    $pers_id;
-    public int|null    $place_id;
+    public int|null    $persId;
+    public int|null    $placeId;
     public int|null    $chair;
     public string|null $name;
     public string|null $lastName;
@@ -18,32 +18,32 @@ class StaffPlace
     /**
      * @return bool|array<self>
      */
-    public static function getCollection(int $group_id, string $date = ''): bool|array
+    public static function getCollection(int $groupId, string $date = ''): bool|array
     {
-        if($group_id == 200){
+        if($groupId == 200){
             return [];
         }
         if(empty($date)){
             $date = date('Y-m-d');
         }
         $qwe = qwe2("
-            SELECT pers_place.pers_id,
-            pers_place.place_id,
+            SELECT pers_place.persId,
+            pers_place.placeId,
             places.chair,
             personal.`name`,
             personal.lastName,
             pers_place.start,
             pers_place.stop
             FROM pers_place
-            INNER JOIN places on pers_place.place_id = places.place_id
-                AND places.group_id = :group_id
+            INNER JOIN places on pers_place.placeId = places.placeId
+                AND places.groupId = :groupId
                 AND :date BETWEEN start AND stop
-            INNER JOIN employs ON employs.pers_id = pers_place.pers_id
+            INNER JOIN employs ON employs.persId = pers_place.persId
                 AND :date2 BETWEEN accept AND dismiss
-            INNER JOIN `groups` g on places.group_id = g.group_id
-            INNER JOIN personal ON personal.id = pers_place.pers_id
+            INNER JOIN `groups` g on places.groupId = g.groupId
+            INNER JOIN personal ON personal.id = pers_place.persId
             ORDER BY chair",
-                    ['group_id' => $group_id, 'date' => $date, 'date2' => $date]
+                    ['groupId' => $groupId, 'date' => $date, 'date2' => $date]
         );
         if(!$qwe or !$qwe->rowCount()){
             return [];
@@ -67,7 +67,7 @@ class StaffPlace
     private function initAva() : string
     {
         $path = 'img/avatars/';
-        $ava = $path . 'small/ava_' . $this->pers_id . '_min.png';
+        $ava = $path . 'small/ava_' . $this->persId . '_min.png';
         if(!file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$ava)){
             $ava = $path.'init_ava.png';
         }
@@ -79,29 +79,29 @@ class StaffPlace
     {
         $place = (object) $place;
         $StaffPlace = new StaffPlace;
-        $StaffPlace->pers_id = $place->pers_id;
+        $StaffPlace->persId = $place->persId;
         $StaffPlace->name = $place->name;
         $StaffPlace->lastName = $place->lastName;
         return $StaffPlace;
     }
 
-    public static function getPlaceIdByChair(int $group_id, int $chair) : bool|int
+    public static function getPlaceIdByChair(int $groupId, int $chair) : bool|int
     {
         $chair += 1;
         $qwe = qwe2("
             SELECT * FROM places 
             WHERE chair = :chair
-            AND group_id = :group_id",
-                    ['chair' => $chair,'group_id' => $group_id]
+            AND groupId = :groupId",
+                    ['chair' => $chair,'groupId' => $groupId]
         );
         if(!$qwe or !$qwe->rowCount()){
             return false;
         }
         $q = $qwe->fetchObject();
-        if(!$q->place_id){
+        if(!$q->placeId){
             return false;
         }
-        return $q->place_id;
+        return $q->placeId;
     }
 
     public function updatePlace(string $start = '', string $stop = '')
@@ -115,14 +115,14 @@ class StaffPlace
 
         $qwe = qwe2("
             REPLACE INTO pers_place 
-            (pers_id, start, stop, place_id) 
+            (persId, start, stop, placeId) 
                 VALUES 
-            (:pers_id, :start, :stop, :place_id)",
+            (:persId, :start, :stop, :placeId)",
                     [
-                        'pers_id' => $this->pers_id,
+                        'persId' => $this->persId,
                          'start'   => $start,
                          'stop'    => $stop,
-                         'place_id' => $this->place_id
+                         'placeId' => $this->placeId
                     ]
         );
         StaffPlace::dateFixerList();
@@ -137,20 +137,20 @@ class StaffPlace
         $list = $qwe->fetchAll();
         foreach ($list as $l){
             $l = (object) $l;
-            self::dateFixer($l->pers_id,$l->start);
+            self::dateFixer($l->persId,$l->start);
         }
         return true;
     }
 
-    private static function dateFixer(int $pers_id, string $start)
+    private static function dateFixer(int $persId, string $start)
     {
         $qwe = qwe2("
             SELECT * FROM pers_place 
-            WHERE pers_id = :pers_id 
+            WHERE persId = :persId 
             AND start < :start
             ORDER BY start DESC 
             LIMIT 1",
-                    ['pers_id' => $pers_id, 'start' => $start]
+                    ['persId' => $persId, 'start' => $start]
         );
         if(!$qwe or !$qwe->rowCount()){
             return false;
@@ -162,10 +162,10 @@ class StaffPlace
             qwe2("
                 UPDATE pers_place 
                 SET stop = DATE_SUB(:start, INTERVAL 1 DAY)
-                WHERE pers_id = :pers_id AND start = :start2",
-                 ['start' => $start, 'pers_id' => $pers_id, 'start2' => $prewStart]
+                WHERE persId = :persId AND start = :start2",
+                 ['start' => $start, 'persId' => $persId, 'start2' => $prewStart]
             );
-            self::dateFixer($pers_id,$prewStart);
+            self::dateFixer($persId,$prewStart);
         }
         return true;
     }
@@ -175,8 +175,8 @@ class StaffPlace
         if(empty($date)){
             $date = date('Y-m-d',time() - 60*60*24);
         }
-        $qwe = qwe2("SELECT * FROM pers_place WHERE pers_id = :pers_id
-            ORDER BY start DESC LIMIT 1",['pers_id'=>$this->pers_id]);
+        $qwe = qwe2("SELECT * FROM pers_place WHERE persId = :persId
+            ORDER BY start DESC LIMIT 1",['persId'=>$this->persId]);
         if(!$qwe or !$qwe->rowCount()){
             return;
         }
@@ -189,9 +189,9 @@ class StaffPlace
         qwe2("
             UPDATE pers_place 
             SET stop = :stop 
-            WHERE pers_id = :pers_id 
+            WHERE persId = :persId 
               AND start = :start",
-        ['stop'=>$date, 'pers_id'=>$this->pers_id,'start' => $start]
+        ['stop'=>$date, 'persId'=>$this->persId,'start' => $start]
         );
     }
 
@@ -199,11 +199,11 @@ class StaffPlace
     {
         $qwe = qwe2("
             SELECT powers.name FROM pers_power 
-            INNER JOIN powers on pers_power.power_id = powers.id
-            AND pers_power.pers_id = :pers_id
-            AND powers.site_visible
-            ORDER BY site_visible",
-            ['pers_id' => $this->pers_id]
+            INNER JOIN powers on pers_power.powerId = powers.id
+            AND pers_power.persId = :persId
+            AND powers.siteVisible
+            ORDER BY siteVisible",
+            ['persId' => $this->persId]
         );
         if(!$qwe or !$qwe->rowCount()){
             return [];
@@ -216,16 +216,16 @@ class StaffPlace
     {
         if(empty($date)) $date = date('Y-m-d');
         $qwe = qwe2("SELECT 
-            personal.id as pers_id,
+            personal.id as persId,
             name,
             lastName,
             '2000-01-01' as start,
             '2037-12-31' as stop
             FROM personal 
-                inner join employs e on personal.id = e.pers_id
+                inner join employs e on personal.id = e.persId
                     and :date between e.accept and e.dismiss
                 inner join jobs j on e.jobId = j.id
-                    and j.group_id = 10
+                    and j.groupId = 10
             WHERE personal.id not in ($complited)", ['date' => $date]
         );
         if(!$qwe or !$qwe->rowCount()){

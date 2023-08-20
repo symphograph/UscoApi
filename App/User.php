@@ -73,8 +73,8 @@ class User
     public static function getPowers(int $user_id) : array
     {
         $qwe = qwe2("
-            select power_id from pers_power 
-            where pers_id = :user_id",
+            select powerId from pers_power 
+            where persId = :user_id",
             ['user_id' => $user_id]
         );
         if(!$qwe || !$qwe->rowCount()){

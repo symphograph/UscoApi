@@ -28,7 +28,7 @@ if(!count($groups)){
 
 foreach ($groups as $group){
     $StaffGroup = StaffGroup::checkClass($group);
-    if($StaffGroup->group_id == 200){
+    if($StaffGroup->groupId == 200){
         $StaffGroup->setUngroupedList();
         continue;
     }
