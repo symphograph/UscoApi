@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\CTRL;
 
 use App\HallPlan;
 use App\User;
