@@ -1,6 +1,6 @@
 <?php
 
-use App\Controllers\TicketCTRL;
+use App\CTRL\TicketCTRL;
 use Symphograph\Bicycle\Errors\ApiErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 

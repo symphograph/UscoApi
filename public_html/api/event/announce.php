@@ -1,6 +1,6 @@
 <?php
 
-use App\Controllers\AnnounceCTRL;
+use App\CTRL\AnnounceCTRL;
 use Symphograph\Bicycle\Errors\ApiErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 

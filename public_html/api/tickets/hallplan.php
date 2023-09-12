@@ -1,7 +1,7 @@
 <?php
 
-use App\Controllers\AnnounceCTRL;
-use App\Controllers\HallPlanCTRL;
+use App\CTRL\AnnounceCTRL;
+use App\CTRL\HallPlanCTRL;
 use App\User;
 use Symphograph\Bicycle\Errors\ApiErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
