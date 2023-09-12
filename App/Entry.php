@@ -42,7 +42,7 @@ class Entry
 
     public function __set($name, $value) {}
 
-    public static function byID(int $id) : Entry|bool
+    public static function byId(int $id) : Entry|bool
     {
         $qwe = qwe("
             select news.*, 
@@ -262,7 +262,7 @@ class Entry
 
     public static function reCache(int $id): bool|PDOStatement
     {
-        $Entry = Entry::byID($id);
+        $Entry = Entry::byId($id);
         return qwe("UPDATE news SET cache = :cache WHERE id = :id",
         ['id' => $id, 'cache' => json_encode($Entry)]
         );

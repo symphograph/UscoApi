@@ -16,8 +16,8 @@ throw new ValidationErr('entry');
 $id = intval($entry['id'] ?? 0) or
 throw new ValidationErr('id');
 
-$Entry = Entry::byID($id) or
-throw new AppErr('Entry::byID err');
+$Entry = Entry::byId($id) or
+throw new AppErr('Entry::byId err');
 
 $Entry->title = $entry['title'] or
 throw new ValidationErr('title', 'Пустой заголовок');

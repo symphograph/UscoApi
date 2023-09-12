@@ -11,7 +11,7 @@ $User = User::byCheck();
 $id = intval($_POST['id'] ?? 0) or
     throw new ValidationErr('id');
 
-$Item = Entry::byID($id) or
+$Item = Entry::byId($id) or
     throw new AppErr("Entry $id is empty", 'Новость не найдена');
 
 Response::data($Item);
