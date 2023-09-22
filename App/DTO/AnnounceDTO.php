@@ -37,7 +37,7 @@ class AnnounceDTO extends DTO implements AnnounceITF
         return $objectDTO;
     }
 
-    protected function putToDB()
+    protected function putToDB(): void
     {
         $params = DB::initParams($this);
         DB::replace('announces', $params);
