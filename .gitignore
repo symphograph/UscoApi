@@ -511,3 +511,4 @@ ip.php
 /includes/env.php
 /public_html/test/
 /phpFpm/
+/composer.json
