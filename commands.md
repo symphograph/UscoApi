@@ -9,15 +9,14 @@ cd && cd api.sakh-orch.ru && git pull
 nginx -t
 ```
 ```bash
-# Перзапуск nginx
+# Перезапуск nginx
 systemctl restart nginx
 ```
 ```bash
 # Проверка службы fpm 8.2
 systemctl status php8.2-fpm
 ```
-
 ```bash
-# Перезапуск fpm 8.2
+# Перезапуск fpm 8.2 commands
 systemctl restart php8.2-fpm
 ```
