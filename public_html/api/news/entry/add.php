@@ -6,7 +6,7 @@ use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\AppErr;
 
 User::auth([1, 2, 4]);
-ini_set('max_file_uploads', '100');
+ini_set('max_file_uploads', 100);
 
 $Entry = Entry::addNewEntry() or
 throw new AppErr('addNewEntry err');
