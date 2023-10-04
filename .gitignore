@@ -485,6 +485,14 @@ Pricing
 Training
 Blog
 About
+
+# phpunit
+/.phpunit.result.cache
+/phpunit.xml
+/.phpunit.cache/
+/phpunit/
+# -------------------------------------------------
+
 ip.php
 .htaccess
 /js/Croppie-2.6.5/
