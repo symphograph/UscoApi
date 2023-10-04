@@ -1,7 +1,7 @@
 # Команды терминала
 
 ```bash
-# Оновить сайт из репозитория
+# Обновить сайт из репозитория
 cd && cd api.sakh-orch.ru && git pull
 ```
 ```bash
@@ -15,11 +15,6 @@ systemctl restart nginx
 ```bash
 # Проверка службы fpm 8.2
 systemctl status php8.2-fpm
-```
-
-```bash
-# Перезапуск fpm 8.2
-systemctl restart php8.2-fpm
 ```
 
 ```bash
