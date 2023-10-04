@@ -434,7 +434,7 @@ config.codekit3
 **/build/
 !src/**/build/
 
-# Ignore Gradle GUI config
+# Ignore Gradle GUI phpFpm
 gradle-app.setting
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
@@ -502,3 +502,4 @@ ip.php
 /public_html/documents/
 /includes/env.php
 /public_html/test/
+/phpFpm/
