@@ -8,7 +8,7 @@ use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\NoContentErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 
-class HallPlanCTRL extends \App\HallPlan
+class HallPlanCTRL extends HallPlan
 {
     public static function get(): void
     {
@@ -29,7 +29,7 @@ class HallPlanCTRL extends \App\HallPlan
         $plan = $_POST['plan'] ?? false or
         throw new ValidationErr('plan is empty');
 
-        $plan = self::byArray($plan);
+        $plan = HallPlan::byBind($plan);
         $plan->putToDB();
 
         Response::success();

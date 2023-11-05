@@ -7,30 +7,29 @@ use App\DTO\HallDTO;
 use App\Img;
 use App\ITF\AnnounceITF;
 use App\Poster;
-use JetBrains\PhpStorm\Pure;
-use PDO;
 use PDOStatement;
 use ReflectionException;
-use Symphograph\Bicycle\DB;
+use Symphograph\Bicycle\DTO\ModelTrait;
+use Symphograph\Bicycle\Env\Server\ServerEnv;
 use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\Helpers;
 use Symphograph\Bicycle\JsonDecoder;
 
 class Announce extends AnnounceDTO implements AnnounceITF
 {
+    use ModelTrait;
+
     public string|null  $youtubeId = '';
-    public bool         $complited = false;
+    public bool         $completed = false;
     public HallDTO|null $Hall;
     public Img|Poster   $Poster;
     public Img|Poster   $Sketch;
-    /*public string|null  $map          = '';*/
     public string|null $sketchUrl    = '';
     public string|bool $error        = false;
     public string      $verLink      = '';
     public string      $date         = '';
     public string      $time         = '';
     public string|null $prrow        = '';
-    public string|null $dateFormated = '';
 
 
     const PAYS = ['', '', 'Вход свободный', 'Билеты в продаже', 'Вход по пригласительным', 'Продажа завершена'];
@@ -61,33 +60,6 @@ class Announce extends AnnounceDTO implements AnnounceITF
         return $q->id;
     }
 
-    public function __set(string $name, $value): void
-    {
-
-    }
-
-    #[Pure] public static function clone(self $q): self
-    {
-        $Announce = new Announce();
-        foreach ($q as $k => $v) {
-            $Announce->$k = $v;
-        }
-        return $Announce;
-    }
-
-    public static function byId(int $id): self
-    {
-        /*
-        if(!$objectDTO = parent::byId($id)){
-            return false;
-        }
-        */
-        $selfObject = new self();
-        $selfObject->bindSelf(parent::byId($id));
-        $selfObject->initData();
-        return $selfObject;
-    }
-
     private function initData(): void
     {
         $this->Hall = HallDTO::byId($this->hallId);
@@ -97,41 +69,28 @@ class Announce extends AnnounceDTO implements AnnounceITF
         if (empty($this->datetime)) {
             $this->datetime = date('Y-m-d H:i', time() + 3600 * 24);
         }
-        $this->complited = Helpers::isExpired($this->datetime);
+        $this->completed = Helpers::isExpired($this->datetime);
         $this->datetime = date('Y-m-d H:i', strtotime($this->datetime));
         $this->date = date('Y-m-d', strtotime($this->datetime));
         $this->isShow = boolval($this->isShow);
         $this->getSketchUrl();
         $this->prrow = self::PAYS[$this->pay] ?? '';
-        if ($this->pay == 3 and $this->complited) {
+        if ($this->pay == 3 and $this->completed) {
             $this->prrow = 'Продажа завершена';
         }
 
-        $this->dateFormated = self::EvdateFormated();
     }
 
-    public static function isComplited(int $id): bool
+    public static function isCompleted(int $id): bool
     {
         $AnnounceDTO = AnnounceDTO::byId($id);
         return Helpers::isExpired($AnnounceDTO->datetime);
     }
 
-    private function EvdateFormated(): string
-    {
-        $evdate = strtotime($this->datetime);
-
-        if (date('Y', $evdate) == date('Y', time())) {
-            $evdateru = ru_date('d %bg', $evdate);
-            $evtime = date('H:i', $evdate);
-            return $evdateru . ' в ' . $evtime;
-        } else
-            return date('d.m.Y в H:i', $evdate);
-    }
-
     /**
      * @return Announce[]
      */
-    protected static function futureCachList(): array
+    protected static function futureCacheList(): array
     {
         return self::listByCaches(AnnounceCach::futureCacheList());
     }
@@ -139,7 +98,7 @@ class Announce extends AnnounceDTO implements AnnounceITF
     /**
      * @return Announce[]
      */
-    protected static function allCachList(): array
+    protected static function allCacheList(): array
     {
         return self::listByCaches(AnnounceCach::allCacheList());
     }
@@ -147,7 +106,7 @@ class Announce extends AnnounceDTO implements AnnounceITF
     /**
      * @return Announce[]
      */
-    protected static function hallCachList(int $hallId): array
+    protected static function hallCacheList(int $hallId): array
     {
         return self::listByCaches(AnnounceCach::hallCacheList($hallId));
     }
@@ -155,7 +114,7 @@ class Announce extends AnnounceDTO implements AnnounceITF
     /**
      * @return Announce[]
      */
-    protected static function yearCachList(int $hallId): array
+    protected static function yearCacheList(int $hallId): array
     {
         return self::listByCaches(AnnounceCach::yearCacheList($hallId));
     }
@@ -181,21 +140,21 @@ class Announce extends AnnounceDTO implements AnnounceITF
      * @param AnnounceCach[] $announceCachs
      * @return array|Announce[]
      */
-    private static function listByCaches(array $announceCachs): array
+    private static function listByCaches(array $announceCaches): array
     {
 
         /** @var array<self> $arr */
         $Announces = [];
 
-        foreach ($announceCachs as $announceCach) {
-            if(!$Announce = self::byCached($announceCach)){
+        foreach ($announceCaches as $announceCache) {
+            if(!$Announce = self::byCached($announceCache)){
                 continue;
             }
             $Announces[] = $Announce;
         }
 
-        if (count($Announces) !== count($announceCachs)) {
-            throw new AppErr('some AnnounceCachs is broken');
+        if (count($Announces) !== count($announceCaches)) {
+            throw new AppErr('some AnnounceCaches is broken');
         }
         return $Announces;
     }
@@ -208,7 +167,7 @@ class Announce extends AnnounceDTO implements AnnounceITF
     public function putToDB(): void
     {
         qwe("START TRANSACTION");
-        $parent = parent::byChild($this);
+        $parent = parent::byBind($this);
         $parent->putToDB();
         self::reCache($this->id)
         or throw new AppErr('Err: Announce reCache');
@@ -224,7 +183,8 @@ class Announce extends AnnounceDTO implements AnnounceITF
     {
         $Announce = Announce::byId($id);
         if (!$Announce) return false;
-        $Announce->verLink = 'https://' . $_SERVER['SERVER_NAME'] . '/' . $Announce->Poster->verLink;
+        $Announce->initData();
+        $Announce->verLink = 'https://' . ServerEnv::SERVER_NAME() . '/' . $Announce->Poster->verLink;
         $Announce->progName = strip_tags($Announce->progName);
         $Announce->getSketchUrl();
         $Announce->date = date('Y-m-d', strtotime($Announce->datetime));
@@ -247,9 +207,9 @@ class Announce extends AnnounceDTO implements AnnounceITF
 
     private function saveCache(): bool|PDOStatement
     {
-        $Announce = $this;
-        if (isset($Announce->cache))
-            unset($Announce->cache);
+
+        if (isset($this->cache))
+            unset($this->cache);
 
         return qwe("
                     UPDATE announces 

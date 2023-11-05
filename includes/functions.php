@@ -1,20 +1,17 @@
 <?php
 
 use App\Env\UscoEnv;
+use JetBrains\PhpStorm\Language;
 use Symphograph\Bicycle\Env\Env;
-use Symphograph\Bicycle\DB;
-
-//Для числительных. (год, года, лет)
-function number($n, $titles) {
-$n = intval($n);	
-  $cases = array(2, 0, 1, 1, 1, 2);
-  return $titles[($n % 100 > 4 && $n % 100 < 20) ? 2 : $cases[min($n % 10, 5)]];
-}
+use Symphograph\Bicycle\Env\Server\ServerEnvCli;
+use Symphograph\Bicycle\Env\Server\ServerEnvHttp;
+use Symphograph\Bicycle\Env\Server\ServerEnvITF;
+use Symphograph\Bicycle\PDO\DB;
 
 /**
  * Generate a random string, using a cryptographically secure 
  * pseudorandom number generator (random_int)
- * 
+ *
  * For PHP 7, random_int is a PHP core function
  * For PHP 5.x, depends on https://github.com/paragonie/random_compat
  * 
@@ -23,7 +20,7 @@ $n = intval($n);
  *                         to select from
  * @return string
  */
-function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'): string
 {
     $str = '';
     $max = mb_strlen($keyspace, '8bit') - 1;
@@ -33,27 +30,13 @@ function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzAB
     return $str;
 }
 
-function printr($var) {
+function printr($var): void
+{
     if(!Env::isDebugMode())
         return;
     echo '<pre>';
     print_r($var);
     echo '</pre>';
-}
-
-function ru_date($format, $date = false) {
-	setlocale(LC_TIME, 'ru_RU.UTF-8');
-	if (!$date) {
-		$date = time();
-	}
-	if ($format === '') {
-		$format = 'd %bg Y';
-	}
-
-	$months = explode("|", '|января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря');
-    $n = date('n', $date);
-	$format = preg_replace("~\%bg~", $months[$n], $format);
-    return date($format, $date);
 }
 
 function curl($plink, array $data = [])
@@ -79,7 +62,7 @@ function curl($plink, array $data = [])
     return $somepage;
 }
 
-function qwe(string $sql, array $args = null): bool|PDOStatement
+function qwe(#[Language("SQL")] string $sql, array $args = []): bool|PDOStatement
 {
     global $DB;
     if(!isset($DB)){
@@ -88,11 +71,28 @@ function qwe(string $sql, array $args = null): bool|PDOStatement
     return $DB->qwe($sql,$args);
 }
 
-function qwe2(string $sql, array $args = null) : bool|PDOStatement
+function qwe2(#[Language("SQL")] string $sql, array $args = []) : bool|PDOStatement
 {
     global $DB2;
     if(!isset($DB2)){
         $DB2 = new DB('staff');
     }
     return $DB2->qwe($sql,$args);
+}
+
+function getRoot(): string
+{
+    return dirname(__DIR__);
+}
+
+function getServerEnvClass(): ServerEnvITF
+{
+    global $ServerEnv;
+    if(isset($ServerEnv)) {
+        return $ServerEnv;
+    }
+    if (PHP_SAPI === 'cli') {
+        return new ServerEnvCli();
+    }
+    return new ServerEnvHttp();
 }

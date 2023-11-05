@@ -2,10 +2,7 @@
 
 namespace App;
 
-use App\Announce\Announce;
-use App\DTO\TicketDTO;
 use PDO;
-use Symphograph\Bicycle\Helpers;
 
 class Ticket extends DTO\TicketDTO
 {

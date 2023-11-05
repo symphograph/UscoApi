@@ -1,8 +1,9 @@
 <?php
-require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/vendor/autoload.php';
+require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
 
 use App\{APIusco, Entry, User};
 use Symphograph\Bicycle\Api\Response;
+use Symphograph\Bicycle\Env\Server\ServerEnv;
 use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 use Symphograph\Bicycle\FileHelper;
@@ -17,8 +18,8 @@ if (empty($img) or !is_string($img)){
     throw new ValidationErr('img');
 }
 
-$file1080 = $_SERVER['DOCUMENT_ROOT'] . Entry::imgFolder . $id . '/' . $img;
-$fileOrig = $_SERVER['DOCUMENT_ROOT'] . '/img/entry/origins/' . $id . '/' . $img;
+$file1080 = ServerEnv::DOCUMENT_ROOT() . Entry::imgFolder . $id . '/' . $img;
+$fileOrig = ServerEnv::DOCUMENT_ROOT() . '/img/entry/origins/' . $id . '/' . $img;
 
 if (FileHelper::fileExists($file1080)){
     unlink($file1080);

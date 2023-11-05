@@ -2,12 +2,14 @@
 
 namespace App\DTO;
 
-use App\ITF\AnnounceITF;
 use App\ITF\TicketITF;
-use Symphograph\Bicycle\DB;
+use Symphograph\Bicycle\DTO\DTOTrait;
 
-class TicketDTO extends DTO implements TicketITF
+class TicketDTO implements TicketITF
 {
+    use DTOTrait;
+    const tableName = 'tickets';
+
     public int     $id;
     public int     $announceId;
     public ?int    $userId;
@@ -18,28 +20,5 @@ class TicketDTO extends DTO implements TicketITF
     public int     $seatNum;
     public string  $priceType;
     public bool    $hasAccount;
-
-    public static function byId(int $id): self|false
-    {
-        $qwe = qwe("
-            select * from tickets 
-            where id = :id",
-            ['id' => $id]
-        );
-        return $qwe->fetchObject(self::class);
-    }
-
-    protected static function byChild(TicketITF $childObject): self
-    {
-        $objectDTO = new self();
-        $objectDTO->bindSelf($childObject);
-        return $objectDTO;
-    }
-
-    public function putToDB(): void
-    {
-        $params = DB::initParams($this);
-        DB::replace('tickets', $params);
-    }
 
 }

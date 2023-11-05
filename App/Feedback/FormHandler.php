@@ -10,6 +10,7 @@ use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 
 
+
 /**
  * Класс для обработки формы обратной связи.
  *
@@ -156,6 +157,5 @@ abstract class FormHandler implements FormHandlerITF
                 httpStatus: 405
             );
         }
-
     }
 }

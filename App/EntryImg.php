@@ -1,5 +1,6 @@
 <?php
 namespace App;
+use Symphograph\Bicycle\Env\Server\ServerEnv;
 use Symphograph\Bicycle\FileHelper;
 class EntryImg extends Img
 {
@@ -80,7 +81,7 @@ class EntryImg extends Img
 
     private function putToOriginals(string $from): bool
     {
-        return FileHelper::moveUploaded($from,$_SERVER['DOCUMENT_ROOT'] . $this->file);
+        return FileHelper::moveUploaded($from, ServerEnv::DOCUMENT_ROOT() . $this->file);
     }
 
 }

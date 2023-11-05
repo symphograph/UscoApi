@@ -20,3 +20,6 @@ systemctl status php8.2-fpm
 # Перезапуск fpm 8.2 commands
 systemctl restart php8.2-fpm
 ```
+```bash
+tree /a /f > структура.txt
+```

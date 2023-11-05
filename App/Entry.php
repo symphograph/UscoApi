@@ -4,7 +4,7 @@ namespace App;
 use JetBrains\PhpStorm\Pure;
 use PDO;
 use PDOStatement;
-use Symphograph\Bicycle\DB;
+use Symphograph\Bicycle\Env\Server\ServerEnv;
 use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\FileHelper;
 
@@ -95,23 +95,12 @@ class Entry
         return $Entry;
     }
 
-    public static function getAlldbRows() : array
+    public static function getCollection(int $year = 0, array $categories = self::defaultCategs,int $limit = 1000) : array
     {
-        $qwe = qwe("SELECT * FROM news");
-        if(!$qwe || !$qwe->rowCount())
-            return [];
+        $categories = array_filter($categories);
+        $categoryIDs = array_keys($categories);
 
-        return $qwe->fetchAll(PDO::FETCH_CLASS,'Entry') ?? [];
-    }
-
-    public static function getCollection(int $year = 0, array $categs = self::defaultCategs,int $limit = 1000) : array
-    {
-        $categs = array_filter($categs);
-        $categs = array_keys($categs);
-        $pHoldels = DB::pHolders($categs);
-
-        $params = DB::pHoldsArr($categs);
-        //printr($params);
+        $params['categoryIDs'] = $categoryIDs;
         $params['year'] = $year ?? date('Y');
         $params['year2'] = $params['year'];
         if($limit === 5){
@@ -125,7 +114,7 @@ class Entry
             SELECT news.*, 
             GROUP_CONCAT(nn.categ_id) as concategs FROM news
             INNER JOIN nn_EntryCategs as nn ON news.id = nn.entry_id
-            AND nn.categ_id in ($pHoldels)
+            AND nn.categ_id in (:categoryIDs)
             AND (YEAR(news.date) = :year or YEAR(news.date) = :year2)
             GROUP BY news.id
             ORDER BY news.date DESC" . $limit,
@@ -136,11 +125,11 @@ class Entry
 
         $rows = $qwe->fetchAll(PDO::FETCH_CLASS,self::class);
 
-        $Entryes = [];
+        $Entries = [];
         foreach ($rows as $Entry){
-            $Entryes[] = self::byQ($Entry);
+            $Entries[] = self::byQ($Entry);
         }
-        return $Entryes;
+        return $Entries;
     }
 
     /**
@@ -148,7 +137,7 @@ class Entry
      */
     public static function getImages(int $id) : array
     {
-        $dir = $_SERVER['DOCUMENT_ROOT'] . Entry::imgFolder . $id;
+        $dir = ServerEnv::DOCUMENT_ROOT() . Entry::imgFolder . $id;
         return FileHelper::FileList($dir);
     }
 
@@ -226,10 +215,10 @@ class Entry
         return $parts;
     }
 
-    public function putToDB(): bool|PDOStatement
+    public function putToDB(): void
     {
         qwe("START TRANSACTION");
-        $qwe = qwe("
+        qwe("
                 REPLACE INTO news 
                 (id, title, descr, content, markdown, date, isShow, evid, refName, refLink) 
                         VALUES 
@@ -246,8 +235,7 @@ class Entry
                 'refName'  => $this->refName,
                 'refLink'  => $this->refLink
         ]);
-        if(!$qwe)
-            return false;
+
         qwe("DELETE FROM nn_EntryCategs WHERE entry_id = :id",['id'=>$this->id]);
         $categs = array_filter($this->categs);
         foreach ($categs as $k => $v){
@@ -257,7 +245,6 @@ class Entry
         }
         self::reCache($this->id);
         qwe("COMMIT");
-        return true;
     }
 
     public static function reCache(int $id): bool|PDOStatement
@@ -282,22 +269,6 @@ class Entry
     private function getUnusedImages() : array
     {
         return array_diff(self::getImages($this->id),$this->usedImages);
-    }
-
-    private function printUnusetImages(): string
-    {
-        if(empty($this->unusedImages))
-            return '';
-
-        $row = '<hr><br><br>';
-        foreach ($this->unusedImages as $img){
-            $src = self::imgFolder . '/' . $this->id . '/' . $img;
-            $row .= <<<HTML
-                    <img src="$src" class="newsImg" alt="img"><br><br>
-                    HTML;
-
-        }
-        return $row;
     }
 
     private static function getPw(int $id): string
@@ -343,8 +314,7 @@ class Entry
         throw new AppErr('Ошибка извлечения');
 
         $Entry->id = $id;
-        $Entry->putToDB() or
-        throw new AppErr('Insert Error', 'Ошибка при сохранении');
+        $Entry->putToDB();
 
 
 

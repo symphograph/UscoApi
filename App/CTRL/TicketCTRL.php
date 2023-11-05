@@ -7,6 +7,7 @@ use App\Errors\TicketErr;
 use App\Ticket;
 use App\User;
 use Symphograph\Bicycle\Api\Response;
+use Symphograph\Bicycle\Env\Server\ServerEnv;
 use Symphograph\Bicycle\Errors\AuthErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 use Symphograph\Bicycle\Token\AccessTokenData;
@@ -24,7 +25,7 @@ class TicketCTRL extends \App\Ticket
             or throw new TicketErr('Ticket does not exist', 'Билет не найден', 404);
         $ticket->isAvalible()
             or throw new TicketErr('Ticket is not avalible', 'Билет уже зарезервирован. Попробуйте другой.', 403);
-        !Announce::isComplited($ticket->announceId)
+        !Announce::isCompleted($ticket->announceId)
             or throw new TicketErr('complited', 'Время истекло', 403);
         $ticket->userId = User::getIdByJWT();
         $ticket->reservedAt = date('Y-m-d H:i:s');
@@ -38,13 +39,13 @@ class TicketCTRL extends \App\Ticket
         $id = intval($_POST['id'] ?? false)
         or throw new ValidationErr();
 
-        $tokenData = new AccessTokenData($_SERVER['HTTP_ACCESSTOKEN']);
+        $tokenData = new AccessTokenData(ServerEnv::HTTP_ACCESSTOKEN());
         $ticket = Ticket::byId($id)
         or throw new TicketErr();
         if($ticket->userId !== $tokenData->userId){
             throw new AuthErr();
         }
-        if(Announce::isComplited($ticket->announceId)){
+        if(Announce::isCompleted($ticket->announceId)){
             throw new TicketErr('Expired', 'Бронирование завершено');
         }
         $ticket->unsetUser();

@@ -14,7 +14,6 @@ final class FormHandlerStrict extends FormHandler
      * Обрабатывает отправленную форму.
      *
      * - Проверяет метод запроса
-     * - Проверяет сообщение на наличие слова Пушкин
      * - Валидирует введенный email с использованием стандартной функции
      * - Обрабатывает отправленное сообщение
      * ---
@@ -43,9 +42,11 @@ final class FormHandlerStrict extends FormHandler
 
     private function validateMessage(): void
     {
+        /*
         if(!str_contains($this->message, 'Пушкин')){
             throw new EmailErr('VIP reference is empty', 'Зачем нам Россия без Пушкина!');
         }
+        */
     }
 
 

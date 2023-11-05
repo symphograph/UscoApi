@@ -4,7 +4,7 @@ use App\Album;
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\ValidationErr;
 
-require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/vendor/autoload.php';
+require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
 
 $albumName = $_POST['albumName'] ?? false
 or throw new ValidationErr('albumName is empty' );

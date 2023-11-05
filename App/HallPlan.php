@@ -4,37 +4,18 @@ namespace App;
 use App\DTO\AnnounceDTO;
 use App\DTO\HallPlanDTO;
 use App\ITF\HallPlanITF;
-use Symphograph\Bicycle\DB;
-use Symphograph\Bicycle\JsonDecoder;
+use Symphograph\Bicycle\DTO\ModelTrait;
+use Symphograph\Bicycle\Errors\NoContentErr;
+
 
 class HallPlan extends HallPlanDTO implements HallPlanITF
 {
+    use ModelTrait;
+
     /**
      * @var Ticket[]
      */
     public array        $tickets;
-
-    public static function byId(int $id): self
-    {
-        $selfObject = new self();
-        $selfObject->bindSelf(parent::byId($id));
-        $selfObject->initData();
-        return $selfObject;
-    }
-
-    public static function byArray(array $plan): self
-    {
-        /** @var self $plan */
-        $plan = JsonDecoder::cloneFromAny($plan, self::class);
-        $tickets = [];
-        foreach ($plan->tickets as $tic){
-            $ticket = new Ticket();
-            $ticket->bindSelf($tic);
-            $tickets[] = $ticket;
-        }
-        $plan->tickets = $tickets;
-        return $plan;
-    }
 
     private function initData(): void
     {
@@ -52,7 +33,7 @@ class HallPlan extends HallPlanDTO implements HallPlanITF
     public static function byLast(int $id): self|false
     {
         $lastId = self::findLast($id);
-        $HallPlan = self::byId($lastId);
+        $HallPlan = self::byId($lastId) or throw new NoContentErr("HallPlan $id", 'План не создан');
         Ticket::unsetExpiredReserves($id);
         if($HallPlan->id === $id){
             return $HallPlan;

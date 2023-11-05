@@ -41,9 +41,11 @@ final class FormHandlerLax extends FormHandler
         string $regExp = '/@/'
     ): void
     {
+        /*
         if (!preg_match($regExp, $this->email)) {
-            throw new EmailErr();
+            throw new EmailErr('err');
         }
+        */
     }
 
     private function validateMessage(): void

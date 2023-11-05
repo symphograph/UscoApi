@@ -5,25 +5,16 @@ namespace App\DTO;
 use App\ITF\AnnounceITF;
 use App\ITF\HallITF;
 use PDO;
+use Symphograph\Bicycle\DTO\DTOTrait;
 
-class HallDTO extends DTO implements HallITF
+class HallDTO implements HallITF
 {
+    use DTOTrait;
+    const tableName = 'halls';
+
     public int    $id;
     public string $name;
     public string $map;
-
-    public static function byId(int $id): self
-    {
-        $qwe = qwe("select * from halls where id = :id", ['id' => $id]);
-        return $qwe->fetchObject(self::class);
-    }
-
-    protected static function byChild(AnnounceITF $childObject): self
-    {
-        $objectDTO = new self();
-        $objectDTO->bindSelf($childObject);
-        return $objectDTO;
-    }
 
     /**
      * @return array<self>

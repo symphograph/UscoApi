@@ -1,6 +1,7 @@
 <?php
 namespace App;
 use JetBrains\PhpStorm\Pure;
+use Symphograph\Bicycle\Env\Server\ServerEnv;
 
 class Email
 {
@@ -62,7 +63,7 @@ class Email
         return $q->max + 1;
     }
 
-    public static function headers(string $email)
+    public static function headers(string $email): array
     {
         return [
             'Content-type' => 'text/html',
@@ -117,7 +118,7 @@ class Email
                'email'   => $this->email,
                'name'    => $this->name,
                'msg'     => $this->msg,
-               'ip'      => $_SERVER['REMOTE_ADDR'],
+               'ip'      => ServerEnv::REMOTE_ADDR(),
                'agent'   => $_SERVER['HTTP_USER_AGENT'],
                'msg_key' => random_str(12)
            ]
@@ -131,7 +132,7 @@ class Email
 
     public function send(): bool
     {
-        $to      = self::recipients[$_SERVER['SERVER_NAME']];
+        $to      = self::recipients[ServerEnv::SERVER_NAME()];
         $subject = 'Сообщение от: '.$this->name;
         $html = self::htmlMsg($this->name,$this->email, $this->msg);
         $headers = self::headers($this->email);

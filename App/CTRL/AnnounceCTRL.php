@@ -4,7 +4,6 @@ namespace App\CTRL;
 
 
 use App\Announce\Announce;
-use App\Entry;
 use App\Poster;
 use App\User;
 use Exception;
@@ -22,7 +21,7 @@ class AnnounceCTRL extends \App\Announce\Announce
             throw new ValidationErr();
         }
 
-        $Announces = self::hallCachList($_POST['hallId'])
+        $Announces = self::hallCacheList($_POST['hallId'])
         or Response::error('No content', 204);
 
         Response::data($Announces);
@@ -34,7 +33,7 @@ class AnnounceCTRL extends \App\Announce\Announce
             throw new ValidationErr();
         }
 
-        $Announces = self::yearCachList($_POST['year'])
+        $Announces = self::yearCacheList($_POST['year'])
             or throw new NoContentErr();
 
         Response::data($Announces);
@@ -42,7 +41,7 @@ class AnnounceCTRL extends \App\Announce\Announce
 
     public static function futureList(): void
     {
-        $Announces = self::futureCachList()
+        $Announces = self::futureCacheList()
             or throw new NoContentErr();
 
         Response::data($Announces);
@@ -50,7 +49,7 @@ class AnnounceCTRL extends \App\Announce\Announce
 
     public static function allList(): void
     {
-        $Announces = self::allCachList()
+        $Announces = self::allCacheList()
             or throw new NoContentErr();
 
         $arr = [];

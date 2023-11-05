@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use Symphograph\Bicycle\Env\Server\ServerEnv;
 use Symphograph\Bicycle\Errors\ValidationErr;
 use Symphograph\Bicycle\FileHelper;
 class Album
@@ -23,7 +24,7 @@ class Album
      */
     public static function getAlbums() : array|bool
     {
-        $albums = FileHelper::folderList($_SERVER['DOCUMENT_ROOT'] . self::albumsDir);
+        $albums = FileHelper::folderList(ServerEnv::DOCUMENT_ROOT() . self::albumsDir);
         if(!count($albums)){
             return false;
         }

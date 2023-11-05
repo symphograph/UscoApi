@@ -3,6 +3,7 @@
 namespace App\Env;
 
 use Symphograph\Bicycle\Env\Env;
+use Symphograph\Bicycle\Env\Server\ServerEnv;
 
 readonly class UscoEnv extends Env
 {
@@ -14,13 +15,13 @@ readonly class UscoEnv extends Env
 
     public static function getStaffApiDomain(): string
     {
-        $env = require dirname($_SERVER['DOCUMENT_ROOT']) . '/includes/env.php';
+        $env = require dirname(ServerEnv::DOCUMENT_ROOT()) . '/includes/env.php';
         return $env->staffApiDomain;
     }
 
     public static function getApiKey(): string
     {
-        $env = require dirname($_SERVER['DOCUMENT_ROOT']) . '/includes/env.php';
+        $env = require dirname(ServerEnv::DOCUMENT_ROOT()) . '/includes/env.php';
         return $env->apiKey;
     }
 
