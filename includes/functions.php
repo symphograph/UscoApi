@@ -9,13 +9,13 @@ use Symphograph\Bicycle\Env\Server\ServerEnvITF;
 use Symphograph\Bicycle\PDO\DB;
 
 /**
- * Generate a random string, using a cryptographically secure 
+ * Generate a random string, using a cryptographically secure
  * pseudorandom number generator (random_int)
  *
  * For PHP 7, random_int is a PHP core function
  * For PHP 5.x, depends on https://github.com/paragonie/random_compat
- * 
- * @param int $length      How many characters do we want?
+ *
+ * @param int $length How many characters do we want?
  * @param string $keyspace A string of all possible characters
  *                         to select from
  * @return string
@@ -32,7 +32,7 @@ function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzAB
 
 function printr($var): void
 {
-    if(!Env::isDebugMode())
+    if (!Env::isDebugMode())
         return;
     echo '<pre>';
     print_r($var);
@@ -62,22 +62,14 @@ function curl($plink, array $data = [])
     return $somepage;
 }
 
-function qwe(#[Language("SQL")] string $sql, array $args = []): bool|PDOStatement
+function qwe(#[Language("SQL")] string $sql, array $args = [], string $connectName = 'default'): false|PDOStatement
 {
-    global $DB;
-    if(!isset($DB)){
-        $DB = new DB();
-    }
-    return $DB->qwe($sql,$args);
+    return DB::qwe($sql, $args, $connectName);
 }
 
-function qwe2(#[Language("SQL")] string $sql, array $args = []) : bool|PDOStatement
+function qwe2(#[Language("SQL")] string $sql, array $args = []): false|PDOStatement
 {
-    global $DB2;
-    if(!isset($DB2)){
-        $DB2 = new DB('staff');
-    }
-    return $DB2->qwe($sql,$args);
+    return DB::qwe($sql, $args, 'staff');
 }
 
 function getRoot(): string
@@ -88,11 +80,13 @@ function getRoot(): string
 function getServerEnvClass(): ServerEnvITF
 {
     global $ServerEnv;
-    if(isset($ServerEnv)) {
+    if (isset($ServerEnv)) {
         return $ServerEnv;
     }
     if (PHP_SAPI === 'cli') {
-        return new ServerEnvCli();
+        $ServerEnv = new ServerEnvCli();
+    } else {
+        $ServerEnv = new ServerEnvHttp();
     }
-    return new ServerEnvHttp();
+    return $ServerEnv;
 }
