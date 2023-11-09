@@ -2,7 +2,6 @@
 
 namespace App\DTO;
 
-use App\ITF\AnnounceITF;
 use App\ITF\HallITF;
 use PDO;
 use Symphograph\Bicycle\DTO\DTOTrait;

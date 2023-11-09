@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace App\Img;
 
 class EntryImgPw extends Img
 {

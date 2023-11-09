@@ -1,15 +1,18 @@
 <?php
 
-namespace App;
+namespace App\Img;
 
 use Imagick;
 use ImagickException;
 use ImagickPixel;
+use Symphograph\Bicycle\DTO\BindTrait;
 use Symphograph\Bicycle\Env\Server\ServerEnv;
 use Symphograph\Bicycle\FileHelper;
 
 class Img
 {
+    use BindTrait;
+
     public string $md5      = '';
     public bool   $exist    = false;
     public int    $width    = 0;
@@ -17,103 +20,93 @@ class Img
     public string $verLink  = '';
     public string $fileName = '';
     public string $ext      = '';
+    private string $fullPath = '';
 
 
-    public function __construct(public string $file = '')
+    public function __construct(public string $relPath = '')
     {
-        return self::initFileInfo($file);
+        if(empty($relPath)){
+            return;
+        }
+
+        $this->relPath = str_replace('%20', ' ', $this->relPath);
+        $this->fullPath = FileHelper::fullPath($this->relPath);
+
+        self::initFileInfo();
     }
 
-    protected function initFileInfo(string $file): bool
+    protected function initFileInfo(): void
     {
-        if (empty($file)) {
-            return false;
-        }
-        $this->file = str_replace('%20', ' ', $this->file);
-        $file = ServerEnv::DOCUMENT_ROOT() . '/' . $this->file;
-        $this->fileName = basename($file);
-        $this->ext = pathinfo($file, PATHINFO_EXTENSION);
-        $this->exist = file_exists($file) && !is_dir($file);
+        $this->fileName = basename($this->fullPath);
+        $this->ext = pathinfo($this->fullPath, PATHINFO_EXTENSION);
+        $this->exist = FileHelper::fileExists($this->fullPath);
         if (!$this->exist) {
-            //printr($file);
-            return false;
+            return;
         }
 
+        $this->verLink = self::versioner();
+        $this->initSize();
+    }
+
+    private function initSize(): void
+    {
+        $fullPath = FileHelper::fullPath($this->relPath);
+
         try {
-            $image = new Imagick($file);
+            $image = new Imagick($fullPath);
 
             $this->width = $image->getImageWidth();
             $this->height = $image->getImageHeight();
-            $this->verLink = self::versioner();
-
-            return true;
+            return;
         } catch (ImagickException $e) {
-            return false;
+            return;
         }
-
-
     }
 
     private function versioner(): string
     {
-
         if (!$this->exist) {
             return '';
         }
 
-        $file = ServerEnv::DOCUMENT_ROOT() . '/' . $this->file;
-        $this->md5 = md5_file($file);
+        $this->md5 = md5_file($this->fullPath);
 
-        return $this->file . '?ver=' . $this->md5;
+        return $this->relPath . '?ver=' . $this->md5;
     }
 
-    public static function getVerLink(string $file): string
+    public static function getVerLink(string $relPath): string
     {
-        return (new Img($file))->verLink;
+        return (new Img($relPath))->verLink;
     }
 
-    public static function printInNews(int $id, string $file): string
+    public static function uplErrors(array $file): string|bool
     {
-        if (empty($file)) {
-            return '';
-        }
+        return match (true) {
 
-        $fileName = pathinfo($file, PATHINFO_BASENAME);
+            !empty($file['error']),
 
-        if (
-            str_starts_with(ServerEnv::SCRIPT_NAME(), '/api/')
-            ||
-            str_starts_with(ServerEnv::SCRIPT_NAME(), '/test')
-        ) {
-            $img = "![]($fileName)";
+                empty($file['tmp_name']),
 
-        } else {
-            $link = Entry::imgFolder . '/' . $id . '/' . $fileName;
-            $img = "<img src='$link' class='newsImg' alt=''>";
-        }
+                $file['tmp_name'] == 'none'
 
-        return $img;
-    }
+                => 'Не удалось загрузить файл.',
 
-    public static function uplErors(array $file): string|bool
-    {
-        if (!empty($file['error']) || empty($file['tmp_name']) || $file['tmp_name'] == 'none') {
-            return 'Не удалось загрузить файл.';
-        }
+            empty($file['name']),
 
-        if (empty($file['name']) || !is_uploaded_file($file['tmp_name'])) {
-            return 'Ошибка при загрузке.';
-        }
+                !is_uploaded_file($file['tmp_name'])
 
-        if (!self::isImage($file['tmp_name'])) {
-            return 'Недопустимый формат изображения.';
-        }
+                => 'Ошибка при загрузке.',
 
-        if ($file['size'] > 50000000) {
-            return 'Файл слишком большой.';
-        }
+            !self::isImage($file['tmp_name'])
 
-        return false;
+                => 'Недопустимый формат изображения.',
+
+            $file['size'] > 50000000
+
+                => 'Файл слишком большой.',
+
+            default => false
+        };
     }
 
     public static function isImage(string $file): bool|string
@@ -151,7 +144,7 @@ class Img
 
     }
 
-    public static function imgSizeOptimal(): int
+    public static function getOptimalSize(): int
     {
         $agent = get_browser();
         if ($agent->ismobiledevice) {
@@ -182,9 +175,8 @@ class Img
             }
             $image->setCompression(Imagick::COMPRESSION_JPEG);
             $image->setImageCompressionQuality(70);
-            FileHelper::forceDir($to, 1);
+            FileHelper::forceDir($to);
             $image->writeImage(ServerEnv::DOCUMENT_ROOT() . '/' . $to);
-
 
         } catch (ImagickException $e) {
             return false;

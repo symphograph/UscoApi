@@ -3,7 +3,7 @@
 namespace App\Feedback;
 
 use JetBrains\PhpStorm\Language;
-use Symphograph\Bicycle\Errors\EmailErr;
+
 
 final class FormHandlerLax extends FormHandler
 {

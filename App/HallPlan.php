@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-use App\DTO\AnnounceDTO;
+use App\Announce\AnnounceDTO;
 use App\DTO\HallPlanDTO;
 use App\ITF\HallPlanITF;
 use Symphograph\Bicycle\DTO\ModelTrait;
@@ -62,7 +62,7 @@ class HallPlan extends HallPlanDTO implements HallPlanITF
         inner join hallPlans hp 
             on an.id = hp.id
             and an.hallId = :hallId
-        order by an.datetime desc limit 1",
+        order by an.eventTime desc limit 1",
             ['hallId' => $hallId]
         );
         if(!$qwe || !$qwe->rowCount()){

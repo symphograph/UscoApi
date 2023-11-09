@@ -1,7 +1,7 @@
 <?php
 require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
 
-use App\{EntryImg, User};
+use App\{Img\EntryImg, User};
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\Errors\ValidationErr;

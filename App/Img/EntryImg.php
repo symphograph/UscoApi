@@ -1,78 +1,82 @@
 <?php
-namespace App;
+
+namespace App\Img;
+
+use App\Entry\Entry;
 use Symphograph\Bicycle\Env\Server\ServerEnv;
 use Symphograph\Bicycle\FileHelper;
+
 class EntryImg extends Img
 {
     public string|bool $error   = '';
     public string      $src1080 = '';
-    public string      $src260 = '';
+    public string      $src260  = '';
     public string      $srcOrig = '';
 
     public static function upload(array $FILE, bool $isPw = false): EntryImg
     {
         $EntryImg = new EntryImg();
 
-        $er = Img::uplErors($FILE);
-        if($er){
+        $er = Img::uplErrors($FILE);
+        if ($er) {
             $EntryImg->error = $er;
             return $EntryImg;
         }
         $id = intval($_POST['id'] ?? 0);
-        if(!$id){
+        if (!$id) {
             $EntryImg->error = 'Ошибка id';
             return $EntryImg;
         }
 
-        if(!$EntryImg->createNameAndLinks($id, $FILE['tmp_name'],$FILE['name'], $isPw)){
+        if (!$EntryImg->createNameAndLinks($id, $FILE['tmp_name'], $FILE['name'], $isPw)) {
             $EntryImg->error = 'Ошибка при переименовании файла';
             return $EntryImg;
         }
 
-        if($isPw)
+        if ($isPw)
             Entry::delPw($id);
 
-        if(!$EntryImg->putToOriginals($FILE['tmp_name'])){
+        if (!$EntryImg->putToOriginals($FILE['tmp_name'])) {
             $EntryImg->error = 'Ошибка при сохранении оригинала';
             return $EntryImg;
         }
 
-        $EntryImg->initFileInfo($EntryImg->file);
-        if(!$EntryImg->exist){
+        $EntryImg->initFileInfo($EntryImg->relPath);
+        if (!$EntryImg->exist) {
             $EntryImg->error = 'Ошибка при сохранении оригинала';
             return $EntryImg;
         }
 
         $width = ($EntryImg->width > 1080) ? 1080 : 0;
-        if(!self::optimize($EntryImg->file,$EntryImg->src1080,$width)){
+        if (!self::optimize($EntryImg->relPath, $EntryImg->src1080, $width)) {
             $EntryImg->error = 'Ошибка при сжатии';
             return $EntryImg;
         }
-        if(!$isPw)
+        if (!$isPw)
             return new EntryImg($EntryImg->src1080);
 
         $width = ($EntryImg->width > 260) ? 260 : 0;
-        if(!self::optimize($EntryImg->file,$EntryImg->src260,$width)){
+        if (!self::optimize($EntryImg->relPath, $EntryImg->src260, $width)) {
             $EntryImg->error = 'Ошибка при сжатии';
             return $EntryImg;
         }
         return new EntryImg($EntryImg->src1080);
     }
 
-    private function createNameAndLinks(int $id,string $file, string $filename,bool $isPw = false) : bool
+    private function createNameAndLinks(int $id, string $file, string $filename, bool $isPw = false): bool
     {
-        if(!$id){
+        if (!$id) {
             return false;
         }
         $pw = $isPw ? '/pw/' : '/';
 
-        $this->fileName = md5_file(FileHelper::addRoot($file));
+        $this->fileName = md5_file(FileHelper::fullPath($file));
 
-        $this->ext = pathinfo($filename,PATHINFO_EXTENSION);
-        $this->file = '/img/entry/origins/' . $id . $pw . $this->fileName . '.' . strtolower($this->ext);
+        $this->ext = pathinfo($filename, PATHINFO_EXTENSION);
+        $this->relPath = '/img/entry/origins/' . $id . $pw . $this->fileName . '.' . strtolower($this->ext);
         $this->src1080 = Entry::imgFolder . '/' . $id . $pw . $this->fileName . '.jpg';
 
-        if($isPw)
+        if ($isPw)
             $this->src260 = '/img/entry/260/' . $id . $pw . $this->fileName . '.jpg';
 
 
@@ -81,7 +85,7 @@ class EntryImg extends Img
 
     private function putToOriginals(string $from): bool
     {
-        return FileHelper::moveUploaded($from, ServerEnv::DOCUMENT_ROOT() . $this->file);
+        return FileHelper::moveUploaded($from, ServerEnv::DOCUMENT_ROOT() . $this->relPath);
     }
 
 }

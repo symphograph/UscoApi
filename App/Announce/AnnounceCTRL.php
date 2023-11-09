@@ -1,10 +1,10 @@
 <?php
 
-namespace App\CTRL;
+namespace App\Announce;
 
 
-use App\Announce\Announce;
-use App\Poster;
+use App\Img\PosterMain;
+use App\Img\PosterSketch;
 use App\User;
 use Exception;
 use Symphograph\Bicycle\Api\Response;
@@ -13,43 +13,48 @@ use Symphograph\Bicycle\Errors\NoContentErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 use Symphograph\Bicycle\JsonDecoder;
 
-class AnnounceCTRL extends \App\Announce\Announce
+class AnnounceCTRL
 {
     public static function listByHall(): void
     {
-        if (empty(intval($_POST['hallId'] ?? false))) {
-            throw new ValidationErr();
+        $hallId = intval($_POST['hallId'] ?? 0) or throw new ValidationErr();
+
+        $AnnounceList = AnnounceList::byHall($hallId);
+        if(empty($AnnounceList->getList())){
+            throw new NoContentErr(httpStatus: 204);
         }
+        $AnnounceList->initData();
 
-        $Announces = self::hallCacheList($_POST['hallId'])
-        or Response::error('No content', 204);
-
-        Response::data($Announces);
+        Response::data($AnnounceList->getList());
     }
 
     public static function listByYear(): void
     {
-        if (empty(intval($_POST['year'] ?? false))) {
-            throw new ValidationErr();
+        $year = intval($_POST['year'] ?? 0) or throw new ValidationErr();
+
+        $AnnounceList = AnnounceList::byYear($year);
+        if(empty($AnnounceList->getList())){
+            throw new NoContentErr();
         }
+        $AnnounceList->initData();
 
-        $Announces = self::yearCacheList($_POST['year'])
-            or throw new NoContentErr();
-
-        Response::data($Announces);
+        Response::data($AnnounceList->getList());
     }
 
     public static function futureList(): void
     {
-        $Announces = self::futureCacheList()
-            or throw new NoContentErr();
+        $AnnounceList = AnnounceList::byFuture();
+        if(empty($AnnounceList->getList())){
+            throw new NoContentErr();
+        }
+        $AnnounceList->initData();
 
-        Response::data($Announces);
+        Response::data($AnnounceList->getList());
     }
 
     public static function allList(): void
     {
-        $Announces = self::allCacheList()
+        $Announces = Announce::allCacheList()
             or throw new NoContentErr();
 
         $arr = [];
@@ -71,10 +76,10 @@ class AnnounceCTRL extends \App\Announce\Announce
         $id = intval($_POST['id'] ?? 0)
         or throw new ValidationErr('id');
 
-        self::reCache($id);
-        $Announce = self::byCache($id)
+        $Announce = Announce::byId($id)
         or throw new AppErr('Announce::byCache err', 'Анонс не найден');
 
+        $Announce->initData();
         Response::data($Announce);
     }
 
@@ -82,17 +87,8 @@ class AnnounceCTRL extends \App\Announce\Announce
     {
         User::auth([1, 2, 4]);
 
-        $id = intval($_POST['id'] ?? 0)
-        or throw new ValidationErr('id');
-
-        try {
-            self::delete($_POST['id']);
-            Poster::delPosters($id);
-            Poster::delTopps($id);
-        } catch (Exception $err) {
-            throw new AppErr($err->getMessage(), 'Ошибка при удалении');
-        }
-
+        $announceId = intval($_POST['id'] ?? 0) or throw new ValidationErr();
+        Announce::delete($announceId);
         Response::success();
     }
 
@@ -100,7 +96,7 @@ class AnnounceCTRL extends \App\Announce\Announce
     {
         User::auth([1, 2, 4]);
 
-        $Announce = self::addNewAnnounce() or
+        $Announce = Announce::create() or
         throw new AppErr('addNewAnnounce err');
 
         Response::data($Announce);
@@ -114,8 +110,8 @@ class AnnounceCTRL extends \App\Announce\Announce
         if (empty($_POST['announce']))
             throw new ValidationErr('announce is empty');
 
-        /** @var Announce $Announce */
-        $Announce = JsonDecoder::cloneFromAny($_POST['announce'], self::class);
+       /** @var Announce $Announce */
+       $Announce = JsonDecoder::cloneFromAny($_POST['announce'], Announce::class);
 
         $Announce->putToDB();
 

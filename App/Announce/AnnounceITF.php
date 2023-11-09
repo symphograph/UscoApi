@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ITF;
+namespace App\Announce;
 
 interface AnnounceITF
 {

@@ -1,11 +1,9 @@
 <?php
 namespace App;
 
-use PDO;
+
 use Symphograph\Bicycle\Env\Server\ServerEnv;
-use Symphograph\Bicycle\Errors\AuthErr;
 use Symphograph\Bicycle\Token\AccessToken;
-use Symphograph\Bicycle\Token\AccessTokenData;
 use Symphograph\Bicycle\Token\Token;
 
 class User

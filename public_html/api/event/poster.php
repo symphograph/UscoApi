@@ -1,7 +1,6 @@
 <?php
 
-
-use App\CTRL\HallPlanCTRL;
+use App\Img\PosterCTRL;
 use Symphograph\Bicycle\Errors\ApiErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 
@@ -11,9 +10,9 @@ if (empty($_POST['method'])) {
     throw new ValidationErr();
 }
 
-
 match ($_POST['method']) {
-    'get' => HallPlanCTRL::get(),
-    'put' => HallPlanCTRL::put(),
+    'del' => PosterCTRL::del(),
+    'add' => PosterCTRL::add(),
+    'get' => PosterCTRL::get(),
     default => throw new ApiErr()
 };

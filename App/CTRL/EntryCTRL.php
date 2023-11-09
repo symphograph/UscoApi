@@ -2,14 +2,14 @@
 
 namespace App\CTRL;
 
-use App\Entry;
+use App\Entry\Entry;
 use App\User;
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 use Symphograph\Bicycle\Helpers;
 
-class EntryCTRL extends Entry
+class EntryCTRL
 {
     public static function add(): void
     {
