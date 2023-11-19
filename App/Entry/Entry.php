@@ -2,326 +2,136 @@
 
 namespace App\Entry;
 
-use App\Img\Img;
-use JetBrains\PhpStorm\Pure;
-use PDO;
-use PDOStatement;
-use Symphograph\Bicycle\Env\Server\ServerEnv;
+use App\Entry\Sections\SectionList;
+use Symphograph\Bicycle\DTO\ModelTrait;
 use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\FileHelper;
+use Symphograph\Bicycle\PDO\DB;
 
-class Entry
+class Entry extends EntryDTO
 {
-    const imgFolder     = '/img/entry/1080/';
-    const defaultCategs = [
-        0 => false,
-        1 => false,
-        2 => false,
-        3 => false
-    ];
-    public int         $id           = 0;
-    public string|null $title        = '';
-    public string|null $descr        = '';
-    public string|null $content      = '';
-    public string|null $markdown     = '';
-    public array|null  $parsedMD     = [];
-    public string|null $img          = '';
-    public string|null $date         = '';
-    public int|null    $isShow       = 0;
-    public int|null    $evid         = 0;
-    public string|null $link         = '';
-    public string|null $refName      = '';
-    public string|null $refLink      = '';
-    public Img|bool    $pwImg        = false;
-    public string|null $cache        = '{}';
-    public array       $Images       = [];
-    public string|null $html         = '';
-    public array       $usedImages   = [];
-    public array       $unusedImages = [];
-    public string|null $catindex     = '0|0|0|0';
-    public string|null $concategs    = '';
-    public array       $categs       = [];
+    use ModelTrait;
 
-    #[Pure] public static function clone(Entry $q): Entry
-    {
-        $Entry = new Entry();
-        foreach ($q as $k => $v) {
-            if (empty($v)) continue;
-            $Entry->$k = $v;
-        }
-        return $Entry;
-    }
+    const imgFolder     = '/img/entry/photo';
+    const defaultSize = 1080;
 
-    public static function getCollection(int $year = 0, array $categories = self::defaultCategs, int $limit = 1000): array
-    {
-        $categories = array_filter($categories);
-        $categoryIDs = array_keys($categories);
-
-        $params['categoryIDs'] = $categoryIDs;
-        $params['year'] = $year ?? date('Y');
-        $params['year2'] = $params['year'];
-        if ($limit === 5) {
-            $params['year2'] = $params['year'] - 1;
-        }
-
-        $limit = ' LIMIT ' . $limit;
-
-
-        $qwe = qwe("
-            SELECT news.*, 
-            GROUP_CONCAT(nn.categ_id) as concategs FROM news
-            INNER JOIN nn_EntryCategs as nn ON news.id = nn.entry_id
-            AND nn.categ_id in (:categoryIDs)
-            AND (YEAR(news.date) = :year or YEAR(news.date) = :year2)
-            GROUP BY news.id
-            ORDER BY news.date DESC" . $limit,
-            $params
-        );
-        if (!$qwe || !$qwe->rowCount())
-            return [];
-
-        $rows = $qwe->fetchAll(PDO::FETCH_CLASS, self::class);
-
-        $Entries = [];
-        foreach ($rows as $Entry) {
-            $Entries[] = self::byQ($Entry);
-        }
-        return $Entries;
-    }
-
-    public static function byQ(Entry $Entry): Entry|bool
-    {
-        $images = self::getImages($Entry->id);
-        $Entry->img = self::getPw($Entry->id);
-        $Entry->Images = self::getAllImages($Entry->id, $images);
-        $Entry->parsedMD = self::explodeHTMLByTags($Entry->markdown);
-        $Entry->usedImages = self::getUsedImages($Entry->parsedMD);
-        $Entry->unusedImages = $Entry->getUnusedImages();
-        $Entry->categs = self::categsByConcategs($Entry->concategs ?? '');
-        if (empty($Entry->date)) {
-            $Entry->date = date('Y-m-d');
-        }
-        return $Entry;
-    }
-
+    public ?array $parsedMD     = [];
+    public array  $Images       = [];
+    public array  $usedImages   = [];
+    public array  $unusedImages = [];
+    
     /**
-     * Возвращает массив имен
+     * @var Category[]
      */
-    public static function getImages(int $id): array
+    public array $categs = [];
+
+    public static function create(): bool|Entry
     {
-        $dir = ServerEnv::DOCUMENT_ROOT() . Entry::imgFolder . $id;
-        return FileHelper::FileList($dir);
-    }
+        $EntryDTO = EntryDTO::byId(1) or
+        throw new AppErr('Entry id 1 is empty','Ошибка извлечения');
+        unset($EntryDTO->id);
+        $EntryDTO->date = date('Y-m-d');
+        $EntryDTO->putToDB();
 
-    private static function getPw(int $id): string
-    {
-        $size = 260;
-        $agent = get_browser();
-        if ($agent->ismobiledevice) {
-            $size = 1080;
-        }
-        $path = '/img/entry/' . $size . '/' . $id . '/pw/';
-        $fileName = FileHelper::FileList($path)[0] ?? false;
-        if (!$fileName) {
-            return '/img/entry/default.svg';
-        }
-        return $path . $fileName;
-    }
-
-    /**
-     * Возвращает массив объектов Img
-     */
-    public static function getAllImages(int $id, array $images): array
-    {
-        $arr = [];
-        foreach ($images as $img) {
-            $arr[] = new Img(Entry::imgFolder . $id . '/' . $img);
-        }
-        return $arr;
-    }
-
-    public static function explodeHTMLByTags(string $text): array
-    {
-        $parts = self::explodeHTMLByType($text, 'img');
-        $partsByVideo = [];
-        foreach ($parts as $part) {
-            if ($part['type'] != 'text') {
-                $partsByVideo[] = $part;
-                continue;
-            }
-            $partsV = self::explodeHTMLByType($part['content'], 'video');
-            foreach ($partsV as $p) {
-                $partsByVideo[] = $p;
-            }
-        }
-        return $partsByVideo;
-    }
-
-    public static function explodeHTMLByType(string $text, string $tag = 'img'): array
-    {
-        if (empty($text))
-            return [];
-
-        $pregs = [
-            'img'   => '#!\[]\((.*?)\)#',
-            'video' => '#!\[video]\((.*?)\)#'
-        ];
-
-        $preg = $pregs[$tag] ?? false;
-        if (!$preg) {
-            return [['type' => 'text', 'content' => $text]];
-        }
-
-
-        preg_match_all($preg, $text, $res);
-
-        if (empty($res[0]))
-            return [['type' => 'text', 'content' => $text]];
-
-        $newText = $text . '---end';
-        $parts = [];
-        foreach ($res[0] as $k => $val) {
-            $exoloded = explode($val, $newText);
-
-            $part = str_replace('---end', '', $exoloded[0]);
-            $part = trim($part);
-            if (!empty($part))
-                $parts[] = ['type' => 'text', 'content' => $part];
-
-            $src = $res[1][$k];
-            $parts[] = ['type' => $tag, 'content' => $src];
-
-            if (empty($exoloded[1])) continue;
-            $newText = $exoloded[1];
-        }
-        $newText = str_replace('---end', '', $newText);
-        $newText = trim($newText);
-        if (!empty($newText))
-            $parts[] = ['type' => 'text', 'content' => $newText];
-
-        return $parts;
-    }
-
-    public static function getUsedImages(array $parsedMD): array
-    {
-        $arr = [];
-        foreach ($parsedMD as $section) {
-            if ($section['type'] == 'img') {
-                $arr[] = $section['content'] ?? null;
-            }
-        }
-        return $arr;
-    }
-
-    private function getUnusedImages(): array
-    {
-        return array_diff(self::getImages($this->id), $this->usedImages);
-    }
-
-    public static function categsByConcategs(string $concategs): array
-    {
-        $arr = self::defaultCategs;
-        $categs = explode(',', $concategs);
-        foreach (self::defaultCategs as $k => $v) {
-            $arr[$k] = in_array($k, $categs);
-        }
-        return $arr;
-    }
-
-    public static function delPw(int $id): void
-    {
-        $sizes = [260, 1080];
-        foreach ($sizes as $size) {
-            $dir = '/img/entry/' . $size . '/' . $id . '/pw/';
-            FileHelper::delDir($dir);
-        }
-    }
-
-    public static function addNewEntry(): bool|Entry
-    {
-        $id = self::createNewID();
-        if (!$id)
-            return false;
-
-        $Entry = Entry::byId(1) or
-        throw new AppErr('Ошибка извлечения');
-
-        $Entry->id = $id;
-        $Entry->putToDB();
-
+        $id = DB::lastId();
+        $Entry = Entry::byId($id) or
+        throw new AppErr( 'create Entry error','Ошибка при создании');
 
         return $Entry;
     }
 
-    private static function createNewID(): int
+    public function initData(): void
     {
-        $qwe = qwe("SELECT max(id)+1 as id FROM news");
-        if (!$qwe or !$qwe->rowCount()) {
-            return 0;
+        if (empty($this->date)) {
+            $this->date = date('Y-m-d');
         }
-        return $qwe->fetchObject()->id ?? 0;
+
+        if (empty($this->verString)) {
+            $this->initNewVerString();
+            $this->putToDB();
+        }
+
+        $this->initCategories();
+        $this->initParsedMD();
+        $this->initAllImages();
+        $this->initUsedImages();
+        $this->initUnusedImages();
     }
 
-    public static function byId(int $id): Entry|bool
+    public function initNewVerString(): void
     {
-        $qwe = qwe("
-            select news.*, 
-            GROUP_CONCAT(nn.categ_id) as concategs 
-            from news 
-            left join nn_EntryCategs as nn ON news.id = nn.entry_id
-            where id = :id
-            group by id",
-            compact('id')
-        );
-        if (!$qwe || !$qwe->rowCount())
-            return false;
-
-        $q = $qwe->fetchObject(get_class());
-        return self::byQ($q);
+        $this->verString = bin2hex(random_bytes(12));
     }
 
     public function putToDB(): void
     {
+        //printr($this);
         qwe("START TRANSACTION");
-        qwe("
-                REPLACE INTO news 
-                (id, title, descr, content, markdown, date, isShow, evid, refName, refLink) 
-                        VALUES 
-               (:id, :title, :descr, :content, :markdown, :date, :isShow, :evid, :refName, :refLink)",
-            [
-                'id'       => $this->id,
-                'title'    => $this->title,
-                'descr'    => $this->descr,
-                'content'  => $this->content,
-                'markdown' => $this->markdown,
-                'date'     => $this->date,
-                'isShow'   => $this->isShow,
-                'evid'     => $this->evid,
-                'refName'  => $this->refName,
-                'refLink'  => $this->refLink
-            ]);
+        $parent = parent::byBind($this);
+        $parent->putToDB();
+
 
         qwe("DELETE FROM nn_EntryCategs WHERE entry_id = :id", ['id' => $this->id]);
-        $categs = array_filter($this->categs);
-        foreach ($categs as $k => $v) {
-            qwe("REPLACE INTO nn_EntryCategs (entry_id, categ_id) VALUES (:id,:cid)",
-                ['id' => $this->id, 'cid' => $k]
+
+        foreach ($this->categs as $category) {
+            if (!$category->checked) {
+                continue;
+            }
+            qwe("
+                REPLACE INTO nn_EntryCategs 
+                    (entry_id, categ_id) 
+                VALUES 
+                    (:entryId, :categId)",
+                [
+                    'entryId' => $this->id,
+                    'categId' => $category->id
+                ]
             );
         }
-        self::reCache($this->id);
         qwe("COMMIT");
     }
 
-    public static function reCache(int $id): bool|PDOStatement
+    private function initCategories(): void
     {
-        $Entry = Entry::byId($id);
-        return qwe("UPDATE news SET cache = :cache WHERE id = :id",
-            ['id' => $id, 'cache' => json_encode($Entry)]
-        );
+        $categList = CategList::byEntryId($this->id);
+        $this->categs = $categList->getList();
     }
 
-    public function __set($name, $value)
+    private function initParsedMD(): void
     {
+        $sectionList = SectionList::byRawContent($this->markdown);
+        $this->parsedMD = $sectionList->getList();
+    }
+
+    private function initAllImages(): void
+    {
+        $this->Images = $this->getImgFileNames();
+    }
+
+    /**
+     * Возвращает FileName[] изображений
+     */
+    private function getImgFileNames(): array
+    {
+        $relDir = self::imgFolder . '/' . $this->id . '/' . self::defaultSize;
+        $fullDir = FileHelper::fullPath($relDir);
+        return FileHelper::FileList($fullDir);
+    }
+
+    private function initUsedImages(): void
+    {
+        $arr = [];
+        foreach ($this->parsedMD as $section) {
+            if ($section->type === 'img') {
+                $arr[] = $section->content;
+            }
+        }
+        $this->usedImages = $arr;
+    }
+
+    private function initUnusedImages(): void
+    {
+        $this->unusedImages = array_diff($this->Images, $this->usedImages);
     }
 
 }

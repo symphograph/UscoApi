@@ -1,12 +1,14 @@
 <?php
 
-namespace App\CTRL;
+namespace App\Entry;
 
-use App\Entry\Entry;
+use App\Entry\List\EntryList;
+use App\Img\Entry\EntrySketch;
 use App\User;
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
+use Symphograph\Bicycle\FileHelper;
 use Symphograph\Bicycle\Helpers;
 
 class EntryCTRL
@@ -15,7 +17,7 @@ class EntryCTRL
     {
         User::auth([1, 2, 4]);
 
-        $Entry = Entry::addNewEntry() or
+        $Entry = Entry::create() or
         throw new AppErr('addNewEntry err', 'Не удалось добавить новость');
 
         Response::data($Entry);
@@ -28,37 +30,28 @@ class EntryCTRL
 
         $Entry = Entry::byId($id) or
         throw new AppErr("Entry $id is empty", 'Новость не найдена');
+        $Entry->initData();
 
         Response::data($Entry);
     }
 
     public static function list(): void
     {
-        $category = ($_POST['category'] ?? false) or
-        throw new ValidationErr('category', 'Категория не найдена');
-
-        if (!$year = intval($_POST['year'] ?? 0)) {
-            $year = intval(date('Y', time()));
+        $year = intval($_POST['year'] ?? 0);
+        $category = $_POST['category'] ?? 'all';
+        if($category === 'all') {
+            $list = EntryList::byYear($year);
+        } else {
+            $list = EntryList::byCategory($year, $category);
         }
 
-        $limit = intval($_POST['limit'] ?? 1000);
+        Response::data($list->getList());
+    }
 
-        $filters = [
-            'usco'    => [0, 1, 1, 0],
-            'euterpe' => [0, 0, 1, 0],
-            'other'   => [0, 0, 0, 1],
-            'all'     => [0, 1, 1, 1]
-        ];
-
-
-        if(!array_key_exists($_POST['category'], $filters)){
-            throw new ValidationErr('category', 'Категория не найдена');
-        }
-
-        $Item = Entry::getCollection($year, $filters[$category], $limit) or
-        throw new AppErr('Entry::getCollection is empty', 'Нет новостей');
-
-        Response::data($Item);
+    public static function toplist(): void
+    {
+        $list = EntryList::top();
+        Response::data($list->getList());
     }
 
     public static function update(): void
@@ -89,12 +82,51 @@ class EntryCTRL
         $Entry->markdown = $newEntry['markdown'] or
         throw new ValidationErr('markdown err', 'Пустой текст');
 
-        $Entry->categs = $newEntry['categs'] or
-        throw new ValidationErr('categs err', 'Ошибка определения категорий');
+
+        $categList = CategList::byBind($newEntry['categs']);
+        $Entry->categs = $categList->getList();
 
         $Entry->refLink = $newEntry['refLink'] ?? '';
         $Entry->refName = $newEntry['refName'] ?? '';
 
+        $Entry->putToDB();
+
+        Response::success();
+    }
+
+    public static function del(): void
+    {
+        User::auth([1, 2, 4]);
+
+        $entryId = $_POST['entryId'] ?? throw new ValidationErr();
+        Entry::delById($entryId);
+        $Sketch = new EntrySketch($entryId);
+        $Sketch->delFiles();
+        $photoFolder = Entry::imgFolder . '/' . $entryId;
+        $photoFolder = FileHelper::fullPath($photoFolder);
+        FileHelper::delDir($photoFolder);
+        Response::success();
+    }
+
+    public static function hide(): void
+    {
+        User::auth([1, 2, 4]);
+
+        $entryId = intval($_POST['entryId']) or throw new ValidationErr();
+        $Entry = EntryDTO::byId($entryId);
+        $Entry->isShow = false;
+        $Entry->putToDB();
+
+        Response::success();
+    }
+
+    public static function show(): void
+    {
+        User::auth([1, 2, 4]);
+
+        $entryId = intval($_POST['entryId']) or throw new ValidationErr();
+        $Entry = EntryDTO::byId($entryId);
+        $Entry->isShow = true;
         $Entry->putToDB();
 
         Response::success();

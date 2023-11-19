@@ -19,5 +19,7 @@ match ($_POST['method']) {
     'del' => AnnounceCTRL::del(),
     'add' => AnnounceCTRL::add(),
     'update' => AnnounceCTRL::update(),
+    'hide' => AnnounceCTRL::hide(),
+    'show' => AnnounceCTRL::show(),
     default => throw new ApiErr()
 };

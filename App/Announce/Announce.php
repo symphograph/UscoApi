@@ -3,8 +3,8 @@
 namespace App\Announce;
 
 use App\DTO\HallDTO;
-use App\Img\PosterMain;
-use App\Img\PosterSketch;
+use App\Img\Announce\AnnouncePoster;
+use App\Img\Announce\AnnounceSketch;
 use ReflectionException;
 use Symphograph\Bicycle\DTO\ModelTrait;
 use Symphograph\Bicycle\Errors\AppErr;
@@ -88,9 +88,9 @@ class Announce extends AnnounceDTO
     {
         // parent::delById($id);
         qwe("DELETE FROM announces WHERE id = :id AND id != 1", ['id' => $id]);
-        $Poster = new PosterMain($id);
+        $Poster = new AnnouncePoster($id);
         $Poster->delFiles();
-        $Sketch = new PosterSketch($id);
+        $Sketch = new AnnounceSketch($id);
         $Sketch->delFiles();
     }
 

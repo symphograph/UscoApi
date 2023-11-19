@@ -2,6 +2,7 @@
 
 namespace App\Announce;
 
+use App\DTO\AbstractList;
 use PDO;
 
 class AnnounceList
@@ -64,4 +65,5 @@ class AnnounceList
     {
         return $this->list;
     }
+
 }

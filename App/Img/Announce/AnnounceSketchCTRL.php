@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Img;
+namespace App\Img\Announce;
 
 use App\Announce\Announce;
+use App\Img\FileImg;
 use App\User;
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\ValidationErr;
 
-class PosterCTRL
+class AnnounceSketchCTRL
 {
     public static function add(): void
     {
@@ -21,8 +22,9 @@ class PosterCTRL
 
         $file = array_shift($_FILES);
         $file = new FileImg($file);
-        $Poster = new PosterMain($announceId);
-        $Poster->upload($file);
+        $Sketch = new AnnounceSketch($announceId);
+        $Sketch->delFiles();
+        $Sketch->upload($file);
 
         $Announce = Announce::byId($announceId);
         $Announce->initNewVerString();
@@ -37,8 +39,8 @@ class PosterCTRL
 
         $announceId = intval($_POST['announceId'] ?? 0) or throw new ValidationErr();
 
-        $Poster = new PosterMain($announceId);
-        $Poster->delFiles();
+        $Sketch = new AnnounceSketch($announceId);
+        $Sketch->delFiles();
 
         $Announce = Announce::byId($announceId);
         $Announce->initNewVerString();
@@ -47,7 +49,4 @@ class PosterCTRL
         Response::success();
     }
 
-    public static function get()
-    {
-    }
 }

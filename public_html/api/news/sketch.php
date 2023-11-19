@@ -1,6 +1,6 @@
 <?php
 
-use App\Img\Announce\PosterCTRL;
+use App\Img\Entry\EntrySketchCTRL;
 use Symphograph\Bicycle\Errors\ApiErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 
@@ -11,7 +11,7 @@ if (empty($_POST['method'])) {
 }
 
 match ($_POST['method']) {
-    'del' => PosterCTRL::del(),
-    'add' => PosterCTRL::add(),
+    'del' => EntrySketchCTRL::del(),
+    'add' => EntrySketchCTRL::add(),
     default => throw new ApiErr()
 };

@@ -3,10 +3,7 @@
 namespace App\Announce;
 
 
-use App\Img\PosterMain;
-use App\Img\PosterSketch;
 use App\User;
-use Exception;
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\Errors\NoContentErr;
@@ -117,6 +114,24 @@ class AnnounceCTRL
 
         Response::data($Announce);
 
+    }
+
+    public static function hide(): void
+    {
+        $announceId = intval($_POST['announceId'] ?? 0) or throw new ValidationErr();
+        $Announce = AnnounceDTO::byId($announceId);
+        $Announce->isShow = false;
+        $Announce->putToDB();
+        Response::success();
+    }
+
+    public static function show(): void
+    {
+        $announceId = intval($_POST['announceId'] ?? 0) or throw new ValidationErr();
+        $Announce = AnnounceDTO::byId($announceId);
+        $Announce->isShow = true;
+        $Announce->putToDB();
+        Response::success();
     }
 
 }

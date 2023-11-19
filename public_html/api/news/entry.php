@@ -1,6 +1,6 @@
 <?php
 
-use App\CTRL\EntryCTRL;
+use App\Entry\EntryCTRL;
 use Symphograph\Bicycle\Errors\ApiErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 
@@ -12,8 +12,12 @@ if (empty($_POST['method'])) {
 
 match ($_POST['method']) {
     'add' => EntryCTRL::add(),
+    'del' => EntryCTRL::del(),
     'get' => EntryCTRL::get(),
     'list' => EntryCTRL::list(),
+    'toplist' => EntryCTRL::toplist(),
     'update' => EntryCTRL::update(),
+    'hide' => EntryCTRL::hide(),
+    'show' => EntryCTRL::show(),
     default => throw new ApiErr()
 };
