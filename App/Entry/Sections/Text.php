@@ -11,6 +11,6 @@ class Text extends Section
         parent::__construct($input);
         $this->type = 'text';
         $input = str_replace(PHP_EOL, '<br>', $input);
-        $this->content = $input.'<br>';
+        $this->content = $input;
     }
 }
