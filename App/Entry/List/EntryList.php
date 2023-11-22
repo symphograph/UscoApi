@@ -71,7 +71,7 @@ class EntryList
     public static function top(): self
     {
         $EntryList = new self();
-        $qwe = qwe("select * from news order by date desc limit 5");
+        $qwe = qwe("select * from news where isShow order by date desc limit 5");
 
         $EntryList->list = $qwe->fetchAll(\PDO::FETCH_CLASS, EntryDTO::class);
         $EntryList->classMap();
