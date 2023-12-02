@@ -31,7 +31,7 @@ class AnnounceCTRL
 
         $AnnounceList = AnnounceList::byYear($year);
         if(empty($AnnounceList->getList())){
-            throw new NoContentErr();
+            throw new NoContentErr(httpStatus: 204);
         }
         $AnnounceList->initData();
 
@@ -42,7 +42,7 @@ class AnnounceCTRL
     {
         $AnnounceList = AnnounceList::byFuture();
         if(empty($AnnounceList->getList())){
-            throw new NoContentErr();
+            throw new NoContentErr(httpStatus: 204);
         }
         $AnnounceList->initData();
 
