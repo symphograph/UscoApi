@@ -8,7 +8,7 @@ use Symphograph\Bicycle\Env\Server\ServerEnv;
 use Symphograph\Bicycle\Errors\ApiErr;
 use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
-
+use Throwable;
 
 
 /**
@@ -65,7 +65,7 @@ abstract class FormHandler implements FormHandlerITF
                 $this->getSanitizedMessage(),
                 $this->getHeadersString()
             );
-        } catch (\Throwable $err) {
+        } catch (Throwable $err) {
             throw new AppErr($err->getMessage(), 'Произошла чудовищная ошибка');
         }
         if(!$result){

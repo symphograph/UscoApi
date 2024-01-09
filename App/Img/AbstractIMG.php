@@ -55,7 +55,7 @@ abstract class AbstractIMG
 
         $image->stripimage();
         $image->setImageResolution($resolution, $resolution);
-        $image->resampleImage($resolution, $resolution, \Imagick::FILTER_LANCZOS, 1);
+        $image->resampleImage($resolution, $resolution, Imagick::FILTER_LANCZOS, 1);
         $image->resizeImage($with, 0, 0, 1);
 
         FileHelper::fileForceContents($to, $image->getImageBlob());

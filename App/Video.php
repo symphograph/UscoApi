@@ -41,10 +41,10 @@ class Video
     {
         return
             <<<HTML
-            <div class="vitem" id="{$youtubeId}">
+            <div class="vitem" id="$youtubeId">
             
                 <iframe 
-                        src="https://www.youtube.com/embed/{$youtubeId}"
+                        src="https://www.youtube.com/embed/$youtubeId"
                         frameborder="0"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>

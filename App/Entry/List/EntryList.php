@@ -3,6 +3,7 @@
 namespace App\Entry\List;
 
 use App\Entry\EntryDTO;
+use PDO;
 
 class EntryList
 {
@@ -18,7 +19,7 @@ class EntryList
         $EntryList = new self();
         $qwe = qwe("select * from news order by date");
 
-        $EntryList->list = $qwe->fetchAll(\PDO::FETCH_CLASS, EntryDTO::class);
+        $EntryList->list = $qwe->fetchAll(PDO::FETCH_CLASS, EntryDTO::class);
         $EntryList->classMap();
         return $EntryList;
     }
@@ -28,7 +29,7 @@ class EntryList
         $EntryList = new self();
         $qwe = qwe("select * from news where year(date) = :year order by date desc", ['year' => $year]);
 
-        $EntryList->list = $qwe->fetchAll(\PDO::FETCH_CLASS, EntryDTO::class);
+        $EntryList->list = $qwe->fetchAll(PDO::FETCH_CLASS, EntryDTO::class);
         $EntryList->classMap();
         return $EntryList;
     }
@@ -49,7 +50,7 @@ class EntryList
             ['categId' => $categId,'year' => $year]
         );
 
-        $EntryList->list = $qwe->fetchAll(\PDO::FETCH_CLASS, EntryDTO::class);
+        $EntryList->list = $qwe->fetchAll(PDO::FETCH_CLASS, EntryDTO::class);
         $EntryList->classMap();
         return $EntryList;
     }
@@ -73,7 +74,7 @@ class EntryList
         $EntryList = new self();
         $qwe = qwe("select * from news where isShow order by date desc limit 5");
 
-        $EntryList->list = $qwe->fetchAll(\PDO::FETCH_CLASS, EntryDTO::class);
+        $EntryList->list = $qwe->fetchAll(PDO::FETCH_CLASS, EntryDTO::class);
         $EntryList->classMap();
         return $EntryList;
     }

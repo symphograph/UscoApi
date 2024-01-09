@@ -142,7 +142,7 @@ class StaffPlace
         if (!$qwe or !$qwe->rowCount()) {
             return $groups;
         }
-        $qwe = $qwe->fetchAll(PDO::FETCH_CLASS, get_class());
+        $qwe = $qwe->fetchAll(PDO::FETCH_CLASS, self::class);
         $arr = [];
 
         foreach ($qwe as $q) {

@@ -1,10 +1,9 @@
 <?php
-
-use App\Img\Entry\EntryPhoto;
+set_time_limit(600);
 use App\Img\Entry\EntryPhotoCTRL;
-use App\Img\Entry\EntrySketchCTRL;
 use Symphograph\Bicycle\Errors\ApiErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
+
 
 require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
 

@@ -13,7 +13,7 @@ use Symphograph\Bicycle\Errors\ValidationErr;
 use Symphograph\Bicycle\Token\AccessTokenData;
 
 
-class TicketCTRL extends \App\Ticket
+class TicketCTRL extends Ticket
 {
     public static function reserve(): void
     {

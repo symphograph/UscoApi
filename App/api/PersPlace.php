@@ -63,7 +63,7 @@ class PersPlace
     private static function getFirstPlace(int $persId) : self|bool
     {
         $qwe = qwe2("SELECT * FROM pers_place WHERE persId = :persId order by start LIMIT 1",['persId'=> $persId]);
-        return $qwe->fetchObject(get_class());
+        return $qwe->fetchObject(self::class);
     }
 
     private static function getNextPlace(self $Place) : self|bool
@@ -78,7 +78,7 @@ class PersPlace
         if(!$qwe or !$qwe->rowCount()){
             return false;
         }
-        return $qwe->fetchObject(get_class());
+        return $qwe->fetchObject(self::class);
     }
 
 }

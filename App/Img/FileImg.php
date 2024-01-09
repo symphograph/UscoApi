@@ -5,6 +5,7 @@ namespace App\Img;
 
 use App\Upload\File;
 use Symphograph\Bicycle\Errors\UploadErr;
+use Throwable;
 
 class FileImg extends File
 {
@@ -48,7 +49,7 @@ class FileImg extends File
 
         try {
             $is = getimagesize($this->tmpFullPath);
-        } catch (\Throwable) {
+        } catch (Throwable) {
             return false;
         }
 
