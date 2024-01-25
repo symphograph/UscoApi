@@ -4,6 +4,7 @@ namespace App\Img;
 
 
 use App\Upload\File;
+use Symphograph\Bicycle\Errors\ImgErr;
 use Symphograph\Bicycle\Errors\UploadErr;
 use Throwable;
 
@@ -67,5 +68,15 @@ class FileImg extends File
         $this->bits = $is['bits'];
 
         return true;
+    }
+
+    public function isAspectRatio16x9(): bool
+    {
+        if($this->width <= 0 || $this->height <= 0) {
+            throw new ImgErr('width & height must be > 0', 'Ширина и высота должны быть больше 0');
+        }
+
+        $aspectRatio = $this->width / $this->height;
+        return abs($aspectRatio - (16 / 9)) < 0.01;
     }
 }

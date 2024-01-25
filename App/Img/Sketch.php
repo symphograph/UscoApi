@@ -10,8 +10,7 @@ abstract class Sketch extends AbstractIMG
 {
     public function upload(FileImg $file): void
     {
-
-        if($file->height > $file->width){
+        if(!$file->isAspectRatio16x9()){
             throw new ImgErr('Invalid ratio', 'Недопустимое соотношение сторон');
         }
         $originFullPath = $this->getOriginFullPath($file->getExtension());
