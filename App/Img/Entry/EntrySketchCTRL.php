@@ -43,6 +43,7 @@ class EntrySketchCTRL
         $Sketch->delFiles();
 
         $Entry = Entry::byId($announceId);
+        $Entry->initData();
         $Entry->initNewVerString();
         $Entry->putToDB();
 

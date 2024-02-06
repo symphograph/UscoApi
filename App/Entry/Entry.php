@@ -95,6 +95,9 @@ class Entry extends EntryDTO
     {
         $categList = CategList::byEntryId($this->id);
         $this->categs = $categList->getList();
+        if (!empty($this->refLink)){
+            $this->categs[2]->checked = true;
+        }
     }
 
     private function initParsedMD(): void
