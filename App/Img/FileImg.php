@@ -24,7 +24,12 @@ class FileImg extends File
         }
     }
 
-    private function isImage(): false|string
+    public function getExtension(): string
+    {
+        return $this->ext;
+    }
+
+    private function isImage(): bool
     {
         $imgTypes = [
             0  => 'SVG',
@@ -57,6 +62,7 @@ class FileImg extends File
         if (!$is){
             return false;
         }
+        //printr($is);
 
         if (!key_exists($is[2], $imgTypes)){
             return false;
@@ -66,7 +72,6 @@ class FileImg extends File
         $this->height = $is[1];
         $this->ext = strtolower($imgTypes[$is[2]]);
         $this->bits = $is['bits'];
-
         return true;
     }
 

@@ -18,7 +18,7 @@ class EntrySketchCTRL
             throw new ValidationErr('$_FILES is empty', 'Файлы не доставлены');
         }
 
-        $entryId = intval($_POST['entryId'] ?? 0) or throw new ValidationErr();
+        $entryId = intval($_POST['id'] ?? 0) or throw new ValidationErr();
 
         $file = array_shift($_FILES);
         $file = new FileImg($file);
