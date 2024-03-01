@@ -14,6 +14,7 @@ class HallDTO implements HallITF
     public int    $id;
     public string $name;
     public string $map;
+    public ?string $address;
 
     /**
      * @return array<self>
