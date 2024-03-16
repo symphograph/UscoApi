@@ -3,48 +3,41 @@
 namespace App\Img\Announce;
 
 use App\Announce\Announce;
-use App\Img\FileImg;
+use App\Files\FileImgCTRL;
+use App\Files\UploadedImg;
 use App\User;
+use JetBrains\PhpStorm\NoReturn;
 use Symphograph\Bicycle\Api\Response;
+use Symphograph\Bicycle\Errors\Upload\EmptyFilesErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
+use Symphograph\Bicycle\HTTP\Request;
 
-class PosterCTRL
+class PosterCTRL extends FileImgCTRL
 {
     public static function add(): void
     {
         User::auth([1, 2, 4]);
+        Request::checkEmpty(['id']);
 
-        if(empty($_FILES)){
-            throw new ValidationErr('$_FILES is empty', 'Файлы не доставлены');
-        }
+        $Announce = Announce::byId($_POST['id'])
+        or throw new ValidationErr(
+            "Announce {$_POST['id']} does not exists",
+            "Анонса не существует"
+        );
 
-        $announceId = intval($_POST['announceId'] ?? 0) or throw new ValidationErr();
-
-        $file = array_shift($_FILES);
-        $file = new FileImg($file);
-        $Poster = new AnnouncePoster($announceId);
-        $Poster->delFiles();
-        $Poster->upload($file);
-
-        $Announce = Announce::byId($announceId);
-        $Announce->initNewVerString();
-        $Announce->putToDB();
+        $FileIMG = parent::addIMG(UploadedImg::getFile());
+        $FileIMG->makeSizes();
+        Announce::linkPoster($Announce->id, $FileIMG->id);
 
         Response::success();
     }
 
-    public static function del(): void
+    #[NoReturn] public static function unlink(): void
     {
         User::auth([1, 2, 4]);
+        Request::checkEmpty(['id']);
 
-        $announceId = intval($_POST['announceId'] ?? 0) or throw new ValidationErr();
-
-        $Poster = new AnnouncePoster($announceId);
-        $Poster->delFiles();
-
-        $Announce = Announce::byId($announceId);
-        $Announce->initNewVerString();
-        $Announce->putToDB();
+        Announce::unlinkPoster($_POST['id']);
 
         Response::success();
     }

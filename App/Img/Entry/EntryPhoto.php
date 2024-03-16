@@ -2,11 +2,11 @@
 
 namespace App\Img\Entry;
 
-use App\Img\FileImg;
+use App\Files\FileIMG;
+use App\Files\UploadedImg;
 use App\Img\Photo;
-use Imagick;
-use Symphograph\Bicycle\Errors\ImgErr;
 use Symphograph\Bicycle\FileHelper;
+use Symphograph\Bicycle\PDO\DB;
 
 class EntryPhoto extends Photo
 {
@@ -16,6 +16,23 @@ class EntryPhoto extends Photo
 
 
 
+    public function upload(UploadedImg $file): void
+    {
+        $md5 = $file->getMd5();
+        $ext = $file->getExtension();
+
+        $this->baseName = $md5 . '.' . $ext;
+        $originFullPath = $this->getOriginFullPath($file->getExtension());
+        $fileIMG = FileIMG::byUploaded($file);
+        $file->saveAs($originFullPath);
 
 
+        FileHelper::copy($originFullPath, $fileIMG->getFullPath());
+
+        $fileIMG->putToDB();
+        //self::linkToEntry($this->id, $fileIMG->idByPut());
+
+
+        $this->makeSizes($originFullPath);
+    }
 }

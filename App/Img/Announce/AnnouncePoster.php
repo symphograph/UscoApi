@@ -2,8 +2,8 @@
 
 namespace App\Img\Announce;
 
+use App\Files\UploadedImg;
 use App\Img\AbstractIMG;
-use App\Img\FileImg;
 use Symphograph\Bicycle\FileHelper;
 
 class AnnouncePoster extends AbstractIMG
@@ -13,7 +13,7 @@ class AnnouncePoster extends AbstractIMG
     protected string $filePrefix = 'poster_';
 
 
-    public function upload(FileImg $file): void
+    public function upload(UploadedImg $file): void
     {
         $originFullPath = $this->getOriginFullPath($file->getExtension());
         $file->saveAs($originFullPath);
@@ -37,7 +37,7 @@ class AnnouncePoster extends AbstractIMG
         $sizeFolders[] = 'origins';
         foreach ($sizeFolders as $sizeFolder) {
             $relPath = $this->folder . '/' . $sizeFolder . '/' . $this->filePrefix . $this->id;
-            $fullPath = FileHelper::fullPath($relPath);
+            $fullPath = FileHelper::fullPath($relPath, true);
             FileHelper::delAllExtensions($fullPath);
         }
     }

@@ -2,11 +2,12 @@
 
 namespace App\Img;
 
+use App\Files\UploadedImg;
 use Symphograph\Bicycle\FileHelper;
 
 abstract class Sketch extends AbstractIMG
 {
-    public function upload(FileImg $file): void
+    public function upload(UploadedImg $file): void
     {
         $originFullPath = $this->getOriginFullPath($file->getExtension());
         $file->saveAs($originFullPath);
@@ -30,7 +31,7 @@ abstract class Sketch extends AbstractIMG
         $sizeFolders[] = 'origins';
         foreach ($sizeFolders as $sizeFolder) {
             $relPath = $this->folder . '/' . $sizeFolder . '/' . $this->filePrefix . $this->id;
-            $fullPath = FileHelper::fullPath($relPath);
+            $fullPath = FileHelper::fullPath($relPath, true);
             FileHelper::delAllExtensions($fullPath);
         }
     }

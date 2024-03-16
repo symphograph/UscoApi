@@ -3,54 +3,42 @@
 namespace App\Img\Announce;
 
 use App\Announce\Announce;
-use App\Img\FileImg;
+use App\Entry\Entry;
+use App\Files\FileImgCTRL;
+use App\Files\UploadedImg;
 use App\User;
+use JetBrains\PhpStorm\NoReturn;
 use Symphograph\Bicycle\Api\Response;
-use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
+use Symphograph\Bicycle\HTTP\Request;
 
-class AnnounceSketchCTRL
+class AnnounceSketchCTRL extends FileImgCTRL
 {
     public static function add(): void
     {
         User::auth([1, 2, 4]);
+        Request::checkEmpty(['id']);
 
-        if(empty($_FILES)){
-            throw new ValidationErr('$_FILES is empty', 'Файлы не доставлены');
-        }
-
-        $announceId = intval($_POST['id'] ?? 0) or throw new ValidationErr();
-        $Announce = Announce::byId($announceId)
+        $Announce = Announce::byId($_POST['id'])
         or throw new ValidationErr(
-            "Announce $announceId does not exists",
+            "Announce {$_POST['id']} does not exists",
             "Анонса не существует"
         );
 
-        $file = array_shift($_FILES);
-        $file = new FileImg($file);
-        $Sketch = new AnnounceSketch($announceId);
-        $Sketch->delFiles();
-        $Sketch->upload($file);
-
-
-        $Announce->initNewVerString();
-        $Announce->putToDB();
+        $uploadedImg = UploadedImg::getFile();
+        $FileIMG = parent::addIMG($uploadedImg);
+        $FileIMG->makeSizes();
+        Announce::linkSketch($Announce->id, $FileIMG->id);
 
         Response::success();
     }
 
-    public static function del(): void
+    #[NoReturn] public static function unlink(): void
     {
         User::auth([1, 2, 4]);
+        Request::checkEmpty(['id']);
 
-        $announceId = intval($_POST['announceId'] ?? 0) or throw new ValidationErr();
-
-        $Sketch = new AnnounceSketch($announceId);
-        $Sketch->delFiles();
-
-        $Announce = Announce::byId($announceId);
-        $Announce->initNewVerString();
-        $Announce->putToDB();
+        Announce::unlinkSketch($_POST['id']);
 
         Response::success();
     }

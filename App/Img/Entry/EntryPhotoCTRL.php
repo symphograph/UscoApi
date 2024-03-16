@@ -2,32 +2,68 @@
 
 namespace App\Img\Entry;
 
-use App\Img\FileImg;
+use App\Entry\Entry;
+use App\Entry\Errors\EntryNoExists;
+use App\Files\FileIMG;
+use App\Files\FileImgCTRL;
+use App\Files\ImgList;
+use App\Files\UploadedImg;
 use App\User;
+use JetBrains\PhpStorm\NoReturn;
 use Symphograph\Bicycle\Api\Response;
+use Symphograph\Bicycle\AppStorage;
+use Symphograph\Bicycle\Errors\Upload\EmptyFilesErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
+use Symphograph\Bicycle\HTTP\Request;
 
-class EntryPhotoCTRL
+class EntryPhotoCTRL extends FileImgCTRL
 {
     public static function add(): void
     {
         User::auth([1, 2, 4]);
+        Request::checkEmpty(['entryId']);
 
-        if(empty($_FILES)){
-            throw new ValidationErr('$_FILES is empty', 'Файлы не доставлены');
+        if (empty($_FILES)) {
+            throw new EmptyFilesErr();
         }
-        $entryId = intval($_POST['entryId'] ?? 0) or throw new ValidationErr();
 
-        foreach ($_FILES as $FILE){
-            $file = new FileImg($FILE);
-            $Photo = new EntryPhoto($entryId);
-            $Photo->upload($file);
-
+        if(count($_FILES) > 20){
+            AppStorage::$warnings[] = 'Слишком много файлов';
         }
+
+        $Entry = Entry::byId($_POST['entryId'])
+            ?: throw new EntryNoExists();
+
+        foreach ($_FILES as $FILE) {
+            $file = new UploadedImg($FILE);
+            $FileIMG = parent::addIMG($file);
+            Entry::linkPhoto($Entry->id, $FileIMG->id);
+        }
+
+        ImgList::runResizeWorker();
 
         Response::success();
     }
 
+    #[NoReturn] public static function unlink(): void
+    {
+        User::auth([1, 2, 4]);
+        Request::checkEmpty(['entryId', 'imgId']);
+
+        Entry::unlinkPhoto($_POST['entryId'], $_POST['imgId']);
+        Response::success();
+    }
+
+    #[NoReturn] public static function unlinkAll(): void
+    {
+        User::auth([1, 2, 4]);
+        Request::checkEmpty(['entryId']);
+
+        Entry::unlinkAllPhotos($_POST['entryId']);
+        Response::success();
+    }
+
+    /*
     public static function del(): void
     {
         User::auth([1, 2, 4]);
@@ -37,5 +73,15 @@ class EntryPhotoCTRL
         $Photo = new EntryPhoto($entryId, $baseName);
         $Photo->delFiles();
         Response::success();
+    }
+*/
+    public static function getList(): void
+    {
+        Request::checkEmpty(['entryId']);
+
+        $Entry = Entry::byId($_POST['entryId']);
+        $Entry->initData();
+
+        Response::data($Entry->Photos);
     }
 }

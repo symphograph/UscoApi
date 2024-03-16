@@ -14,12 +14,12 @@ match ($_POST['method']) {
     'listByHall' => AnnounceCTRL::listByHall(),
     'listByYear' => AnnounceCTRL::listByYear(),
     'futureList' => AnnounceCTRL::futureList(),
-    'allList' => AnnounceCTRL::allList(),
     'get' => AnnounceCTRL::get(),
     'del' => AnnounceCTRL::del(),
     'add' => AnnounceCTRL::add(),
     'update' => AnnounceCTRL::update(),
     'hide' => AnnounceCTRL::hide(),
     'show' => AnnounceCTRL::show(),
+    'updateMarkdown' => AnnounceCTRL::updateMarkdown(),
     default => throw new ApiErr()
 };

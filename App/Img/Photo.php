@@ -13,6 +13,7 @@ abstract class Photo extends AbstractIMG
         $this->baseName = $baseName;
         $this->initFolder();
     }
+
     public function initFolder(): void
     {
         $this->folder = $this->parentFolder . '/' . $this->id;
@@ -28,20 +29,6 @@ abstract class Photo extends AbstractIMG
         return $this->baseName;
     }
 
-    /*
-    protected function makeSize(int $with, string $from, string $to): void
-    {
-        $image = new Imagick($from);
-        $image->setImageFormat("jpeg") or throw new ImgErr();
-
-        $image->stripimage();
-        $image->setImageResolution(72, 72);
-        $image->resampleImage(72, 72, \Imagick::FILTER_LANCZOS, 1);
-        $image->resizeImage($with, 0, 0, 1);
-
-        FileHelper::fileForceContents($to, $image->getImageBlob());
-    }
-*/
     public function delFiles(): void
     {
         $sizeFolders = $this->sizes;
@@ -51,17 +38,9 @@ abstract class Photo extends AbstractIMG
         foreach ($sizeFolders as $sizeFolder) {
 
             $relPath = $this->folder . '/' . $sizeFolder . '/' . $fileName;
-            $fullPath = FileHelper::fullPath($relPath);
+            $fullPath = FileHelper::fullPath($relPath, true);
             FileHelper::delAllExtensions($fullPath);
         }
     }
 
-    public function upload(FileImg $file): void
-    {
-        $this->baseName = md5_file($file->tmpFullPath) . '.' . $file->getExtension();
-        $originFullPath = $this->getOriginFullPath($file->getExtension());
-        $file->saveAs($originFullPath);
-
-        $this->makeSizes($originFullPath);
-    }
 }

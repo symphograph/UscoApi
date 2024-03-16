@@ -7,9 +7,11 @@ use App\Img\Entry\EntrySketch;
 use App\User;
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\AppErr;
+use Symphograph\Bicycle\Errors\NoContentErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 use Symphograph\Bicycle\FileHelper;
 use Symphograph\Bicycle\Helpers;
+use Symphograph\Bicycle\HTTP\Request;
 
 class EntryCTRL
 {
@@ -25,11 +27,10 @@ class EntryCTRL
 
     public static function get(): void
     {
-        $id = intval($_POST['id'] ?? 0) or
-        throw new ValidationErr('id');
+        Request::checkEmpty(['id']);
 
-        $Entry = Entry::byId($id) or
-        throw new AppErr("Entry $id is empty", 'Новость не найдена');
+        $Entry = Entry::byId($_POST['id'])
+            ?: throw new NoContentErr();
         $Entry->initData();
 
         Response::data($Entry);
@@ -88,6 +89,7 @@ class EntryCTRL
 
         $Entry->refLink = $newEntry['refLink'] ?? '';
         $Entry->refName = $newEntry['refName'] ?? '';
+        $Entry->isExternal = $newEntry['isExternal'];
 
         $Entry->putToDB();
 
@@ -97,23 +99,25 @@ class EntryCTRL
     public static function del(): void
     {
         User::auth([1, 2, 4]);
+        Request::checkEmpty(['entryId']);
 
-        $entryId = $_POST['entryId'] ?? throw new ValidationErr();
-        Entry::delById($entryId);
-        $Sketch = new EntrySketch($entryId);
+        Entry::delById($_POST['entryId']);
+        $Sketch = new EntrySketch($_POST['entryId']);
         $Sketch->delFiles();
-        $photoFolder = Entry::imgFolder . '/' . $entryId;
-        $photoFolder = FileHelper::fullPath($photoFolder);
+
+        $photoFolder = Entry::imgFolder . '/' . $_POST['entryId'];
+        $photoFolder = FileHelper::fullPath($photoFolder, true);
         FileHelper::delDir($photoFolder);
+
         Response::success();
     }
 
     public static function hide(): void
     {
         User::auth([1, 2, 4]);
+        Request::checkEmpty(['entryId']);
 
-        $entryId = intval($_POST['entryId']) or throw new ValidationErr();
-        $Entry = EntryDTO::byId($entryId);
+        $Entry = EntryDTO::byId($_POST['entryId']);
         $Entry->isShow = false;
         $Entry->putToDB();
 
@@ -123,13 +127,26 @@ class EntryCTRL
     public static function show(): void
     {
         User::auth([1, 2, 4]);
+        Request::checkEmpty(['entryId']);
 
-        $entryId = intval($_POST['entryId']) or throw new ValidationErr();
-        $Entry = EntryDTO::byId($entryId);
+        $Entry = EntryDTO::byId($_POST['entryId']);
         $Entry->isShow = true;
         $Entry->putToDB();
 
         Response::success();
+    }
+
+    public static function updateMarkdown(): void
+    {
+        User::auth([1, 2, 4]);
+        Request::checkEmpty(['id']);
+        Request::checkSet(['markdown']);
+
+        $Entry = Entry::byId($_POST['id']);
+        $Entry->markdown = $_POST['markdown'];
+        $Entry->initData();
+        $Entry->putToDB();
+        Response::data($Entry->parsedMD);
     }
 
 

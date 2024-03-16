@@ -2,68 +2,63 @@
 
 namespace App\Announce;
 
-use App\DTO\AbstractList;
-use PDO;
+use Symphograph\Bicycle\DTO\AbstractList;
 
-class AnnounceList
+class AnnounceList extends AbstractList
 {
-
     /**
-     * @param Announce[] $list
+     * @var Announce[] $list
      */
-    public function __construct(private array $list = []){}
+    protected array $list = [];
+
+    public static function getItemClass(): string
+    {
+        return Announce::class;
+    }
+
+    public static function all(): self
+    {
+        $sql = "
+            SELECT * from announces
+            order by eventTime";
+
+        return self::bySql($sql);
+    }
 
     public static function byYear(int $year): self
     {
-        $AnnounceList = new self();
-        $qwe = qwe("
+        $sql = "
             SELECT *
             from announces
             where year(eventTime) = :year 
-            order by eventTime desc",
-            ['year' => $year]
-        );
-        $AnnounceList->list = $qwe->fetchAll(PDO::FETCH_CLASS, Announce::class) ?? [];
-        return $AnnounceList;
+            order by eventTime desc";
+
+        $params = compact('year');
+        return self::bySql($sql,$params);
     }
 
     public static function byHall(int $hallId): self
     {
-        $AnnounceList = new self();
-        $qwe = qwe("
+        $sql = "
             SELECT *
             from announces
             where hallId = :hallId
-            order by eventTime desc",
-            ['hallId' => $hallId]
-        );
-        $AnnounceList->list = $qwe->fetchAll(PDO::FETCH_CLASS, Announce::class);
-        return $AnnounceList;
+            order by eventTime desc";
+
+        $params = compact('hallId');
+
+        return self::bySql($sql, $params);
     }
 
     public static function byFuture(): self
     {
-        $AnnounceList = new self();
-        $qwe = qwe("
+        $sql = "
             SELECT *
             from announces
             where eventTime >= now() 
-            order by eventTime"
-        );
-        $AnnounceList->list = $qwe->fetchAll(PDO::FETCH_CLASS, Announce::class);
-        return $AnnounceList;
-    }
+            order by eventTime";
 
-    public function initData(): void
-    {
-        foreach ($this->list as $object) {
-            $object->initData();
-        }
-    }
-
-    public function getList(): array
-    {
-        return $this->list;
+        return self::bySql($sql);
     }
 
 }

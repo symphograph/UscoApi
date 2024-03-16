@@ -3,49 +3,54 @@
 namespace App\Img\Entry;
 
 use App\Entry\Entry;
-use App\Img\FileImg;
+use App\Entry\Errors\EntryNoExists;
+use App\Files\FileImgCTRL;
+use App\Files\UploadedImg;
 use App\User;
+use JetBrains\PhpStorm\NoReturn;
 use Symphograph\Bicycle\Api\Response;
-use Symphograph\Bicycle\Errors\ValidationErr;
+use Symphograph\Bicycle\HTTP\Request;
 
-class EntrySketchCTRL
+class EntrySketchCTRL extends FileImgCTRL
 {
     public static function add(): void
     {
         User::auth([1, 2, 4]);
+        Request::checkEmpty(['id']);
 
-        if(empty($_FILES)){
-            throw new ValidationErr('$_FILES is empty', 'Файлы не доставлены');
-        }
+        $Entry = Entry::byId($_POST['id'])
+            ?: throw new EntryNoExists();
 
-        $entryId = intval($_POST['id'] ?? 0) or throw new ValidationErr();
+        $FileIMG = parent::addIMG(UploadedImg::getFile());
+        $FileIMG->makeSizes();
+        Entry::linkSketch($Entry->id, $FileIMG->id);
 
-        $file = array_shift($_FILES);
-        $file = new FileImg($file);
-        $Sketch = new EntrySketch($entryId);
+        Response::success();
+    }
+
+    #[NoReturn] public static function del(): void
+    {
+        User::auth([1, 2, 4]);
+        Request::checkEmpty(['entryId']);
+
+        $Entry = Entry::byId($_POST['entryId']);
+        $Sketch = new EntrySketch($Entry->id);
         $Sketch->delFiles();
-        $Sketch->upload($file);
 
-        $Entry = Entry::byId($entryId);
+
+        $Entry->initData();
         $Entry->initNewVerString();
         $Entry->putToDB();
 
         Response::success();
     }
 
-    public static function del(): void
+    #[NoReturn] public static function unlink(): void
     {
         User::auth([1, 2, 4]);
+        Request::checkEmpty(['id']);
 
-        $announceId = intval($_POST['entryId'] ?? 0) or throw new ValidationErr();
-
-        $Sketch = new EntrySketch($announceId);
-        $Sketch->delFiles();
-
-        $Entry = Entry::byId($announceId);
-        $Entry->initData();
-        $Entry->initNewVerString();
-        $Entry->putToDB();
+        Entry::unlinkSketch($_POST['id']);
 
         Response::success();
     }

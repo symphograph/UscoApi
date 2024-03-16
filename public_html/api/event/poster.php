@@ -11,7 +11,7 @@ if (empty($_POST['method'])) {
 }
 
 match ($_POST['method']) {
-    'del' => PosterCTRL::del(),
+    'unlink' => PosterCTRL::unlink(),
     'add' => PosterCTRL::add(),
     default => throw new ApiErr()
 };

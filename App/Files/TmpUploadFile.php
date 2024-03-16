@@ -1,26 +1,35 @@
 <?php
 
-namespace App\Upload;
+namespace App\Files;
 
-
-
-use Symphograph\Bicycle\Errors\UploadErr;
+use Symphograph\Bicycle\Errors\Upload\EmptyFilesErr;
+use Symphograph\Bicycle\Errors\Upload\UploadErr;
 use Symphograph\Bicycle\FileHelper;
 
-class File
+class TmpUploadFile
 {
     public string $error;
     public string $tmpFullPath;
     public string $name;
-    public int $size;
-    private int $maxSize = 50000000;
+    public int    $size;
+    private int   $maxSize = 50000000;
 
-    public function __construct(array $file) {
+    public function __construct(array $file)
+    {
         $this->error = $file['error'] ?? '';
         $this->tmpFullPath = $file['tmp_name'] ?? '';
         $this->name = $file['name'] ?? '';
-        $this->size =$file['size'] ?? 0;
+        $this->size = $file['size'] ?? 0;
         $this->validate();
+    }
+
+    public static function getFile(): static
+    {
+        if(empty($_FILES)){
+            throw new EmptyFilesErr();
+        }
+        $file = array_shift($_FILES);
+        return new static($file);
     }
 
     protected function validate(): void
@@ -59,5 +68,8 @@ class File
         FileHelper::moveUploaded($this->tmpFullPath, $newFullPath);
     }
 
-
+    public function getMd5(): string
+    {
+        return md5_file($this->tmpFullPath);
+    }
 }

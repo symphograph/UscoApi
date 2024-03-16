@@ -13,12 +13,12 @@ class SectionList
     {
 
         $SectionList = new self();
-
+        //$rawContent = preg_replace("/(?<!\n)\n(?!\n)/", " ", $rawContent);
+        //$rawContent = trim($rawContent);
         $rawContent = str_replace('<br>',PHP_EOL, $rawContent);
 
         $rows = explode(PHP_EOL, $rawContent);
         $rows = array_map('trim', $rows);
-
 
         foreach ($rows as $row) {
             $SectionList->list[] = match (true) {
@@ -27,7 +27,9 @@ class SectionList
                 default => new Text($row)
             };
         }
+
         $SectionList->implodeTextSections();
+
         return $SectionList;
     }
 

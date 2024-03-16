@@ -12,7 +12,10 @@ if (empty($_POST['method'])) {
 }
 
 match ($_POST['method']) {
-    'del' => EntryPhotoCTRL::del(),
+    //'del' => EntryPhotoCTRL::del(),
+    'unlink' => EntryPhotoCTRL::unlink(),
+    'unlinkAll' => EntryPhotoCTRL::unlinkAll(),
     'add' => EntryPhotoCTRL::add(),
+    'list' => EntryPhotoCTRL::getList(),
     default => throw new ApiErr()
 };

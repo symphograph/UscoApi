@@ -8,15 +8,16 @@ use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\Errors\NoContentErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
+use Symphograph\Bicycle\HTTP\Request;
 use Symphograph\Bicycle\JsonDecoder;
 
 class AnnounceCTRL
 {
     public static function listByHall(): void
     {
-        $hallId = intval($_POST['hallId'] ?? 0) or throw new ValidationErr();
+        Request::checkEmpty(['hallId']);
 
-        $AnnounceList = AnnounceList::byHall($hallId);
+        $AnnounceList = AnnounceList::byHall($_POST['hallId']);
         if(empty($AnnounceList->getList())){
             throw new NoContentErr(httpStatus: 204);
         }
@@ -27,9 +28,9 @@ class AnnounceCTRL
 
     public static function listByYear(): void
     {
-        $year = intval($_POST['year'] ?? 0) or throw new ValidationErr();
+        Request::checkEmpty(['year']);
 
-        $AnnounceList = AnnounceList::byYear($year);
+        $AnnounceList = AnnounceList::byYear($_POST['year']);
         if(empty($AnnounceList->getList())){
             throw new NoContentErr(httpStatus: 204);
         }
@@ -49,32 +50,12 @@ class AnnounceCTRL
         Response::data($AnnounceList->getList());
     }
 
-    public static function allList(): void
-    {
-        $Announces = Announce::allCacheList()
-            or throw new NoContentErr();
-
-        $arr = [];
-        $halls = [];
-        foreach ($Announces as $announce){
-            if(in_array($announce->hallId, $halls)){
-                continue;
-            }
-            $halls[] = $announce->hallId;
-            $arr[] = $announce;
-        }
-
-
-        Response::data($arr);
-    }
-
     public static function get(): void
     {
-        $id = intval($_POST['id'] ?? 0)
-        or throw new ValidationErr('id');
+        Request::checkEmpty(['id']);
 
-        $Announce = Announce::byId($id)
-        or throw new AppErr('Announce::byCache err', 'Анонс не найден');
+        $Announce = Announce::byId($_POST['id'])
+            ?: throw new NoContentErr();
 
         $Announce->initData();
         Response::data($Announce);
@@ -83,9 +64,9 @@ class AnnounceCTRL
     public static function del(): void
     {
         User::auth([1, 2, 4]);
+        Request::checkEmpty(['id']);
 
-        $announceId = intval($_POST['id'] ?? 0) or throw new ValidationErr();
-        Announce::delete($announceId);
+        Announce::delete($_POST['id']);
         Response::success();
     }
 
@@ -102,24 +83,23 @@ class AnnounceCTRL
     public static function update(): void
     {
         User::auth([1, 2, 4]);
-
-
-        if (empty($_POST['announce']))
-            throw new ValidationErr('announce is empty');
+        Request::checkEmpty(['announce']);
 
        /** @var Announce $Announce */
        $Announce = JsonDecoder::cloneFromAny($_POST['announce'], Announce::class);
 
         $Announce->putToDB();
-
+        $Announce->initData();
         Response::data($Announce);
 
     }
 
     public static function hide(): void
     {
-        $announceId = intval($_POST['announceId'] ?? 0) or throw new ValidationErr();
-        $Announce = AnnounceDTO::byId($announceId);
+        User::auth([1, 2, 4]);
+        Request::checkEmpty(['announceId']);
+
+        $Announce = AnnounceDTO::byId($_POST['announceId']);
         $Announce->isShow = false;
         $Announce->putToDB();
         Response::success();
@@ -127,11 +107,26 @@ class AnnounceCTRL
 
     public static function show(): void
     {
-        $announceId = intval($_POST['announceId'] ?? 0) or throw new ValidationErr();
-        $Announce = AnnounceDTO::byId($announceId);
+        User::auth([1, 2, 4]);
+        Request::checkEmpty(['announceId']);
+
+        $Announce = AnnounceDTO::byId($_POST['announceId']);
         $Announce->isShow = true;
         $Announce->putToDB();
         Response::success();
+    }
+
+    public static function updateMarkdown(): void
+    {
+        User::auth([1, 2, 4]);
+        Request::checkEmpty(['id']);
+        Request::checkSet(['markdown']);
+
+        $Announce = Announce::byId($_POST['id']);
+        $Announce->description = $_POST['markdown'];
+        $Announce->initData();
+        $Announce->putToDB();
+        Response::data($Announce->parsedMD);
     }
 
 }

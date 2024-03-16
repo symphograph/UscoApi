@@ -19,5 +19,6 @@ match ($_POST['method']) {
     'update' => EntryCTRL::update(),
     'hide' => EntryCTRL::hide(),
     'show' => EntryCTRL::show(),
+    'updateMarkdown' => EntryCTRL::updateMarkdown(),
     default => throw new ApiErr()
 };
