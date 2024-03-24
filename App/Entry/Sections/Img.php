@@ -2,7 +2,7 @@
 
 namespace App\Entry\Sections;
 
-use App\Files\FileIMG;
+use Symphograph\Bicycle\Files\FileIMG;
 
 class Img extends Section
 {

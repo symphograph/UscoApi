@@ -3,9 +3,8 @@
 namespace App\Img\Announce;
 
 use App\Announce\Announce;
-use App\Entry\Entry;
-use App\Files\FileImgCTRL;
-use App\Files\UploadedImg;
+use Symphograph\Bicycle\Files\FileImgCTRL;
+use Symphograph\Bicycle\Files\UploadedImg;
 use App\User;
 use JetBrains\PhpStorm\NoReturn;
 use Symphograph\Bicycle\Api\Response;

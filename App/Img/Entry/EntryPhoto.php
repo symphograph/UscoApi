@@ -2,11 +2,10 @@
 
 namespace App\Img\Entry;
 
-use App\Files\FileIMG;
-use App\Files\UploadedImg;
+use Symphograph\Bicycle\Files\FileIMG;
+use Symphograph\Bicycle\Files\UploadedImg;
 use App\Img\Photo;
 use Symphograph\Bicycle\FileHelper;
-use Symphograph\Bicycle\PDO\DB;
 
 class EntryPhoto extends Photo
 {

@@ -4,13 +4,11 @@ namespace App\Files\Transfer;
 
 use App\Announce\Announce;
 use App\Announce\AnnounceList;
-use App\Entry\Entry;
-use App\Entry\List\EntryList;
-use App\Files\FileIMG;
-use App\Files\FileStatus;
+use Symphograph\Bicycle\Files\FileIMG;
+use Symphograph\Bicycle\Files\FileStatus;
 use App\Img\Announce\AnnouncePoster;
 use App\Img\Announce\AnnounceSketch;
-use App\Img\Entry\EntrySketch;
+
 use Symphograph\Bicycle\FileHelper;
 
 class ExtractOldAnnounceImages

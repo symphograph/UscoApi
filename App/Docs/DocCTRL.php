@@ -2,9 +2,8 @@
 
 namespace App\Docs;
 
-use App\Files\FileDoc;
-use App\Files\TmpUploadFile;
-use App\Files\UploadedDoc;
+use Symphograph\Bicycle\Files\FileDoc;
+use Symphograph\Bicycle\Files\UploadedDoc;
 use App\User;
 use JetBrains\PhpStorm\NoReturn;
 use Symphograph\Bicycle\Api\Response;

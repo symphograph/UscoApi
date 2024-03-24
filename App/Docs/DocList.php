@@ -79,4 +79,11 @@ class DocList extends AbstractList
             $doc->resFromTrash();
         }
     }
+
+    public function makePublic() : void
+    {
+        foreach ($this->list as $doc){
+            $doc->makePublic();
+        }
+    }
 }

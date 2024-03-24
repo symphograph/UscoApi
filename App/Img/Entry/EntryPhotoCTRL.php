@@ -4,16 +4,14 @@ namespace App\Img\Entry;
 
 use App\Entry\Entry;
 use App\Entry\Errors\EntryNoExists;
-use App\Files\FileIMG;
-use App\Files\FileImgCTRL;
+use Symphograph\Bicycle\Files\FileImgCTRL;
 use App\Files\ImgList;
-use App\Files\UploadedImg;
+use Symphograph\Bicycle\Files\UploadedImg;
 use App\User;
 use JetBrains\PhpStorm\NoReturn;
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\AppStorage;
 use Symphograph\Bicycle\Errors\Upload\EmptyFilesErr;
-use Symphograph\Bicycle\Errors\ValidationErr;
 use Symphograph\Bicycle\HTTP\Request;
 
 class EntryPhotoCTRL extends FileImgCTRL
@@ -75,7 +73,7 @@ class EntryPhotoCTRL extends FileImgCTRL
         Response::success();
     }
 */
-    public static function getList(): void
+    #[NoReturn] public static function getList(): void
     {
         Request::checkEmpty(['entryId']);
 

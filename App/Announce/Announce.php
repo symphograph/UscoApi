@@ -4,7 +4,7 @@ namespace App\Announce;
 
 use App\DTO\HallDTO;
 use App\Entry\Sections\SectionList;
-use App\Files\FileIMG;
+use Symphograph\Bicycle\Files\FileIMG;
 use App\Img\Announce\AnnouncePoster;
 use App\Img\Announce\AnnounceSketch;
 use ReflectionException;

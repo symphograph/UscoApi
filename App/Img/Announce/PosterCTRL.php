@@ -3,12 +3,11 @@
 namespace App\Img\Announce;
 
 use App\Announce\Announce;
-use App\Files\FileImgCTRL;
-use App\Files\UploadedImg;
+use Symphograph\Bicycle\Files\FileImgCTRL;
+use Symphograph\Bicycle\Files\UploadedImg;
 use App\User;
 use JetBrains\PhpStorm\NoReturn;
 use Symphograph\Bicycle\Api\Response;
-use Symphograph\Bicycle\Errors\Upload\EmptyFilesErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 use Symphograph\Bicycle\HTTP\Request;
 

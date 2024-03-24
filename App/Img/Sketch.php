@@ -2,7 +2,7 @@
 
 namespace App\Img;
 
-use App\Files\UploadedImg;
+use Symphograph\Bicycle\Files\UploadedImg;
 use Symphograph\Bicycle\FileHelper;
 
 abstract class Sketch extends AbstractIMG

@@ -2,7 +2,7 @@
 
 namespace App\Img\Announce;
 
-use App\Files\UploadedImg;
+use Symphograph\Bicycle\Files\UploadedImg;
 use App\Img\AbstractIMG;
 use Symphograph\Bicycle\FileHelper;
 

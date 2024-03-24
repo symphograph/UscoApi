@@ -3,8 +3,8 @@
 namespace App\Docs;
 
 
-use App\Files\FileDoc;
-use App\Files\FileStatus;
+use Symphograph\Bicycle\Files\FileDoc;
+use Symphograph\Bicycle\Files\FileStatus;
 use Symphograph\Bicycle\DTO\ModelTrait;
 use Symphograph\Bicycle\FileHelper;
 use Symphograph\Bicycle\Helpers\DateTimeHelper;

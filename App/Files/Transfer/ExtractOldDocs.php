@@ -3,9 +3,10 @@
 namespace App\Files\Transfer;
 
 use App\Docs\Doc;
-use App\Files\FileDoc;
+use Symphograph\Bicycle\Files\FileDoc;
 use PDO;
 use Symphograph\Bicycle\FileHelper;
+use Symphograph\Bicycle\PDO\DB;
 
 class ExtractOldDocs
 {
@@ -16,7 +17,11 @@ class ExtractOldDocs
         foreach ($list as $doc) {
             $oldRelPath = 'documents/' . $doc->fileName;
             $oldFullPath = FileHelper::fullPath($oldRelPath);
-            if(!FileHelper::fileExists($oldFullPath)) continue;
+            if(!FileHelper::fileExists($oldFullPath)){
+                echo '-<br>';
+                continue;
+            }
+            echo '+<br>';
             $md5 = md5_file($oldFullPath);
             $ext = pathinfo($doc->fileName,PATHINFO_EXTENSION);
             $file = FileDoc::newInstance($md5, $ext);
@@ -24,6 +29,8 @@ class ExtractOldDocs
             $newPath = $file->getFullPath();
             FileHelper::copy($oldFullPath, $newPath);
             $doc->putToDB();
+            $doc->makePublic();
+            printr($doc);
             //var_dump(FileHelper::fileExists($oldFullPath));
         }
     }
@@ -33,7 +40,16 @@ class ExtractOldDocs
      */
     private static function getList(): array
     {
-        $qwe = qwe("select * from Docs");
+        $qwe = DB::qwe("select * from Docs");
+        return $qwe->fetchAll(PDO::FETCH_CLASS, Doc::class);
+
+        printr($list);
+        die();
+    }
+
+    public static function getSinonim(string $fileName): array
+    {
+        $qwe = DB::qwe("select * from Docs");
         return $qwe->fetchAll(PDO::FETCH_CLASS, Doc::class);
     }
 }

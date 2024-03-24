@@ -3,7 +3,7 @@
 namespace App\Entry\List;
 
 use App\Entry\EntryDTO;
-use App\Files\FileIMG;
+use Symphograph\Bicycle\Files\FileIMG;
 
 abstract class EntryItem implements EntryItemITF
 {

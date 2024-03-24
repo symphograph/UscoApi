@@ -4,9 +4,8 @@ namespace App\Files\Transfer;
 
 use App\Entry\Entry;
 use App\Entry\List\EntryList;
-use App\Files\FileIMG;
+use Symphograph\Bicycle\Files\FileIMG;
 use App\Img\Entry\EntrySketch;
-use App\Img\Sketch;
 use Symphograph\Bicycle\FileHelper;
 
 class ExtractOldEntryImages

@@ -2,6 +2,7 @@
 namespace App;
 
 use PDO;
+use Symphograph\Bicycle\Helpers\ArrayHelper;
 
 class StaffGroup
 {
@@ -54,27 +55,29 @@ class StaffGroup
         foreach ($groups as $group){
             $group = self::checkClass($group);
             $group->initPlayers($date);
+
             $arr[$group->priority] = $group;
         }
+        $arr = ArrayHelper::sortMultiArrayByProp($arr,['priority'=>'asc']);
         return self::getUngrouped($arr,$date);
     }
 
     public static function getUngrouped(array $groups, string $date = ''): array
     {
-        $complited = $groups2 = [];
+        $completed = $groups2 = [];
 
         foreach ($groups as $group){
             $group = self::checkClass($group);
-            $complited = array_merge($complited,array_column($group->Players, 'persId'));
+            $completed = array_merge($completed,array_column($group->Players, 'persId'));
             $groups2[$group->priority] = $group;
         }
-        if(!count($complited)){
+        if(!count($completed)){
             return [];
         }
-        sort($complited);
-        $complited = implode(',',$complited);
+        sort($completed);
+        $completed = implode(',',$completed);
 
-        return StaffPlace::getUngrouped($complited, $groups2, $date);
+        return StaffPlace::getUngrouped($completed, $groups2, $date);
 
     }
 

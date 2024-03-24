@@ -4,11 +4,11 @@ namespace App\Img\Entry;
 
 use App\Entry\Entry;
 use App\Entry\Errors\EntryNoExists;
-use App\Files\FileImgCTRL;
-use App\Files\UploadedImg;
+use Symphograph\Bicycle\Files\FileImgCTRL;
 use App\User;
 use JetBrains\PhpStorm\NoReturn;
 use Symphograph\Bicycle\Api\Response;
+use Symphograph\Bicycle\Files\UploadedImg;
 use Symphograph\Bicycle\HTTP\Request;
 
 class EntrySketchCTRL extends FileImgCTRL

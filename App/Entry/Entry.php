@@ -3,12 +3,11 @@
 namespace App\Entry;
 
 use App\Entry\Sections\SectionList;
-use App\Files\FileIMG;
-use App\Files\FileList;
 use App\Files\ImgList;
 use Symphograph\Bicycle\DTO\ModelTrait;
 use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\FileHelper;
+use Symphograph\Bicycle\Files\FileIMG;
 use Symphograph\Bicycle\PDO\DB;
 
 class Entry extends EntryDTO
