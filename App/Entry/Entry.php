@@ -9,6 +9,7 @@ use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\FileHelper;
 use Symphograph\Bicycle\Files\FileIMG;
 use Symphograph\Bicycle\PDO\DB;
+use Symphograph\Bicycle\PDO\PutMode;
 
 class Entry extends EntryDTO
 {
@@ -50,7 +51,7 @@ class Entry extends EntryDTO
         return $Entry;
     }
 
-    public function putToDB(): void
+    public function putToDB(PutMode $mode = PutMode::safeReplace): void
     {
         //printr($this);
         qwe("START TRANSACTION");
