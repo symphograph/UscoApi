@@ -1,4 +1,5 @@
 <?php
+set_time_limit(600);
 
 use App\Img\Announce\PosterCTRL;
 use Symphograph\Bicycle\Errors\ApiErr;
@@ -13,5 +14,6 @@ if (empty($_POST['method'])) {
 match ($_POST['method']) {
     'unlink' => PosterCTRL::unlink(),
     'add' => PosterCTRL::add(),
+    'get' => PosterCTRL::get(),
     default => throw new ApiErr()
 };
