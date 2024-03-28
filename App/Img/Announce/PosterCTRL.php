@@ -40,7 +40,10 @@ class PosterCTRL extends FileImgCTRL
         User::auth([1, 2, 4]);
         Request::checkEmpty(['id']);
 
-        Announce::unlinkPoster($_POST['id']);
+        $announce = Announce::byId($_POST['id']);
+        $poster = FileIMG::byId($announce->posterId);
+        $poster->del();
+        //Announce::unlinkPoster($_POST['id']);
 
         Response::success();
     }
