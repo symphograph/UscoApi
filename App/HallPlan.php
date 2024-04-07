@@ -6,6 +6,7 @@ use App\DTO\HallPlanDTO;
 use App\ITF\HallPlanITF;
 use Symphograph\Bicycle\DTO\ModelTrait;
 use Symphograph\Bicycle\Errors\NoContentErr;
+use Symphograph\Bicycle\PDO\PutMode;
 
 
 class HallPlan extends HallPlanDTO implements HallPlanITF
@@ -71,7 +72,7 @@ class HallPlan extends HallPlanDTO implements HallPlanITF
         return $qwe->fetchColumn();
     }
 
-    public function putToDB(): void
+    public function putToDB(PutMode $mode = PutMode::safeReplace): void
     {
         qwe("START TRANSACTION");
         $tickets = $this->tickets;

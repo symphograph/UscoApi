@@ -50,15 +50,16 @@ class AnnounceList extends AbstractList
         return self::bySql($sql, $params);
     }
 
-    public static function byFuture(): self
+    public static function byFuture(string $date, bool $desc = false): self
     {
         $sql = "
             SELECT *
             from announces
-            where eventTime >= now() 
+            where date(eventTime) >= :date 
             order by eventTime";
-
-        return self::bySql($sql);
+        if($desc) $sql .= ' desc';
+        $params = compact('date');
+        return self::bySql($sql, $params);
     }
 
 }

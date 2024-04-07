@@ -58,10 +58,9 @@ class EntryCTRL
     public static function update(): void
     {
         User::auth([1, 2, 4]);
+        Request::checkEmpty(['entry']);
 
-
-        $newEntry = $_POST['entry'] or
-        throw new ValidationErr('entry');
+        $newEntry = $_POST['entry'];
 
         $id = intval($newEntry['id'] ?? 0) or
         throw new ValidationErr('id');
@@ -71,6 +70,8 @@ class EntryCTRL
 
         $Entry->title = $newEntry['title'] or
         throw new ValidationErr('title', 'Пустой заголовок');
+
+        $Entry->announceId = $newEntry['announceId'] ?? null;
 
         if(!Helpers::isDate($newEntry['date'] ?? '')){
             throw new ValidationErr('isDate err', 'Не вижу дату');

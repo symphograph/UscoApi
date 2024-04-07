@@ -8,7 +8,7 @@ use Symphograph\Bicycle\DTO\DTOTrait;
 class HallPlanDTO implements HallPlanITF
 {
     use DTOTrait;
-    const tableName = 'hallPlans';
+    const string tableName = 'hallPlans';
 
     public int          $id;
     public array|string $pricing;

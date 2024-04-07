@@ -41,7 +41,8 @@ class AnnounceCTRL
 
     public static function futureList(): void
     {
-        $AnnounceList = AnnounceList::byFuture();
+        $date = $_POST['date'] ?? date('Y-m-d');
+        $AnnounceList = AnnounceList::byFuture($date, true);
         if(empty($AnnounceList->getList())){
             throw new NoContentErr(httpStatus: 204);
         }

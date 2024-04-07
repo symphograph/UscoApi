@@ -50,13 +50,14 @@ class FolderList extends AbstractList
         return self::bySql($sql);
     }
 
-    public function initData(): void
+    public function initData(): static
     {
         $docList = DocList::all();
 
         foreach ($this->list as $folder) {
             $folder->setDocs($docList->list);
         }
+        return $this;
     }
 
     public static function defragSortPos(): void
