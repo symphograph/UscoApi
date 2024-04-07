@@ -40,11 +40,12 @@ class EntryList extends AbstractList
         $this->initData();
     }
 
-    public function initData(): void
+    public function initData(): static
     {
         foreach ($this->list as $object) {
             $object->initData();
         }
+        return $this;
     }
 
     public static function byYear(int $year): self
