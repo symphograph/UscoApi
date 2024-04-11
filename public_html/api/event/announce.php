@@ -13,6 +13,7 @@ if (empty($_POST['method'])) {
 match ($_POST['method']) {
     'listByHall' => AnnounceCTRL::listByHall(),
     'listByYear' => AnnounceCTRL::listByYear(),
+    'listByMonth' => AnnounceCTRL::listByMonth(),
     'futureList' => AnnounceCTRL::futureList(),
     'get' => AnnounceCTRL::get(),
     'del' => AnnounceCTRL::del(),

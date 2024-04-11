@@ -37,6 +37,19 @@ class AnnounceList extends AbstractList
         return self::bySql($sql,$params);
     }
 
+    public static function byMonth(int $year, int $month): self
+    {
+        $sql = "
+            SELECT *
+            from announces
+            where year(eventTime) = :year 
+                and month(eventTime) = :month
+            order by eventTime desc";
+
+        $params = compact('year', 'month');
+        return self::bySql($sql,$params);
+    }
+
     public static function byHall(int $hallId): self
     {
         $sql = "

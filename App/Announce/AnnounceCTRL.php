@@ -39,6 +39,19 @@ class AnnounceCTRL
         Response::data($AnnounceList->getList());
     }
 
+    public static function listByMonth(): void
+    {
+        Request::checkEmpty(['year', 'month']);
+
+        $AnnounceList = AnnounceList::byMonth($_POST['year'], $_POST['month']);
+        if(empty($AnnounceList->getList())){
+            throw new NoContentErr(httpStatus: 204);
+        }
+        $list = $AnnounceList->initData()->getList();
+
+        Response::data($list);
+    }
+
     public static function futureList(): void
     {
         $date = $_POST['date'] ?? date('Y-m-d');
