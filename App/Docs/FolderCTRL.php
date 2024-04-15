@@ -13,7 +13,7 @@ class FolderCTRL
 {
     public static function add(): void
     {
-        User::auth([1, 2]);
+        User::auth([1, 2, 15]);
         Request::checkEmpty(['title']);
 
         $folder = DocFolder::create($_POST['title']);
@@ -50,7 +50,7 @@ class FolderCTRL
 
     public static function setAsTrash(): void
     {
-        User::auth([1, 2]);
+        User::auth([1, 2, 15]);
         Request::checkEmpty(['id']);
 
         $folder = DocFolder::byId($_POST['id'])
@@ -62,7 +62,7 @@ class FolderCTRL
 
     public static function resFromTrash(): void
     {
-        User::auth([1, 2]);
+        User::auth([1, 2, 15]);
         Request::checkEmpty(['id']);
 
         $folder = DocFolder::byId($_POST['id'])
@@ -74,7 +74,7 @@ class FolderCTRL
 
     public static function posUp(): void
     {
-        User::auth([1, 2]);
+        User::auth([1, 2, 15]);
         Request::checkEmpty(['id']);
 
         DocFolder::posUp($_POST['id']);
@@ -83,7 +83,7 @@ class FolderCTRL
 
     public static function posDown(): void
     {
-        User::auth([1, 2]);
+        User::auth([1, 2, 15]);
         Request::checkEmpty(['id']);
 
         DocFolder::posDown($_POST['id']);
@@ -92,7 +92,7 @@ class FolderCTRL
 
     public static function rename(): void
     {
-        User::auth([1, 2]);
+        User::auth([1, 2, 15]);
         Request::checkEmpty(['id', 'title']);
 
         $folder = DocFolder::byId($_POST['id']) ?: throw new NoContentErr();
