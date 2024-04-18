@@ -2,6 +2,7 @@
 
 use App\Env\UscoEnv;
 use JetBrains\PhpStorm\Language;
+use Symfony\Component\VarDumper\VarDumper;
 use Symphograph\Bicycle\Env\Env;
 use Symphograph\Bicycle\Env\Server\ServerEnvCli;
 use Symphograph\Bicycle\Env\Server\ServerEnvHttp;
@@ -89,4 +90,10 @@ function getServerEnvClass(): ServerEnvITF
         $ServerEnv = new ServerEnvHttp();
     }
     return $ServerEnv;
+}
+
+function vd($data, ?string $label = null): void
+{
+    if (!Env::isDebugMode()) return;
+    VarDumper::dump($data, $label);
 }

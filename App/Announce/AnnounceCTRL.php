@@ -3,7 +3,9 @@
 namespace App\Announce;
 
 
+use App\Api\Action\ApiAction;
 use App\User;
+use JetBrains\PhpStorm\NoReturn;
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\Errors\NoContentErr;
@@ -80,6 +82,7 @@ class AnnounceCTRL
         User::auth([1, 2, 4]);
         Request::checkEmpty(['id']);
 
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Announce::delete($_POST['id']);
         Response::success();
     }
@@ -91,10 +94,11 @@ class AnnounceCTRL
         $Announce = Announce::create() or
         throw new AppErr('addNewAnnounce err');
 
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::data($Announce);
     }
 
-    public static function update(): void
+    #[NoReturn] public static function update(): void
     {
         User::auth([1, 2, 4]);
         Request::checkEmpty(['announce']);
@@ -104,11 +108,11 @@ class AnnounceCTRL
 
         $Announce->putToDB();
         $Announce->initData();
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::data($Announce);
-
     }
 
-    public static function hide(): void
+    #[NoReturn] public static function hide(): void
     {
         User::auth([1, 2, 4]);
         Request::checkEmpty(['announceId']);
@@ -116,10 +120,11 @@ class AnnounceCTRL
         $Announce = AnnounceDTO::byId($_POST['announceId']);
         $Announce->isShow = false;
         $Announce->putToDB();
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
-    public static function show(): void
+    #[NoReturn] public static function show(): void
     {
         User::auth([1, 2, 4]);
         Request::checkEmpty(['announceId']);
@@ -127,10 +132,11 @@ class AnnounceCTRL
         $Announce = AnnounceDTO::byId($_POST['announceId']);
         $Announce->isShow = true;
         $Announce->putToDB();
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
-    public static function updateMarkdown(): void
+    #[NoReturn] public static function updateMarkdown(): void
     {
         User::auth([1, 2, 4]);
         Request::checkEmpty(['id']);
@@ -140,6 +146,7 @@ class AnnounceCTRL
         $Announce->description = $_POST['markdown'];
         $Announce->initData();
         $Announce->putToDB();
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::data($Announce->parsedMD);
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Img\Entry;
 
+use App\Api\Action\ApiAction;
 use App\Entry\Entry;
 use App\Entry\Errors\EntryNoExists;
 use Symphograph\Bicycle\Files\FileImgCTRL;
@@ -42,6 +43,7 @@ class EntrySketchCTRL extends FileImgCTRL
         $Entry->initNewVerString();
         $Entry->putToDB();
 
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
@@ -52,6 +54,7 @@ class EntrySketchCTRL extends FileImgCTRL
 
         Entry::unlinkSketch($_POST['id']);
 
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Docs;
 
+use App\Api\Action\ApiAction;
 use App\User;
+use JetBrains\PhpStorm\NoReturn;
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\Errors\NoContentErr;
@@ -21,6 +23,7 @@ class FolderCTRL
             throw throw new UploadErr('err on create folder', 'Папка не создана');
         }
 
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
@@ -34,6 +37,7 @@ class FolderCTRL
 
         $folder->initData();
         $folder->del();
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
@@ -41,7 +45,7 @@ class FolderCTRL
     {
     }
 
-    public static function list(): void
+    #[NoReturn] public static function list(): void
     {
         $folders = FolderList::allPublic();
         $folders->initData();
@@ -57,6 +61,8 @@ class FolderCTRL
             ?: throw new AppErr("folder does not exist", "Папка не найдена");
         $folder->initData();
         $folder->setAsTrash();
+
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
@@ -69,24 +75,30 @@ class FolderCTRL
             ?: throw new AppErr("folder does not exist", "Папка не найдена");
         $folder->initData();
         $folder->resFromTrash();
+
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
-    public static function posUp(): void
+    #[NoReturn] public static function posUp(): void
     {
         User::auth([1, 2, 15]);
         Request::checkEmpty(['id']);
 
         DocFolder::posUp($_POST['id']);
+
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
-    public static function posDown(): void
+    #[NoReturn] public static function posDown(): void
     {
         User::auth([1, 2, 15]);
         Request::checkEmpty(['id']);
 
         DocFolder::posDown($_POST['id']);
+
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
@@ -98,6 +110,8 @@ class FolderCTRL
         $folder = DocFolder::byId($_POST['id']) ?: throw new NoContentErr();
         $folder->title = $_POST['title'];
         $folder->putToDB();
+
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 }

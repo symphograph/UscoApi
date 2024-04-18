@@ -2,6 +2,7 @@
 
 namespace App\Img\Entry;
 
+use App\Api\Action\ApiAction;
 use App\Entry\Entry;
 use App\Entry\Errors\EntryNoExists;
 use Symphograph\Bicycle\Files\FileImgCTRL;
@@ -40,6 +41,7 @@ class EntryPhotoCTRL extends FileImgCTRL
 
         ImgList::runResizeWorker();
 
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
@@ -49,6 +51,8 @@ class EntryPhotoCTRL extends FileImgCTRL
         Request::checkEmpty(['entryId', 'imgId']);
 
         Entry::unlinkPhoto($_POST['entryId'], $_POST['imgId']);
+
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
@@ -58,6 +62,8 @@ class EntryPhotoCTRL extends FileImgCTRL
         Request::checkEmpty(['entryId']);
 
         Entry::unlinkAllPhotos($_POST['entryId']);
+
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 

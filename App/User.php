@@ -4,6 +4,7 @@ namespace App;
 
 use Symphograph\Bicycle\Env\Server\ServerEnv;
 use Symphograph\Bicycle\Token\AccessToken;
+use Symphograph\Bicycle\Token\AccessTokenData;
 use Symphograph\Bicycle\Token\Token;
 
 class User
@@ -28,5 +29,10 @@ class User
     {
         $tokenArr = Token::toArray(ServerEnv::HTTP_ACCESSTOKEN());
         return $tokenArr['uid'];
+    }
+
+    public static function getPersId(): ?int
+    {
+        return AccessTokenData::persId();
     }
 }

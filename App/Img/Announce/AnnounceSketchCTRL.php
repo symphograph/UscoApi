@@ -3,6 +3,7 @@
 namespace App\Img\Announce;
 
 use App\Announce\Announce;
+use App\Api\Action\ApiAction;
 use Symphograph\Bicycle\Files\FileImgCTRL;
 use Symphograph\Bicycle\Files\UploadedImg;
 use App\User;
@@ -29,6 +30,7 @@ class AnnounceSketchCTRL extends FileImgCTRL
         $FileIMG->makeSizes();
         Announce::linkSketch($Announce->id, $FileIMG->id);
 
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
@@ -39,6 +41,7 @@ class AnnounceSketchCTRL extends FileImgCTRL
 
         Announce::unlinkSketch($_POST['id']);
 
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 

@@ -4,6 +4,7 @@ namespace App\Img\Announce;
 
 use App\Announce\Announce;
 use App\Announce\Errors\NoExistsErr;
+use App\Api\Action\ApiAction;
 use App\Files\ImgList;
 use Symphograph\Bicycle\Errors\Files\FileErr;
 use Symphograph\Bicycle\Files\FileIMG;
@@ -31,6 +32,7 @@ class PosterCTRL extends FileImgCTRL
         $FileIMG = parent::addIMG(UploadedImg::getFile());
         //$FileIMG->makeSizes();
         Announce::linkPoster($Announce->id, $FileIMG->id);
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         ImgList::runResizeWorker();
         Response::success();
     }
@@ -43,8 +45,8 @@ class PosterCTRL extends FileImgCTRL
         $announce = Announce::byId($_POST['id']);
         $poster = FileIMG::byId($announce->posterId);
         $poster->del();
-        //Announce::unlinkPoster($_POST['id']);
 
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 

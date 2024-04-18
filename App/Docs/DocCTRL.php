@@ -2,6 +2,7 @@
 
 namespace App\Docs;
 
+use App\Api\Action\ApiAction;
 use Symphograph\Bicycle\Files\FileDoc;
 use Symphograph\Bicycle\Files\UploadedDoc;
 use App\User;
@@ -15,7 +16,7 @@ class DocCTRL
 
     #[NoReturn] public static function add(): void
     {
-        User::auth([1, 2]);
+        User::auth([1, 2, 15]);
         Request::checkEmpty(['title', 'folderId', 'atDate']);
 
         $tmpFile = UploadedDoc::getFile();
@@ -28,18 +29,20 @@ class DocCTRL
         $doc->putToDB();
         $doc->makePublic();
 
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
     public static function del(): void
     {
-        User::auth([1, 2]);
+        User::auth([1, 2, 15]);
         Request::checkEmpty(['id']);
 
         $doc = Doc::byId($_POST['id'])
             ?: throw new AppErr("{$_POST['id']} does not exists", 'Запись не найдена');
         $doc->del();
 
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
@@ -136,7 +139,7 @@ class DocCTRL
 
     public static function moveToFolder(): void
     {
-        User::auth([1, 2]);
+        User::auth([1, 2, 15]);
         Request::checkEmpty(['docId', 'folderId']);
 
         $doc = FileDoc::byId($_POST['docId'])
@@ -144,46 +147,50 @@ class DocCTRL
 
         $doc->moveToFolder($_POST['folderId']);
 
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
     #[NoReturn] public static function clearTrash(): void
     {
-        User::auth([1, 2]);
+        User::auth([1, 2, 15]);
         $trash = DocList::trash();
         $trash->del();
 
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
     public static function setAsTrash(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([1, 2, 15]);
         Request::checkEmpty(['id']);
 
         $doc = Doc::byId($_POST['id'])
             ?: throw new AppErr("{$_POST['id']} does not exists", 'Документ не найден');
         $doc->setAsTrash();
 
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
-    public static function trashList(): void
+    #[NoReturn] public static function trashList(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([1, 2, 15]);
         $List = DocList::trash();
 
         Response::data(['list' => $List->list]);
     }
 
-    public static function resFromTrash(): void
+    #[NoReturn] public static function resFromTrash(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([1, 2, 15]);
         Request::checkEmpty(['id']);
 
         $doc = Doc::byId($_POST['id']);
         $doc->resFromTrash();
 
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
