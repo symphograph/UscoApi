@@ -18,6 +18,6 @@ class ApiAction extends ApiActionDTO
         array $postData = []
     ): static {
         $persId = User::getPersId();
-        return parent::newInstance($method, $controller, $persId, $_POST);
+        return parent::newInstance($method, $controller, $persId, $_POST ?? []);
     }
 }
