@@ -26,6 +26,7 @@ class EntrySketchCTRL extends FileImgCTRL
         $FileIMG->makeSizes();
         Entry::linkSketch($Entry->id, $FileIMG->id);
 
+        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
 
