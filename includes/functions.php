@@ -2,6 +2,7 @@
 
 use App\Env\UscoEnv;
 use JetBrains\PhpStorm\Language;
+
 use Symfony\Component\VarDumper\VarDumper;
 use Symphograph\Bicycle\Env\Env;
 use Symphograph\Bicycle\Env\Server\ServerEnvCli;
@@ -66,11 +67,6 @@ function curl($plink, array $data = [])
 function qwe(#[Language("SQL")] string $sql, array $args = [], string $connectName = 'default'): false|PDOStatement
 {
     return DB::qwe($sql, $args, $connectName);
-}
-
-function qwe2(#[Language("SQL")] string $sql, array $args = []): false|PDOStatement
-{
-    return DB::qwe($sql, $args, 'staff');
 }
 
 function getRoot(): string
