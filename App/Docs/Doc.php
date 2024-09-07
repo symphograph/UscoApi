@@ -19,14 +19,14 @@ class Doc extends DocDTO
 
     public FileDoc $file;
 
-    public static function byId(int $id): self|false
+    public static function byId(int $id): static|false
     {
         $sql = "select * from Files inner join Docs on Docs.id = Files.id and Files.id = :id";
         $params = compact('id');
         $qwe = DB::qwe($sql, $params);
         $data = $qwe->fetchObject();
         if (empty($data)) return false;
-        return self::byJoin($data);
+        return static::byJoin($data);
     }
 
     public static function byJoin(object|array $data): self
