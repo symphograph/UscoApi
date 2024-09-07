@@ -15,6 +15,17 @@ use Symphograph\Bicycle\JsonDecoder;
 
 class AnnounceCTRL
 {
+    public static function listAll(): void
+    {
+        $AnnounceList = AnnounceList::all();
+        if(empty($AnnounceList->getList())){
+            throw new NoContentErr(httpStatus: 204);
+        }
+        $AnnounceList->initData();
+
+        Response::data($AnnounceList->getList());
+    }
+
     public static function listByHall(): void
     {
         Request::checkEmpty(['hallId']);
@@ -46,6 +57,19 @@ class AnnounceCTRL
         Request::checkEmpty(['year', 'month']);
 
         $AnnounceList = AnnounceList::byMonth($_POST['year'], $_POST['month']);
+        if(empty($AnnounceList->getList())){
+            throw new NoContentErr(httpStatus: 204);
+        }
+        $list = $AnnounceList->initData()->getList();
+
+        Response::data($list);
+    }
+
+    public static function listByDate(): void
+    {
+        Request::checkEmpty(['date']);
+
+        $AnnounceList = AnnounceList::byDate($_POST['date']);
         if(empty($AnnounceList->getList())){
             throw new NoContentErr(httpStatus: 204);
         }

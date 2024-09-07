@@ -20,7 +20,7 @@ class AnnounceList extends AbstractList
     {
         $sql = "
             SELECT * from announces
-            order by eventTime";
+            order by eventTime desc";
 
         return self::bySql($sql);
     }
@@ -63,6 +63,18 @@ class AnnounceList extends AbstractList
         return self::bySql($sql, $params);
     }
 
+    public static function byDate(string $date): self
+    {
+        $sql = "
+            SELECT *
+            from announces
+            where date(eventTime) = :date 
+            order by eventTime desc";
+
+        $params = compact('date');
+        return self::bySql($sql,$params);
+    }
+
     public static function byFuture(string $date, bool $desc = false): self
     {
         $sql = "
@@ -73,6 +85,15 @@ class AnnounceList extends AbstractList
         if($desc) $sql .= ' desc';
         $params = compact('date');
         return self::bySql($sql, $params);
+    }
+
+
+    /**
+     * @return Announce[]
+     */
+    public function getList(): array
+    {
+        return $this->list;
     }
 
 }

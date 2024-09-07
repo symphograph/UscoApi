@@ -10,7 +10,7 @@ class AnnounceDTO implements AnnounceITF
 {
     use DTOTrait;
 
-    const tableName = 'announces';
+    const string tableName = 'announces';
 
     public ?int    $id;
     public int     $hallId;
