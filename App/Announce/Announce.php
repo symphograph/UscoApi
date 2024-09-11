@@ -2,14 +2,14 @@
 
 namespace App\Announce;
 
-use App\DTO\HallDTO;
 use App\Entry\Sections\SectionList;
-use Symphograph\Bicycle\Files\FileIMG;
+use App\Hall\Hall;
 use App\Img\Announce\AnnouncePoster;
 use App\Img\Announce\AnnounceSketch;
 use ReflectionException;
 use Symphograph\Bicycle\DTO\ModelTrait;
 use Symphograph\Bicycle\Errors\AppErr;
+use Symphograph\Bicycle\Files\FileIMG;
 use Symphograph\Bicycle\Helpers;
 use Symphograph\Bicycle\JsonDecoder;
 use Symphograph\Bicycle\PDO\DB;
@@ -20,7 +20,7 @@ class Announce extends AnnounceDTO
 
     public ?string  $youtubeId = '';
     public bool     $completed = false;
-    public ?HallDTO $Hall;
+    public ?Hall $Hall;
     public ?array   $parsedMD  = [];
     public FileIMG  $sketch;
     public FileIMG  $poster;
@@ -68,7 +68,7 @@ class Announce extends AnnounceDTO
 
     public function initData(): self
     {
-        $this->Hall = HallDTO::byId($this->hallId);
+        $this->initHall();
         $this->initDateTime();
 
         $this->completed = Helpers::isExpired($this->eventTime);
@@ -84,6 +84,21 @@ class Announce extends AnnounceDTO
         $this->initSketch();
         $this->initPoster();
 
+        return $this;
+    }
+
+    private function initHall(): static
+    {
+        $this->Hall = Hall::byId($this->hallId)->initData();
+        return $this;
+    }
+
+    private function initDateTime(): static
+    {
+        if (empty($this->eventTime)) {
+            $this->eventTime = date('Y-m-d H:i:s', time() + 3600 * 24);
+        }
+        $this->eventTime = date('Y-m-d H:i', strtotime($this->eventTime));
         return $this;
     }
 
@@ -130,12 +145,6 @@ class Announce extends AnnounceDTO
         }
     }
 
-    private function initDateTime(): void
-    {
-        if (empty($this->eventTime)) {
-            $this->eventTime = date('Y-m-d H:i:s', time() + 3600 * 24);
-        }
-        $this->eventTime = date('Y-m-d H:i', strtotime($this->eventTime));
-    }
+
 
 }

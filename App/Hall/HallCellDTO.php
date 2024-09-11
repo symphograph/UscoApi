@@ -1,7 +1,8 @@
 <?php
 
-namespace App\DTO;
+namespace App\Hall;
 
+use App\DTO\DTO;
 use App\ITF\HallCellITF;
 
 class HallCellDTO extends DTO implements HallCellITF

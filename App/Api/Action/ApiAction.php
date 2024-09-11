@@ -20,4 +20,9 @@ class ApiAction extends ApiActionDTO
         $persId = User::getPersId();
         return parent::newInstance($method, $controller, $persId, $_POST ?? []);
     }
+
+    public static function log(string $method, string $controller): void
+    {
+        self::newInstance($method, $controller)->putToDB();
+    }
 }
