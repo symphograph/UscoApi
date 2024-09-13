@@ -19,6 +19,12 @@ class SuggestCTRL {
         Response::data($suggest);
     }
 
+    #[NoReturn] public static function getApiKey(): void
+    {
+        User::auth([1,2,14]);
+        Response::data(['key'=> 'ytre']);
+    }
+
     public static function list()
     {
     }

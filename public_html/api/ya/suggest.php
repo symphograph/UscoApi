@@ -16,5 +16,6 @@ match ($_POST['method']) {
     'add' => SuggestCTRL::add(),
     'update' => SuggestCTRL::update(),
     'del' => SuggestCTRL::del(),
+    'getApiKey' => SuggestCTRL::getApiKey(),
     default => throw new ApiErr()
 };
