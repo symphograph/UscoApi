@@ -25,6 +25,9 @@ class AnnounceDTO implements AnnounceITF
     public ?int    $sketchId;
     public ?int    $posterId;
     public string  $verString;
+    public bool    $isPushkin;
+    public bool    $isShowTicketCount;
+    public ?int $radarioEventId;
 
 
     public static function linkSketch(int $announceId, int $fileId): void
