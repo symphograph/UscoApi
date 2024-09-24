@@ -6,8 +6,8 @@ use Symphograph\Bicycle\Errors\EmailErr;
 
 final class FormHandlerStrict extends FormHandler
 {
-    const subject = 'Строгая форма';
-    const method = 'POST';
+    const string subject = 'Строгая форма';
+    const string method = 'POST';
 
     /**
      * Обрабатывает отправленную форму.

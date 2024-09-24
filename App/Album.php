@@ -6,7 +6,7 @@ use Symphograph\Bicycle\Errors\ValidationErr;
 use Symphograph\Bicycle\FileHelper;
 class Album
 {
-    private const albumsDir = '/img/albums/';
+    private const string albumsDir = '/img/albums/';
     public string $name;
     public string $dir;
     public string $avatar;

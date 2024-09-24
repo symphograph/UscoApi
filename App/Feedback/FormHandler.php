@@ -24,7 +24,7 @@ use Throwable;
 abstract class FormHandler implements FormHandlerITF
 {
 
-    const allowedMethods = ['POST', 'GET'];
+    const array allowedMethods = ['POST', 'GET'];
 
     /**
      * Конструктор класса

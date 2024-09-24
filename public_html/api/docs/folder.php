@@ -1,6 +1,5 @@
 <?php
 
-use App\Docs\DocCTRL;
 use App\Docs\FolderCTRL;
 use Symphograph\Bicycle\Errors\ApiErr;
 use Symphograph\Bicycle\Errors\ValidationErr;

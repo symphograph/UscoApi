@@ -15,7 +15,7 @@ class YoutubeCTRL {
 
     #[NoReturn] public static function allPublic(): void
     {
-        $list = YoutubeList::allPublic($_POST['limit'] ?? 1000);
+        $list = YoutubeList::allPublic();
         Response::data($list->getList());
     }
 }

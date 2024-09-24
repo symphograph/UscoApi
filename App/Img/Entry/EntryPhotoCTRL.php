@@ -19,7 +19,7 @@ class EntryPhotoCTRL extends FileImgCTRL
 {
     public static function add(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([13]);
         Request::checkEmpty(['entryId']);
 
         if (empty($_FILES)) {
@@ -41,29 +41,29 @@ class EntryPhotoCTRL extends FileImgCTRL
 
         ImgList::runResizeWorker();
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 
     #[NoReturn] public static function unlink(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([13]);
         Request::checkEmpty(['entryId', 'imgId']);
 
         Entry::unlinkPhoto($_POST['entryId'], $_POST['imgId']);
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 
     #[NoReturn] public static function unlinkAll(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([13]);
         Request::checkEmpty(['entryId']);
 
         Entry::unlinkAllPhotos($_POST['entryId']);
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 

@@ -10,7 +10,7 @@ use Symphograph\Bicycle\PDO\DB;
 
 class ExtractOldDocs
 {
-    public static function execute()
+    public static function execute(): void
     {
         $list = self::getList();
 
@@ -42,9 +42,6 @@ class ExtractOldDocs
     {
         $qwe = DB::qwe("select * from Docs");
         return $qwe->fetchAll(PDO::FETCH_CLASS, Doc::class);
-
-        printr($list);
-        die();
     }
 
     public static function getSinonim(string $fileName): array

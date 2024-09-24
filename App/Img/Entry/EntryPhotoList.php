@@ -6,7 +6,7 @@ use App\Img\PhotoList;
 
 class EntryPhotoList extends PhotoList
 {
-    const parentFolder = '/img/entry/photo';
+    const string parentFolder = '/img/entry/photo';
 
     /**
      * @var EntryPhoto[]

@@ -2,45 +2,41 @@
 
 namespace App\Entry;
 
-use PDO;
+use Symphograph\Bicycle\DTO\AbstractList;
 
-class CategList
+class CategList extends AbstractList
 {
     /**
      * @var Category[]
      */
-    private array $list = [];
+    protected array $list = [];
 
-    public static function byBind(array $categories): self
+    public static function getItemClass(): string
     {
-        $categList = new self();
-        foreach ($categories as $category) {
-            $categList->list[] = Category::byBind($category);
-        }
-        return $categList;
+        return Category::class;
     }
 
-    /**
-     * @param int $entryId
-     * @return Category[]
-     */
-    public static function byEntryId(int $entryId): self
+    public static function byEntryId(int $entryId): static
     {
-        $categList = new self();
-        $qwe = qwe("
+        $sql = "
             select EntryCategs.*, if(nEC.categ_id > 0, 1, 0) as checked
             from EntryCategs 
             left join nn_EntryCategs nEC 
                 on EntryCategs.id = nEC.categ_id
-                and nEC.entry_id = :entryId",
-            ['entryId' => $entryId]
-        );
-        $categList->list = $qwe->fetchAll(PDO::FETCH_CLASS, Category::class);
-        return $categList;
+                and nEC.entry_id = :entryId";
+
+        $params = ['entryId' => $entryId];
+
+        return static::bySql($sql, $params);
     }
 
+    /**
+     * @return Category[]
+     */
     public function getList(): array
     {
         return $this->list;
     }
+
+
 }

@@ -5,7 +5,7 @@ use Symphograph\Bicycle\Env\Server\ServerEnv;
 
 class Email
 {
-    public const recipients = [
+    public const array recipients = [
         'sakh-orch.ru'=>'mbu-gko@yandex.ru',
         'api.sakh-orch.ru'=>'mbu-gko@yandex.ru',
         'test.sakh-orch.ru'=>'roman.chubich@gmail.com',

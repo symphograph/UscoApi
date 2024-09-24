@@ -9,7 +9,7 @@ use Symphograph\Bicycle\Token\Token;
 
 class User
 {
-    const authTypes = [
+    const array authTypes = [
         'telegram'
     ];
     public int $id;

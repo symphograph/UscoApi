@@ -2,9 +2,8 @@
 
 namespace App\Docs;
 
-use PDO;
+
 use Symphograph\Bicycle\DTO\DTOTrait;
-use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\Errors\NoContentErr;
 use Symphograph\Bicycle\PDO\DB;
 

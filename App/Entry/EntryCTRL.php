@@ -19,12 +19,12 @@ class EntryCTRL
 {
     public static function add(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([13]);
 
         $Entry = Entry::create() or
         throw new AppErr('addNewEntry err', 'Не удалось добавить новость');
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::data($Entry);
     }
 
@@ -41,6 +41,7 @@ class EntryCTRL
 
     #[NoReturn] public static function list(): void
     {
+        Request::checkEmpty(['year']);
         $year = intval($_POST['year'] ?? 0);
         $category = $_POST['category'] ?? 'all';
         if($category === 'all') {
@@ -60,7 +61,7 @@ class EntryCTRL
 
     public static function update(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([13]);
         Request::checkEmpty(['entry']);
 
         $newEntry = $_POST['entry'];
@@ -97,13 +98,13 @@ class EntryCTRL
 
         $Entry->putToDB();
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 
     #[NoReturn] public static function del(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([13]);
         Request::checkEmpty(['entryId']);
 
         Entry::delById($_POST['entryId']);
@@ -114,39 +115,39 @@ class EntryCTRL
         $photoFolder = FileHelper::fullPath($photoFolder, true);
         FileHelper::delDir($photoFolder);
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 
     #[NoReturn] public static function hide(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([13]);
         Request::checkEmpty(['entryId']);
 
         $Entry = EntryDTO::byId($_POST['entryId']);
         $Entry->isShow = false;
         $Entry->putToDB();
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 
     #[NoReturn] public static function show(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([13]);
         Request::checkEmpty(['entryId']);
 
         $Entry = EntryDTO::byId($_POST['entryId']);
         $Entry->isShow = true;
         $Entry->putToDB();
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 
     #[NoReturn] public static function updateMarkdown(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([13]);
         Request::checkEmpty(['id']);
         Request::checkSet(['markdown']);
 
@@ -155,7 +156,7 @@ class EntryCTRL
         $Entry->initData();
         $Entry->putToDB();
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::data($Entry->parsedMD);
     }
 

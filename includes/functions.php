@@ -22,7 +22,7 @@ use Symphograph\Bicycle\PDO\DB;
  *                         to select from
  * @return string
  */
-function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'): string
+function random_str(int $length, string $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'): string
 {
     $str = '';
     $max = mb_strlen($keyspace, '8bit') - 1;
@@ -41,7 +41,7 @@ function printr($var): void
     echo '</pre>';
 }
 
-function curl($plink, array $data = [])
+function curl($plink, array $data = []): bool|string
 {
     $data['apiKey'] = UscoEnv::getApiKey();
     //printr($data);

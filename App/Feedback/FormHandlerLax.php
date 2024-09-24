@@ -7,8 +7,8 @@ use JetBrains\PhpStorm\Language;
 
 final class FormHandlerLax extends FormHandler
 {
-    const subject = 'Пермиссивная форма';
-    const method = 'GET';
+    const string subject = 'Пермиссивная форма';
+    const string method = 'GET';
 
     /**
      * Обрабатывает GET запрос.

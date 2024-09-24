@@ -23,6 +23,7 @@ class ApiAction extends ApiActionDTO
 
     public static function log(string $method, string $controller): void
     {
-        self::newInstance($method, $controller)->putToDB();
+        $log =  self::newInstance($method, $controller);
+        $log->putToDB();
     }
 }

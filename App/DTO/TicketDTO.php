@@ -8,7 +8,7 @@ use Symphograph\Bicycle\DTO\DTOTrait;
 class TicketDTO implements TicketITF
 {
     use DTOTrait;
-    const tableName = 'tickets';
+    const string tableName = 'tickets';
 
     public int     $id;
     public int     $announceId;

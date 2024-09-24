@@ -6,7 +6,7 @@ use PDO;
 
 class Ticket extends DTO\TicketDTO
 {
-    const minsForTmpReserve = 15;
+    const int minsForTmpReserve = 15;
 
     public static function byId(int $id): self|false
     {

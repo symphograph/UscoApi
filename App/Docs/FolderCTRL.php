@@ -15,7 +15,7 @@ class FolderCTRL
 {
     public static function add(): void
     {
-        User::auth([1, 2, 15]);
+        User::auth([15]);
         Request::checkEmpty(['title']);
 
         $folder = DocFolder::create($_POST['title']);
@@ -23,7 +23,7 @@ class FolderCTRL
             throw throw new UploadErr('err on create folder', 'Папка не создана');
         }
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 
@@ -54,7 +54,7 @@ class FolderCTRL
 
     public static function setAsTrash(): void
     {
-        User::auth([1, 2, 15]);
+        User::auth([15]);
         Request::checkEmpty(['id']);
 
         $folder = DocFolder::byId($_POST['id'])
@@ -62,13 +62,13 @@ class FolderCTRL
         $folder->initData();
         $folder->setAsTrash();
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 
     public static function resFromTrash(): void
     {
-        User::auth([1, 2, 15]);
+        User::auth([15]);
         Request::checkEmpty(['id']);
 
         $folder = DocFolder::byId($_POST['id'])
@@ -76,42 +76,42 @@ class FolderCTRL
         $folder->initData();
         $folder->resFromTrash();
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 
     #[NoReturn] public static function posUp(): void
     {
-        User::auth([1, 2, 15]);
+        User::auth([15]);
         Request::checkEmpty(['id']);
 
         DocFolder::posUp($_POST['id']);
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 
     #[NoReturn] public static function posDown(): void
     {
-        User::auth([1, 2, 15]);
+        User::auth([15]);
         Request::checkEmpty(['id']);
 
         DocFolder::posDown($_POST['id']);
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 
     public static function rename(): void
     {
-        User::auth([1, 2, 15]);
+        User::auth([15]);
         Request::checkEmpty(['id', 'title']);
 
         $folder = DocFolder::byId($_POST['id']) ?: throw new NoContentErr();
         $folder->title = $_POST['title'];
         $folder->putToDB();
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 }

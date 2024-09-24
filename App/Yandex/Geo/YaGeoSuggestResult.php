@@ -14,7 +14,7 @@ class YaGeoSuggestResult {
     /**
      * @var YaGeoSuggestComponent[]
      */
-    private array $components = [];
+    private array $components;
 
     public function __construct(array $result)
     {

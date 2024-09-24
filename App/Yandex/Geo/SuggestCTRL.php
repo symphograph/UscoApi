@@ -11,7 +11,7 @@ class SuggestCTRL {
 
     #[NoReturn] public static function add(): void
     {
-        User::auth([1,2,14]);
+        User::auth([14]);
         Request::checkEmpty(['suggest']);
         $suggestData = new YaGeoSuggestResult($_POST['suggest']);
         $suggest = $suggestData->getSuggest();
@@ -21,7 +21,7 @@ class SuggestCTRL {
 
     #[NoReturn] public static function getApiKey(): void
     {
-        User::auth([1,2,14]);
+        User::auth([14]);
         Response::data(['key'=> 'ytre']);
     }
 

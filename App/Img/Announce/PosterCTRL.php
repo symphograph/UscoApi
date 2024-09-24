@@ -20,7 +20,7 @@ class PosterCTRL extends FileImgCTRL
 {
     public static function add(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([14]);
         Request::checkEmpty(['id']);
 
         $Announce = Announce::byId($_POST['id'])
@@ -32,21 +32,21 @@ class PosterCTRL extends FileImgCTRL
         $FileIMG = parent::addIMG(UploadedImg::getFile());
         //$FileIMG->makeSizes();
         Announce::linkPoster($Announce->id, $FileIMG->id);
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         ImgList::runResizeWorker();
         Response::success();
     }
 
     #[NoReturn] public static function unlink(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([14]);
         Request::checkEmpty(['id']);
 
         $announce = Announce::byId($_POST['id']);
         $poster = FileIMG::byId($announce->posterId);
         $poster->del();
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 

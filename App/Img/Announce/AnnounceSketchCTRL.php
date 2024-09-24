@@ -16,7 +16,7 @@ class AnnounceSketchCTRL extends FileImgCTRL
 {
     public static function add(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([14]);
         Request::checkEmpty(['id']);
 
         $Announce = Announce::byId($_POST['id'])
@@ -36,7 +36,7 @@ class AnnounceSketchCTRL extends FileImgCTRL
 
     #[NoReturn] public static function unlink(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([14]);
         Request::checkEmpty(['id']);
 
         Announce::unlinkSketch($_POST['id']);

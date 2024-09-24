@@ -53,8 +53,8 @@ class Entry extends EntryDTO
 
     public function putToDB(PutMode $mode = PutMode::safeReplace): void
     {
-        //printr($this);
-        qwe("START TRANSACTION");
+
+        DB::pdo()->beginTransaction();
         $parent = parent::byBind($this);
         $parent->putToDB();
 
@@ -76,7 +76,7 @@ class Entry extends EntryDTO
                 ]
             );
         }
-        qwe("COMMIT");
+        DB::pdo()->commit();
     }
 
 
@@ -122,8 +122,7 @@ class Entry extends EntryDTO
 
     private function initCategories(): void
     {
-        $categList = CategList::byEntryId($this->id);
-        $this->categs = $categList->getList();
+        $this->categs = CategList::byEntryId($this->id)->getList();
         if (!empty($this->refLink)) {
             $this->categs[2]->checked = true;
         }

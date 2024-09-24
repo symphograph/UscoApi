@@ -16,7 +16,7 @@ class EntrySketchCTRL extends FileImgCTRL
 {
     public static function add(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([13]);
         Request::checkEmpty(['id']);
 
         $Entry = Entry::byId($_POST['id'])
@@ -26,13 +26,13 @@ class EntrySketchCTRL extends FileImgCTRL
         $FileIMG->makeSizes();
         Entry::linkSketch($Entry->id, $FileIMG->id);
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 
     #[NoReturn] public static function del(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([13]);
         Request::checkEmpty(['entryId']);
 
         $Entry = Entry::byId($_POST['entryId']);
@@ -44,18 +44,18 @@ class EntrySketchCTRL extends FileImgCTRL
         $Entry->initNewVerString();
         $Entry->putToDB();
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 
     #[NoReturn] public static function unlink(): void
     {
-        User::auth([1, 2, 4]);
+        User::auth([13]);
         Request::checkEmpty(['id']);
 
         Entry::unlinkSketch($_POST['id']);
 
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 }

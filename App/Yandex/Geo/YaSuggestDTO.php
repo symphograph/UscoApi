@@ -2,9 +2,7 @@
 
 namespace App\Yandex\Geo;
 
-use PDOException;
 use Symphograph\Bicycle\DTO\DTOTrait;
-use Symphograph\Bicycle\Errors\AppErr;
 use Symphograph\Bicycle\PDO\DB;
 
 class YaSuggestDTO {

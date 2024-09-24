@@ -9,7 +9,7 @@ class EntryDTO
 {
     use DTOTrait;
 
-    const tableName = 'news';
+    const string tableName = 'news';
 
     public int     $id;
     public string  $title;

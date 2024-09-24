@@ -31,10 +31,11 @@ class HallCTRL {
 
     #[NoReturn] public static function add(): void
     {
-        User::auth([1,2,14]);
+        User::auth([14]);
         Request::checkEmpty(['name', 'suggestId']);
         $hall = Hall::newInstance($_POST['name'], $_POST['suggestId']);
         $hall->putToDB(PutMode::insert);
+
         ApiAction::log(__FUNCTION__, self::class);
         $hall->initData();
         Response::data($hall);
@@ -42,7 +43,7 @@ class HallCTRL {
 
     public static function update(): void
     {
-        User::auth([1,2,14]);
+        User::auth([14]);
         Request::checkEmpty(['id', 'name', 'suggestId']);
         $hall = Hall::byId($_POST['id'])
             ?: throw new AppErr("Hall not found", "Зал не найден");
@@ -56,7 +57,7 @@ class HallCTRL {
 
     #[NoReturn] public static function del(): void
     {
-        User::auth([1,2,14]);
+        User::auth([14]);
         Request::checkEmpty(['id']);
         Hall::delById($_POST['id']);
         ApiAction::log(__FUNCTION__, self::class);
