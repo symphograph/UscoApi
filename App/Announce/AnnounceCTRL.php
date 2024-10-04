@@ -81,9 +81,11 @@ class AnnounceCTRL
     {
         $date = $_POST['date'] ?? date('Y-m-d');
         $AnnounceList = AnnounceList::byFuture($date, true);
+        /*
         if(empty($AnnounceList->getList())){
             throw new NoContentErr(httpStatus: 204);
         }
+        */
         $AnnounceList->initData();
 
         Response::data($AnnounceList->getList());
