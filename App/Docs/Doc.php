@@ -7,7 +7,7 @@ use Symphograph\Bicycle\Files\FileDoc;
 use Symphograph\Bicycle\Files\FileStatus;
 use Symphograph\Bicycle\DTO\ModelTrait;
 use Symphograph\Bicycle\FileHelper;
-use Symphograph\Bicycle\Helpers\DateTimeHelper;
+use Symphograph\Bicycle\Helpers\Date;
 use Symphograph\Bicycle\PDO\DB;
 
 
@@ -72,7 +72,7 @@ class Doc extends DocDTO
         $title = $this->title;
         $atDate = $this->atDate;
 
-        $extractedDate = DateTimeHelper::extractDate($title);
+        $extractedDate = Date::extractDate($title);
         if ($extractedDate) {
             $fileName = str_replace($extractedDate, '', $title);
         } else {

@@ -8,7 +8,7 @@ use App\Ticket;
 use App\User;
 use Symphograph\Bicycle\Api\Response;
 use Symphograph\Bicycle\Env\Server\ServerEnv;
-use Symphograph\Bicycle\Errors\AuthErr;
+use Symphograph\Bicycle\Errors\Auth\AuthErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 use Symphograph\Bicycle\Token\AccessTokenData;
 

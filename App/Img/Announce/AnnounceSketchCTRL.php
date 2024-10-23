@@ -33,16 +33,4 @@ class AnnounceSketchCTRL extends FileImgCTRL
         ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
         Response::success();
     }
-
-    #[NoReturn] public static function unlink(): void
-    {
-        User::auth([14]);
-        Request::checkEmpty(['id']);
-
-        Announce::unlinkSketch($_POST['id']);
-
-        ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
-        Response::success();
-    }
-
 }

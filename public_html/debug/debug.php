@@ -5,11 +5,6 @@ use Symphograph\Bicycle\Debug\DebugCTRL;
 use Symphograph\Bicycle\Errors\ApiErr;
 use Symphograph\Bicycle\Errors\ValidationErr;
 
-
-if (empty($_POST['method'])) {
-    throw new ValidationErr();
-}
-
 match ($_POST['method']) {
     'isDebugIp' => DebugCTRL::isDebugIp(),
     default => throw new ApiErr()

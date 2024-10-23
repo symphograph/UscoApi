@@ -1,8 +1,6 @@
 <?php
 
-use App\Env\UscoEnv;
 use JetBrains\PhpStorm\Language;
-
 use Symfony\Component\VarDumper\VarDumper;
 use Symphograph\Bicycle\Env\Env;
 use Symphograph\Bicycle\Env\Server\ServerEnvCli;
@@ -43,7 +41,7 @@ function printr($var): void
 
 function curl($plink, array $data = []): bool|string
 {
-    $data['apiKey'] = UscoEnv::getApiKey();
+    $data['apiKey'] = Env::getApiKey();
     //printr($data);
 
     $curl = curl_init();
