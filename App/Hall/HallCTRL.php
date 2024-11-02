@@ -2,7 +2,7 @@
 
 namespace App\Hall;
 
-use App\Api\Action\ApiAction;
+use Symphograph\Bicycle\Api\Action\ApiAction;
 use App\User;
 use JetBrains\PhpStorm\NoReturn;
 use Symphograph\Bicycle\Api\Response;

@@ -2,7 +2,7 @@
 
 namespace App\Img\Entry;
 
-use App\Api\Action\ApiAction;
+use Symphograph\Bicycle\Api\Action\ApiAction;
 use App\Entry\Entry;
 use App\Entry\Errors\EntryNoExists;
 use Symphograph\Bicycle\Files\FileImgCTRL;

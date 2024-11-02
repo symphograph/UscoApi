@@ -4,7 +4,7 @@ namespace App\Img\Announce;
 
 use App\Announce\Announce;
 use App\Announce\Errors\NoExistsErr;
-use App\Api\Action\ApiAction;
+use Symphograph\Bicycle\Api\Action\ApiAction;
 use App\Files\ImgList;
 use Symphograph\Bicycle\Errors\Files\FileErr;
 use Symphograph\Bicycle\Files\FileIMG;

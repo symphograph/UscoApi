@@ -31,8 +31,4 @@ class User
         return $tokenArr['uid'];
     }
 
-    public static function getPersId(): ?int
-    {
-        return AccessTokenData::persId();
-    }
 }

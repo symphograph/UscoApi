@@ -2,7 +2,7 @@
 
 namespace App\Docs;
 
-use App\Api\Action\ApiAction;
+use Symphograph\Bicycle\Api\Action\ApiAction;
 use Symphograph\Bicycle\Files\FileDoc;
 use Symphograph\Bicycle\Files\UploadedDoc;
 use App\User;

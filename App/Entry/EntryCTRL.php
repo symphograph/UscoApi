@@ -2,7 +2,7 @@
 
 namespace App\Entry;
 
-use App\Api\Action\ApiAction;
+use Symphograph\Bicycle\Api\Action\ApiAction;
 use App\Entry\List\EntryList;
 use App\Img\Entry\EntrySketch;
 use App\User;
