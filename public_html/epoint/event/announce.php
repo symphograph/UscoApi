@@ -19,7 +19,6 @@ match ($_POST['method']) {
     'listAll' => AnnounceCTRL::listAll(),
     'get' => AnnounceCTRL::get(),
     'del' => AnnounceCTRL::del(),
-    'delSketch' => AnnounceCTRL::delSketch(),
     'add' => AnnounceCTRL::add(),
     'update' => AnnounceCTRL::update(),
     'hide' => AnnounceCTRL::hide(),

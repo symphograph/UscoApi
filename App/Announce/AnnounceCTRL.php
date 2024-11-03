@@ -175,15 +175,4 @@ class AnnounceCTRL
         Response::data($Announce->parsedMD);
     }
 
-    #[NoReturn] public static function delSketch(): void
-    {
-        User::auth([14]);
-        Request::checkEmpty(['announceId']);
-
-        Announce::unlinkSketch($_POST['announceId']);
-
-        ApiAction::log(__FUNCTION__, self::class);
-        Response::success();
-    }
-
 }

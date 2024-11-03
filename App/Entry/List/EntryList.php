@@ -77,7 +77,15 @@ class EntryList extends AbstractList
 
     public static function top(): self
     {
-        $sql = "select * from news where isShow order by date desc limit 5";
+        $sql = "
+            select news.* from news 
+            join nn_EntryCategs ec
+                on ec.entry_id = news.id
+                and ec.categ_id = 1
+            where isShow 
+            order by date desc 
+            limit 5";
+
         $EntryList = self::bySql($sql);
         $EntryList->classMap();
         return $EntryList;

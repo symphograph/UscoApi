@@ -3,6 +3,7 @@
 namespace App\Img\Announce;
 
 use App\Announce\Announce;
+use JetBrains\PhpStorm\NoReturn;
 use Symphograph\Bicycle\Api\Action\ApiAction;
 use Symphograph\Bicycle\Files\FileImgCTRL;
 use Symphograph\Bicycle\Files\UploadedImg;
@@ -30,6 +31,17 @@ class AnnounceSketchCTRL extends FileImgCTRL
         Announce::linkSketch($Announce->id, $FileIMG->id);
 
         ApiAction::newInstance(__FUNCTION__, self::class)->putToDB();
+        Response::success();
+    }
+
+    #[NoReturn] public static function del(): void
+    {
+        User::auth([14]);
+        Request::checkEmpty(['announceId']);
+
+        Announce::unlinkSketch($_POST['announceId']);
+
+        ApiAction::log(__FUNCTION__, self::class);
         Response::success();
     }
 }

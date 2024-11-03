@@ -39,7 +39,7 @@ class EntryCTRL
         Response::data($Entry);
     }
 
-    #[NoReturn] public static function list(): void
+    #[NoReturn] public static function listByYear(): void
     {
         Request::checkEmpty(['year']);
         $year = intval($_POST['year'] ?? 0);
@@ -53,10 +53,10 @@ class EntryCTRL
         Response::data($list->getList());
     }
 
-    #[NoReturn] public static function toplist(): void
+    #[NoReturn] public static function listTop(): void
     {
-        $list = EntryList::top();
-        Response::data($list->getList());
+        $topList = EntryList::top()->getList();
+        Response::data($topList);
     }
 
     public static function update(): void
