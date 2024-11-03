@@ -77,7 +77,7 @@ class AnnounceCTRL
         Response::data($list);
     }
 
-    public static function futureList(): void
+    #[NoReturn] public static function listFuture(): void
     {
         $date = $_POST['date'] ?? date('Y-m-d');
         $AnnounceList = AnnounceList::byFuture($date, true);
@@ -93,9 +93,9 @@ class AnnounceCTRL
 
     public static function get(): void
     {
-        Request::checkEmpty(['id']);
+        Request::checkEmpty(['announceId']);
 
-        $Announce = Announce::byId($_POST['id'])
+        $Announce = Announce::byId($_POST['announceId'])
             ?: throw new NoContentErr();
 
         $Announce->initData();

@@ -15,7 +15,7 @@ match ($_POST['method']) {
     'listByYear' => AnnounceCTRL::listByYear(),
     'listByMonth' => AnnounceCTRL::listByMonth(),
     'listByDate' => AnnounceCTRL::listByDate(),
-    'futureList' => AnnounceCTRL::futureList(),
+    'listFuture' => AnnounceCTRL::listFuture(),
     'listAll' => AnnounceCTRL::listAll(),
     'get' => AnnounceCTRL::get(),
     'del' => AnnounceCTRL::del(),
