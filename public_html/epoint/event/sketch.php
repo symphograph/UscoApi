@@ -12,6 +12,6 @@ if (empty($_POST['method'])) {
 
 match ($_POST['method']) {
     'add' => AnnounceSketchCTRL::add(),
-    'del' => AnnounceSketchCTRL::del(),
+    'unlink' => AnnounceSketchCTRL::unlink(),
     default => throw new ApiErr()
 };

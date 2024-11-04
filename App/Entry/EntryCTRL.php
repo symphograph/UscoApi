@@ -30,9 +30,9 @@ class EntryCTRL
 
     public static function get(): void
     {
-        Request::checkEmpty(['id']);
+        Request::checkEmpty(['entryId']);
 
-        $Entry = Entry::byId($_POST['id'])
+        $Entry = Entry::byId($_POST['entryId'])
             ?: throw new NoContentErr();
         $Entry->initData();
 
@@ -64,37 +64,33 @@ class EntryCTRL
         User::auth([13]);
         Request::checkEmpty(['entry']);
 
-        $newEntry = $_POST['entry'];
+        $data = $_POST['entry'];
 
-        $id = intval($newEntry['id'] ?? 0) or
-        throw new ValidationErr('id');
+        $Entry = Entry::byId($data['id']);
 
-        $Entry = Entry::byId($id) or
-        throw new AppErr('Entry::byId err');
+        $Entry->title = $data['title'] or
+        throw new ValidationErr('Title is empty', 'Пустой заголовок');
 
-        $Entry->title = $newEntry['title'] or
-        throw new ValidationErr('title', 'Пустой заголовок');
+        $Entry->announceId = $data['announceId'] ?? null;
 
-        $Entry->announceId = $newEntry['announceId'] ?? null;
-
-        if(!Helpers::isDate($newEntry['date'] ?? '')){
-            throw new ValidationErr('isDate err', 'Не вижу дату');
+        if(!Helpers::isDate($data['date'] ?? '')){
+            throw new ValidationErr('isDate err', 'Недопустимый формат даты');
         }
-        $Entry->date = $newEntry['date'];
+        $Entry->date = $data['date'];
 
-        $Entry->descr = $newEntry['descr'] or
+        $Entry->descr = $data['descr'] or
         throw new ValidationErr('descr err', 'Пустое описание');
 
-        $Entry->markdown = $newEntry['markdown'] or
+        $Entry->markdown = $data['markdown'] or
         throw new ValidationErr('markdown err', 'Пустой текст');
 
 
-        $categList = CategList::byBind($newEntry['categs']);
+        $categList = CategList::byBind($data['categs']);
         $Entry->categs = $categList->getList();
 
-        $Entry->refLink = $newEntry['refLink'] ?? '';
-        $Entry->refName = $newEntry['refName'] ?? '';
-        $Entry->isExternal = $newEntry['isExternal'];
+        $Entry->refLink = $data['refLink'] ?? '';
+        $Entry->refName = $data['refName'] ?? '';
+        $Entry->isExternal = $data['isExternal'];
 
         $Entry->putToDB();
 
@@ -148,10 +144,10 @@ class EntryCTRL
     #[NoReturn] public static function updateMarkdown(): void
     {
         User::auth([13]);
-        Request::checkEmpty(['id']);
+        Request::checkEmpty(['entryId']);
         Request::checkSet(['markdown']);
 
-        $Entry = Entry::byId($_POST['id']);
+        $Entry = Entry::byId($_POST['entryId']);
         $Entry->markdown = $_POST['markdown'];
         $Entry->initData();
         $Entry->putToDB();

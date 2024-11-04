@@ -40,9 +40,9 @@ class PosterCTRL extends FileImgCTRL
     #[NoReturn] public static function unlink(): void
     {
         User::auth([14]);
-        Request::checkEmpty(['id']);
+        Request::checkEmpty(['announceId']);
 
-        $announce = Announce::byId($_POST['id']);
+        $announce = Announce::byId($_POST['announceId']);
         $poster = FileIMG::byId($announce->posterId);
         $poster->del();
 

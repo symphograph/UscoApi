@@ -33,9 +33,9 @@ class EntrySketchCTRL extends FileImgCTRL
     #[NoReturn] public static function del(): void
     {
         User::auth([13]);
-        Request::checkEmpty(['entryId']);
+        Request::checkEmpty(['carrierId']);
 
-        $Entry = Entry::byId($_POST['entryId']);
+        $Entry = Entry::byId($_POST['carrierId']);
         $Sketch = new EntrySketch($Entry->id);
         $Sketch->delFiles();
 
@@ -51,9 +51,9 @@ class EntrySketchCTRL extends FileImgCTRL
     #[NoReturn] public static function unlink(): void
     {
         User::auth([13]);
-        Request::checkEmpty(['id']);
+        Request::checkEmpty(['carrierId']);
 
-        Entry::unlinkSketch($_POST['id']);
+        Entry::unlinkSketch($_POST['carrierId']);
 
         ApiAction::log(__FUNCTION__, self::class);
         Response::success();

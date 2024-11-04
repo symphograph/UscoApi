@@ -164,10 +164,10 @@ class AnnounceCTRL
     #[NoReturn] public static function updateMarkdown(): void
     {
         User::auth([14]);
-        Request::checkEmpty(['id']);
+        Request::checkEmpty(['announceId']);
         Request::checkSet(['markdown']);
 
-        $Announce = Announce::byId($_POST['id']);
+        $Announce = Announce::byId($_POST['announceId']);
         $Announce->description = $_POST['markdown'];
         $Announce->initData();
         $Announce->putToDB();

@@ -34,12 +34,12 @@ class AnnounceSketchCTRL extends FileImgCTRL
         Response::success();
     }
 
-    #[NoReturn] public static function del(): void
+    #[NoReturn] public static function unlink(): void
     {
         User::auth([14]);
-        Request::checkEmpty(['announceId']);
+        Request::checkEmpty(['carrierId']);
 
-        Announce::unlinkSketch($_POST['announceId']);
+        Announce::unlinkSketch($_POST['carrierId']);
 
         ApiAction::log(__FUNCTION__, self::class);
         Response::success();
