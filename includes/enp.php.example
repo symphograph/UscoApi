@@ -1,0 +1,101 @@
+<?php
+// Разбором объекта занимается класс Symphograph\Bicycle\Env\Env
+return (object) [
+    'debugIPs'       => ['000.000.000.00', '000.000.000.01'], // ip, с которых соединяется разработчик
+    'serverIps' => ['00.000.00.000'], // ip, сервисов
+    'serverName' => 'any.domain.ru', // Имя сервера, присваемое при запуске в режиме CLI
+    'debugMode'      => true, // bool
+    'isTest'=> true, // трактуется как !isProd<bool>
+    'staffApiDomain' => 'tapi.staff.sakh-orch.ru', // домен сервиса. Является частью CRM SymphoStaff
+    'apiKey' => 'xxxxxxxxxxxxxxxx', // Передаётся при обрацении к сервисам через curl
+
+
+    'connects' => [
+        'connectName1' => (object) [
+            'host' => 'localhost',
+            'name' => 'dbName1',
+            'user' => 'root',
+            'pass' => 'pass'
+        ],
+
+        /* optional
+        'connectName2' => (object) [
+            'host' => 'localhost',
+            'name' => 'dbName2',
+            'user' => 'root',
+            'pass' => 'pass'
+        ]
+        */
+    ],
+
+    'clients' => [
+        (object)[
+            'name' => 'ussoSite.main',
+            'groupName' => 'usso',
+            'domain' => 'sakh-orch.ru'
+        ],
+        (object)[
+            'name' => 'ussoSite.dev',
+            'groupName' => 'usso',
+            'domain' => 'dev.sakh-orch.ru:9200'
+        ],
+        (object)[
+            'name' => 'ussoSite.local',
+            'groupName' => 'usso',
+            'domain' => '192.168.0.200:9200'
+        ],
+
+        //--------------------------------
+
+        /*
+         // optional
+         // Используется для взаимодействия с клиентом SymphoStaff
+        (object)[
+            'name' => 'ussoStaff.main',
+            'groupName' => 'usso',
+            'domain' => 'staff.sakh-orch.ru'
+        ],
+
+        (object)[
+            'name' => 'ussoStaff.dev',
+            'groupName' => 'usso',
+            'domain' => 'dev.sakh-orch.ru:9100'
+        ],
+        (object)[
+            'name' => 'ussoStaff.local',
+            'groupName' => 'usso',
+            'domain' => '192.168.0.200:9100'
+        ],
+        */
+    ],
+
+    'services' => [
+        (object)[
+            'name' => 'auth',
+            'domain' => 'sakh-orch.ru',
+            'location' => 'auth', // alias. Путь, настроенный в Nginx для обращения к сервису выдачи токена
+            'type' => 'api',
+        ],
+    ],
+
+    'debugOnlyFolders' => [
+        // Запросы к этим эндпоинтам могут быть выполнены только разработчиком
+        'test',
+        'services',
+        'transfer'
+    ],
+
+    'jwt' => (object) [
+        'key' => 'YOU_JWT_KEY',
+        'issuer' => 'issuerdomain.ru',
+        'audience' => [
+            'audiencedomain.ru'
+        ]
+    ],
+
+    // Почта для приема сообщений формы обратной связи
+    'recipientEmail' => 'mail@example.com',
+
+    'timeZone' => 11, // Если ситуация диктует необходимсть серверного форматирования даты
+
+];
